@@ -1,0 +1,76 @@
+// 主题颜色
+$primary-color: #007aff !default;
+$success-color: #52c41a !default;
+$warning-color: #faad14 !default;
+$danger-color: #ff4d4f !default;
+$info-color: #1890ff !default;
+
+// 文字颜色
+$text-color-primary: #333333 !default;
+$text-color-regular: #666666 !default;
+$text-color-secondary: #999999 !default;
+$text-color-placeholder: #cccccc !default;
+$text-color-disabled: #dddddd !default;
+
+// 背景颜色
+$bg-color-base: #ffffff !default;
+$bg-color-light: #f5f5f5 !default;
+$bg-color-lighter: #fafafa !default;
+$bg-color-dark: #141414 !default;
+
+// 边框颜色
+$border-color-base: #d9d9d9 !default;
+$border-color-light: #e8e8e8 !default;
+$border-color-dark: #bfbfbf !default;
+
+// 字体大小
+$font-size-xs: 10px !default;
+$font-size-sm: 12px !default;
+$font-size-base: 14px !default;
+$font-size-md: 16px !default;
+$font-size-lg: 18px !default;
+$font-size-xl: 20px !default;
+$font-size-xxl: 24px !default;
+
+// 间距
+$spacing-xs: 4px !default;
+$spacing-sm: 8px !default;
+$spacing-base: 12px !default;
+$spacing-md: 16px !default;
+$spacing-lg: 20px !default;
+$spacing-xl: 24px !default;
+$spacing-xxl: 32px !default;
+
+// 圆角
+$border-radius-xs: 2px !default;
+$border-radius-sm: 4px !default;
+$border-radius-base: 6px !default;
+$border-radius-md: 8px !default;
+$border-radius-lg: 12px !default;
+$border-radius-circle: 50% !default;
+
+// 阴影
+$shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.08) !default;
+$shadow-base: 0 4px 8px rgba(0, 0, 0, 0.12) !default;
+$shadow-md: 0 8px 16px rgba(0, 0, 0, 0.16) !default;
+$shadow-lg: 0 12px 24px rgba(0, 0, 0, 0.2) !default;
+
+// 动画
+$animation-duration-base: 0.3s !default;
+$animation-duration-slow: 0.5s !default;
+$animation-duration-fast: 0.15s !default;
+$ease-in-out: cubic-bezier(0.645, 0.045, 0.355, 1) !default;
+
+// 按钮尺寸
+$button-height-sm: 28px !default;
+$button-height-base: 36px !default;
+$button-height-lg: 44px !default;
+
+// 输入框高度
+$input-height-sm: 32px !default;
+$input-height-base: 40px !default;
+$input-height-lg: 48px !default;
+
+// 通用变量
+$disabled-opacity: 0.5 !default;
+$max-z-index: 999 !default;

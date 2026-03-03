@@ -1,0 +1,37 @@
+/**
+ * 暗色主题
+ */
+
+.dark-theme,
+page.dark {
+  // 主题色（保持不变或微调）
+  --mx-primary-color: #1890ff;
+  --mx-success-color: #52c41a;
+  --mx-warning-color: #faad14;
+  --mx-danger-color: #ff4d4f;
+  --mx-info-color: #1890ff;
+
+  // 文字颜色（反色）
+  --mx-text-color-primary: #f0f0f0;
+  --mx-text-color-regular: #d9d9d9;
+  --mx-text-color-secondary: #bfbfbf;
+  --mx-text-color-placeholder: #8c8c8c;
+  --mx-text-color-disabled: #595959;
+
+  // 背景颜色（深色）
+  --mx-bg-color-base: #1f1f1f;
+  --mx-bg-color-light: #141414;
+  --mx-bg-color-lighter: #000000;
+  --mx-bg-color-dark: #262626;
+
+  // 边框颜色（深色）
+  --mx-border-color-base: #434343;
+  --mx-border-color-light: #303030;
+  --mx-border-color-dark: #595959;
+
+  // 阴影（调整透明度）
+  --mx-shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.3);
+  --mx-shadow-base: 0 4px 8px rgba(0, 0, 0, 0.4);
+  --mx-shadow-md: 0 8px 16px rgba(0, 0, 0, 0.5);
+  --mx-shadow-lg: 0 12px 24px rgba(0, 0, 0, 0.6);
+}

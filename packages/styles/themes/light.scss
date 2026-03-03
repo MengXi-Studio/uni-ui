@@ -1,0 +1,37 @@
+/**
+ * 亮色主题
+ */
+
+:root,
+page {
+  // 主题色
+  --mx-primary-color: #007aff;
+  --mx-success-color: #52c41a;
+  --mx-warning-color: #faad14;
+  --mx-danger-color: #ff4d4f;
+  --mx-info-color: #1890ff;
+
+  // 文字颜色
+  --mx-text-color-primary: #333333;
+  --mx-text-color-regular: #666666;
+  --mx-text-color-secondary: #999999;
+  --mx-text-color-placeholder: #cccccc;
+  --mx-text-color-disabled: #dddddd;
+
+  // 背景颜色
+  --mx-bg-color-base: #ffffff;
+  --mx-bg-color-light: #f5f5f5;
+  --mx-bg-color-lighter: #fafafa;
+  --mx-bg-color-dark: #141414;
+
+  // 边框颜色
+  --mx-border-color-base: #d9d9d9;
+  --mx-border-color-light: #e8e8e8;
+  --mx-border-color-dark: #bfbfbf;
+
+  // 阴影
+  --mx-shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.08);
+  --mx-shadow-base: 0 4px 8px rgba(0, 0, 0, 0.12);
+  --mx-shadow-md: 0 8px 16px rgba(0, 0, 0, 0.16);
+  --mx-shadow-lg: 0 12px 24px rgba(0, 0, 0, 0.2);
+}
