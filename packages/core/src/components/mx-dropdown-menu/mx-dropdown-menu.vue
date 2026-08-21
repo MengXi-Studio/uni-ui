@@ -214,6 +214,7 @@ defineExpose({ activeIndex })
 </script>
 
 <style lang="scss">
+@use '../../styles/transition.scss' as *;
 .mx-dropdown-menu {
   position: relative;
   user-select: none;

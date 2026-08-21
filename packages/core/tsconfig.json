@@ -9,7 +9,7 @@
     "isolatedModules": true,
     "jsx": "preserve",
     "jsxImportSource": "vue",
-    "types": ["node", "@dcloudio/types"],
+    "types": ["node"],
     "baseUrl": ".",
     "paths": {
       "@/*": ["src/*"],

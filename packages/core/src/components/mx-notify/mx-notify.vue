@@ -138,6 +138,7 @@ defineExpose({ show: showNotify, close })
 </script>
 
 <style lang="scss">
+@use '../../styles/transition.scss' as *;
 .mx-notify {
   position: fixed;
   top: 0;

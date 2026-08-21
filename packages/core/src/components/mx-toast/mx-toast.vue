@@ -155,6 +155,7 @@ defineExpose({ show: showToast, close })
 </script>
 
 <style lang="scss">
+@use '../../styles/transition.scss' as *;
 .mx-toast {
   position: fixed;
   left: 50%;

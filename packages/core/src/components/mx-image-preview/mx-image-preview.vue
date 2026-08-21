@@ -123,6 +123,7 @@ const onClose = () => {
 </script>
 
 <style lang="scss">
+@use '../../styles/transition.scss' as *;
 .mx-image-preview {
   position: fixed;
   top: 0;

@@ -50,5 +50,16 @@
     "prettier": "^3.3.2",
     "typescript": "^5.2.2",
     "vue-eslint-parser": "^9.4.2"
-  }
+  },
+  "author": {
+    "name": "PedroQue99",
+    "email": "ksmengfang@163.com"
+  },
+  "license": "MIT",
+  "homepage": "https://github.com/MengXi-Studio/uni-ui#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MengXi-Studio/uni-ui.git"
+  },
+  "bugs": "https://github.com/MengXi-Studio/uni-ui/issues"
 }

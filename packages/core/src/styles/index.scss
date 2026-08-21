@@ -70,9 +70,18 @@ page {
 
 // ---------- 重置 ----------
 page {
-  font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue',
-    Helvetica, Segoe UI, Arial, Roboto, 'PingFang SC', 'Hiragino Sans GB',
-    'Microsoft Yahei', sans-serif;
+  font-family:
+    -apple-system,
+    BlinkMacSystemFont,
+    'Helvetica Neue',
+    Helvetica,
+    Segoe UI,
+    Arial,
+    Roboto,
+    'PingFang SC',
+    'Hiragino Sans GB',
+    'Microsoft Yahei',
+    sans-serif;
   font-size: 14px;
   line-height: 1.5;
   color: var(--mx-text-color);
@@ -139,58 +148,6 @@ navigator {
   display: none !important;
 }
 
-// ---------- 通用过渡动画关键帧 ----------
-@keyframes mx-fade-in {
-  from { opacity: 0; }
-  to { opacity: 1; }
-}
-@keyframes mx-fade-out {
-  from { opacity: 1; }
-  to { opacity: 0; }
-}
-@keyframes mx-slide-up-in {
-  from { transform: translate3d(0, 100%, 0); }
-  to { transform: translate3d(0, 0, 0); }
-}
-@keyframes mx-slide-up-out {
-  from { transform: translate3d(0, 0, 0); }
-  to { transform: translate3d(0, 100%, 0); }
-}
-@keyframes mx-slide-down-in {
-  from { transform: translate3d(0, -100%, 0); }
-  to { transform: translate3d(0, 0, 0); }
-}
-@keyframes mx-slide-down-out {
-  from { transform: translate3d(0, 0, 0); }
-  to { transform: translate3d(0, -100%, 0); }
-}
-@keyframes mx-slide-left-in {
-  from { transform: translate3d(-100%, 0, 0); }
-  to { transform: translate3d(0, 0, 0); }
-}
-@keyframes mx-slide-left-out {
-  from { transform: translate3d(0, 0, 0); }
-  to { transform: translate3d(-100%, 0, 0); }
-}
-@keyframes mx-slide-right-in {
-  from { transform: translate3d(100%, 0, 0); }
-  to { transform: translate3d(0, 0, 0); }
-}
-@keyframes mx-slide-right-out {
-  from { transform: translate3d(0, 0, 0); }
-  to { transform: translate3d(100%, 0, 0); }
-}
-@keyframes mx-zoom-in {
-  from { opacity: 0; transform: scale(0.5); }
-  to { opacity: 1; transform: scale(1); }
-}
-@keyframes mx-zoom-out {
-  from { opacity: 1; transform: scale(1); }
-  to { opacity: 0; transform: scale(0.5); }
-}
-
-// 淡入淡出 (Overlay/Toast/Notify 等通用)
-.mx--fade.mx--enter { animation: mx-fade-in var(--mx-duration-base) both; }
-.mx--fade.mx--leave { animation: mx-fade-out var(--mx-duration-base) both; }
-.mx--zoom.mx--enter { animation: mx-zoom-in var(--mx-duration-base) both; }
-.mx--zoom.mx--leave { animation: mx-zoom-out var(--mx-duration-base) both; }
+// ---------- 通用过渡动画 ----------
+// 过渡关键帧与进出场 helper 类已移至 './transition.scss'，
+// 由各弹层组件在自身 <style> 中 @use 实现自包含，页面无需额外引入。

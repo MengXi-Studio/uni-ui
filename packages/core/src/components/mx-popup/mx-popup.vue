@@ -141,6 +141,7 @@ const onClickCloseIcon = () => {
 </script>
 
 <style lang="scss">
+@use '../../styles/transition.scss' as *;
 .mx-popup {
   position: fixed;
   max-height: 100%;
