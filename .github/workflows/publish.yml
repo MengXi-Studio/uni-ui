@@ -1,4 +1,4 @@
-# 发布到 npm
+# 发布 @mengxi/uni-ui 到 npm
 name: Publish to npm
 
 on:
@@ -8,20 +8,28 @@ on:
 jobs:
   publish:
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: packages/core
+
     steps:
       - uses: actions/checkout@v3
-      
+
       - uses: actions/setup-node@v3
         with:
           node-version: '18.x'
           registry-url: 'https://registry.npmjs.org'
-      
+
+      - uses: pnpm/action-setup@v2
+        with:
+          version: 8
+
       - name: Install dependencies
-        run: npm ci
-      
+        run: pnpm install --frozen-lockfile
+
       - name: Build
-        run: npm run build
-      
+        run: pnpm run build
+
       - name: Publish to npm
         run: npm publish --access public
         env:

@@ -1,0 +1,26 @@
+{
+  "name": "@mengxi/uni-ui-playground",
+  "version": "0.1.0",
+  "private": true,
+  "description": "MengXi Uni-UI 组件库示例项目（uni-app CLI 方式）",
+  "scripts": {
+    "dev:h5": "uni -p h5",
+    "dev:mp-weixin": "uni -p mp-weixin",
+    "build:h5": "uni build -p h5",
+    "build:mp-weixin": "uni build -p mp-weixin"
+  },
+  "dependencies": {
+    "@dcloudio/uni-app": "^3.0.0-alpha-3092920230817001",
+    "@dcloudio/uni-components": "^3.0.0-alpha-3092920230817001",
+    "@dcloudio/uni-h5": "^3.0.0-alpha-3092920230817001",
+    "@mengxi/uni-ui": "workspace:*",
+    "vue": "^3.3.4"
+  },
+  "devDependencies": {
+    "@dcloudio/types": "^3.3.2",
+    "@dcloudio/uni-cli-shared": "^3.0.0-alpha-3092920230817001",
+    "@dcloudio/vite-plugin-uni": "^3.0.0-alpha-3092920230817001",
+    "sass": "^1.66.1",
+    "vite": "^4.4.9"
+  }
+}

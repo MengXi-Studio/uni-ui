@@ -1,0 +1,22 @@
+{
+  "easycom": {
+    "autoscan": true,
+    "custom": {
+      "^mx-(.*)": "@/uni_modules/mengxi-uni-ui/components/mx-$1/mx-$1.vue"
+    }
+  },
+  "pages": [
+    {
+      "path": "pages/index/index",
+      "style": {
+        "navigationBarTitleText": "MengXi Uni-UI 示例"
+      }
+    }
+  ],
+  "globalStyle": {
+    "navigationBarTextStyle": "black",
+    "navigationBarTitleText": "MengXi Uni-UI",
+    "navigationBarBackgroundColor": "#F8F8F8",
+    "backgroundColor": "#F8F8F8"
+  }
+}
