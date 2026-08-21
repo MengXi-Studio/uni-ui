@@ -4,8 +4,8 @@
 // 注意: 不要通过 vite additionalData 注入本文件, 避免重复输出
 // =============================================================
 
-@use './variables.scss';
-@use './mixins.scss';
+@use './variables.scss' as *;
+@use './mixins.scss' as *;
 
 // ---------- 设计令牌 (CSS 变量) ----------
 // H5 端使用 :root, 小程序/App 端使用 page
