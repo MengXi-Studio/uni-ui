@@ -1,25 +1,54 @@
 {
-  "name": "uni-ui",
+  "name": "mengxi-uni-ui",
   "version": "0.1.0",
   "private": true,
   "description": "基于 Vue 3 + TypeScript 的高质量 uni-app 组件库",
-  "packageManager": "pnpm@8.15.0",
-  "workspaces": [
-    "packages/*"
-  ],
+  "packageManager": "pnpm@10.30.0",
+  "engines": {
+    "node": ">=18.12.0"
+  },
   "scripts": {
-    "dev": "pnpm --filter @mengxi/uni-ui run dev",
-    "dev:example": "pnpm --filter @mengxi/uni-ui run dev:example",
-    "build": "pnpm --filter @mengxi/uni-ui run build",
+    "build:core": "pnpm --filter @mengxi/uni-ui run build",
     "docs:dev": "pnpm --filter @mengxi/uni-ui-docs run dev",
     "docs:build": "pnpm --filter @mengxi/uni-ui-docs run build",
     "playground:dev": "pnpm --filter @mengxi/uni-ui-playground run dev:h5",
     "playground:build": "pnpm --filter @mengxi/uni-ui-playground run build:h5",
+    "build": "pnpm -r run build",
     "lint": "pnpm -r run lint",
-    "format": "prettier --write \"**/*.{ts,vue,scss,md}\""
+    "format": "prettier --write \"**/*.{ts,vue,scss,md}\"",
+    "prepare": "husky",
+    "lint:staged": "lint-staged",
+    "commitlint": "commitlint --from=HEAD~1 --to=HEAD --verbose",
+    "release": "bumpp"
+  },
+  "lint-staged": {
+    "*.{ts,vue}": [
+      "eslint --fix",
+      "prettier --write"
+    ],
+    "*.{scss,css,md,json,yaml,yml}": [
+      "prettier --write"
+    ]
+  },
+  "pnpm": {
+    "onlyBuiltDependencies": [
+      "esbuild",
+      "husky"
+    ]
   },
   "devDependencies": {
-    "prettier": "^3.0.3",
-    "typescript": "^5.2.2"
+    "@commitlint/cli": "^19.3.0",
+    "@commitlint/config-conventional": "^19.2.2",
+    "@typescript-eslint/eslint-plugin": "^6.21.0",
+    "@typescript-eslint/parser": "^6.21.0",
+    "eslint": "^8.57.0",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-vue": "^9.17.0",
+    "husky": "^9.0.11",
+    "bumpp": "^10.4.1",
+    "lint-staged": "^15.2.2",
+    "prettier": "^3.3.2",
+    "typescript": "^5.2.2",
+    "vue-eslint-parser": "^9.4.2"
   }
 }

@@ -18,8 +18,7 @@ export default defineConfig({
     preprocessorOptions: {
       scss: {
         // 仅注入编译期变量与 mixins, 避免每个组件重复输出全局样式
-        additionalData:
-          '@use "@styles/variables.scss" as *;\n@use "@styles/mixins.scss" as *;',
+        additionalData: '@use "@styles/variables.scss" as *;\n@use "@styles/mixins.scss" as *;',
       },
     },
   },

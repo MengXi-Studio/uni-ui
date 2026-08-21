@@ -1,4 +1,4 @@
-# MengXi Uni-UI 使用指南
+# @mengxi/uni-ui 使用指南
 
 ## 快速开始
 
@@ -55,6 +55,7 @@ const value = ref('')
 ```
 
 **Props:**
+
 - `type`: 类型 (default | primary | success | warning | danger)
 - `size`: 尺寸 (small | medium | large)
 - `shape`: 形状 (square | round | circle)
@@ -64,20 +65,17 @@ const value = ref('')
 - `text`: 按钮文字
 
 **Events:**
+
 - `@click`: 点击事件
 
 #### MX Input - 输入框
 
 ```vue
-<mx-input 
-  v-model="value" 
-  placeholder="请输入"
-  clearable
-  show-count
-/>
+<mx-input v-model="value" placeholder="请输入" clearable show-count />
 ```
 
 **Props:**
+
 - `modelValue`: 绑定值
 - `type`: 类型 (text | number | digit | idcard | nickname)
 - `placeholder`: 占位符
@@ -88,6 +86,7 @@ const value = ref('')
 - `showCount`: 是否显示字数统计
 
 **Events:**
+
 - `@update:modelValue`: 值变化事件
 - `@focus`: 聚焦事件
 - `@blur`: 失焦事件
@@ -102,6 +101,7 @@ const value = ref('')
 ```
 
 **Props:**
+
 - `title`: 标题
 - `subtitle`: 副标题
 - `size`: 尺寸 (small | medium | large)
@@ -109,9 +109,11 @@ const value = ref('')
 - `hoverable`: 是否悬浮
 
 **Events:**
+
 - `@click`: 点击事件
 
 **Slots:**
+
 - `header`: 头部插槽
 - `default`: 内容插槽
 - `footer`: 底部插槽
@@ -123,6 +125,7 @@ const value = ref('')
 ```
 
 **Props:**
+
 - `name`: 图标名称
 - `type`: 类型 (default | primary | success | warning | danger | info)
 - `size`: 尺寸 (small | medium | large)
@@ -136,6 +139,7 @@ const value = ref('')
 ```
 
 **Props:**
+
 - `type`: 类型 (circle | dots | spinner)
 - `size`: 尺寸 (small | medium | large)
 - `text`: 加载文字
@@ -146,50 +150,54 @@ const value = ref('')
 #### MX Product Card - 商品卡片
 
 ```vue
-<mx-product-card 
+<mx-product-card
   :product="{
     title: '商品标题',
     price: 99.9,
     originalPrice: 199.9,
     image: '商品图片',
     sales: 1000,
-    tags: ['新品', '热销']
+    tags: ['新品', '热销'],
   }"
   @click="handleClick"
 />
 ```
 
 **Props:**
+
 - `product`: 商品信息对象
 - `showOriginalPrice`: 是否显示原价
 - `showSales`: 是否显示销量
 - `showTags`: 是否显示标签
 
 **Events:**
+
 - `@click`: 点击事件，返回商品信息
 
 #### MX User Info - 用户信息卡片
 
 ```vue
-<mx-user-info-card 
+<mx-user-info-card
   :user="{
     avatar: '头像 URL',
     nickname: '昵称',
     phone: '手机号',
     level: 'VIP',
-    points: 1000
+    points: 1000,
   }"
   @click="handleClick"
 />
 ```
 
 **Props:**
+
 - `user`: 用户信息对象
 - `showPhone`: 是否显示手机号
 - `showLevel`: 是否显示等级
 - `showPoints`: 是否显示积分
 
 **Events:**
+
 - `@click`: 点击事件，返回用户信息
 
 ## 工具函数
@@ -221,13 +229,16 @@ formatFileSize(1024) // '1.00 KB'
 ```typescript
 import { useRequest } from '@mengxi/uni-ui/composables'
 
-const { data, loading, error, run } = useRequest({
-  url: '/api/user',
-  method: 'GET',
-  showLoading: true,
-}, {
-  immediate: true
-})
+const { data, loading, error, run } = useRequest(
+  {
+    url: '/api/user',
+    method: 'GET',
+    showLoading: true,
+  },
+  {
+    immediate: true,
+  }
+)
 
 // 手动触发
 run()

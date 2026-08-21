@@ -1,0 +1,4 @@
+#!/usr/bin/env sh
+# 提交前钩子：对暂存文件执行 lint-staged（ESLint 修复 + Prettier 格式化）
+# HUSKY=0 pnpm commit 可临时跳过此检查
+pnpm exec lint-staged

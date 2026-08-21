@@ -1,14 +1,14 @@
 # 贡献指南
 
-欢迎为 MengXi Uni-UI 做出贡献！
+欢迎为 @mengxi/uni-ui 做出贡献！
 
 ## 开发环境设置
 
 ### 1. Fork 并克隆项目
 
 ```bash
-git clone https://github.com/YOUR_USERNAME/mengxi-uni-ui.git
-cd mengxi-uni-ui
+git clone https://github.com/YOUR_USERNAME/@mengxi/uni-ui.git
+cd @mengxi/uni-ui
 ```
 
 ### 2. 安装依赖
@@ -42,6 +42,7 @@ npm run dev
 ```
 
 **Type 类型:**
+
 - `feat`: 新功能
 - `fix`: Bug 修复
 - `docs`: 文档更新
@@ -51,6 +52,7 @@ npm run dev
 - `chore`: 构建/工具链相关
 
 **示例:**
+
 ```
 feat(button): 添加新的按钮类型
 
@@ -77,6 +79,7 @@ git checkout -b feature/your-feature-name
 ### 2. 开发和测试
 
 确保：
+
 - 代码通过 ESLint 检查
 - 编写必要的测试
 - 更新文档
@@ -147,6 +150,7 @@ export { default as MxYourComponent } from './mx-your-component/mx-your-componen
 ### 4. 编写文档
 
 在组件的 README.md 中说明：
+
 - Props
 - Events
 - Slots
