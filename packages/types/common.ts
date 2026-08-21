@@ -1,20 +1,29 @@
 /**
- * 公共类型定义
+ * 公共类型定义 (对齐 Vant 泛型)
  */
 
-// 通用类型
-export interface CommonProps {
-  /** 自定义类名 */
-  className?: string
-  /** 自定义样式 */
-  customStyle?: string
+// 通用事件/方法返回类型
+export type Interceptor = (...args: any[]) => Promise<boolean> | boolean
+
+/** 通用函数 */
+export type ComponentClass = string | Array<object | string> | object
+
+/** 联合转布尔 */
+export type Numeric = number | string
+
+/** 全局常用字段映射 */
+export type FieldNames = Record<string, string>
+
+/** 点击事件 */
+export interface CommonTouchEvent {
+  detail: { x: number; y: number }
 }
 
-// 尺寸类型
-export type SizeType = 'small' | 'medium' | 'large'
-
-// 颜色主题类型
-export type ThemeType = 'primary' | 'success' | 'warning' | 'danger' | 'info'
-
-// 对齐方式
-export type AlignType = 'left' | 'center' | 'right'
+/** 弹层/浮层通用回调事件 */
+export interface PopupEmits {
+  (e: 'update:show', value: boolean): void
+  (e: 'open'): void
+  (e: 'close'): void
+  (e: 'closed'): void
+  (e: 'click-overlay'): void
+}

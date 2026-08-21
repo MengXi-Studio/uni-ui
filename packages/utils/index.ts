@@ -10,3 +10,6 @@ export * from './formatter'
 
 // 平台判断
 export * from './platform'
+
+// 单位换算
+export * from './unit'

@@ -76,16 +76,27 @@ mengxi-uni-ui/
 
 ## 🧩 组件列表
 
+组件库按 **Vant 4** 官方分类完整覆盖，命名统一 `mx-` 前缀（easycom 规则 `mx-<name>`）。
+
 ### 基础组件
-- ✅ MX Button - 按钮
-- ✅ MX Input - 输入框
-- ✅ MX Card - 卡片
-- ✅ MX Icon - 图标
-- ✅ MX Loading - 加载
+- ✅ Button、Icon、Image、Cell、CellGroup、Tag、Badge、Divider、Space、Skeleton、Loading、Switch、Row/Col、ConfigProvider、Sticky、Overlay、Popup
+
+### 表单组件
+- ✅ Field、Form、Checkbox(+Group)、Radio(+Group)、Rate、Stepper、Search、Slider、Picker、PickerGroup、Cascader、Calendar、Uploader、NumberKeyboard
+
+### 反馈组件
+- ✅ Toast、Notify、Dialog、ActionSheet、ShareSheet、Empty、CountDown、Circle、PullRefresh、DropdownMenu、ImagePreview、Lazyload、FloatingBubble、FloatingPanel、SwipeCell、BackTop、Badge
+
+### 展示组件
+- ✅ Collapse(+Item)、Progress、TextEllipsis、Watermark
+
+### 导航组件
+- ✅ Grid(+Item)、IndexBar(+Anchor)、NavBar、Pagination、Sidebar、Tab/Tabs/TabPane、Tabbar(+Item)、TreeSelect
 
 ### 业务组件
-- ✅ MX Product Card - 商品卡片
-- ✅ MX User Info - 用户信息
+- ✅ Card、GoodsAction(+Button/Icon)、SubmitBar、ContactCard/Edit/List、Coupon/CouponCell/CouponList、AddressList/Edit、Area、SignBoard、Signature
+
+> 全部组件基于 Vue 3 + TypeScript，多端兼容（H5/微信小程序/支付宝小程序/App），主题统一走 `--mx-*` CSS 变量。
 
 ## 📖 文档
 

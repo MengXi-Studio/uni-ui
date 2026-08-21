@@ -1,76 +1,81 @@
-// 主题颜色
-$primary-color: #007aff !default;
-$success-color: #52c41a !default;
-$warning-color: #faad14 !default;
-$danger-color: #ff4d4f !default;
-$info-color: #1890ff !default;
+// =============================================================
+// MengXi Uni-UI 设计令牌 (对齐 Vant 4)
+// 编译期 SCSS 变量。运行时主题通过 CSS 变量覆盖(index.scss / ConfigProvider)。
+// 命名规则: $<token-name>, 对应 CSS 变量 --mx-<token-name>
+// =============================================================
 
-// 文字颜色
-$text-color-primary: #333333 !default;
-$text-color-regular: #666666 !default;
-$text-color-secondary: #999999 !default;
-$text-color-placeholder: #cccccc !default;
-$text-color-disabled: #dddddd !default;
+// ---------- 主题色 ----------
+$primary-color: #1989fa !default;
+$success-color: #07c160 !default;
+$warning-color: #ff976a !default;
+$danger-color: #ee0a24 !default;
+$blue-color: #1989fa !default;
 
-// 背景颜色
-$bg-color-base: #ffffff !default;
-$bg-color-light: #f5f5f5 !default;
-$bg-color-lighter: #fafafa !default;
-$bg-color-dark: #141414 !default;
+// ---------- 文字颜色 ----------
+$text-color: #323233 !default;
+$text-color-2: #969799 !default;
+$text-color-3: #c8c9cc !default;
+$text-link-color: #576b95 !default;
 
-// 边框颜色
-$border-color-base: #d9d9d9 !default;
-$border-color-light: #e8e8e8 !default;
-$border-color-dark: #bfbfbf !default;
+// ---------- 激活与禁用 ----------
+$active-color: #f2f3f5 !default;
+$active-opacity: 0.7 !default;
+$disabled-opacity: 0.5 !default;
 
-// 字体大小
+// ---------- 背景色 ----------
+$background: #f7f8fa !default;
+$background-2: #fff !default;
+
+// ---------- 边框 ----------
+$border-color: #ebedf0 !default;
+$border-width-base: 1px !default;
+
+// ---------- 圆角 ----------
+$radius-sm: 2px !default;
+$radius-md: 4px !default;
+$radius-lg: 8px !default;
+$radius-max: 999px !default;
+
+// ---------- 间距 ----------
+$padding-base: 4px !default;
+$padding-xs: 8px !default;
+$padding-sm: 12px !default;
+$padding-md: 16px !default;
+$padding-lg: 24px !default;
+$padding-xl: 32px !default;
+
+// ---------- 字体 ----------
 $font-size-xs: 10px !default;
 $font-size-sm: 12px !default;
-$font-size-base: 14px !default;
-$font-size-md: 16px !default;
-$font-size-lg: 18px !default;
-$font-size-xl: 20px !default;
-$font-size-xxl: 24px !default;
+$font-size-md: 14px !default;
+$font-size-lg: 16px !default;
+$font-weight-bold: 600 !default;
+$line-height-xs: 14px !default;
+$line-height-sm: 18px !default;
+$line-height-md: 20px !default;
+$line-height-lg: 22px !default;
 
-// 间距
-$spacing-xs: 4px !default;
-$spacing-sm: 8px !default;
-$spacing-base: 12px !default;
-$spacing-md: 16px !default;
-$spacing-lg: 20px !default;
-$spacing-xl: 24px !default;
-$spacing-xxl: 32px !default;
-
-// 圆角
-$border-radius-xs: 2px !default;
-$border-radius-sm: 4px !default;
-$border-radius-base: 6px !default;
-$border-radius-md: 8px !default;
-$border-radius-lg: 12px !default;
-$border-radius-circle: 50% !default;
-
-// 阴影
-$shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.08) !default;
-$shadow-base: 0 4px 8px rgba(0, 0, 0, 0.12) !default;
-$shadow-md: 0 8px 16px rgba(0, 0, 0, 0.16) !default;
-$shadow-lg: 0 12px 24px rgba(0, 0, 0, 0.2) !default;
-
-// 动画
-$animation-duration-base: 0.3s !default;
-$animation-duration-slow: 0.5s !default;
-$animation-duration-fast: 0.15s !default;
+// ---------- 动画 ----------
+$duration-base: 0.3s !default;
+$duration-fast: 0.2s !default;
 $ease-in-out: cubic-bezier(0.645, 0.045, 0.355, 1) !default;
 
-// 按钮尺寸
-$button-height-sm: 28px !default;
-$button-height-base: 36px !default;
-$button-height-lg: 44px !default;
+// ---------- z-index 层级 ----------
+// 与 Vant 保持一致, 便于浮层之间正确叠加
+$z-index-normal: 1 !default;
+$z-index-stepper: 1 !default;
+$z-index-tabbar: 500 !default;
+$z-index-navbar: 500 !default;
+$z-index-popup: 1000 !default;
+$z-index-overlay: 1000 !default;
+$z-index-toast: 2000 !default;
+$z-index-notify: 2000 !default;
+$z-index-dropdown: 2000 !default;
+$z-index-sticky: 500 !default;
+$z-index-index-bar: 500 !default;
 
-// 输入框高度
-$input-height-sm: 32px !default;
-$input-height-base: 40px !default;
-$input-height-lg: 48px !default;
-
-// 通用变量
-$disabled-opacity: 0.5 !default;
-$max-z-index: 999 !default;
+// ---------- 常用图标尺寸 ----------
+$icon-size-xs: 14px !default;
+$icon-size-sm: 16px !default;
+$icon-size-md: 20px !default;
+$icon-size-lg: 22px !default;

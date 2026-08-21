@@ -25,7 +25,7 @@
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true,
-    
+
     /* Path mapping */
     "baseUrl": ".",
     "paths": {
@@ -36,15 +36,10 @@
       "@styles/*": ["packages/styles/*"],
       "@types/*": ["packages/types/*"]
     },
-    
+
     "types": ["node"],
     "typeRoots": ["./packages/types", "./node_modules/@types"]
   },
-  "include": [
-    "packages/**/*.ts",
-    "packages/**/*.d.ts",
-    "packages/**/*.tsx",
-    "packages/**/*.vue"
-  ],
+  "include": ["packages/**/*.ts", "packages/**/*.d.ts", "packages/**/*.tsx", "packages/**/*.vue"],
   "exclude": ["node_modules", "dist", "example", "tests"]
 }

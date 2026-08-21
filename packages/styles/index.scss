@@ -1,25 +1,84 @@
-/**
- * MengXi Uni-UI 样式入口文件
- */
+// =============================================================
+// MengXi Uni-UI 全局样式入口
+// 由使用方在 App.vue / main 中引入一次即可 (含 reset + CSS 变量)
+// 注意: 不要通过 vite additionalData 注入本文件, 避免重复输出
+// =============================================================
 
-// 引入变量和混合
 @use './variables.scss';
 @use './mixins.scss';
 
-// 引入主题
-@use './themes/light.scss';
-@use './themes/dark.scss';
-
-// 全局重置样式
+// ---------- 设计令牌 (CSS 变量) ----------
+// H5 端使用 :root, 小程序/App 端使用 page
+:root,
 page {
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+  // 主题色
+  --mx-primary-color: #{$primary-color};
+  --mx-success-color: #{$success-color};
+  --mx-warning-color: #{$warning-color};
+  --mx-danger-color: #{$danger-color};
+  --mx-blue-color: #{$blue-color};
+
+  // 文字颜色
+  --mx-text-color: #{$text-color};
+  --mx-text-color-2: #{$text-color-2};
+  --mx-text-color-3: #{$text-color-3};
+  --mx-text-link-color: #{$text-link-color};
+
+  // 激活与禁用
+  --mx-active-color: #{$active-color};
+  --mx-active-opacity: #{$active-opacity};
+  --mx-disabled-opacity: #{$disabled-opacity};
+
+  // 背景色
+  --mx-background: #{$background};
+  --mx-background-2: #{$background-2};
+
+  // 边框
+  --mx-border-color: #{$border-color};
+  --mx-border-width-base: #{$border-width-base};
+
+  // 圆角
+  --mx-radius-sm: #{$radius-sm};
+  --mx-radius-md: #{$radius-md};
+  --mx-radius-lg: #{$radius-lg};
+  --mx-radius-max: #{$radius-max};
+
+  // 间距
+  --mx-padding-base: #{$padding-base};
+  --mx-padding-xs: #{$padding-xs};
+  --mx-padding-sm: #{$padding-sm};
+  --mx-padding-md: #{$padding-md};
+  --mx-padding-lg: #{$padding-lg};
+  --mx-padding-xl: #{$padding-xl};
+
+  // 字体
+  --mx-font-size-xs: #{$font-size-xs};
+  --mx-font-size-sm: #{$font-size-sm};
+  --mx-font-size-md: #{$font-size-md};
+  --mx-font-size-lg: #{$font-size-lg};
+  --mx-font-weight-bold: #{$font-weight-bold};
+  --mx-line-height-xs: #{$line-height-xs};
+  --mx-line-height-sm: #{$line-height-sm};
+  --mx-line-height-md: #{$line-height-md};
+  --mx-line-height-lg: #{$line-height-lg};
+
+  // 动画
+  --mx-duration-base: #{$duration-base};
+  --mx-duration-fast: #{$duration-fast};
+  --mx-ease-in-out: #{$ease-in-out};
+}
+
+// ---------- 重置 ----------
+page {
+  font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue',
+    Helvetica, Segoe UI, Arial, Roboto, 'PingFang SC', 'Hiragino Sans GB',
+    'Microsoft Yahei', sans-serif;
   font-size: 14px;
   line-height: 1.5;
-  color: var(--mx-text-color-regular);
-  background-color: var(--mx-bg-color-base);
+  color: var(--mx-text-color);
+  background-color: var(--mx-background-2);
   box-sizing: border-box;
+  -webkit-font-smoothing: antialiased;
 }
 
 view,
@@ -46,109 +105,92 @@ slider,
 switch,
 radio,
 checkbox,
-navigator,
-audio,
-video,
-camera,
-image,
-live-player,
-live-pusher,
-map,
-web-view {
+navigator {
   box-sizing: border-box;
 }
 
-// 通用工具类
+// ---------- 通用工具类 ----------
 .mx-flex {
   display: flex;
 }
 
 .mx-flex-center {
-  @include mx-flex-center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .mx-flex-between {
-  @include mx-flex-between;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
-.mx-text-ellipsis {
-  @include mx-text-ellipsis;
+.mx-flex-row-center {
+  display: flex;
+  align-items: center;
 }
 
-.mx-absolute-center {
-  @include mx-absolute-center;
+.mx-ellipsis {
+  @include ellipsis;
 }
 
-// 间距工具类
-@include mx-generate-spacing('mx-m', margin);
-@include mx-generate-spacing('mx-p', padding);
-
-// 字体大小工具类
-.mx-text-xs {
-  font-size: $font-size-xs;
+.mx-hidden {
+  display: none !important;
 }
 
-.mx-text-sm {
-  font-size: $font-size-sm;
+// ---------- 通用过渡动画关键帧 ----------
+@keyframes mx-fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+@keyframes mx-fade-out {
+  from { opacity: 1; }
+  to { opacity: 0; }
+}
+@keyframes mx-slide-up-in {
+  from { transform: translate3d(0, 100%, 0); }
+  to { transform: translate3d(0, 0, 0); }
+}
+@keyframes mx-slide-up-out {
+  from { transform: translate3d(0, 0, 0); }
+  to { transform: translate3d(0, 100%, 0); }
+}
+@keyframes mx-slide-down-in {
+  from { transform: translate3d(0, -100%, 0); }
+  to { transform: translate3d(0, 0, 0); }
+}
+@keyframes mx-slide-down-out {
+  from { transform: translate3d(0, 0, 0); }
+  to { transform: translate3d(0, -100%, 0); }
+}
+@keyframes mx-slide-left-in {
+  from { transform: translate3d(-100%, 0, 0); }
+  to { transform: translate3d(0, 0, 0); }
+}
+@keyframes mx-slide-left-out {
+  from { transform: translate3d(0, 0, 0); }
+  to { transform: translate3d(-100%, 0, 0); }
+}
+@keyframes mx-slide-right-in {
+  from { transform: translate3d(100%, 0, 0); }
+  to { transform: translate3d(0, 0, 0); }
+}
+@keyframes mx-slide-right-out {
+  from { transform: translate3d(0, 0, 0); }
+  to { transform: translate3d(100%, 0, 0); }
+}
+@keyframes mx-zoom-in {
+  from { opacity: 0; transform: scale(0.5); }
+  to { opacity: 1; transform: scale(1); }
+}
+@keyframes mx-zoom-out {
+  from { opacity: 1; transform: scale(1); }
+  to { opacity: 0; transform: scale(0.5); }
 }
 
-.mx-text-base {
-  font-size: $font-size-base;
-}
-
-.mx-text-md {
-  font-size: $font-size-md;
-}
-
-.mx-text-lg {
-  font-size: $font-size-lg;
-}
-
-.mx-text-xl {
-  font-size: $font-size-xl;
-}
-
-.mx-text-xxl {
-  font-size: $font-size-xxl;
-}
-
-// 主题色工具类
-.mx-text-primary {
-  color: var(--mx-primary-color);
-}
-
-.mx-text-success {
-  color: var(--mx-success-color);
-}
-
-.mx-text-warning {
-  color: var(--mx-warning-color);
-}
-
-.mx-text-danger {
-  color: var(--mx-danger-color);
-}
-
-.mx-text-info {
-  color: var(--mx-info-color);
-}
-
-.mx-bg-primary {
-  background-color: var(--mx-primary-color);
-}
-
-.mx-bg-success {
-  background-color: var(--mx-success-color);
-}
-
-.mx-bg-warning {
-  background-color: var(--mx-warning-color);
-}
-
-.mx-bg-danger {
-  background-color: var(--mx-danger-color);
-}
-
-.mx-bg-info {
-  background-color: var(--mx-info-color);
-}
+// 淡入淡出 (Overlay/Toast/Notify 等通用)
+.mx--fade.mx--enter { animation: mx-fade-in var(--mx-duration-base) both; }
+.mx--fade.mx--leave { animation: mx-fade-out var(--mx-duration-base) both; }
+.mx--zoom.mx--enter { animation: mx-zoom-in var(--mx-duration-base) both; }
+.mx--zoom.mx--leave { animation: mx-zoom-out var(--mx-duration-base) both; }

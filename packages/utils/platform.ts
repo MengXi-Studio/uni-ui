@@ -32,11 +32,15 @@ export const platform = {
   /** App */
   isApp: process.env.UNI_PLATFORM === 'app',
   
-  /** iOS App */
-  isIOS: uni.getSystemInfoSync().platform === 'ios',
-  
+  /** iOS App (惰性求值, 避免模块加载期调用 getSystemInfo) */
+  get isIOS() {
+    return uni.getSystemInfoSync().platform === 'ios'
+  },
+
   /** Android App */
-  isAndroid: uni.getSystemInfoSync().platform === 'android',
+  get isAndroid() {
+    return uni.getSystemInfoSync().platform === 'android'
+  },
   
   /** 微信公众号 */
   isWechat: () => {
