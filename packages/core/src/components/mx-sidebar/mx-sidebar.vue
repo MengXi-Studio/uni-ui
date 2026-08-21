@@ -19,17 +19,12 @@
 import { computed, provide, useSlots } from 'vue'
 import { makeNumericProp, makeStringProp } from '../shared/props'
 
-const props = withDefaults(
-  defineProps({
-    /** 当前选中索引 (v-model) */
-    modelValue: makeNumericProp<number | string>(0),
-    customClass: makeStringProp(''),
-    customStyle: { type: [String, Object] as any, default: '' },
-  }),
-  {
-    modelValue: 0,
-  }
-)
+const props = defineProps({
+  /** 当前选中索引 (v-model) */
+  modelValue: makeNumericProp<number | string>(0),
+  customClass: makeStringProp(''),
+  customStyle: { type: [String, Object] as any, default: '' },
+})
 
 const emit = defineEmits<{
   (e: 'update:modelValue', index: number): void

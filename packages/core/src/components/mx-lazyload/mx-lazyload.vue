@@ -21,27 +21,21 @@
 
 <script setup lang="ts">
 import { computed, getCurrentInstance, onMounted, onUnmounted, ref } from 'vue'
-import { makeStringProp, makeBooleanProp, makeNumericProp } from '../shared/props'
+import { makeStringProp, makeNumericProp } from '../shared/props'
 import { addUnit } from '../../utils/unit'
 
-const props = withDefaults(
-  defineProps({
-    /** 图片地址 */
-    image: makeStringProp(''),
-    /** 宽度 */
-    width: makeNumericProp<number | string | undefined>(undefined),
-    /** 高度 (v-model 高度占位) */
-    height: makeNumericProp<number | string | undefined>(undefined),
-    /** 占位占位背景色 */
-    placeholder: makeStringProp('#f2f3f5'),
-    customClass: makeStringProp(''),
-    customStyle: { type: [String, Object] as any, default: '' },
-  }),
-  {
-    image: '',
-    placeholder: '#f2f3f5',
-  }
-)
+const props = defineProps({
+  /** 图片地址 */
+  image: makeStringProp(''),
+  /** 宽度 */
+  width: makeNumericProp<number | string | undefined>(undefined),
+  /** 高度 (v-model 高度占位) */
+  height: makeNumericProp<number | string | undefined>(undefined),
+  /** 占位占位背景色 */
+  placeholder: makeStringProp('#f2f3f5'),
+  customClass: makeStringProp(''),
+  customStyle: { type: [String, Object] as any, default: '' },
+})
 
 const emit = defineEmits<{
   (e: 'load'): void
@@ -61,7 +55,8 @@ const rootStyle = computed(() => {
   const style: Record<string, string> = {}
   if (props.width !== undefined) style.width = addUnit(props.width) as string
   if (props.height !== undefined) style.height = addUnit(props.height) as string
-  if (typeof props.customStyle === 'string' && props.customStyle) Object.assign(style, parseStyle(props.customStyle))
+  if (typeof props.customStyle === 'string' && props.customStyle)
+    Object.assign(style, parseStyle(props.customStyle))
   else if (props.customStyle) Object.assign(style, props.customStyle as Record<string, string>)
   return style
 })

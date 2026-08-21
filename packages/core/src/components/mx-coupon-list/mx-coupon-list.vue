@@ -30,7 +30,10 @@
         />
       </view>
 
-      <view v-if="!availableCoupons.length && !disabledCoupons.length" class="mx-coupon-list__empty">
+      <view
+        v-if="!availableCoupons.length && !disabledCoupons.length"
+        class="mx-coupon-list__empty"
+      >
         <text>暂无优惠券</text>
       </view>
     </scroll-view>
@@ -43,7 +46,11 @@
           :placeholder="exchangePlaceholder"
           confirm-type="done"
         />
-        <view class="mx-coupon-list__exchange-btn" :class="{ 'mx-coupon-list__exchange-btn--disabled': !exchangeCode }" @click="onExchange">
+        <view
+          class="mx-coupon-list__exchange-btn"
+          :class="{ 'mx-coupon-list__exchange-btn--disabled': !exchangeCode }"
+          @click="onExchange"
+        >
           <text>{{ exchangeBtnText }}</text>
         </view>
       </view>
@@ -72,31 +79,24 @@ interface CouponInfo {
   available?: boolean
 }
 
-const props = withDefaults(
-  defineProps({
-    /** 选中的优惠券 id 数组 (v-model) */
-    modelValue: { type: Array as any, default: () => [] as (string | number)[] },
-    /** 优惠券列表 */
-    coupons: { type: Array as any, default: () => [] as CouponInfo[] },
-    /** 货币符号 */
-    currency: makeStringProp('¥'),
-    /** 是否显示兑换码输入栏 */
-    showExchangeBar: makeBooleanProp(true),
-    /** 兑换按钮文字 */
-    exchangeBtnText: makeStringProp('兑换'),
-    /** 兑换码输入框占位 */
-    exchangePlaceholder: makeStringProp('请输入兑换码'),
-    /** 底部关闭按钮文字 */
-    closeButtonText: makeStringProp(''),
-    customClass: makeStringProp(''),
-    customStyle: { type: [String, Object] as any, default: '' },
-  }),
-  {
-    currency: '¥',
-    showExchangeBar: true,
-    exchangeBtnText: '兑换',
-  }
-)
+const props = defineProps({
+  /** 选中的优惠券 id 数组 (v-model) */
+  modelValue: { type: Array as any, default: () => [] as (string | number)[] },
+  /** 优惠券列表 */
+  coupons: { type: Array as any, default: () => [] as CouponInfo[] },
+  /** 货币符号 */
+  currency: makeStringProp('¥'),
+  /** 是否显示兑换码输入栏 */
+  showExchangeBar: makeBooleanProp(true),
+  /** 兑换按钮文字 */
+  exchangeBtnText: makeStringProp('兑换'),
+  /** 兑换码输入框占位 */
+  exchangePlaceholder: makeStringProp('请输入兑换码'),
+  /** 底部关闭按钮文字 */
+  closeButtonText: makeStringProp(''),
+  customClass: makeStringProp(''),
+  customStyle: { type: [String, Object] as any, default: '' },
+})
 
 const emit = defineEmits<{
   (e: 'update:modelValue', value: (string | number)[]): void

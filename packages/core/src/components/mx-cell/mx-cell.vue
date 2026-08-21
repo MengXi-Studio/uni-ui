@@ -1,5 +1,17 @@
 <template>
-  <view class="mx-cell" :class="[{ 'mx-cell--large': size === 'large', 'mx-cell--center': center, 'mx-cell--borderless': !border }, customClass]" :style="customStyle">
+  <view
+    class="mx-cell"
+    :class="[
+      {
+        'mx-cell--large': size === 'large',
+        'mx-cell--center': center,
+        'mx-cell--borderless': !border,
+      },
+      customClass,
+    ]"
+    :style="customStyle"
+    @click="onClick"
+  >
     <slot name="icon">
       <view v-if="icon" class="mx-cell__left-icon">
         <mx-icon v-if="!imageIcon" :name="icon" />
@@ -18,7 +30,11 @@
     </view>
 
     <slot name="right-icon">
-      <view v-if="isLink" class="mx-cell__right-icon" :class="[`mx-cell__arrow--${arrowDirection}`]">
+      <view
+        v-if="isLink"
+        class="mx-cell__right-icon"
+        :class="[`mx-cell__arrow--${arrowDirection}`]"
+      >
         <slot name="arrow">
           <text class="mx-cell__arrow-text">{{ arrowGlyph }}</text>
         </slot>
@@ -35,42 +51,38 @@ import MxIcon from '../mx-icon/mx-icon.vue'
 type CellSize = 'large'
 type ArrowDirection = 'up' | 'down' | 'left' | 'right'
 
-const props = withDefaults(
-  defineProps({
-    /** 左侧标题 */
-    title: makeStringProp(''),
-    /** 标题下方的描述 */
-    label: makeStringProp(''),
-    /** 右侧内容 */
-    value: makeStringProp(''),
-    /** 左侧图标 (图标名或图片地址) */
-    icon: makeStringProp(''),
-    /** 尺寸, 仅 large 于普通 */
-    size: makeStringProp<CellSize>(''),
-    /** 是否将内容区垂直居中 */
-    center: makeBooleanProp(false),
-    /** 是否显示右侧箭头 */
-    isLink: makeBooleanProp(false),
-    /** 箭头方向 */
-    arrowDirection: makeStringProp<ArrowDirection>('right'),
-    /** 是否显示底部边框 */
-    border: makeBooleanProp(true),
-    /** 必填星号 */
-    required: makeBooleanProp(false),
-    /** 点击跳转地址 (由使用方自行处理导航) */
-    url: makeStringProp(''),
-    customClass: makeStringProp(''),
-    customStyle: { type: [String, Object] as any, default: '' },
-  }),
-  {
-    arrowDirection: 'right',
-    border: true,
-  }
-)
+const props = defineProps({
+  /** 左侧标题 */
+  title: makeStringProp(''),
+  /** 标题下方的描述 */
+  label: makeStringProp(''),
+  /** 右侧内容 */
+  value: makeStringProp(''),
+  /** 左侧图标 (图标名或图片地址) */
+  icon: makeStringProp(''),
+  /** 尺寸, 仅 large 于普通 */
+  size: makeStringProp<CellSize>(''),
+  /** 是否将内容区垂直居中 */
+  center: makeBooleanProp(false),
+  /** 是否显示右侧箭头 */
+  isLink: makeBooleanProp(false),
+  /** 箭头方向 */
+  arrowDirection: makeStringProp<ArrowDirection>('right'),
+  /** 是否显示底部边框 */
+  border: makeBooleanProp(true),
+  /** 必填星号 */
+  required: makeBooleanProp(false),
+  /** 点击跳转地址 (由使用方自行处理导航) */
+  url: makeStringProp(''),
+  customClass: makeStringProp(''),
+  customStyle: { type: [String, Object] as any, default: '' },
+})
 
 const emit = defineEmits<{ (e: 'click', event: Event): void }>()
 
-const imageIcon = computed(() => /^(https?:)?\/\//.test(props.icon) || /^\.{1,2}\//.test(props.icon))
+const imageIcon = computed(
+  () => /^(https?:)?\/\//.test(props.icon) || /^\.{1,2}\//.test(props.icon)
+)
 
 const arrowGlyph = computed(() => {
   const map: Record<ArrowDirection, string> = {

@@ -40,34 +40,24 @@ import MxLoading from '../mx-loading/mx-loading.vue'
 
 type RefreshStatus = 'pulling' | 'loosing' | 'loading' | 'success'
 
-const props = withDefaults(
-  defineProps({
-    /** 是否处于加载中 (v-model) */
-    loading: makeBooleanProp(false),
-    /** 头部高度 */
-    headHeight: makeNumericProp<number | string>(50),
-    /** 下拉提示 */
-    pullingText: makeStringProp('下拉即可刷新'),
-    /** 释放提示 */
-    loosingText: makeStringProp('释放即可刷新'),
-    /** 加载中提示 */
-    loadingText: makeStringProp('加载中...'),
-    /** 刷新成功提示 */
-    successText: makeStringProp('刷新成功'),
-    /** 成功提示展示时长 (ms) */
-    successDuration: makeNumericProp<number>(500),
-    customClass: makeStringProp(''),
-    customStyle: { type: [String, Object] as any, default: '' },
-  }),
-  {
-    headHeight: 50,
-    pullingText: '下拉即可刷新',
-    loosingText: '释放即可刷新',
-    loadingText: '加载中...',
-    successText: '刷新成功',
-    successDuration: 500,
-  }
-)
+const props = defineProps({
+  /** 是否处于加载中 (v-model) */
+  loading: makeBooleanProp(false),
+  /** 头部高度 */
+  headHeight: makeNumericProp<number | string>(50),
+  /** 下拉提示 */
+  pullingText: makeStringProp('下拉即可刷新'),
+  /** 释放提示 */
+  loosingText: makeStringProp('释放即可刷新'),
+  /** 加载中提示 */
+  loadingText: makeStringProp('加载中...'),
+  /** 刷新成功提示 */
+  successText: makeStringProp('刷新成功'),
+  /** 成功提示展示时长 (ms) */
+  successDuration: makeNumericProp<number>(500),
+  customClass: makeStringProp(''),
+  customStyle: { type: [String, Object] as any, default: '' },
+})
 
 const emit = defineEmits<{
   (e: 'refresh'): void
@@ -87,7 +77,8 @@ let successTimer: ReturnType<typeof setTimeout> | null = null
 
 const rootStyle = computed(() => {
   const style: Record<string, string> = { overflow: 'hidden' }
-  if (typeof props.customStyle === 'string' && props.customStyle) Object.assign(style, parseStyle(props.customStyle))
+  if (typeof props.customStyle === 'string' && props.customStyle)
+    Object.assign(style, parseStyle(props.customStyle))
   else if (props.customStyle) Object.assign(style, props.customStyle as Record<string, string>)
   return style
 })
@@ -155,10 +146,13 @@ watch(
         status.value = 'success'
         distance.value = headNum.value
         if (successTimer) clearTimeout(successTimer)
-        successTimer = setTimeout(() => {
-          distance.value = 0
-          status.value = 'pulling'
-        }, Number(props.successDuration) || 500)
+        successTimer = setTimeout(
+          () => {
+            distance.value = 0
+            status.value = 'pulling'
+          },
+          Number(props.successDuration) || 500
+        )
       } else {
         distance.value = 0
         status.value = 'pulling'

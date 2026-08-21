@@ -1,10 +1,7 @@
 <template>
   <view
     class="mx-coupon"
-    :class="[
-      { 'mx-coupon--chosen': chosen, 'mx-coupon--disabled': disabled },
-      customClass,
-    ]"
+    :class="[{ 'mx-coupon--chosen': chosen, 'mx-coupon--disabled': disabled }, customClass]"
     :style="customStyle"
     :hover-class="'mx-coupon--hover'"
     @click="onClick"
@@ -17,7 +14,9 @@
       <view class="mx-coupon__right">
         <text class="mx-coupon__condition">{{ conditionText }}</text>
         <text class="mx-coupon__name">{{ couponData.name }}</text>
-        <text v-if="couponData.description" class="mx-coupon__desc">{{ couponData.description }}</text>
+        <text v-if="couponData.description" class="mx-coupon__desc">
+          {{ couponData.description }}
+        </text>
         <text class="mx-coupon__time">{{ timeText }}</text>
       </view>
     </view>
@@ -51,20 +50,18 @@ interface CouponInfo {
   available?: boolean
 }
 
-const props = withDefaults(
-  defineProps({
-    /** 优惠券数据 */
-    coupon: { type: Object as any, default: () => ({}) as CouponInfo },
-    /** 是否选中 */
-    chosen: makeBooleanProp(false),
-    /** 是否禁用 */
-    disabled: makeBooleanProp(false),
-    /** 货币符号 */
-    currency: makeStringProp('¥'),
-    customClass: makeStringProp(''),
-    customStyle: { type: [String, Object] as any, default: '' },
-  })
-)
+const props = defineProps({
+  /** 优惠券数据 */
+  coupon: { type: Object as any, default: () => ({}) as CouponInfo },
+  /** 是否选中 */
+  chosen: makeBooleanProp(false),
+  /** 是否禁用 */
+  disabled: makeBooleanProp(false),
+  /** 货币符号 */
+  currency: makeStringProp('¥'),
+  customClass: makeStringProp(''),
+  customStyle: { type: [String, Object] as any, default: '' },
+})
 
 const emit = defineEmits<{ (e: 'click', event: Event): void }>()
 

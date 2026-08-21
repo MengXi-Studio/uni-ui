@@ -13,11 +13,7 @@
   >
     <view class="mx-dialog">
       <!-- 关闭图标 -->
-      <text
-        v-if="showCloseIcon"
-        class="mx-dialog__close-icon"
-        @click.stop="onClose"
-      >×</text>
+      <text v-if="showCloseIcon" class="mx-dialog__close-icon" @click.stop="onClose">×</text>
 
       <!-- 标题 -->
       <view v-if="title" class="mx-dialog__header">
@@ -28,7 +24,13 @@
       <view v-if="$slots.default" class="mx-dialog__body">
         <slot />
       </view>
-      <view v-else-if="content || message" class="mx-dialog__content" :class="{ 'mx-dialog__content--isolated': !title && !showConfirmButton && !showCancelButton }">
+      <view
+        v-else-if="content || message"
+        class="mx-dialog__content"
+        :class="{
+          'mx-dialog__content--isolated': !title && !showConfirmButton && !showCancelButton,
+        }"
+      >
         <text class="mx-dialog__text">{{ content || message }}</text>
       </view>
 
@@ -48,7 +50,12 @@
           hover-class="mx-dialog__button--active"
           @click="onConfirm"
         >
-          <text class="mx-dialog__button-text mx-dialog__button-text--confirm" :style="confirmTextStyle">{{ confirmButtonText }}</text>
+          <text
+            class="mx-dialog__button-text mx-dialog__button-text--confirm"
+            :style="confirmTextStyle"
+          >
+            {{ confirmButtonText }}
+          </text>
         </view>
       </view>
     </view>
@@ -61,43 +68,36 @@ import { makeStringProp, makeBooleanProp, makeNumericProp } from '../shared/prop
 import { useTransition } from '../../composables/use-transition'
 import MxPopup from '../mx-popup/mx-popup.vue'
 
-const props = withDefaults(
-  defineProps({
-    /** 是否显示 */
-    show: makeBooleanProp(false),
-    /** 标题 */
-    title: makeStringProp(''),
-    /** 内容文案 */
-    content: makeStringProp(''),
-    /** 内容文案 (别名) */
-    message: makeStringProp(''),
-    /** 是否显示确认按钮 */
-    showConfirmButton: makeBooleanProp(true),
-    /** 是否显示取消按钮 */
-    showCancelButton: makeBooleanProp(false),
-    /** 确认按钮文案 */
-    confirmButtonText: makeStringProp('确认'),
-    /** 取消按钮文案 */
-    cancelButtonText: makeStringProp('取消'),
-    /** 确认按钮颜色 */
-    confirmButtonColor: makeStringProp(''),
-    /** 是否显示关闭图标 */
-    showCloseIcon: makeBooleanProp(false),
-    /** 点击遮罩是否关闭 */
-    closeOnClickOverlay: makeBooleanProp(false),
-    /** 关闭/操作前钩子, 返回 false 阻止 */
-    beforeClose: { type: Function as any, default: null },
-    /** 过渡时长 */
-    duration: makeNumericProp<number | string>(300),
-    customClass: makeStringProp(''),
-    customStyle: { type: [String, Object] as any, default: '' },
-  }),
-  {
-    showConfirmButton: true,
-    confirmButtonText: '确认',
-    cancelButtonText: '取消',
-  }
-)
+const props = defineProps({
+  /** 是否显示 */
+  show: makeBooleanProp(false),
+  /** 标题 */
+  title: makeStringProp(''),
+  /** 内容文案 */
+  content: makeStringProp(''),
+  /** 内容文案 (别名) */
+  message: makeStringProp(''),
+  /** 是否显示确认按钮 */
+  showConfirmButton: makeBooleanProp(true),
+  /** 是否显示取消按钮 */
+  showCancelButton: makeBooleanProp(false),
+  /** 确认按钮文案 */
+  confirmButtonText: makeStringProp('确认'),
+  /** 取消按钮文案 */
+  cancelButtonText: makeStringProp('取消'),
+  /** 确认按钮颜色 */
+  confirmButtonColor: makeStringProp(''),
+  /** 是否显示关闭图标 */
+  showCloseIcon: makeBooleanProp(false),
+  /** 点击遮罩是否关闭 */
+  closeOnClickOverlay: makeBooleanProp(false),
+  /** 关闭/操作前钩子, 返回 false 阻止 */
+  beforeClose: { type: Function as any, default: null },
+  /** 过渡时长 */
+  duration: makeNumericProp<number | string>(300),
+  customClass: makeStringProp(''),
+  customStyle: { type: [String, Object] as any, default: '' },
+})
 
 const emit = defineEmits<{
   (e: 'update:show', value: boolean): void
@@ -110,9 +110,14 @@ const emit = defineEmits<{
 }>()
 
 const showState = ref(props.show)
-const transition = useTransition(computed(() => showState.value), Number(props.duration) || 300)
+const transition = useTransition(
+  computed(() => showState.value),
+  Number(props.duration) || 300
+)
 
-const confirmTextStyle = computed(() => (props.confirmButtonColor ? { color: props.confirmButtonColor } : {}))
+const confirmTextStyle = computed(() =>
+  props.confirmButtonColor ? { color: props.confirmButtonColor } : {}
+)
 
 const onSyncShow = (val: boolean) => {
   showState.value = val
@@ -124,10 +129,14 @@ const onPopupClose = () => emit('close')
 
 /** 关闭 (通过关闭图标) */
 const onClose = () => {
-  runBeforeClose('close', () => {
-    emit('close')
-    doClose()
-  }, () => {})
+  runBeforeClose(
+    'close',
+    () => {
+      emit('close')
+      doClose()
+    },
+    () => {}
+  )
 }
 
 const onConfirm = () => {
@@ -166,7 +175,13 @@ watch(transition.render, (r) => {
   if (!r) emit('closed')
 })
 
-defineExpose({ show: () => { showState.value = true; emit('update:show', true) }, close: doClose })
+defineExpose({
+  show: () => {
+    showState.value = true
+    emit('update:show', true)
+  },
+  close: doClose,
+})
 </script>
 
 <style lang="scss">

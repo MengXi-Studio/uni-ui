@@ -11,7 +11,11 @@
         />
         <text v-else class="mx-tabbar-item__icon-char" :style="iconColorStyle">{{ icon }}</text>
       </slot>
-      <view v-if="dot || badge !== undefined && badge !== ''" class="mx-tabbar-item__badge" :class="{ 'mx-tabbar-item__badge--dot': dot }">
+      <view
+        v-if="dot || (badge !== undefined && badge !== '')"
+        class="mx-tabbar-item__badge"
+        :class="{ 'mx-tabbar-item__badge--dot': dot }"
+      >
         <text v-if="!dot" class="mx-tabbar-item__badge-text">{{ badge }}</text>
       </view>
     </view>
@@ -34,24 +38,22 @@ type TabbarContext = {
   setActive: (name: string | number) => void
 }
 
-const props = withDefaults(
-  defineProps({
-    /** 标签名称 */
-    name: makeNumericProp<string | number>(''),
-    /** 图标 (图片地址或字符) */
-    icon: makeStringProp(''),
-    /** 文字 */
-    text: makeStringProp(''),
-    /** 徽标内容 */
-    badge: makeNumericProp<string | number>(''),
-    /** 是否显示圆点 */
-    dot: makeBooleanProp(false),
-    /** 图标大小 */
-    iconSize: makeStringProp(''),
-    customClass: makeStringProp(''),
-    customStyle: { type: [String, Object] as any, default: '' },
-  })
-)
+const props = defineProps({
+  /** 标签名称 */
+  name: makeNumericProp<string | number>(''),
+  /** 图标 (图片地址或字符) */
+  icon: makeStringProp(''),
+  /** 文字 */
+  text: makeStringProp(''),
+  /** 徽标内容 */
+  badge: makeNumericProp<string | number>(''),
+  /** 是否显示圆点 */
+  dot: makeBooleanProp(false),
+  /** 图标大小 */
+  iconSize: makeStringProp(''),
+  customClass: makeStringProp(''),
+  customStyle: { type: [String, Object] as any, default: '' },
+})
 
 const tabbar = inject<TabbarContext>('mxTabbar', null)
 
@@ -78,7 +80,12 @@ const iconImageStyle = computed<Record<string, string>>(() => {
   return style
 })
 
-const imageIcon = computed(() => /^(https?:)?\/\//.test(props.icon) || /^\.{1,2}\//.test(props.icon) || /^data:image/.test(props.icon))
+const imageIcon = computed(
+  () =>
+    /^(https?:)?\/\//.test(props.icon) ||
+    /^\.{1,2}\//.test(props.icon) ||
+    /^data:image/.test(props.icon)
+)
 
 const onClick = () => {
   if (props.dot) void 0

@@ -12,26 +12,20 @@
 import { provide } from 'vue'
 import { makeStringProp, makeNumericProp, makeBooleanProp } from '../shared/props'
 
-const props = withDefaults(
-  defineProps({
-    /** 当前选中的值 */
-    modelValue: { type: [String, Number, Boolean] as any, default: '' },
-    /** 排列方向 */
-    direction: makeStringProp<'vertical' | 'horizontal'>('vertical'),
-    /** 是否禁用所有子项 */
-    disabled: makeBooleanProp(false),
-    /** 选中时图标颜色 */
-    checkedColor: makeStringProp(''),
-    /** 图标大小 */
-    iconSize: makeNumericProp<number | string>('20px'),
-    customClass: makeStringProp(''),
-    customStyle: { type: [String, Object] as any, default: '' },
-  }),
-  {
-    direction: 'vertical',
-    iconSize: '20px',
-  }
-)
+const props = defineProps({
+  /** 当前选中的值 */
+  modelValue: { type: [String, Number, Boolean] as any, default: '' },
+  /** 排列方向 */
+  direction: makeStringProp<'vertical' | 'horizontal'>('vertical'),
+  /** 是否禁用所有子项 */
+  disabled: makeBooleanProp(false),
+  /** 选中时图标颜色 */
+  checkedColor: makeStringProp(''),
+  /** 图标大小 */
+  iconSize: makeNumericProp<number | string>('20px'),
+  customClass: makeStringProp(''),
+  customStyle: { type: [String, Object] as any, default: '' },
+})
 
 const emit = defineEmits<{
   (e: 'update:modelValue', value: unknown): void

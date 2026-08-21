@@ -1,5 +1,9 @@
 <template>
-  <view class="mx-icon" :class="[{ 'mx-icon--dot': dot, badge ? 'mx-icon__badge--active' : '' }, customClass]" :style="iconStyle">
+  <view
+    class="mx-icon"
+    :class="[{ 'mx-icon--dot': dot, 'mx-icon__badge--active': !!badge }, customClass]"
+    :style="iconStyle"
+  >
     <!-- 图片图标 -->
     <image
       v-if="imageSrc"
@@ -14,8 +18,9 @@
       class="mx-icon__name"
       :class="name ? classPrefix + ' ' + classPrefix + '-' + name : ''"
       :style="{ color, fontSize: iconSizeUnit }"
-      >{{ glyph }}</text
     >
+      {{ glyph }}
+    </text>
 
     <!-- 徽标 -->
     <view v-if="badge || dot" class="mx-icon__badge" :style="badgeStyle">
@@ -29,36 +34,32 @@ import { computed } from 'vue'
 import { makeStringProp, makeBooleanProp, makeNumericProp } from '../shared/props'
 import { addUnit } from '../../utils/unit'
 
-const props = withDefaults(
-  defineProps({
-    /** 图标名称 (字体图标名或符号) */
-    name: makeStringProp(''),
-    /** 图片图标地址 */
-    src: makeStringProp(''),
-    /** 图片图标地址 (Vant 风格别名) */
-    image: makeStringProp(''),
-    /** 图标颜色 */
-    color: makeStringProp(''),
-    /** 图标尺寸 */
-    size: makeNumericProp<number | string>('16px'),
-    /** 字体类前缀 */
-    classPrefix: makeStringProp('mx-icon'),
-    /** 是否显示圆点 */
-    dot: makeBooleanProp(false),
-    /** 徽标内容 */
-    badge: makeNumericProp<number | string | undefined>(undefined),
-    /** 徽标背景色 */
-    badgeColor: makeStringProp(''),
-    customClass: makeStringProp(''),
-    customStyle: { type: [String, Object] as any, default: '' },
-  }),
-  {
-    size: '16px',
-    classPrefix: 'mx-icon',
-  }
-)
+const props = defineProps({
+  /** 图标名称 (字体图标名或符号) */
+  name: makeStringProp(''),
+  /** 图片图标地址 */
+  src: makeStringProp(''),
+  /** 图片图标地址 (Vant 风格别名) */
+  image: makeStringProp(''),
+  /** 图标颜色 */
+  color: makeStringProp(''),
+  /** 图标尺寸 */
+  size: makeNumericProp<number | string>('16px'),
+  /** 字体类前缀 */
+  classPrefix: makeStringProp('mx-icon'),
+  /** 是否显示圆点 */
+  dot: makeBooleanProp(false),
+  /** 徽标内容 */
+  badge: makeNumericProp<number | string | undefined>(undefined),
+  /** 徽标背景色 */
+  badgeColor: makeStringProp(''),
+  customClass: makeStringProp(''),
+  customStyle: { type: [String, Object] as any, default: '' },
+})
 
-const imageSrc = computed(() => props.image || props.src || (looksLikeImage(props.name) ? props.name : ''))
+const imageSrc = computed(
+  () => props.image || props.src || (looksLikeImage(props.name) ? props.name : '')
+)
 
 /** 当 name 直接是 URL/路径时当作图片 */
 function looksLikeImage(str: string): boolean {
@@ -73,7 +74,8 @@ const iconStyle = computed(() => {
   const base: Record<string, string> = {}
   if (props.color) base.color = props.color
   if (!imageSrc.value) base.fontSize = iconSizeUnit.value
-  if (typeof props.customStyle === 'string' && props.customStyle) Object.assign(base, parseStyle(props.customStyle))
+  if (typeof props.customStyle === 'string' && props.customStyle)
+    Object.assign(base, parseStyle(props.customStyle))
   else if (props.customStyle) Object.assign(base, props.customStyle as Record<string, string>)
   return base
 })

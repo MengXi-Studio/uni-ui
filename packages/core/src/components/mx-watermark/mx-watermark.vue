@@ -1,17 +1,7 @@
 <template>
-  <view
-    class="mx-watermark"
-    :class="customClass"
-    :style="watermarkStyle"
-    pointer-events="none"
-  >
+  <view class="mx-watermark" :class="customClass" :style="watermarkStyle" pointer-events="none">
     <!-- 绝对定位铺满的水印单元 -->
-    <view
-      v-for="item in items"
-      :key="item.key"
-      class="mx-watermark__item"
-      :style="item.style"
-    >
+    <view v-for="item in items" :key="item.key" class="mx-watermark__item" :style="item.style">
       <text
         class="mx-watermark__text"
         :style="{
@@ -19,8 +9,9 @@
           color: color,
           transform: `rotate(${rotate}deg)`,
         }"
-        >{{ text }}</text
       >
+        {{ text }}
+      </text>
     </view>
   </view>
 </template>
@@ -30,37 +21,26 @@ import { computed } from 'vue'
 import { makeBooleanProp, makeNumericProp, makeStringProp } from '../shared/props'
 import { addUnit } from '../../utils/unit'
 
-const props = withDefaults(
-  defineProps({
-    /** 水印文字 */
-    text: makeStringProp(''),
-    /** 单个水印块宽度 */
-    width: makeNumericProp<number>(120),
-    /** 单个水印块高度 */
-    height: makeNumericProp<number>(64),
-    /** 每行/每列之间的间隙 */
-    gap: makeNumericProp<number>(16),
-    /** 文字字号 (px / rpx) */
-    fontSize: makeNumericProp<number | string>(14),
-    /** 文字颜色 (建议带透明度, 如 rgba) */
-    color: makeStringProp('rgba(0, 0, 0, 0.12)'),
-    /** 旋转角度 */
-    rotate: makeNumericProp<number>(-22),
-    /** 是否全屏铺满 (默认铺满容器) */
-    fullScreen: makeBooleanProp(false),
-    customClass: makeStringProp(''),
-    customStyle: { type: [String, Object] as any, default: '' },
-  }),
-  {
-    text: '',
-    width: 120,
-    height: 64,
-    gap: 16,
-    fontSize: 14,
-    color: 'rgba(0, 0, 0, 0.12)',
-    rotate: -22,
-  }
-)
+const props = defineProps({
+  /** 水印文字 */
+  text: makeStringProp(''),
+  /** 单个水印块宽度 */
+  width: makeNumericProp<number>(120),
+  /** 单个水印块高度 */
+  height: makeNumericProp<number>(64),
+  /** 每行/每列之间的间隙 */
+  gap: makeNumericProp<number>(16),
+  /** 文字字号 (px / rpx) */
+  fontSize: makeNumericProp<number | string>(14),
+  /** 文字颜色 (建议带透明度, 如 rgba) */
+  color: makeStringProp('rgba(0, 0, 0, 0.12)'),
+  /** 旋转角度 */
+  rotate: makeNumericProp<number>(-22),
+  /** 是否全屏铺满 (默认铺满容器) */
+  fullScreen: makeBooleanProp(false),
+  customClass: makeStringProp(''),
+  customStyle: { type: [String, Object] as any, default: '' },
+})
 
 interface WatermarkItem {
   key: string

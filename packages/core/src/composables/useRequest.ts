@@ -2,8 +2,6 @@
  * 网络请求组合式函数
  */
 
-/// <reference path="../types/uni-app.d.ts" />
-
 import { ref, type Ref } from 'vue'
 
 export interface RequestConfig<T = any> {
@@ -25,23 +23,20 @@ export interface RequestOptions {
  * @example
  * const { data, loading, error, run } = useRequest({ url: '/api/user' })
  */
-export function useRequest<T = any>(
-  config: RequestConfig,
-  options: RequestOptions = {}
-) {
+export function useRequest<T = any>(config: RequestConfig, options: RequestOptions = {}) {
   const { immediate = false, defaultData = null } = options
-  
+
   const data = ref<T | null>(defaultData) as Ref<T | null>
   const loading = ref(false)
   const error = ref<Error | null>(null)
 
   const run = async (overrideConfig?: Partial<RequestConfig>) => {
     const finalConfig = { ...config, ...overrideConfig }
-    
+
     if (finalConfig.showLoading !== false) {
       loading.value = true
       error.value = null
-      
+
       uni.showLoading({
         title: finalConfig.loadingText || '加载中...',
         mask: true,
@@ -66,12 +61,12 @@ export function useRequest<T = any>(
     } catch (err) {
       error.value = err as Error
       console.error('Request error:', err)
-      
+
       uni.showToast({
         title: error.value.message || '请求失败',
         icon: 'none',
       })
-      
+
       throw err
     } finally {
       if (finalConfig.showLoading !== false) {
@@ -118,11 +113,11 @@ export function usePaginatedRequest<T = any>(
 
     try {
       const result = await fetchFn(page.value, pageSize.value)
-      
+
       if (result.list.length < pageSize.value) {
         hasMore.value = false
       }
-      
+
       list.value = [...list.value, ...result.list]
       total.value = result.total
       page.value++

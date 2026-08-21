@@ -21,18 +21,16 @@ type TabsContext = {
   setActive: (name: string | number, title: string) => void
 }
 
-const props = withDefaults(
-  defineProps({
-    /** 标题 */
-    title: makeStringProp(''),
-    /** 标签名称 (可与 v-model 对应) */
-    name: makeStringProp(''),
-    /** 是否禁用 */
-    disabled: makeBooleanProp(false),
-    customClass: makeStringProp(''),
-    customStyle: { type: [String, Object] as any, default: '' },
-  })
-)
+const props = defineProps({
+  /** 标题 */
+  title: makeStringProp(''),
+  /** 标签名称 (可与 v-model 对应) */
+  name: makeStringProp(''),
+  /** 是否禁用 */
+  disabled: makeBooleanProp(false),
+  customClass: makeStringProp(''),
+  customStyle: { type: [String, Object] as any, default: '' },
+})
 
 const tabs = inject<TabsContext>('mxTabs', null)
 
@@ -60,9 +58,7 @@ const onClick = () => {
   if (tabs) tabs.setActive(name.value, props.title)
 }
 
-function mergeStyle(
-  style: Record<string, string>
-): Record<string, string> {
+function mergeStyle(style: Record<string, string>): Record<string, string> {
   const raw = props.customStyle as any
   if (typeof raw === 'string' && raw) Object.assign(style, parseStyle(raw))
   else if (raw && typeof raw === 'object') Object.assign(style, raw)

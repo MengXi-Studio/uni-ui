@@ -3,9 +3,9 @@
     <!-- 签名区 -->
     <view class="mx-sign-board__area">
       <canvas
+        :id="canvasId"
         class="mx-sign-board__canvas"
         :canvas-id="canvasId"
-        :id="canvasId"
         :style="{ width: canvasW + 'px', height: canvasH + 'px', background: bgColor }"
         @touchstart="onTouchStart"
         @touchmove="onTouchMove"
@@ -17,10 +17,18 @@
 
     <!-- 操作按钮 -->
     <view v-if="closeButtonText || showConfirm" class="mx-sign-board__actions">
-      <text v-if="closeButtonText" class="mx-sign-board__action mx-sign-board__action--clear" @click="onClear">
+      <text
+        v-if="closeButtonText"
+        class="mx-sign-board__action mx-sign-board__action--clear"
+        @click="onClear"
+      >
         {{ closeButtonText }}
       </text>
-      <text v-if="showConfirm" class="mx-sign-board__action mx-sign-board__action--submit" @click="onSubmit">
+      <text
+        v-if="showConfirm"
+        class="mx-sign-board__action mx-sign-board__action--submit"
+        @click="onSubmit"
+      >
         {{ confirmButtonText }}
       </text>
     </view>
@@ -33,38 +41,28 @@ import { makeStringProp, makeBooleanProp, makeNumericProp } from '../shared/prop
 
 type Point = { x: number; y: number }
 
-const props = withDefaults(
-  defineProps({
-    /** 笔画颜色 */
-    color: makeStringProp('#000'),
-    /** 笔迹线宽 */
-    penSize: makeNumericProp<number | string>(3),
-    /** 背景色 */
-    bgColor: makeStringProp('#fff'),
-    /** 生成图片 (v-model) */
-    modelValue: makeStringProp(''),
-    /** 空白时的提示文字 */
-    tipText: makeStringProp(''),
-    /** 清除按钮文字, 为空则不显示 */
-    closeButtonText: makeStringProp('清除'),
-    /** 确认按钮文字 */
-    confirmButtonText: makeStringProp('确认'),
-    /** 是否显示确认按钮 (true 时确定自动触发 submit) */
-    confirm: makeBooleanProp(false),
-    /** 签名区高度 (px) */
-    height: makeNumericProp<number | string>(200),
-    customClass: makeStringProp(''),
-    customStyle: { type: [String, Object] as any, default: '' },
-  }),
-  {
-    color: '#000',
-    penSize: 3,
-    bgColor: '#fff',
-    closeButtonText: '清除',
-    confirmButtonText: '确认',
-    height: 200,
-  }
-)
+const props = defineProps({
+  /** 笔画颜色 */
+  color: makeStringProp('#000'),
+  /** 笔迹线宽 */
+  penSize: makeNumericProp<number | string>(3),
+  /** 背景色 */
+  bgColor: makeStringProp('#fff'),
+  /** 生成图片 (v-model) */
+  modelValue: makeStringProp(''),
+  /** 空白时的提示文字 */
+  tipText: makeStringProp(''),
+  /** 清除按钮文字, 为空则不显示 */
+  closeButtonText: makeStringProp('清除'),
+  /** 确认按钮文字 */
+  confirmButtonText: makeStringProp('确认'),
+  /** 是否显示确认按钮 (true 时确定自动触发 submit) */
+  confirm: makeBooleanProp(false),
+  /** 签名区高度 (px) */
+  height: makeNumericProp<number | string>(200),
+  customClass: makeStringProp(''),
+  customStyle: { type: [String, Object] as any, default: '' },
+})
 
 const emit = defineEmits<{
   (e: 'update:modelValue', value: string): void
@@ -89,7 +87,9 @@ let rect = { left: 0, top: 0 }
 /** 当前是否已有笔迹 */
 const hasStroke = computed(() => strokes.value.length > 0)
 
-const showConfirm = computed(() => props.confirm || !props.closeButtonText || props.confirmButtonText)
+const showConfirm = computed(
+  () => props.confirm || !props.closeButtonText || props.confirmButtonText
+)
 
 /* ---------- 画布尺寸测量 ---------- */
 function measure() {

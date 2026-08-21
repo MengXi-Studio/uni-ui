@@ -25,41 +25,28 @@
 import { computed, ref, watch } from 'vue'
 import { makeStringProp, makeBooleanProp, makeNumericProp } from '../shared/props'
 
-const props = withDefaults(
-  defineProps({
-    /** 是否可见 (v-model) */
-    modelValue: makeBooleanProp(true),
-    /** 图标文本 */
-    icon: makeStringProp(''),
-    /** 文案 */
-    text: makeStringProp(''),
-    /** 可拖动轴: x 水平 / y 垂直 / both 双向 */
-    axis: makeStringProp<'x' | 'y' | 'both'>('both'),
-    /** 松手是否吸附边缘 */
-    magnetic: makeBooleanProp(true),
-    /** 气泡尺寸 */
-    size: makeNumericProp<number | string>(48),
-    /** 距离右边缘 (拖动起始 x) */
-    right: makeNumericProp<number | string>(16),
-    /** 距离底部 (拖动起始 y) */
-    bottom: makeNumericProp<number | string>(80),
-    /** z-index */
-    zIndex: makeNumericProp<number | string>(1000),
-    customClass: makeStringProp(''),
-    customStyle: { type: [String, Object] as any, default: '' },
-  }),
-  {
-    modelValue: true,
-    icon: '',
-    text: '',
-    axis: 'both',
-    magnetic: true,
-    size: 48,
-    right: 16,
-    bottom: 80,
-    zIndex: 1000,
-  }
-)
+const props = defineProps({
+  /** 是否可见 (v-model) */
+  modelValue: makeBooleanProp(true),
+  /** 图标文本 */
+  icon: makeStringProp(''),
+  /** 文案 */
+  text: makeStringProp(''),
+  /** 可拖动轴: x 水平 / y 垂直 / both 双向 */
+  axis: makeStringProp<'x' | 'y' | 'both'>('both'),
+  /** 松手是否吸附边缘 */
+  magnetic: makeBooleanProp(true),
+  /** 气泡尺寸 */
+  size: makeNumericProp<number | string>(48),
+  /** 距离右边缘 (拖动起始 x) */
+  right: makeNumericProp<number | string>(16),
+  /** 距离底部 (拖动起始 y) */
+  bottom: makeNumericProp<number | string>(80),
+  /** z-index */
+  zIndex: makeNumericProp<number | string>(1000),
+  customClass: makeStringProp(''),
+  customStyle: { type: [String, Object] as any, default: '' },
+})
 
 const emit = defineEmits<{
   (e: 'update:modelValue', value: boolean): void
@@ -114,7 +101,8 @@ const rootStyle = computed(() => {
     width: sizeNum.value + 'px',
     height: sizeNum.value + 'px',
   }
-  if (typeof props.customStyle === 'string' && props.customStyle) Object.assign(style, parseStyle(props.customStyle))
+  if (typeof props.customStyle === 'string' && props.customStyle)
+    Object.assign(style, parseStyle(props.customStyle))
   else if (props.customStyle) Object.assign(style, props.customStyle as Record<string, string>)
   return style
 })

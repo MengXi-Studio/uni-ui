@@ -17,17 +17,20 @@
       </view>
 
       <view class="mx-picker-group__next">
-        <text
-          class="mx-picker-group__next-text"
-          @click="onNext"
-          >{{ isLast ? confirmButtonText : nextStepText }}</text
-        >
+        <text class="mx-picker-group__next-text" @click="onNext">
+          {{ isLast ? confirmButtonText : nextStepText }}
+        </text>
       </view>
     </view>
 
     <!-- 内容区: 由父级通过默认插槽渲染各 Tab 的选择器 -->
     <view class="mx-picker-group__content">
-      <slot :active-tab="activeTab" :set-active-tab="setActiveTab" :value="currentValue" :on-change="onValueChange" />
+      <slot
+        :active-tab="activeTab"
+        :set-active-tab="setActiveTab"
+        :value="currentValue"
+        :on-change="onValueChange"
+      />
     </view>
 
     <!-- 底部操作栏 -->
@@ -39,7 +42,9 @@
         class="mx-picker-group__footer-btn mx-picker-group__footer-btn--primary"
         @click="onFooterConfirm"
       >
-        <text class="mx-picker-group__footer-primary">{{ isLast ? confirmButtonText : nextStepText }}</text>
+        <text class="mx-picker-group__footer-primary">
+          {{ isLast ? confirmButtonText : nextStepText }}
+        </text>
       </view>
     </view>
   </view>
@@ -49,32 +54,22 @@
 import { computed, ref, watch } from 'vue'
 import { makeArrayProp, makeStringProp, makeNumericProp, makeBooleanProp } from '../shared/props'
 
-const props = withDefaults(
-  defineProps({
-    /** 当前激活的 Tab 索引 (v-model) */
-    modelValue: makeNumericProp<number>(0),
-    /** Tab 标题数组 */
-    tabs: makeArrayProp<string>([]),
-    /** "下一步"按钮文字 */
-    nextStepText: makeStringProp('下一步'),
-    /** 确认按钮文字 */
-    confirmButtonText: makeStringProp('确认'),
-    /** 取消按钮文字 */
-    cancelButtonText: makeStringProp('取消'),
-    /** 是否显示底部操作栏 */
-    showFooter: makeBooleanProp(true),
-    customClass: makeStringProp(''),
-    customStyle: { type: [String, Object] as any, default: '' },
-  }),
-  {
-    modelValue: 0,
-    tabs: () => [],
-    nextStepText: '下一步',
-    confirmButtonText: '确认',
-    cancelButtonText: '取消',
-    showFooter: true,
-  }
-)
+const props = defineProps({
+  /** 当前激活的 Tab 索引 (v-model) */
+  modelValue: makeNumericProp<number>(0),
+  /** Tab 标题数组 */
+  tabs: makeArrayProp<string>([]),
+  /** "下一步"按钮文字 */
+  nextStepText: makeStringProp('下一步'),
+  /** 确认按钮文字 */
+  confirmButtonText: makeStringProp('确认'),
+  /** 取消按钮文字 */
+  cancelButtonText: makeStringProp('取消'),
+  /** 是否显示底部操作栏 */
+  showFooter: makeBooleanProp(true),
+  customClass: makeStringProp(''),
+  customStyle: { type: [String, Object] as any, default: '' },
+})
 
 const emit = defineEmits<{
   (e: 'update:modelValue', value: number): void
@@ -97,8 +92,10 @@ watch(
 
 const isLast = computed(() => activeTab.value >= props.tabs.length - 1)
 
-const currentValue = computed(
-  () => (activeTab.value >= 0 && activeTab.value < tabValues.value.length ? tabValues.value[activeTab.value] : undefined)
+const currentValue = computed(() =>
+  activeTab.value >= 0 && activeTab.value < tabValues.value.length
+    ? tabValues.value[activeTab.value]
+    : undefined
 )
 
 const setActiveTab = (index: number) => {

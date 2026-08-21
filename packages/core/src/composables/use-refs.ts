@@ -3,16 +3,15 @@
  */
 import { ref, type Ref } from 'vue'
 
-type RefObject<T> = Ref<T | null>
-
 export function useRefs<T>(): {
-  refs: Ref<(T | null)[]>
+  refs: Ref<Array<T | null>>
   setRefs: (index: number) => (el: T | null) => void
 } {
-  const refs = ref<(T | null)[]>([])
+  // 显式断言规避 Vue Ref 对数组元素 UnwrapRef 深度展开导致的泛型不兼容
+  const refs = ref<Array<T | null>>([]) as unknown as Ref<Array<T | null>>
 
   const setRefs = (index: number) => (el: T | null) => {
-    if (index >= refs.value.length) refs.value = [...refs.value, ...Array(index - refs.value.length + 1).fill(null)]
+    while (refs.value.length <= index) refs.value.push(null)
     refs.value[index] = el
   }
 

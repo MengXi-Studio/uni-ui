@@ -31,9 +31,8 @@
       :type="loadingType"
       :size="loadingSize"
       :color="loadingColor"
-      :customClass="'mx-button__icon'"
-    >
-    </mx-loading>
+      :custom-class="'mx-button__icon'"
+    ></mx-loading>
 
     <!-- 图标 -->
     <view v-else-if="showIcon" class="mx-button__icon">
@@ -42,7 +41,9 @@
     </view>
 
     <!-- 文案 -->
-    <text v-if="loadingText && loading" class="mx-button__text mx-button__loading-text">{{ loadingText }}</text>
+    <text v-if="loadingText && loading" class="mx-button__text mx-button__loading-text">
+      {{ loadingText }}
+    </text>
     <text v-else class="mx-button__text"><slot /></text>
   </button>
 </template>
@@ -50,7 +51,6 @@
 <script setup lang="ts">
 import { computed } from 'vue'
 import { makeStringProp, makeBooleanProp, makeNumericProp } from '../shared/props'
-import { addUnit } from '../../utils/unit'
 import MxLoading from '../mx-loading/mx-loading.vue'
 import MxIcon from '../mx-icon/mx-icon.vue'
 
@@ -59,56 +59,46 @@ type ButtonSize = 'large' | 'normal' | 'small' | 'mini'
 type IconPosition = 'left' | 'right'
 type LoadingType = 'circular' | 'spinner'
 
-const props = withDefaults(
-  defineProps({
-    /** 类型 */
-    type: makeStringProp<ButtonType>('default'),
-    /** 尺寸 */
-    size: makeStringProp<ButtonSize>('normal'),
-    /** 自定义主题色 */
-    color: makeStringProp(''),
-    /** 图标名或图标 url */
-    icon: makeStringProp(''),
-    /** 图标位置 */
-    iconPosition: makeStringProp<IconPosition>('left'),
-    /** 图标尺寸 */
-    iconSize: makeStringProp(''),
-    /** 是否加载中 */
-    loading: makeBooleanProp(false),
-    /** 加载文案 */
-    loadingText: makeStringProp(''),
-    /** 加载类型 */
-    loadingType: makeStringProp<LoadingType>('circular'),
-    /** 加载图标尺寸 */
-    loadingSize: makeNumericProp<number | string>('20px'),
-    /** 加载图标颜色 */
-    loadingColor: makeStringProp('#fff'),
-    /** 是否为朴素按钮 */
-    plain: makeBooleanProp(false),
-    /** 是否为圆形 */
-    round: makeBooleanProp(false),
-    /** 是否为方形 */
-    square: makeBooleanProp(false),
-    /** 是否为块级按钮 */
-    block: makeBooleanProp(false),
-    /** 是否禁用 */
-    disabled: makeBooleanProp(false),
-    /** form-type: submit / reset */
-    formType: makeStringProp(''),
-    /** open-type: 原生能力扩展 */
-    openType: makeStringProp(''),
-    customClass: makeStringProp(''),
-    customStyle: { type: [String, Object] as any, default: '' },
-  }),
-  {
-    type: 'default',
-    size: 'normal',
-    iconPosition: 'left',
-    loadingType: 'circular',
-    loadingSize: '20px',
-    loadingColor: '#fff',
-  }
-)
+const props = defineProps({
+  /** 类型 */
+  type: makeStringProp<ButtonType>('default'),
+  /** 尺寸 */
+  size: makeStringProp<ButtonSize>('normal'),
+  /** 自定义主题色 */
+  color: makeStringProp(''),
+  /** 图标名或图标 url */
+  icon: makeStringProp(''),
+  /** 图标位置 */
+  iconPosition: makeStringProp<IconPosition>('left'),
+  /** 图标尺寸 */
+  iconSize: makeStringProp(''),
+  /** 是否加载中 */
+  loading: makeBooleanProp(false),
+  /** 加载文案 */
+  loadingText: makeStringProp(''),
+  /** 加载类型 */
+  loadingType: makeStringProp<LoadingType>('circular'),
+  /** 加载图标尺寸 */
+  loadingSize: makeNumericProp<number | string>('20px'),
+  /** 加载图标颜色 */
+  loadingColor: makeStringProp('#fff'),
+  /** 是否为朴素按钮 */
+  plain: makeBooleanProp(false),
+  /** 是否为圆形 */
+  round: makeBooleanProp(false),
+  /** 是否为方形 */
+  square: makeBooleanProp(false),
+  /** 是否为块级按钮 */
+  block: makeBooleanProp(false),
+  /** 是否禁用 */
+  disabled: makeBooleanProp(false),
+  /** form-type: submit / reset */
+  formType: makeStringProp(''),
+  /** open-type: 原生能力扩展 */
+  openType: makeStringProp(''),
+  customClass: makeStringProp(''),
+  customStyle: { type: [String, Object] as any, default: '' },
+})
 
 const emit = defineEmits<{
   (e: 'click', event: Event): void

@@ -16,8 +16,9 @@
       v-if="(showExpand || showCollapse) && expandTrigger === 'click'"
       class="mx-text-ellipsis__action"
       @click.stop="toggle"
-      >{{ !expanded ? expandText : collapseText }}</text
     >
+      {{ !expanded ? expandText : collapseText }}
+    </text>
   </view>
 </template>
 
@@ -28,33 +29,24 @@ import { addUnit } from '../../utils/unit'
 
 type ExpandTrigger = 'click' | 'none'
 
-const props = withDefaults(
-  defineProps({
-    /** 需要省略的文本 */
-    text: makeStringProp(''),
-    /** 容器宽度 (unset 或具体值) */
-    width: makeStringProp(''),
-    /** 省略行数 */
-    rows: makeNumericProp<number>(2),
-    /** 展开文案 */
-    expandText: makeStringProp('展开'),
-    /** 收起文案 */
-    collapseText: makeStringProp('收起'),
-    /** 展开触发方式: click / none */
-    expandTrigger: makeStringProp<ExpandTrigger>('click'),
-    /** 初始是否展开 */
-    defaultExpanded: makeBooleanProp(false),
-    customClass: makeStringProp(''),
-    customStyle: { type: [String, Object] as any, default: '' },
-  }),
-  {
-    text: '',
-    rows: 2,
-    expandText: '展开',
-    collapseText: '收起',
-    expandTrigger: 'click',
-  }
-)
+const props = defineProps({
+  /** 需要省略的文本 */
+  text: makeStringProp(''),
+  /** 容器宽度 (unset 或具体值) */
+  width: makeStringProp(''),
+  /** 省略行数 */
+  rows: makeNumericProp<number>(2),
+  /** 展开文案 */
+  expandText: makeStringProp('展开'),
+  /** 收起文案 */
+  collapseText: makeStringProp('收起'),
+  /** 展开触发方式: click / none */
+  expandTrigger: makeStringProp<ExpandTrigger>('click'),
+  /** 初始是否展开 */
+  defaultExpanded: makeBooleanProp(false),
+  customClass: makeStringProp(''),
+  customStyle: { type: [String, Object] as any, default: '' },
+})
 
 const emit = defineEmits<{
   (e: 'change', value: boolean): void

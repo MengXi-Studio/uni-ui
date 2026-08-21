@@ -2,12 +2,7 @@
   <view
     v-if="transition.render"
     class="mx-notify"
-    :class="[
-      `mx-notify--${type}`,
-      'mx--fade',
-      transition.transitionClass,
-      customClass,
-    ]"
+    :class="[`mx-notify--${type}`, 'mx--fade', transition.transitionClass, customClass]"
     :style="notifyStyle"
     @click="onClick"
   >
@@ -28,28 +23,22 @@ import MxLoading from '../mx-loading/mx-loading.vue'
 
 type NotifyType = 'success' | 'warning' | 'danger' | 'primary' | 'loading' | 'custom'
 
-const props = withDefaults(
-  defineProps({
-    /** 是否显示 */
-    show: makeBooleanProp(false),
-    /** 通知文案 */
-    message: makeStringProp(''),
-    /** 类型 */
-    type: makeStringProp<NotifyType>('primary'),
-    /** 自定义文字颜色 */
-    color: makeStringProp(''),
-    /** 自定义背景色 */
-    background: makeStringProp(''),
-    /** 展示时长 (ms), 0 表示不自动关闭 */
-    duration: makeNumericProp<number>(3000),
-    customClass: makeStringProp(''),
-    customStyle: { type: [String, Object] as any, default: '' },
-  }),
-  {
-    type: 'primary',
-    duration: 3000,
-  }
-)
+const props = defineProps({
+  /** 是否显示 */
+  show: makeBooleanProp(false),
+  /** 通知文案 */
+  message: makeStringProp(''),
+  /** 类型 */
+  type: makeStringProp<NotifyType>('primary'),
+  /** 自定义文字颜色 */
+  color: makeStringProp(''),
+  /** 自定义背景色 */
+  background: makeStringProp(''),
+  /** 展示时长 (ms), 0 表示不自动关闭 */
+  duration: makeNumericProp<number>(3000),
+  customClass: makeStringProp(''),
+  customStyle: { type: [String, Object] as any, default: '' },
+})
 
 const emit = defineEmits<{
   (e: 'update:show', value: boolean): void
@@ -61,7 +50,10 @@ const emit = defineEmits<{
 const showState = ref(props.show)
 let closeTimer: ReturnType<typeof setTimeout> | null = null
 
-const transition = useTransition(computed(() => showState.value), 200)
+const transition = useTransition(
+  computed(() => showState.value),
+  200
+)
 
 const TYPE_BG: Record<string, string> = {
   primary: 'var(--mx-primary-color)',
@@ -73,7 +65,7 @@ const TYPE_BG: Record<string, string> = {
 
 const textColor = computed(() => {
   if (props.color) return props.color
-  return type === 'custom' ? 'var(--mx-text-color)' : '#fff'
+  return props.type === 'custom' ? 'var(--mx-text-color)' : '#fff'
 })
 
 const notifyStyle = computed(() => {
@@ -81,7 +73,8 @@ const notifyStyle = computed(() => {
   if (props.background) style.background = props.background
   else if (TYPE_BG[props.type]) style.background = TYPE_BG[props.type]
   if (props.type === 'custom' && !props.background) style.background = 'var(--mx-background-2)'
-  if (typeof props.customStyle === 'string' && props.customStyle) Object.assign(style, parseStyle(props.customStyle))
+  if (typeof props.customStyle === 'string' && props.customStyle)
+    Object.assign(style, parseStyle(props.customStyle))
   else if (props.customStyle) Object.assign(style, props.customStyle as Record<string, string>)
   return style
 })
@@ -93,7 +86,7 @@ const textStyle = computed(() => {
 })
 
 /** 实例: 打开 */
-const show = () => {
+const showNotify = () => {
   showState.value = true
   emit('update:show', true)
 }
@@ -127,12 +120,21 @@ watch(
 
 const onClick = () => emit('click')
 
+function parseStyle(str: string): Record<string, string> {
+  const obj: Record<string, string> = {}
+  str.split(';').forEach((part) => {
+    const idx = part.indexOf(':')
+    if (idx > -1) obj[part.slice(0, idx).trim()] = part.slice(idx + 1).trim()
+  })
+  return obj
+}
+
 onBeforeUnmount(() => {
   if (closeTimer) clearTimeout(closeTimer)
   closeTimer = null
 })
 
-defineExpose({ show, close })
+defineExpose({ show: showNotify, close })
 </script>
 
 <style lang="scss">

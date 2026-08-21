@@ -27,7 +27,7 @@ export function isIdCard(value: string): boolean {
  * 验证是否为 URL
  */
 export function isUrl(value: string): boolean {
-  return /^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$/.test(value)
+  return /^(https?:\/\/)?([\da-z.-]+)\.([a-z.]{2,6})([/\w .-]*)*\/?$/.test(value)
 }
 
 /**
@@ -91,11 +91,7 @@ export function validateLength(
 /**
  * 验证正则表达式
  */
-export function validatePattern(
-  value: string,
-  pattern: RegExp,
-  message?: string
-): string | null {
+export function validatePattern(value: string, pattern: RegExp, message?: string): string | null {
   if (!pattern.test(value)) {
     return message || '格式不正确'
   }

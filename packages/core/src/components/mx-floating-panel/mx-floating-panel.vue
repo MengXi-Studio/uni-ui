@@ -22,32 +22,22 @@
 import { computed, ref } from 'vue'
 import { makeNumericProp, makeStringProp } from '../shared/props'
 
-const props = withDefaults(
-  defineProps({
-    /** 当前吸附的锚点 (v-model, 数字 = 面板在底部露出的高度) */
-    modelValue: makeNumericProp<number>(100),
-    /** 可吸附的高度锚点数组 (从小到大) */
-    anchors: { type: Array as any, default: () => [] },
-    /** 内容高度 */
-    contentHeight: makeNumericProp<number>(0),
-    /** 距顶部最小偏移 */
-    offsetTop: makeNumericProp<number>(40),
-    /** 吸附动画时长 (ms) */
-    duration: makeNumericProp<number>(300),
-    /** z-index */
-    zIndex: makeNumericProp<number | string>(999),
-    customClass: makeStringProp(''),
-    customStyle: { type: [String, Object] as any, default: '' },
-  }),
-  {
-    modelValue: 100,
-    anchors: () => [],
-    contentHeight: 0,
-    offsetTop: 40,
-    duration: 300,
-    zIndex: 999,
-  }
-)
+const props = defineProps({
+  /** 当前吸附的锚点 (v-model, 数字 = 面板在底部露出的高度) */
+  modelValue: makeNumericProp<number>(100),
+  /** 可吸附的高度锚点数组 (从小到大) */
+  anchors: { type: Array as any, default: () => [] },
+  /** 内容高度 */
+  contentHeight: makeNumericProp<number>(0),
+  /** 距顶部最小偏移 */
+  offsetTop: makeNumericProp<number>(40),
+  /** 吸附动画时长 (ms) */
+  duration: makeNumericProp<number>(300),
+  /** z-index */
+  zIndex: makeNumericProp<number | string>(999),
+  customClass: makeStringProp(''),
+  customStyle: { type: [String, Object] as any, default: '' },
+})
 
 const emit = defineEmits<{
   (e: 'update:modelValue', value: number): void
@@ -61,9 +51,10 @@ const height = ref(Number(props.modelValue))
 
 /** 候选锚点 (至少包含默认值) */
 const anchorList = computed<number[]>(() => {
-  const list: number[] = Array.isArray(props.anchors) && props.anchors.length
-    ? (props.anchors as number[]).map(Number)
-    : []
+  const list: number[] =
+    Array.isArray(props.anchors) && props.anchors.length
+      ? (props.anchors as number[]).map(Number)
+      : []
   if (!list.length) list.push(Number(props.modelValue))
   return list.sort((a, b) => a - b)
 })
@@ -174,8 +165,7 @@ defineExpose({ setAnchor, getHeight: () => height.value })
   background: var(--mx-background-2);
   box-shadow: 0 -2px 12px rgba(0, 0, 0, 0.08);
   box-sizing: border-box;
-  transition: height var(--mx-duration-base)
-    var(--mx-ease-in-out);
+  transition: height var(--mx-duration-base) var(--mx-ease-in-out);
 
   &__handle-bar {
     display: flex;

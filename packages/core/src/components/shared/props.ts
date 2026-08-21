@@ -19,12 +19,12 @@ export const makeBooleanProp = (defaultValue = false) =>
   ({ type: Boolean, default: defaultValue }) as const
 
 /** 对象 prop */
-export const makeObjectProp = <T, R = T>(defaultValue?: T | Factory<T>) =>
+export const makeObjectProp = <T>(defaultValue?: T | Factory<T>) =>
   ({ type: Object as PropType<T>, default: defaultValue }) as const
 
 /** 数组 prop */
 export const makeArrayProp = <T>(defaultValue: T[] = []) =>
-  ({ type: Array as PropType<T>, default: defaultValue }) as const
+  ({ type: Array as unknown as PropType<T>, default: defaultValue }) as const
 
 /** 简单类型 prop (number/string/boolean) */
 export const makeProp = <T>(type: PropType<T> | true, defaultValue?: T | Factory<T>) =>

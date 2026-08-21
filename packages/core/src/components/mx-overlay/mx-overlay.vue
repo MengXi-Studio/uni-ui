@@ -2,7 +2,10 @@
   <view
     v-if="transition.render"
     class="mx-overlay"
-    :class="[`mx-overlay__transition${transition.transitionClass ? ' ' + transition.transitionClass : ''}`, customClass]"
+    :class="[
+      `mx-overlay__transition${transition.transitionClass ? ' ' + transition.transitionClass : ''}`,
+      customClass,
+    ]"
     :style="overlayStyle"
     @click="onClick"
     @touchmove.stop.prevent
@@ -16,28 +19,28 @@ import { computed } from 'vue'
 import { makeBooleanProp, makeStringProp, makeNumericProp } from '../shared/props'
 import { useTransition } from '../../composables/use-transition'
 
-const props = withDefaults(
-  defineProps({
-    /** 是否显示 */
-    show: makeBooleanProp(false),
-    /** z-index */
-    zIndex: makeNumericProp<number | string>(1),
-    /** 过渡时长 (ms) */
-    duration: makeNumericProp<number | string>(300),
-    /** 是否可点击 (主动态) */
-    clickable: makeBooleanProp(true),
-    customClass: makeStringProp(''),
-    customStyle: { type: [String, Object] as any, default: '' },
-  }),
-  { duration: 300 }
-)
+const props = defineProps({
+  /** 是否显示 */
+  show: makeBooleanProp(false),
+  /** z-index */
+  zIndex: makeNumericProp<number | string>(1),
+  /** 过渡时长 (ms) */
+  duration: makeNumericProp<number | string>(300),
+  /** 是否可点击 (主动态) */
+  clickable: makeBooleanProp(true),
+  customClass: makeStringProp(''),
+  customStyle: { type: [String, Object] as any, default: '' },
+})
 
 const emit = defineEmits<{
   (e: 'click'): void
   (e: 'update:show', value: boolean): void
 }>()
 
-const transition = useTransition(computed(() => props.show), Number(props.duration) || 300)
+const transition = useTransition(
+  computed(() => props.show),
+  Number(props.duration) || 300
+)
 
 const overlayStyle = computed(() => {
   const style: Record<string, string> = { zIndex: String(props.zIndex) }

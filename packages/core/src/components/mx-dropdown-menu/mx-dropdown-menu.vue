@@ -21,21 +21,32 @@
       v-if="activeIndex >= 0"
       class="mx-dropdown-menu__panel"
       :class="[
-        activeItem && activeItem.direction ? `mx-dropdown-menu__panel--${activeItem.direction}` : '',
+        activeItem && activeItem.direction
+          ? `mx-dropdown-menu__panel--${activeItem.direction}`
+          : '',
         'mx-dropdown-menu__panel--enter',
       ]"
       :style="panelStyle"
     >
       <template v-if="activeItem">
         <view
-          v-for="(option, oi) in (activeItem.options || [])"
+          v-for="(option, oi) in activeItem.options || []"
           :key="oi"
           class="mx-dropdown-menu__option"
-          :class="{ 'mx-dropdown-menu__option--active': activeItem.value === option.value, 'mx-dropdown-menu__option--disabled': option.disabled }"
-          @click="activeItem.value !== option.value && !option.disabled ? onSelect(activeItem, option) : null"
+          :class="{
+            'mx-dropdown-menu__option--active': activeItem.value === option.value,
+            'mx-dropdown-menu__option--disabled': option.disabled,
+          }"
+          @click="
+            activeItem.value !== option.value && !option.disabled
+              ? onSelect(activeItem, option)
+              : null
+          "
         >
           <text class="mx-dropdown-menu__option-text">{{ option.text }}</text>
-          <text v-if="activeItem.value === option.value" class="mx-dropdown-menu__option-check">✓</text>
+          <text v-if="activeItem.value === option.value" class="mx-dropdown-menu__option-check">
+            ✓
+          </text>
         </view>
         <view v-if="!(activeItem.options || []).length" class="mx-dropdown-menu__empty">
           <text class="mx-dropdown-menu__empty-text">暂无选项</text>
@@ -60,7 +71,7 @@ export interface DropdownItemMeta {
   options: DropdownOption[]
   disabled: boolean
   value: number | string
-  direction: "down" | "up"
+  direction: 'down' | 'up'
   setValue: (value: number | string) => void
 }
 
@@ -84,32 +95,22 @@ import { computed, onUnmounted, provide, ref } from 'vue'
 import { makeStringProp, makeBooleanProp, makeNumericProp } from '../shared/props'
 import MxOverlay from '../mx-overlay/mx-overlay.vue'
 
-const props = withDefaults(
-  defineProps({
-    /** 高亮颜色 */
-    activeColor: makeStringProp('#1989fa'),
-    /** 展开方向: down 向下 / up 向上 */
-    direction: makeStringProp<DropdownDirection>('down'),
-    /** z-index */
-    zIndex: makeNumericProp<number | string>(10),
-    /** 过渡时长 (ms) */
-    duration: makeNumericProp<number | string>(200),
-    /** 是否显示遮罩 */
-    overlay: makeBooleanProp(true),
-    /** 点击遮罩是否关闭 */
-    closeOnClickOverlay: makeBooleanProp(true),
-    customClass: makeStringProp(''),
-    customStyle: { type: [String, Object] as any, default: '' },
-  }),
-  {
-    activeColor: '#1989fa',
-    direction: 'down',
-    zIndex: 10,
-    duration: 200,
-    overlay: true,
-    closeOnClickOverlay: true,
-  }
-)
+const props = defineProps({
+  /** 高亮颜色 */
+  activeColor: makeStringProp('#1989fa'),
+  /** 展开方向: down 向下 / up 向上 */
+  direction: makeStringProp<DropdownDirection>('down'),
+  /** z-index */
+  zIndex: makeNumericProp<number | string>(10),
+  /** 过渡时长 (ms) */
+  duration: makeNumericProp<number | string>(200),
+  /** 是否显示遮罩 */
+  overlay: makeBooleanProp(true),
+  /** 点击遮罩是否关闭 */
+  closeOnClickOverlay: makeBooleanProp(true),
+  customClass: makeStringProp(''),
+  customStyle: { type: [String, Object] as any, default: '' },
+})
 
 const emit = defineEmits<{
   (e: 'update:modelValue', value: number): void
@@ -125,11 +126,14 @@ const activeIndex = ref(-1)
 /** 注册的下拉项元信息 */
 const registry = ref<DropdownItemMeta[]>([])
 
-const activeItem = computed(() => (activeIndex.value >= 0 ? registry.value[activeIndex.value] : null))
+const activeItem = computed(() =>
+  activeIndex.value >= 0 ? registry.value[activeIndex.value] : null
+)
 
 const rootStyle = computed(() => {
   const style: Record<string, string> = { zIndex: String(props.zIndex) }
-  if (typeof props.customStyle === 'string' && props.customStyle) Object.assign(style, parseStyle(props.customStyle))
+  if (typeof props.customStyle === 'string' && props.customStyle)
+    Object.assign(style, parseStyle(props.customStyle))
   else if (props.customStyle) Object.assign(style, props.customStyle as Record<string, string>)
   return style
 })
@@ -293,7 +297,11 @@ defineExpose({ activeIndex })
 }
 
 @keyframes mx-dropdown-fade {
-  from { opacity: 0; }
-  to { opacity: 1; }
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
 </style>

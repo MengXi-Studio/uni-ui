@@ -6,21 +6,19 @@
 
 <script setup lang="ts">
 import { computed, inject, type Ref } from 'vue'
-import { makeStringProp, makeNumericProp } from '../shared/props'
+import { makeNumericProp } from '../shared/props'
 
-const props = withDefaults(
-  defineProps({
-    /** 列占位 (1~24) */
-    span: makeNumericProp<number | string>(24),
-    /** 左侧偏移 */
-    offset: makeNumericProp<number | string>(0),
-    customClass: { type: String, default: '' },
-    customStyle: { type: [String, Object] as any, default: '' },
-  }),
-  { span: 24 }
-)
+const props = defineProps({
+  /** 列占位 (1~24) */
+  span: makeNumericProp<number | string>(24),
+  /** 左侧偏移 */
+  offset: makeNumericProp<number | string>(0),
+  customClass: { type: String, default: '' },
+  customStyle: { type: [String, Object] as any, default: '' },
+})
 
-const gutter = (inject<Ref<number>>('mxRowGutter', undefined) as Ref<number> | undefined)?.value || 0
+const gutter =
+  (inject<Ref<number>>('mxRowGutter', undefined) as Ref<number> | undefined)?.value || 0
 
 const colStyle = computed(() => {
   const span = Number(props.span) || 24
@@ -39,7 +37,8 @@ const colStyle = computed(() => {
     style.paddingLeft = `${gutter / 2}px`
     style.paddingRight = `${gutter / 2}px`
   }
-  if (typeof props.customStyle === 'string' && props.customStyle) Object.assign(style, parseStyle(props.customStyle))
+  if (typeof props.customStyle === 'string' && props.customStyle)
+    Object.assign(style, parseStyle(props.customStyle))
   else if (props.customStyle) Object.assign(style, props.customStyle as Record<string, string>)
   return style
 })

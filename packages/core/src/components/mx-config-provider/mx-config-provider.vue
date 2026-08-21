@@ -10,20 +10,18 @@ import { makeStringProp } from '../shared/props'
 
 type Theme = 'light' | 'dark'
 
-const props = withDefaults(
-  defineProps({
-    /** 主题: light / dark */
-    theme: makeStringProp<Theme>('light'),
-    /** 主题变量 (参考 CSS 变量 --mx-xxx, 传入 key 为 CSS 变量名) */
-    themeVars: { type: Object as any, default: () => ({}) },
-    /** 深色主题变量 */
-    themeVarsDark: { type: Object as any, default: () => ({}) },
-    /** 浅色主题变量 */
-    themeVarsLight: { type: Object as any, default: () => ({}) },
-    customClass: { type: String, default: '' },
-    customStyle: { type: [String, Object] as any, default: '' },
-  })
-)
+const props = defineProps({
+  /** 主题: light / dark */
+  theme: makeStringProp<Theme>('light'),
+  /** 主题变量 (参考 CSS 变量 --mx-xxx, 传入 key 为 CSS 变量名) */
+  themeVars: { type: Object as any, default: () => ({}) },
+  /** 深色主题变量 */
+  themeVarsDark: { type: Object as any, default: () => ({}) },
+  /** 浅色主题变量 */
+  themeVarsLight: { type: Object as any, default: () => ({}) },
+  customClass: { type: String, default: '' },
+  customStyle: { type: [String, Object] as any, default: '' },
+})
 
 /** 深色主题的默认变量 (覆盖浅色默认) */
 const darkVars: Record<string, string> = {
@@ -47,7 +45,8 @@ const mergedStyle = computed(() => {
   Object.keys(vars).forEach((key) => {
     style[key] = vars[key]
   })
-  if (typeof props.customStyle === 'string' && props.customStyle) Object.assign(style, parseStyle(props.customStyle))
+  if (typeof props.customStyle === 'string' && props.customStyle)
+    Object.assign(style, parseStyle(props.customStyle))
   else if (props.customStyle) Object.assign(style, props.customStyle as Record<string, string>)
   return style
 })

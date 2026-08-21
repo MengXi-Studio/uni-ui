@@ -1,5 +1,9 @@
 <template>
-  <view class="mx-loading" :class="{ 'mx-loading--vertical': vertical, customClass }" :style="customStyle">
+  <view
+    class="mx-loading"
+    :class="{ 'mx-loading--vertical': vertical, customClass }"
+    :style="customStyle"
+  >
     <!-- circular: 环形旋转 -->
     <view
       v-if="type === 'circular'"
@@ -9,7 +13,10 @@
     >
       <view class="mx-loading__circular" :style="{ width: sizeUnit, height: sizeUnit }">
         <view class="mx-loading__dot" style="top: 0; left: 50%; margin-left: -1px"></view>
-        <view class="mx-loading__dot" style="top: 50%; left: calc(100% - 2px); margin-top: -1px"></view>
+        <view
+          class="mx-loading__dot"
+          style="top: 50%; left: calc(100% - 2px); margin-top: -1px"
+        ></view>
         <view class="mx-loading__dot" style="bottom: 0; left: 50%; margin-left: -1px"></view>
         <view class="mx-loading__dot" style="top: 50%; left: 0; margin-top: -1px"></view>
       </view>
@@ -40,31 +47,24 @@ import { computed } from 'vue'
 import { makeStringProp, makeBooleanProp, makeNumericProp } from '../shared/props'
 import { addUnit } from '../../utils/unit'
 
-const props = withDefaults(
-  defineProps({
-    /** 加载图标类型: circular / spinner */
-    type: makeStringProp<'circular' | 'spinner'>('circular'),
-    /** 加载图标大小 */
-    size: makeNumericProp<number | string>('30px'),
-    /** 加载文字颜色 */
-    color: makeStringProp('#c8c9cc'),
-    /** 加载文字 */
-    text: makeStringProp(''),
-    /** 是否垂直排列图标和文字 */
-    vertical: makeBooleanProp(false),
-    /** 文字大小 */
-    textSize: makeNumericProp<number | string>('14px'),
-    /** 文字颜色 (优先于 color) */
-    textColor: makeStringProp(''),
-    customClass: makeStringProp(''),
-    customStyle: { type: [String, Object] as any, default: '' },
-  }),
-  {
-    color: '#c8c9cc',
-    size: '30px',
-    type: 'circular',
-  }
-)
+const props = defineProps({
+  /** 加载图标类型: circular / spinner */
+  type: makeStringProp<'circular' | 'spinner'>('circular'),
+  /** 加载图标大小 */
+  size: makeNumericProp<number | string>('30px'),
+  /** 加载文字颜色 */
+  color: makeStringProp('#c8c9cc'),
+  /** 加载文字 */
+  text: makeStringProp(''),
+  /** 是否垂直排列图标和文字 */
+  vertical: makeBooleanProp(false),
+  /** 文字大小 */
+  textSize: makeNumericProp<number | string>('14px'),
+  /** 文字颜色 (优先于 color) */
+  textColor: makeStringProp(''),
+  customClass: makeStringProp(''),
+  customStyle: { type: [String, Object] as any, default: '' },
+})
 
 const sizeUnit = computed(() => addUnit(props.size))
 const textStyle = computed(() => ({

@@ -1,26 +1,22 @@
 <template>
   <!-- forbidClick: 透明遮罩拦截点击 -->
-  <view
-    v-if="props.forbidClick && showState"
-    class="mx-toast__forbid"
-  />
+  <view v-if="props.forbidClick && showState" class="mx-toast__forbid" />
 
   <view
     v-if="transition.render"
     class="mx-toast"
-    :class="[
-      `mx-toast--${position}`,
-      midTransition,
-      transition.transitionClass,
-      customClass,
-    ]"
+    :class="[`mx-toast--${position}`, midTransition, transition.transitionClass, customClass]"
     :style="toastStyle"
   >
     <!-- loading 类型 -->
     <mx-loading v-if="type === 'loading'" :size="28" :color="'#fff'" />
 
     <!-- 图标: 内置类型或自定义 icon -->
-    <view v-else-if="currentIcon" class="mx-toast__icon" :style="{ width: iconSizeUnit, height: iconSizeUnit }">
+    <view
+      v-else-if="currentIcon"
+      class="mx-toast__icon"
+      :style="{ width: iconSizeUnit, height: iconSizeUnit }"
+    >
       <image
         v-if="isImageIcon"
         class="mx-toast__icon-img"
@@ -28,7 +24,9 @@
         mode="aspectFit"
         :style="{ width: iconSizeUnit, height: iconSizeUnit }"
       />
-      <text v-else class="mx-toast__icon-char" :style="{ fontSize: iconSizeUnit }">{{ currentIcon }}</text>
+      <text v-else class="mx-toast__icon-char" :style="{ fontSize: iconSizeUnit }">
+        {{ currentIcon }}
+      </text>
     </view>
 
     <text v-if="message" class="mx-toast__text">{{ message }}</text>
@@ -46,34 +44,26 @@ import MxLoading from '../mx-loading/mx-loading.vue'
 type ToastType = 'success' | 'fail' | 'loading' | 'custom' | 'html'
 type ToastPosition = 'top' | 'middle' | 'bottom'
 
-const props = withDefaults(
-  defineProps({
-    /** 是否显示 */
-    show: makeBooleanProp(false),
-    /** 文案 */
-    message: makeStringProp(''),
-    /** 类型 */
-    type: makeStringProp<ToastType>('custom'),
-    /** 位置 */
-    position: makeStringProp<ToastPosition>('middle'),
-    /** 自定义图标 (url 或字符/emoji) */
-    icon: makeStringProp(''),
-    /** 图标大小 */
-    iconSize: makeNumericProp<number | string>('36px'),
-    /** 是否禁止穿透点击 */
-    forbidClick: makeBooleanProp(false),
-    /** 展示时长 (ms), 0 不自动关闭 */
-    duration: makeNumericProp<number>(2000),
-    customClass: makeStringProp(''),
-    customStyle: { type: [String, Object] as any, default: '' },
-  }),
-  {
-    position: 'middle',
-    type: 'custom',
-    duration: 2000,
-    iconSize: '36px',
-  }
-)
+const props = defineProps({
+  /** 是否显示 */
+  show: makeBooleanProp(false),
+  /** 文案 */
+  message: makeStringProp(''),
+  /** 类型 */
+  type: makeStringProp<ToastType>('custom'),
+  /** 位置 */
+  position: makeStringProp<ToastPosition>('middle'),
+  /** 自定义图标 (url 或字符/emoji) */
+  icon: makeStringProp(''),
+  /** 图标大小 */
+  iconSize: makeNumericProp<number | string>('36px'),
+  /** 是否禁止穿透点击 */
+  forbidClick: makeBooleanProp(false),
+  /** 展示时长 (ms), 0 不自动关闭 */
+  duration: makeNumericProp<number>(2000),
+  customClass: makeStringProp(''),
+  customStyle: { type: [String, Object] as any, default: '' },
+})
 
 const emit = defineEmits<{
   (e: 'update:show', value: boolean): void
@@ -83,7 +73,10 @@ const emit = defineEmits<{
 const showState = ref(props.show)
 let closeTimer: ReturnType<typeof setTimeout> | null = null
 
-const transition = useTransition(computed(() => showState.value), 200)
+const transition = useTransition(
+  computed(() => showState.value),
+  200
+)
 
 /** 内置类型图标 (字符) */
 const BUILTIN_ICON: Record<string, string> = {
@@ -98,7 +91,9 @@ const currentIcon = computed(() => {
   return BUILTIN_ICON[props.type] || ''
 })
 
-const isImageIcon = computed(() => /^(https?:)?\/\//.test(currentIcon.value) || /^data:image/.test(currentIcon.value))
+const isImageIcon = computed(
+  () => /^(https?:)?\/\//.test(currentIcon.value) || /^data:image/.test(currentIcon.value)
+)
 
 const iconSizeUnit = computed(() => addUnit(props.iconSize) as string)
 
@@ -107,12 +102,13 @@ const midTransition = computed(() => (props.position === 'middle' ? 'mx--zoom' :
 
 const toastStyle = computed(() => {
   const style: Record<string, string> = {}
-  if (typeof props.customStyle === 'string' && props.customStyle) Object.assign(style, parseStyle(props.customStyle))
+  if (typeof props.customStyle === 'string' && props.customStyle)
+    Object.assign(style, parseStyle(props.customStyle))
   else if (props.customStyle) Object.assign(style, props.customStyle as Record<string, string>)
   return style
 })
 
-const show = () => {
+const showToast = () => {
   showState.value = true
   emit('update:show', true)
 }
@@ -155,7 +151,7 @@ function parseStyle(str: string): Record<string, string> {
   return obj
 }
 
-defineExpose({ show, close })
+defineExpose({ show: showToast, close })
 </script>
 
 <style lang="scss">
@@ -193,8 +189,12 @@ defineExpose({ show, close })
     transform: translate3d(-50%, -50%, 0);
     border-radius: var(--mx-radius-md);
 
-    &.mx--enter { animation: mx-zoom-in var(--mx-duration-base) both; }
-    &.mx--leave { animation: mx-zoom-out var(--mx-duration-base) both; }
+    &.mx--enter {
+      animation: mx-zoom-in var(--mx-duration-base) both;
+    }
+    &.mx--leave {
+      animation: mx-zoom-out var(--mx-duration-base) both;
+    }
   }
 
   &--top {

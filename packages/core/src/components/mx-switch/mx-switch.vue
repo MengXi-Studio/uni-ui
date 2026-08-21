@@ -1,7 +1,11 @@
 <template>
   <view
     class="mx-switch"
-    :class="[`mx-switch--${checked ? 'on' : 'off'}`, { 'mx-switch--disabled': disabled, 'mx-switch--loading': loading }, customClass]"
+    :class="[
+      `mx-switch--${checked ? 'on' : 'off'}`,
+      { 'mx-switch--disabled': disabled, 'mx-switch--loading': loading },
+      customClass,
+    ]"
     :style="switchStyle"
     @click="onClick"
   >
@@ -14,34 +18,26 @@ import { computed } from 'vue'
 import { makeBooleanProp, makeStringProp, makeNumericProp } from '../shared/props'
 import { addUnit } from '../../utils/unit'
 
-const props = withDefaults(
-  defineProps({
-    /** 开关值 */
-    modelValue: makeBooleanProp(false),
-    /** 是否禁用 */
-    disabled: makeBooleanProp(false),
-    /** 是否加载中 */
-    loading: makeBooleanProp(false),
-    /** 开关尺寸 */
-    size: makeNumericProp<number | string>('30px'),
-    /** 开关打开时的背景色 */
-    activeColor: makeStringProp(''),
-    /** 开关关闭时的背景色 */
-    inactiveColor: makeStringProp(''),
-    /** 打开时对应的值 */
-    activeValue: { type: [Boolean, String, Number] as any, default: true },
-    /** 关闭时对应的值 */
-    inactiveValue: { type: [Boolean, String, Number] as any, default: false },
-    customClass: makeStringProp(''),
-    customStyle: { type: [String, Object] as any, default: '' },
-  }),
-  {
-    modelValue: false,
-    size: '30px',
-    activeValue: true,
-    inactiveValue: false,
-  }
-)
+const props = defineProps({
+  /** 开关值 */
+  modelValue: makeBooleanProp(false),
+  /** 是否禁用 */
+  disabled: makeBooleanProp(false),
+  /** 是否加载中 */
+  loading: makeBooleanProp(false),
+  /** 开关尺寸 */
+  size: makeNumericProp<number | string>('30px'),
+  /** 开关打开时的背景色 */
+  activeColor: makeStringProp(''),
+  /** 开关关闭时的背景色 */
+  inactiveColor: makeStringProp(''),
+  /** 打开时对应的值 */
+  activeValue: { type: [Boolean, String, Number] as any, default: true },
+  /** 关闭时对应的值 */
+  inactiveValue: { type: [Boolean, String, Number] as any, default: false },
+  customClass: makeStringProp(''),
+  customStyle: { type: [String, Object] as any, default: '' },
+})
 
 const emit = defineEmits<{
   (e: 'update:modelValue', value: unknown): void
@@ -109,7 +105,10 @@ const onClick = () => {
     box-sizing: border-box;
     border-radius: 100%;
     background: #fff;
-    box-shadow: 0 3px 1px 0 rgba(0, 0, 0, 0.05), 0 2px 2px 0 rgba(0, 0, 0, 0.1), 0 3px 3px 0 rgba(0, 0, 0, 0.05);
+    box-shadow:
+      0 3px 1px 0 rgba(0, 0, 0, 0.05),
+      0 2px 2px 0 rgba(0, 0, 0, 0.1),
+      0 3px 3px 0 rgba(0, 0, 0, 0.05);
     transition: transform var(--mx-duration-fast) var(--mx-ease-in-out);
   }
 }

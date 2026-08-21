@@ -19,7 +19,7 @@
       <!-- 数字 1-9 -->
       <view v-for="row in digitRows" :key="row[0]" class="mx-number-keyboard__row">
         <view
-          v-for="(k) in row"
+          v-for="k in row"
           :key="k"
           class="mx-number-keyboard__key"
           :class="`mx-number-keyboard__key--num`"
@@ -76,34 +76,26 @@ import { makeBooleanProp, makeStringProp, makeNumericProp } from '../shared/prop
 
 type KeyboardTheme = 'default' | 'custom'
 
-const props = withDefaults(
-  defineProps({
-    /** 数字键盘标题 */
-    title: makeStringProp(''),
-    /** 是否显示 (v-model:show) */
-    show: makeBooleanProp(false),
-    /** 附加键, 如 '.', 显示在底部左侧 */
-    extraKey: makeStringProp(''),
-    /** 关闭按钮文字 */
-    closeButtonText: makeStringProp(''),
-    /** 退格按钮文字 */
-    deleteButtonText: makeStringProp(''),
-    /** 键盘主题: default / custom */
-    theme: makeStringProp<KeyboardTheme>('default'),
-    /** 是否打乱顺序 */
-    randomKeyOrder: makeBooleanProp(false),
-    /** z-index */
-    zIndex: makeNumericProp<number | string>(1000),
-    customClass: makeStringProp(''),
-    customStyle: { type: [String, Object] as any, default: '' },
-  }),
-  {
-    title: '',
-    theme: 'default',
-    deleteButtonText: '',
-    zIndex: 1000,
-  }
-)
+const props = defineProps({
+  /** 数字键盘标题 */
+  title: makeStringProp(''),
+  /** 是否显示 (v-model:show) */
+  show: makeBooleanProp(false),
+  /** 附加键, 如 '.', 显示在底部左侧 */
+  extraKey: makeStringProp(''),
+  /** 关闭按钮文字 */
+  closeButtonText: makeStringProp(''),
+  /** 退格按钮文字 */
+  deleteButtonText: makeStringProp(''),
+  /** 键盘主题: default / custom */
+  theme: makeStringProp<KeyboardTheme>('default'),
+  /** 是否打乱顺序 */
+  randomKeyOrder: makeBooleanProp(false),
+  /** z-index */
+  zIndex: makeNumericProp<number | string>(1000),
+  customClass: makeStringProp(''),
+  customStyle: { type: [String, Object] as any, default: '' },
+})
 
 const emit = defineEmits<{
   (e: 'update:show', value: boolean): void

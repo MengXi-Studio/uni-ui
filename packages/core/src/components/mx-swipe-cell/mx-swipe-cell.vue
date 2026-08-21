@@ -30,26 +30,18 @@ import { computed, ref } from 'vue'
 import { useSlots } from 'vue'
 import { makeBooleanProp, makeNumericProp, makeStringProp } from '../shared/props'
 
-const props = withDefaults(
-  defineProps({
-    /** 左侧扩展区宽度 */
-    leftWidth: makeNumericProp<number>(0),
-    /** 右侧扩展区宽度 */
-    rightWidth: makeNumericProp<number>(0),
-    /** 是否禁用滑动 */
-    disabled: makeBooleanProp(false),
-    /** 展开状态控制 (受控: 'left' / 'right' / 'close') */
-    modelValue: makeStringProp(''),
-    customClass: makeStringProp(''),
-    customStyle: { type: [String, Object] as any, default: '' },
-  }),
-  {
-    leftWidth: 0,
-    rightWidth: 0,
-    disabled: false,
-    modelValue: '',
-  }
-)
+const props = defineProps({
+  /** 左侧扩展区宽度 */
+  leftWidth: makeNumericProp<number>(0),
+  /** 右侧扩展区宽度 */
+  rightWidth: makeNumericProp<number>(0),
+  /** 是否禁用滑动 */
+  disabled: makeBooleanProp(false),
+  /** 展开状态控制 (受控: 'left' / 'right' / 'close') */
+  modelValue: makeStringProp(''),
+  customClass: makeStringProp(''),
+  customStyle: { type: [String, Object] as any, default: '' },
+})
 
 const emit = defineEmits<{
   (e: 'open', direction: 'left' | 'right'): void
@@ -75,7 +67,8 @@ let moved = false
 
 const rootStyle = computed(() => {
   const style: Record<string, string> = { position: 'relative', overflow: 'hidden' }
-  if (typeof props.customStyle === 'string' && props.customStyle) Object.assign(style, parseStyle(props.customStyle))
+  if (typeof props.customStyle === 'string' && props.customStyle)
+    Object.assign(style, parseStyle(props.customStyle))
   else if (props.customStyle) Object.assign(style, props.customStyle as Record<string, string>)
   return style
 })

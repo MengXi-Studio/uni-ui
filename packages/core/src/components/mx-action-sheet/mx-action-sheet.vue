@@ -23,15 +23,27 @@
           v-for="(action, index) in actions"
           :key="index"
           class="mx-action-sheet__item"
-          :class="{ 'mx-action-sheet__item--disabled': action.disabled, 'mx-action-sheet__item--loading': action.loading }"
+          :class="{
+            'mx-action-sheet__item--disabled': action.disabled,
+            'mx-action-sheet__item--loading': action.loading,
+          }"
           hover-class="mx-action-sheet__item--active"
           :style="action.color ? { color: action.color } : {}"
           @click="onSelect(action)"
         >
           <text class="mx-action-sheet__name">{{ action.name }}</text>
-          <text v-if="action.subname && !action.loading" class="mx-action-sheet__subname">{{ action.subname }}</text>
-          <mx-loading v-if="action.loading && action.name" :size="16" :color="'var(--mx-text-color-3)'" custom-class="mx-action-sheet__loading" />
-          <text v-if="action.loading && !action.name" class="mx-action-sheet__name">{{ action.loadingText || '加载中...' }}</text>
+          <text v-if="action.subname && !action.loading" class="mx-action-sheet__subname">
+            {{ action.subname }}
+          </text>
+          <mx-loading
+            v-if="action.loading && action.name"
+            :size="16"
+            :color="'var(--mx-text-color-3)'"
+            custom-class="mx-action-sheet__loading"
+          />
+          <text v-if="action.loading && !action.name" class="mx-action-sheet__name">
+            {{ action.loadingText || '加载中...' }}
+          </text>
         </view>
       </view>
 
@@ -71,31 +83,24 @@ interface SheetAction {
   callback?: (action: SheetAction) => void
 }
 
-const props = withDefaults(
-  defineProps({
-    /** 是否显示 */
-    show: makeBooleanProp(false),
-    /** 菜单选项 */
-    actions: makeArrayProp<SheetAction>(),
-    /** 标题 */
-    title: makeStringProp(''),
-    /** 取消按钮文案 */
-    cancelText: makeStringProp('取消'),
-    /** 描述文案 */
-    description: makeStringProp(''),
-    /** 是否点击选中后关闭 */
-    closeOnClickAction: makeBooleanProp(true),
-    /** 是否点击遮罩关闭 */
-    closeOnClickOverlay: makeBooleanProp(true),
-    customClass: makeStringProp(''),
-    customStyle: { type: [String, Object] as any, default: '' },
-  }),
-  {
-    cancelText: '取消',
-    closeOnClickAction: true,
-    closeOnClickOverlay: true,
-  }
-)
+const props = defineProps({
+  /** 是否显示 */
+  show: makeBooleanProp(false),
+  /** 菜单选项 */
+  actions: makeArrayProp<SheetAction>(),
+  /** 标题 */
+  title: makeStringProp(''),
+  /** 取消按钮文案 */
+  cancelText: makeStringProp('取消'),
+  /** 描述文案 */
+  description: makeStringProp(''),
+  /** 是否点击选中后关闭 */
+  closeOnClickAction: makeBooleanProp(true),
+  /** 是否点击遮罩关闭 */
+  closeOnClickOverlay: makeBooleanProp(true),
+  customClass: makeStringProp(''),
+  customStyle: { type: [String, Object] as any, default: '' },
+})
 
 const emit = defineEmits<{
   (e: 'update:show', value: boolean): void
@@ -128,7 +133,13 @@ const onCancel = () => {
   close()
 }
 
-defineExpose({ show: () => { showState.value = true; emit('update:show', true) }, close })
+defineExpose({
+  show: () => {
+    showState.value = true
+    emit('update:show', true)
+  },
+  close,
+})
 </script>
 
 <style lang="scss">

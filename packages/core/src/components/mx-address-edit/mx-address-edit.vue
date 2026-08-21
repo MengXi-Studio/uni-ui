@@ -28,7 +28,10 @@
     <!-- 省市区 -->
     <view class="mx-address-edit__cell" @click="onOpenArea">
       <text class="mx-address-edit__label">所在地区</text>
-      <text class="mx-address-edit__value" :class="{ 'mx-address-edit__value--empty': !regionText }">
+      <text
+        class="mx-address-edit__value"
+        :class="{ 'mx-address-edit__value--empty': !regionText }"
+      >
         {{ regionText || areaPlaceholder }}
       </text>
       <text class="mx-address-edit__arrow">›</text>
@@ -88,12 +91,7 @@
 
 <script setup lang="ts">
 import { computed, ref, watch } from 'vue'
-import {
-  makeStringProp,
-  makeBooleanProp,
-  makeNumericProp,
-  makeObjectProp,
-} from '../shared/props'
+import { makeStringProp, makeBooleanProp, makeNumericProp, makeObjectProp } from '../shared/props'
 import MxSwitch from '../mx-switch/mx-switch.vue'
 import MxButton from '../mx-button/mx-button.vue'
 import MxPicker from '../mx-picker/mx-picker.vue'
@@ -114,51 +112,40 @@ type ModelInfo = {
 
 type PickerOption = { text: string; value: unknown; children?: PickerOption[]; [k: string]: any }
 
-const props = withDefaults(
-  defineProps({
-    /** 地址信息对象 (v-model) */
-    modelValue: makeObjectProp<ModelInfo>({}),
-    /** 省市区数据, 键为 province/city/county 前缀映射 */
-    areaList: makeObjectProp<Record<string, Record<string, string>>>({}),
-    /** 是否显示详细地址 */
-    showDetail: makeBooleanProp(true),
-    /** 是否显示邮政编码 */
-    showPostal: makeBooleanProp(true),
-    /** 是否显示设为默认 */
-    showSetDefault: makeBooleanProp(true),
-    /** 是否显示搜索结果 */
-    showSearchResult: makeBooleanProp(false),
-    /** 姓名占位符 */
-    namePlaceholder: makeStringProp('请填写收货人姓名'),
-    /** 电话占位符 */
-    telPlaceholder: makeStringProp('请填写手机号码'),
-    /** 详细地址占位符 */
-    detailPlaceholder: makeStringProp('街道、门牌号等'),
-    /** 详细地址最大长度 */
-    detailMaxlength: makeNumericProp<number | string>(200),
-    /** 地区占位符 */
-    areaPlaceholder: makeStringProp('省 / 市 / 区'),
-    /** 省市区标题 */
-    areaTitle: makeStringProp('所在地区'),
-    /** 邮政编码占位符 */
-    postalPlaceholder: makeStringProp('请输入邮政编码'),
-    /** 保存按钮文字 */
-    saveButtonText: makeStringProp('保存'),
-    /** 校验失败提示文案 */
-    errorMessage: makeStringProp('请填写完整信息'),
-    customClass: makeStringProp(''),
-    customStyle: { type: [String, Object] as any, default: '' },
-  }),
-  {
-    modelValue: () => ({}),
-    areaList: () => ({}),
-    showDetail: true,
-    showPostal: true,
-    showSetDefault: true,
-    detailMaxlength: 200,
-    saveButtonText: '保存',
-  }
-)
+const props = defineProps({
+  /** 地址信息对象 (v-model) */
+  modelValue: makeObjectProp<ModelInfo>({}),
+  /** 省市区数据, 键为 province/city/county 前缀映射 */
+  areaList: makeObjectProp<Record<string, Record<string, string>>>({}),
+  /** 是否显示详细地址 */
+  showDetail: makeBooleanProp(true),
+  /** 是否显示邮政编码 */
+  showPostal: makeBooleanProp(true),
+  /** 是否显示设为默认 */
+  showSetDefault: makeBooleanProp(true),
+  /** 是否显示搜索结果 */
+  showSearchResult: makeBooleanProp(false),
+  /** 姓名占位符 */
+  namePlaceholder: makeStringProp('请填写收货人姓名'),
+  /** 电话占位符 */
+  telPlaceholder: makeStringProp('请填写手机号码'),
+  /** 详细地址占位符 */
+  detailPlaceholder: makeStringProp('街道、门牌号等'),
+  /** 详细地址最大长度 */
+  detailMaxlength: makeNumericProp<number | string>(200),
+  /** 地区占位符 */
+  areaPlaceholder: makeStringProp('省 / 市 / 区'),
+  /** 省市区标题 */
+  areaTitle: makeStringProp('所在地区'),
+  /** 邮政编码占位符 */
+  postalPlaceholder: makeStringProp('请输入邮政编码'),
+  /** 保存按钮文字 */
+  saveButtonText: makeStringProp('保存'),
+  /** 校验失败提示文案 */
+  errorMessage: makeStringProp('请填写完整信息'),
+  customClass: makeStringProp(''),
+  customStyle: { type: [String, Object] as any, default: '' },
+})
 
 const emit = defineEmits<{
   (e: 'update:modelValue', value: ModelInfo): void

@@ -47,24 +47,45 @@ type BarContext = {
   register: (item: AnchorItem) => void
 }
 
-const props = withDefaults(
-  defineProps({
-    /** 索引字符列表 */
-    indexList: makeArrayProp<string>(['A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z']),
-    /** z-index */
-    zIndex: makeNumericProp<number | string>(500),
-    /** 是否吸附顶部的锚点索引栏 */
-    sticky: makeBooleanProp(true),
-    /** 顶部吸附高度 (rpx 使用) */
-    stickyOffsetTop: makeNumericProp<number | string>(0),
-    customClass: makeStringProp(''),
-    customStyle: { type: [String, Object] as any, default: '' },
-  }),
-  {
-    zIndex: 500,
-    sticky: true,
-  }
-)
+const props = defineProps({
+  /** 索引字符列表 */
+  indexList: makeArrayProp<string>([
+    'A',
+    'B',
+    'C',
+    'D',
+    'E',
+    'F',
+    'G',
+    'H',
+    'I',
+    'J',
+    'K',
+    'L',
+    'M',
+    'N',
+    'O',
+    'P',
+    'Q',
+    'R',
+    'S',
+    'T',
+    'U',
+    'V',
+    'W',
+    'X',
+    'Y',
+    'Z',
+  ]),
+  /** z-index */
+  zIndex: makeNumericProp<number | string>(500),
+  /** 是否吸附顶部的锚点索引栏 */
+  sticky: makeBooleanProp(true),
+  /** 顶部吸附高度 (rpx 使用) */
+  stickyOffsetTop: makeNumericProp<number | string>(0),
+  customClass: makeStringProp(''),
+  customStyle: { type: [String, Object] as any, default: '' },
+})
 
 const emit = defineEmits<{
   (e: 'change', index: string): void
@@ -153,7 +174,8 @@ const onScroll = (event: any) => {
 const barStyle = computed(() => {
   const style: Record<string, string> = {}
   style.zIndex = String(props.zIndex)
-  if (typeof props.customStyle === 'string' && props.customStyle) Object.assign(style, parseStyle(props.customStyle))
+  if (typeof props.customStyle === 'string' && props.customStyle)
+    Object.assign(style, parseStyle(props.customStyle))
   else if (props.customStyle) Object.assign(style, props.customStyle as Record<string, string>)
   return style
 })

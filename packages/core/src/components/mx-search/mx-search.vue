@@ -7,7 +7,9 @@
     <view class="mx-search__content">
       <view class="mx-search__icon" :class="{ 'mx-search__icon--left': leftGlyph }">
         <slot name="left-icon">
-          <text v-if="leftGlyph" class="mx-search__glyph mx-search__search-glyph">{{ leftGlyph }}</text>
+          <text v-if="leftGlyph" class="mx-search__glyph mx-search__search-glyph">
+            {{ leftGlyph }}
+          </text>
         </slot>
       </view>
 
@@ -44,37 +46,30 @@ import { makeStringProp, makeNumericProp, makeBooleanProp } from '../shared/prop
 
 type SearchShape = 'round' | 'square'
 
-const props = withDefaults(
-  defineProps({
-    /** 输入框的值 */
-    modelValue: makeStringProp(''),
-    /** 占位符 */
-    placeholder: makeStringProp(''),
-    /** 是否禁用 */
-    disabled: makeBooleanProp(false),
-    /** 是否显示清除按钮 */
-    clearable: makeBooleanProp(true),
-    /** 形状 */
-    shape: makeStringProp<SearchShape>('square'),
-    /** 背景色 */
-    background: makeStringProp(''),
-    /** 最大输入长度 */
-    maxlength: makeNumericProp<number | string>(''),
-    /** 左侧搜索图标 */
-    showSearchIcon: makeBooleanProp(true),
-    /** 是否显示右侧取消按钮 */
-    showAction: makeBooleanProp(false),
-    /** 取消按钮文字 */
-    actionText: makeStringProp('取消'),
-    customClass: makeStringProp(''),
-    customStyle: { type: [String, Object] as any, default: '' },
-  }),
-  {
-    modelValue: '',
-    clearable: true,
-    shape: 'square',
-  }
-)
+const props = defineProps({
+  /** 输入框的值 */
+  modelValue: makeStringProp(''),
+  /** 占位符 */
+  placeholder: makeStringProp(''),
+  /** 是否禁用 */
+  disabled: makeBooleanProp(false),
+  /** 是否显示清除按钮 */
+  clearable: makeBooleanProp(true),
+  /** 形状 */
+  shape: makeStringProp<SearchShape>('square'),
+  /** 背景色 */
+  background: makeStringProp(''),
+  /** 最大输入长度 */
+  maxlength: makeNumericProp<number | string>(''),
+  /** 左侧搜索图标 */
+  showSearchIcon: makeBooleanProp(true),
+  /** 是否显示右侧取消按钮 */
+  showAction: makeBooleanProp(false),
+  /** 取消按钮文字 */
+  actionText: makeStringProp('取消'),
+  customClass: makeStringProp(''),
+  customStyle: { type: [String, Object] as any, default: '' },
+})
 
 const emit = defineEmits<{
   (e: 'update:modelValue', value: string): void

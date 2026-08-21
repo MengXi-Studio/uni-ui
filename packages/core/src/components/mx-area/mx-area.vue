@@ -1,10 +1,5 @@
 <template>
-  <mx-popup
-    :show="show"
-    position="bottom"
-    :round="true"
-    @update:show="onUpdateShow"
-  >
+  <mx-popup :show="show" position="bottom" :round="true" @update:show="onUpdateShow">
     <view class="mx-area" :class="customClass" :style="customStyle">
       <view class="mx-area__toolbar">
         <text class="mx-area__cancel" @click="onCancel">{{ cancelButtonText }}</text>
@@ -13,7 +8,12 @@
       </view>
 
       <view class="mx-area__columns">
-        <picker-view class="mx-area__view" :value="viewValue" @change="onChange" @touchmove.stop.prevent>
+        <picker-view
+          class="mx-area__view"
+          :value="viewValue"
+          @change="onChange"
+          @touchmove.stop.prevent
+        >
           <picker-view-column
             v-for="(column, ci) in visibleColumns"
             :key="ci"
@@ -36,44 +36,35 @@
 
 <script setup lang="ts">
 import { computed, ref, watch } from 'vue'
-import {
-  makeStringProp,
-  makeBooleanProp,
-  makeNumericProp,
-  makeObjectProp,
-} from '../shared/props'
+import { makeStringProp, makeBooleanProp, makeNumericProp, makeObjectProp } from '../shared/props'
 import MxPopup from '../mx-popup/mx-popup.vue'
 
-type PickOption = { text: string; value: unknown; code?: string; children?: PickOption[]; [k: string]: any }
+type PickOption = {
+  text: string
+  value: unknown
+  code?: string
+  children?: PickOption[]
+  [k: string]: any
+}
 
-const props = withDefaults(
-  defineProps({
-    /** 是否显示 (v-model:show) */
-    show: makeBooleanProp(false),
-    /** 选中的地区编码: 数组 [provinceCode, cityCode, countyCode] 或单值 (v-model) */
-    modelValue: { type: [String, Array, Number] as any, default: () => [] },
-    /** 省市区数据, 键为 province/city/county 前缀映射 */
-    areaList: makeObjectProp<Record<string, Record<string, string>>>({}),
-    /** 列数, 2 = 省市级, 3 = 省市县级 */
-    columnsNum: makeNumericProp<number | string>(3),
-    /** 标题 */
-    title: makeStringProp('所在地区'),
-    /** 确认按钮文字 */
-    confirmButtonText: makeStringProp('确认'),
-    /** 取消按钮文字 */
-    cancelButtonText: makeStringProp('取消'),
-    customClass: makeStringProp(''),
-    customStyle: { type: [String, Object] as any, default: '' },
-  }),
-  {
-    show: false,
-    modelValue: () => [],
-    columnsNum: 3,
-    title: '所在地区',
-    confirmButtonText: '确认',
-    cancelButtonText: '取消',
-  }
-)
+const props = defineProps({
+  /** 是否显示 (v-model:show) */
+  show: makeBooleanProp(false),
+  /** 选中的地区编码: 数组 [provinceCode, cityCode, countyCode] 或单值 (v-model) */
+  modelValue: { type: [String, Array, Number] as any, default: () => [] },
+  /** 省市区数据, 键为 province/city/county 前缀映射 */
+  areaList: makeObjectProp<Record<string, Record<string, string>>>({}),
+  /** 列数, 2 = 省市级, 3 = 省市县级 */
+  columnsNum: makeNumericProp<number | string>(3),
+  /** 标题 */
+  title: makeStringProp('所在地区'),
+  /** 确认按钮文字 */
+  confirmButtonText: makeStringProp('确认'),
+  /** 取消按钮文字 */
+  cancelButtonText: makeStringProp('取消'),
+  customClass: makeStringProp(''),
+  customStyle: { type: [String, Object] as any, default: '' },
+})
 
 const emit = defineEmits<{
   (e: 'update:show', value: boolean): void
@@ -83,7 +74,7 @@ const emit = defineEmits<{
   (e: 'change', value: { selectedValues: unknown[]; index: number }): void
 }>()
 
-const colNum = computed(() => Number(props.columnsNum) === 2 ? 2 : 3)
+const colNum = computed(() => (Number(props.columnsNum) === 2 ? 2 : 3))
 
 /* ---------- 从 areaList 构建三级联动数据 ---------- */
 const rootOptions = computed<PickOption[]>(() => {
@@ -132,15 +123,21 @@ const viewValue = computed(() => indexes.value.slice(0, visibleColumns.value.len
 
 /** 根据 modelValue 初始化选中索引 */
 function syncFromModelValue() {
-  const raw = Array.isArray(props.modelValue) ? props.modelValue : props.modelValue ? [props.modelValue] : []
+  const raw = Array.isArray(props.modelValue)
+    ? props.modelValue
+    : props.modelValue
+      ? [props.modelValue]
+      : []
   const next: number[] = []
   const list = rootOptions.value
   let cur = list
   for (let lvl = 0; lvl < colNum.value; lvl++) {
     const target = String(raw[lvl] ?? '')
-    const idx = (cur || []).findIndex((o) => String(o.value) === target || String(o.code ?? o.value) === target)
+    const idx = (cur || []).findIndex(
+      (o) => String(o.value) === target || String(o.code ?? o.value) === target
+    )
     next[lvl] = idx >= 0 ? idx : 0
-    cur = idx >= 0 ? (cur[idx].children || []) : (cur && cur[0]?.children)
+    cur = idx >= 0 ? cur[idx].children || [] : cur && cur[0]?.children
   }
   indexes.value = next
 }
@@ -179,9 +176,10 @@ const onConfirm = () => {
   const selectedOptions = currentOptions()
   const selectedValues = selectedOptions.map((o) => o.value)
   // 与模型约定一致: 返回编码数组
-  const emitValue = Array.isArray(props.modelValue) || props.modelValue === undefined || props.modelValue === null
-    ? selectedValues
-    : (selectedValues[colNum.value - 1] ?? '')
+  const emitValue =
+    Array.isArray(props.modelValue) || props.modelValue === undefined || props.modelValue === null
+      ? selectedValues
+      : (selectedValues[colNum.value - 1] ?? '')
   emit('update:modelValue', emitValue)
   emit('confirm', { selectedValues, selectedOptions })
   emit('update:show', false)

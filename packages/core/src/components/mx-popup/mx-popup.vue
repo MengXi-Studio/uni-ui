@@ -32,8 +32,9 @@
       class="mx-popup__close-icon"
       :class="[`mx-popup__close-icon--${closeIconPosition}`]"
       @click.stop="onClickCloseIcon"
-      >×</text
     >
+      ×
+    </text>
   </view>
 </template>
 
@@ -45,47 +46,40 @@ import MxOverlay from '../mx-overlay/mx-overlay.vue'
 
 type PopupPosition = 'top' | 'bottom' | 'left' | 'right' | 'center'
 
-const props = withDefaults(
-  defineProps({
-    /** 是否显示 */
-    show: makeBooleanProp(false),
-    /** 弹出位置 */
-    position: makeStringProp<PopupPosition>('center'),
-    /** z-index */
-    zIndex: makeNumericProp<number | string>(1000),
-    /** 过渡时长 (ms) */
-    duration: makeNumericProp<number | string>(300),
-    /** 是否显示遮罩 */
-    overlay: makeBooleanProp(true),
-    /** 遮罩自定义类名 */
-    overlayClass: makeStringProp(''),
-    /** 遮罩自定义样式 */
-    overlayStyle: { type: [String, Object] as any, default: '' },
-    /** 是否圆角 */
-    round: makeBooleanProp(false),
-    /** 是否显示关闭图标 */
-    closeable: makeBooleanProp(false),
-    /** 关闭图标位置: top-left / top-right / bottom-left / bottom-right */
-    closeIconPosition: makeStringProp<'top-right' | 'top-left' | 'bottom-right' | 'bottom-left'>('top-right'),
-    /** 点击遮罩是否关闭 */
-    closeOnClickOverlay: makeBooleanProp(true),
-    /** 底部安全区 */
-    safeAreaInsetBottom: makeBooleanProp(false),
-    /** 顶部安全区 */
-    safeAreaInsetTop: makeBooleanProp(false),
-    /** 关闭前钩子, 返回 false 阻止关闭; 支持 async */
-    beforeClose: { type: Function as any, default: null },
-    customClass: makeStringProp(''),
-    customStyle: { type: [String, Object] as any, default: '' },
-  }),
-  {
-    position: 'center',
-    zIndex: 1000,
-    duration: 300,
-    overlay: true,
-    closeOnClickOverlay: true,
-  }
-)
+const props = defineProps({
+  /** 是否显示 */
+  show: makeBooleanProp(false),
+  /** 弹出位置 */
+  position: makeStringProp<PopupPosition>('center'),
+  /** z-index */
+  zIndex: makeNumericProp<number | string>(1000),
+  /** 过渡时长 (ms) */
+  duration: makeNumericProp<number | string>(300),
+  /** 是否显示遮罩 */
+  overlay: makeBooleanProp(true),
+  /** 遮罩自定义类名 */
+  overlayClass: makeStringProp(''),
+  /** 遮罩自定义样式 */
+  overlayStyle: { type: [String, Object] as any, default: '' },
+  /** 是否圆角 */
+  round: makeBooleanProp(false),
+  /** 是否显示关闭图标 */
+  closeable: makeBooleanProp(false),
+  /** 关闭图标位置: top-left / top-right / bottom-left / bottom-right */
+  closeIconPosition: makeStringProp<'top-right' | 'top-left' | 'bottom-right' | 'bottom-left'>(
+    'top-right'
+  ),
+  /** 点击遮罩是否关闭 */
+  closeOnClickOverlay: makeBooleanProp(true),
+  /** 底部安全区 */
+  safeAreaInsetBottom: makeBooleanProp(false),
+  /** 顶部安全区 */
+  safeAreaInsetTop: makeBooleanProp(false),
+  /** 关闭前钩子, 返回 false 阻止关闭; 支持 async */
+  beforeClose: { type: Function as any, default: null },
+  customClass: makeStringProp(''),
+  customStyle: { type: [String, Object] as any, default: '' },
+})
 
 const emit = defineEmits<{
   (e: 'update:show', value: boolean): void
@@ -96,14 +90,18 @@ const emit = defineEmits<{
   (e: 'click-close-icon'): void
 }>()
 
-const transition = useTransition(computed(() => props.show), Number(props.duration) || 300)
+const transition = useTransition(
+  computed(() => props.show),
+  Number(props.duration) || 300
+)
 
 /** 遮罩独立显示状态 (与内容同步, 由当前显隐决定) */
 const overlayShow = computed(() => props.show || transition.leaving.value)
 
 const popupStyle = computed(() => {
   const style: Record<string, string> = { zIndex: String(props.zIndex) }
-  if (typeof props.customStyle === 'string' && props.customStyle) Object.assign(style, parseStyle(props.customStyle))
+  if (typeof props.customStyle === 'string' && props.customStyle)
+    Object.assign(style, parseStyle(props.customStyle))
   else if (props.customStyle) Object.assign(style, props.customStyle as Record<string, string>)
   return style
 })
@@ -250,10 +248,22 @@ const onClickCloseIcon = () => {
     font-size: 18px;
     line-height: 1;
 
-    &--top-left { top: 16px; left: 16px; }
-    &--top-right { top: 16px; right: 16px; }
-    &--bottom-left { bottom: 16px; left: 16px; }
-    &--bottom-right { bottom: 16px; right: 16px; }
+    &--top-left {
+      top: 16px;
+      left: 16px;
+    }
+    &--top-right {
+      top: 16px;
+      right: 16px;
+    }
+    &--bottom-left {
+      bottom: 16px;
+      left: 16px;
+    }
+    &--bottom-right {
+      bottom: 16px;
+      right: 16px;
+    }
   }
 }
 </style>

@@ -14,8 +14,15 @@
       <mx-loading size="18px" color="#fff" />
     </view>
     <template v-else>
-      <mx-icon v-if="icon" :name="icon" :color="buttonIconColor" class="mx-goods-action-button__icon" />
-      <text class="mx-goods-action-button__text"><slot>{{ text }}</slot></text>
+      <mx-icon
+        v-if="icon"
+        :name="icon"
+        :color="buttonIconColor"
+        class="mx-goods-action-button__icon"
+      />
+      <text class="mx-goods-action-button__text">
+        <slot>{{ text }}</slot>
+      </text>
     </template>
   </view>
 </template>
@@ -28,32 +35,29 @@ import MxLoading from '../mx-loading/mx-loading.vue'
 
 type GoodsActionButtonType = 'default' | 'primary' | 'danger' | 'success' | 'warning'
 
-const props = withDefaults(
-  defineProps({
-    /** 按钮文字 */
-    text: makeStringProp(''),
-    /** 按钮类型 */
-    type: makeStringProp<GoodsActionButtonType>('default'),
-    /** 自定义主题色 */
-    color: makeStringProp(''),
-    /** 图标名称 */
-    icon: makeStringProp(''),
-    /** 是否禁用 */
-    disabled: makeBooleanProp(false),
-    /** 是否加载中 */
-    loading: makeBooleanProp(false),
-    customClass: makeStringProp(''),
-    customStyle: { type: [String, Object] as any, default: '' },
-  }),
-  {
-    type: 'default',
-  }
-)
+const props = defineProps({
+  /** 按钮文字 */
+  text: makeStringProp(''),
+  /** 按钮类型 */
+  type: makeStringProp<GoodsActionButtonType>('default'),
+  /** 自定义主题色 */
+  color: makeStringProp(''),
+  /** 图标名称 */
+  icon: makeStringProp(''),
+  /** 是否禁用 */
+  disabled: makeBooleanProp(false),
+  /** 是否加载中 */
+  loading: makeBooleanProp(false),
+  customClass: makeStringProp(''),
+  customStyle: { type: [String, Object] as any, default: '' },
+})
 
 const emit = defineEmits<{ (e: 'click', event: Event): void }>()
 
 /** 自定义颜色时使用, 否则使用主题按钮色下的白色文字 */
-const buttonIconColor = computed(() => (props.type === 'default' && !props.color ? 'var(--mx-text-color)' : '#fff'))
+const buttonIconColor = computed(() =>
+  props.type === 'default' && !props.color ? 'var(--mx-text-color)' : '#fff'
+)
 
 const buttonStyle = computed(() => {
   const style: Record<string, string> = {}
@@ -61,7 +65,8 @@ const buttonStyle = computed(() => {
     style.color = '#fff'
     style.background = props.color
   }
-  if (typeof props.customStyle === 'string' && props.customStyle) Object.assign(style, parseStyle(props.customStyle))
+  if (typeof props.customStyle === 'string' && props.customStyle)
+    Object.assign(style, parseStyle(props.customStyle))
   else if (props.customStyle) Object.assign(style, props.customStyle as Record<string, string>)
   return style
 })

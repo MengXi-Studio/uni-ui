@@ -9,7 +9,9 @@
         mode="aspectFit"
         :style="{ width: imageSizeUnit, height: imageSizeUnit }"
       />
-      <text v-else class="mx-empty__emoji" :style="{ fontSize: emojiFontSize }">{{ emojiText }}</text>
+      <text v-else class="mx-empty__emoji" :style="{ fontSize: emojiFontSize }">
+        {{ emojiText }}
+      </text>
     </view>
 
     <!-- 描述文案 -->
@@ -37,38 +39,43 @@ const EMOJI_MAP: Record<string, string> = {
   default: '🛍',
 }
 
-const props = withDefaults(
-  defineProps({
-    /** 图片地址, 或内置类型 (error/network/search/cart/message/default), 或直接传 emoji 字符 */
-    image: makeStringProp(''),
-    /** 图片大小 */
-    imageSize: makeNumericProp<number | string>('80px'),
-    /** 描述文字 */
-    description: makeStringProp(''),
-    /** 图片文案色 (字符占位用) */
-    imageColor: makeStringProp(''),
-    customClass: makeStringProp(''),
-    customStyle: { type: [String, Object] as any, default: '' },
-  }),
-  {
-    imageSize: '80px',
-  }
-)
+const props = defineProps({
+  /** 图片地址, 或内置类型 (error/network/search/cart/message/default), 或直接传 emoji 字符 */
+  image: makeStringProp(''),
+  /** 图片大小 */
+  imageSize: makeNumericProp<number | string>('80px'),
+  /** 描述文字 */
+  description: makeStringProp(''),
+  /** 图片文案色 (字符占位用) */
+  imageColor: makeStringProp(''),
+  customClass: makeStringProp(''),
+  customStyle: { type: [String, Object] as any, default: '' },
+})
 
 /** 是否为真实图片地址 (http / 相对路径 / data:) */
-const isImageUrl = computed(() => /^(https?:)?\/\//.test(props.image) || /^\.{1,2}\//.test(props.image) || /^data:image/.test(props.image))
+const isImageUrl = computed(
+  () =>
+    /^(https?:)?\/\//.test(props.image) ||
+    /^\.{1,2}\//.test(props.image) ||
+    /^data:image/.test(props.image)
+)
 
 /** 字符占位: emoji 映射或直接原样 */
-const emojiText = computed(() => EMOJI_MAP[props.image] ?? (props.image ? props.image : EMOJI_MAP.default))
+const emojiText = computed(
+  () => EMOJI_MAP[props.image] ?? (props.image ? props.image : EMOJI_MAP.default)
+)
 
 const imageSizeUnit = computed(() => addUnit(props.imageSize) as string)
 
-const emojiFontSize = computed(() => (typeof props.imageSize === 'number' ? `${props.imageSize * 0.5}px` : '36px'))
+const emojiFontSize = computed(() =>
+  typeof props.imageSize === 'number' ? `${props.imageSize * 0.5}px` : '36px'
+)
 
 const emptyStyle = computed(() => {
   const style: Record<string, string> = {}
   if (props.imageColor) style.color = props.imageColor
-  if (typeof props.customStyle === 'string' && props.customStyle) Object.assign(style, parseStyle(props.customStyle))
+  if (typeof props.customStyle === 'string' && props.customStyle)
+    Object.assign(style, parseStyle(props.customStyle))
   else if (props.customStyle) Object.assign(style, props.customStyle as Record<string, string>)
   return style
 })

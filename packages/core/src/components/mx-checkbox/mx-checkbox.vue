@@ -40,34 +40,26 @@ type CheckboxGroupInstance = {
   isChecked: (name: string | number) => boolean
 }
 
-const props = withDefaults(
-  defineProps({
-    /** 选中状态 (未在 group 中使用时) */
-    modelValue: makeBooleanProp(false),
-    /** 标识符 */
-    name: { type: [String, Number] as any, default: '' },
-    /** 选中时图标颜色 */
-    checkedColor: makeStringProp(''),
-    /** 图标大小 */
-    iconSize: makeNumericProp<number | string>('20px'),
-    /** 形状: round / square */
-    shape: makeStringProp<'round' | 'square'>('round'),
-    /** 未选中时的提示 */
-    label: makeStringProp(''),
-    /** 是否禁用 */
-    disabled: makeBooleanProp(false),
-    /** 是否为块级 */
-    block: makeBooleanProp(false),
-    customClass: makeStringProp(''),
-    customStyle: { type: [String, Object] as any, default: '' },
-  }),
-  {
-    modelValue: false,
-    name: '',
-    iconSize: '20px',
-    shape: 'round',
-  }
-)
+const props = defineProps({
+  /** 选中状态 (未在 group 中使用时) */
+  modelValue: makeBooleanProp(false),
+  /** 标识符 */
+  name: { type: [String, Number] as any, default: '' },
+  /** 选中时图标颜色 */
+  checkedColor: makeStringProp(''),
+  /** 图标大小 */
+  iconSize: makeNumericProp<number | string>('20px'),
+  /** 形状: round / square */
+  shape: makeStringProp<'round' | 'square'>('round'),
+  /** 未选中时的提示 */
+  label: makeStringProp(''),
+  /** 是否禁用 */
+  disabled: makeBooleanProp(false),
+  /** 是否为块级 */
+  block: makeBooleanProp(false),
+  customClass: makeStringProp(''),
+  customStyle: { type: [String, Object] as any, default: '' },
+})
 
 const emit = defineEmits<{
   (e: 'update:modelValue', value: unknown): void
@@ -84,9 +76,7 @@ const checkedColor = computed(() => {
   return base || 'var(--mx-primary-color)'
 })
 
-const checked = computed(() =>
-  group ? group.isChecked(String(props.name)) : !!props.modelValue
-)
+const checked = computed(() => (group ? group.isChecked(String(props.name)) : !!props.modelValue))
 
 const iconStyle = computed(() => ({
   width: addUnit(iconSize.value) as string,
@@ -137,7 +127,8 @@ const toggle = () => {
     flex-shrink: 0;
     color: #fff;
     border: 1px solid var(--mx-text-color-3);
-    transition: border-color var(--mx-duration-fast) var(--mx-ease-in-out),
+    transition:
+      border-color var(--mx-duration-fast) var(--mx-ease-in-out),
       background-color var(--mx-duration-fast) var(--mx-ease-in-out);
 
     &--round {

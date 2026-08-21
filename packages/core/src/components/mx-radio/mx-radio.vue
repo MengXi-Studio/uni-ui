@@ -30,28 +30,22 @@ type RadioGroupInstance = {
   isChecked: (name: string | number) => boolean
 }
 
-const props = withDefaults(
-  defineProps({
-    /** 当前选中的值 */
-    modelValue: { type: [String, Number, Boolean] as any, default: '' },
-    /** 标识符 */
-    name: { type: [String, Number, Boolean] as any, default: '' },
-    /** 选中时图标颜色 */
-    checkedColor: makeStringProp(''),
-    /** 图标大小 */
-    iconSize: makeNumericProp<number | string>('20px'),
-    /** 是否禁用 */
-    disabled: makeBooleanProp(false),
-    /** 文案 */
-    label: makeStringProp(''),
-    customClass: makeStringProp(''),
-    customStyle: { type: [String, Object] as any, default: '' },
-  }),
-  {
-    name: '',
-    iconSize: '20px',
-  }
-)
+const props = defineProps({
+  /** 当前选中的值 */
+  modelValue: { type: [String, Number, Boolean] as any, default: '' },
+  /** 标识符 */
+  name: { type: [String, Number, Boolean] as any, default: '' },
+  /** 选中时图标颜色 */
+  checkedColor: makeStringProp(''),
+  /** 图标大小 */
+  iconSize: makeNumericProp<number | string>('20px'),
+  /** 是否禁用 */
+  disabled: makeBooleanProp(false),
+  /** 文案 */
+  label: makeStringProp(''),
+  customClass: makeStringProp(''),
+  customStyle: { type: [String, Object] as any, default: '' },
+})
 
 const emit = defineEmits<{
   (e: 'update:modelValue', value: unknown): void

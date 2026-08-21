@@ -1,13 +1,21 @@
 <template>
-  <view class="mx-badge" :class="[{ 'mx-badge--dot': dot, 'mx-badge--fixed': fixed, 'mx-badge--alone': !hasSlot }, customClass]" :style="customStyle">
+  <view
+    class="mx-badge"
+    :class="[
+      { 'mx-badge--dot': dot, 'mx-badge--fixed': fixed, 'mx-badge--alone': !hasSlot },
+      customClass,
+    ]"
+    :style="customStyle"
+  >
     <slot />
     <text
       v-if="showBadge"
       class="mx-badge__content"
       :class="[{ 'mx-badge__content--max': max < contentNumber }, `mx-badge__content--${color}`]"
       :style="contentStyle"
-      >{{ badgeContent }}</text
     >
+      {{ badgeContent }}
+    </text>
   </view>
 </template>
 
@@ -15,39 +23,37 @@
 import { computed } from 'vue'
 import { makeStringProp, makeBooleanProp, makeNumericProp } from '../shared/props'
 
-const props = withDefaults(
-  defineProps({
-    /** 徽标内容 */
-    content: makeNumericProp<number | string | undefined>(undefined),
-    /** 最大值 (超限显示 max+) */
-    max: makeNumericProp<number | string>(99),
-    /** 是否为圆点 */
-    dot: makeBooleanProp(false),
-    /** 颜色 */
-    color: makeStringProp('danger'),
-    /** 自定义背景色 */
-    bgColor: makeStringProp(''),
-    /** 是否绝对定位 (需父级 relative) */
-    fixed: makeBooleanProp(false),
-    /** 徽标偏移值 */
-    offset: { type: Array as unknown as () => [number, number], default: () => [0, 0] },
-    customClass: makeStringProp(''),
-    customStyle: { type: [String, Object] as any, default: '' },
-  }),
-  {
-    max: 99,
-    color: 'danger',
-  }
-)
+const props = defineProps({
+  /** 徽标内容 */
+  content: makeNumericProp<number | string | undefined>(undefined),
+  /** 最大值 (超限显示 max+) */
+  max: makeNumericProp<number | string>(99),
+  /** 是否为圆点 */
+  dot: makeBooleanProp(false),
+  /** 颜色 */
+  color: makeStringProp('danger'),
+  /** 自定义背景色 */
+  bgColor: makeStringProp(''),
+  /** 是否绝对定位 (需父级 relative) */
+  fixed: makeBooleanProp(false),
+  /** 徽标偏移值 */
+  offset: { type: Array as unknown as () => [number, number], default: () => [0, 0] },
+  customClass: makeStringProp(''),
+  customStyle: { type: [String, Object] as any, default: '' },
+})
 
 const hasSlot = computed(() => true)
 
 const contentNumber = computed(() => Number(props.content) || 0)
-const showBadge = computed(() => props.dot || props.content !== undefined && props.content !== '')
+const showBadge = computed(() => props.dot || (props.content !== undefined && props.content !== ''))
 
 const badgeContent = computed(() => {
   if (props.dot) return ''
-  if (typeof props.content === 'number' && props.max !== undefined && props.content > Number(props.max)) {
+  if (
+    typeof props.content === 'number' &&
+    props.max !== undefined &&
+    props.content > Number(props.max)
+  ) {
     return `${props.max}+`
   }
   return String(props.content)

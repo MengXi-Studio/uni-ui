@@ -42,37 +42,28 @@ import { computed } from 'vue'
 import { makeStringProp, makeBooleanProp, makeNumericProp } from '../shared/props'
 import MxLoading from '../mx-loading/mx-loading.vue'
 
-const props = withDefaults(
-  defineProps({
-    /** 合计金额 */
-    price: makeNumericProp<number | string>(0),
-    /** 合计金额文案 (比例 "合计") */
-    label: makeStringProp('合计'),
-    /** 货币符号 */
-    currency: makeStringProp('¥'),
-    /** 按钮文字 */
-    buttonText: makeStringProp('提交订单'),
-    /** 按钮自定义颜色 */
-    buttonColor: makeStringProp(''),
-    /** 是否禁用 */
-    disabled: makeBooleanProp(false),
-    /** 是否加载中 */
-    loading: makeBooleanProp(false),
-    /** 是否适配底部安全区 */
-    safeAreaInsetBottom: makeBooleanProp(false),
-    /** 金额保留的小数位数 */
-    decimalLength: makeNumericProp<number>(2),
-    customClass: makeStringProp(''),
-    customStyle: { type: [String, Object] as any, default: '' },
-  }),
-  {
-    price: 0,
-    label: '合计',
-    currency: '¥',
-    buttonText: '提交订单',
-    decimalLength: 2,
-  }
-)
+const props = defineProps({
+  /** 合计金额 */
+  price: makeNumericProp<number | string>(0),
+  /** 合计金额文案 (比例 "合计") */
+  label: makeStringProp('合计'),
+  /** 货币符号 */
+  currency: makeStringProp('¥'),
+  /** 按钮文字 */
+  buttonText: makeStringProp('提交订单'),
+  /** 按钮自定义颜色 */
+  buttonColor: makeStringProp(''),
+  /** 是否禁用 */
+  disabled: makeBooleanProp(false),
+  /** 是否加载中 */
+  loading: makeBooleanProp(false),
+  /** 是否适配底部安全区 */
+  safeAreaInsetBottom: makeBooleanProp(false),
+  /** 金额保留的小数位数 */
+  decimalLength: makeNumericProp<number>(2),
+  customClass: makeStringProp(''),
+  customStyle: { type: [String, Object] as any, default: '' },
+})
 
 const emit = defineEmits<{ (e: 'submit', event: Event): void }>()
 

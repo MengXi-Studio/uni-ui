@@ -16,33 +16,24 @@ import { computed, watch } from 'vue'
 import { makeNumericProp, makeStringProp } from '../shared/props'
 import { addUnit } from '../../utils/unit'
 
-const props = withDefaults(
-  defineProps({
-    /** 进度值 (0 - 100) */
-    value: makeNumericProp<number>(0),
-    /** 圆环大小 */
-    size: makeNumericProp<number | string>('100px'),
-    /** 圆环宽度 */
-    strokeWidth: makeNumericProp<number | string>(4),
-    /** 进度颜色 */
-    color: makeStringProp(''),
-    /** 轨道颜色 */
-    layerColor: makeStringProp(''),
-    /** 是否顺时针转动 */
-    clockwise: { type: Boolean, default: true },
-    /** 变化速度 (视觉过渡时长 ms, conic-gradient 不支持平滑过渡, 保留 API) */
-    speed: makeNumericProp<number | string>(0),
-    customClass: makeStringProp(''),
-    customStyle: { type: [String, Object] as any, default: '' },
-  }),
-  {
-    value: 0,
-    size: '100px',
-    strokeWidth: 4,
-    clockwise: true,
-    speed: 0,
-  }
-)
+const props = defineProps({
+  /** 进度值 (0 - 100) */
+  value: makeNumericProp<number>(0),
+  /** 圆环大小 */
+  size: makeNumericProp<number | string>('100px'),
+  /** 圆环宽度 */
+  strokeWidth: makeNumericProp<number | string>(4),
+  /** 进度颜色 */
+  color: makeStringProp(''),
+  /** 轨道颜色 */
+  layerColor: makeStringProp(''),
+  /** 是否顺时针转动 */
+  clockwise: { type: Boolean, default: true },
+  /** 变化速度 (视觉过渡时长 ms, conic-gradient 不支持平滑过渡, 保留 API) */
+  speed: makeNumericProp<number | string>(0),
+  customClass: makeStringProp(''),
+  customStyle: { type: [String, Object] as any, default: '' },
+})
 
 const emit = defineEmits<{ (e: 'change', value: number): void }>()
 
@@ -60,7 +51,8 @@ const angle = computed(() => {
 
 const circleStyle = computed(() => {
   const style: Record<string, string> = { width: sizeUnit.value, height: sizeUnit.value }
-  if (typeof props.customStyle === 'string' && props.customStyle) Object.assign(style, parseStyle(props.customStyle))
+  if (typeof props.customStyle === 'string' && props.customStyle)
+    Object.assign(style, parseStyle(props.customStyle))
   else if (props.customStyle) Object.assign(style, props.customStyle as Record<string, string>)
   return style
 })
@@ -85,7 +77,7 @@ const innerStyle = computed(() => {
 })
 
 // value 变化触发 change 事件
-watch(angle, (val) => emit('change', Number(props.value) || 0))
+watch(angle, () => emit('change', Number(props.value) || 0))
 
 function parseStyle(str: string): Record<string, string> {
   const obj: Record<string, string> = {}

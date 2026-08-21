@@ -22,7 +22,11 @@ export interface FormRule {
   /** 最大长度 */
   max?: number
   /** 自定义校验函数, 返回 false / string / Promise */
-  validator?: (value: unknown, model: Record<string, unknown>, field: string) => boolean | string | Promise<boolean | string>
+  validator?: (
+    value: unknown,
+    model: Record<string, unknown>,
+    field: string
+  ) => boolean | string | Promise<boolean | string>
   /** 校验失败提示信息 */
   message?: string
 }
@@ -31,23 +35,20 @@ export type FormRules = Record<string, FormRule[]>
 
 type Errors = Record<string, string>
 
-const props = withDefaults(
-  defineProps({
-    /** 表单数据对象 */
-    model: { type: Object as any, required: true } as any,
-    /** 校验规则 */
-    rules: makeObjectProp<FormRules>({}),
-    /** 标签宽度 */
-    labelWidth: makeNumericProp<number | string | undefined>(undefined),
-    /** 标签对齐 */
-    labelAlign: makeStringProp<FieldAlign>('left'),
-    /** 提交后是否自动触发表单内 requireValidator 字段 */
-    scrollToError: { type: Boolean, default: false },
-    customClass: makeStringProp(''),
-    customStyle: { type: [String, Object] as any, default: '' },
-  }),
-  { labelAlign: 'left' }
-)
+const props = defineProps({
+  /** 表单数据对象 */
+  model: { type: Object as any, required: true } as any,
+  /** 校验规则 */
+  rules: makeObjectProp<FormRules>({}),
+  /** 标签宽度 */
+  labelWidth: makeNumericProp<number | string | undefined>(undefined),
+  /** 标签对齐 */
+  labelAlign: makeStringProp<FieldAlign>('left'),
+  /** 提交后是否自动触发表单内 requireValidator 字段 */
+  scrollToError: { type: Boolean, default: false },
+  customClass: makeStringProp(''),
+  customStyle: { type: [String, Object] as any, default: '' },
+})
 
 const emit = defineEmits<{
   (e: 'submit', values: Record<string, unknown>): void
@@ -63,11 +64,7 @@ onBeforeMount(() => {
 })
 
 /** 单条规则校验, 返回错误信息或空串 */
-async function runRule(
-  field: string,
-  value: unknown,
-  rule: FormRule
-): Promise<string> {
+async function runRule(field: string, value: unknown, rule: FormRule): Promise<string> {
   const msg = rule.message || ''
   if (rule.required && isEmpty(value)) {
     return msg || `${field} 为必填项`

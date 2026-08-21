@@ -13,32 +13,24 @@ import { provide } from 'vue'
 import { makeStringProp, makeNumericProp, makeBooleanProp, makeArrayProp } from '../shared/props'
 import { toNumber } from '../../utils/unit'
 
-const props = withDefaults(
-  defineProps({
-    /** 已选中项的标识符数组 */
-    modelValue: makeArrayProp<(string | number)[]>(),
-    /** 最多选择个数 (0 表示不限制) */
-    max: makeNumericProp(0),
-    /** 排列方向 */
-    direction: makeStringProp<'vertical' | 'horizontal'>('vertical'),
-    /** 是否禁用所有子项 */
-    disabled: makeBooleanProp(false),
-    /** 选中时图标颜色 */
-    checkedColor: makeStringProp(''),
-    /** 图标大小 */
-    iconSize: makeNumericProp<number | string>('20px'),
-    /** 形状: round / square */
-    shape: makeStringProp<'round' | 'square'>('round'),
-    customClass: makeStringProp(''),
-    customStyle: { type: [String, Object] as any, default: '' },
-  }),
-  {
-    max: 0,
-    direction: 'vertical',
-    iconSize: '20px',
-    shape: 'round',
-  }
-)
+const props = defineProps({
+  /** 已选中项的标识符数组 */
+  modelValue: makeArrayProp<(string | number)[]>(),
+  /** 最多选择个数 (0 表示不限制) */
+  max: makeNumericProp(0),
+  /** 排列方向 */
+  direction: makeStringProp<'vertical' | 'horizontal'>('vertical'),
+  /** 是否禁用所有子项 */
+  disabled: makeBooleanProp(false),
+  /** 选中时图标颜色 */
+  checkedColor: makeStringProp(''),
+  /** 图标大小 */
+  iconSize: makeNumericProp<number | string>('20px'),
+  /** 形状: round / square */
+  shape: makeStringProp<'round' | 'square'>('round'),
+  customClass: makeStringProp(''),
+  customStyle: { type: [String, Object] as any, default: '' },
+})
 
 const emit = defineEmits<{
   (e: 'update:modelValue', value: (string | number)[]): void

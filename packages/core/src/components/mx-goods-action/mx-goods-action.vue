@@ -11,15 +11,12 @@
 <script setup lang="ts">
 import { makeBooleanProp, makeStringProp } from '../shared/props'
 
-withDefaults(
-  defineProps({
-    /** 是否适配底部安全区 */
-    safeAreaInsetBottom: makeBooleanProp(false),
-    customClass: makeStringProp(''),
-    customStyle: { type: [String, Object] as any, default: '' },
-  }),
-  { safeAreaInsetBottom: false }
-)
+defineProps({
+  /** 是否适配底部安全区 */
+  safeAreaInsetBottom: makeBooleanProp(false),
+  customClass: makeStringProp(''),
+  customStyle: { type: [String, Object] as any, default: '' },
+})
 </script>
 
 <style lang="scss">

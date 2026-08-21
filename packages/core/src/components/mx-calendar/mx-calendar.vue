@@ -20,15 +20,17 @@
           class="mx-calendar__nav-arrow"
           :class="{ 'mx-calendar__nav-arrow--disabled': !canGoPrev }"
           @click="prevMonth"
-          >‹</text
         >
+          ‹
+        </text>
         <text class="mx-calendar__nav-title">{{ viewYear }}年{{ viewMonth + 1 }}月</text>
         <text
           class="mx-calendar__nav-arrow"
           :class="{ 'mx-calendar__nav-arrow--disabled': !canGoNext }"
           @click="nextMonth"
-          >›</text
         >
+          ›
+        </text>
       </view>
 
       <!-- 星期表头 -->
@@ -39,11 +41,7 @@
       <!-- 日期网格 -->
       <view class="mx-calendar__body">
         <view class="mx-calendar__days">
-          <view
-            v-for="(cell, ci) in cells"
-            :key="ci"
-            class="mx-calendar__cell"
-          >
+          <view v-for="(cell, ci) in cells" :key="ci" class="mx-calendar__cell">
             <view v-if="cell" class="mx-calendar__day-wrap">
               <text
                 class="mx-calendar__day"
@@ -56,8 +54,9 @@
                   'mx-calendar__day--in-range': cell.inRange,
                 }"
                 @click="onSelect(cell)"
-                >{{ cell.day }}</text
               >
+                {{ cell.day }}
+              </text>
             </view>
           </view>
         </view>
@@ -79,44 +78,34 @@ import MxButton from '../mx-button/mx-button.vue'
 
 type CalendarType = 'single' | 'multiple' | 'range'
 
-const props = withDefaults(
-  defineProps({
-    /** 是否显示 (v-model:show) */
-    show: makeBooleanProp(false),
-    /** 标题 */
-    title: makeStringProp('日期选择'),
-    /** 选择模式: single / multiple / range */
-    type: makeStringProp<CalendarType>('single'),
-    /** 选中日期 (v-model, 时间戳或时间戳数组) */
-    modelValue: { type: [Number, Array] as any, default: null },
-    /** 默认选中日期 (时间戳, single 为 number, multiple/range 为数组) */
-    defaultDate: { type: [Number, Array] as any, default: null },
-    /** 可选择的最小日期时间戳 */
-    minDate: { type: Number as any, default: null },
-    /** 可选择的最大日期时间戳 */
-    maxDate: { type: Number as any, default: null },
-    /** 是否显示底部确定按钮 */
-    showConfirm: makeBooleanProp(true),
-    /** 是否圆角 */
-    round: makeBooleanProp(true),
-    /** 取消按钮文字 */
-    cancelButtonText: makeStringProp('取消'),
-    /** 每周起始日 (0=周日, 1=周一) */
-    firstDayOfWeek: makeNumericProp<number>(0),
-    /** z-index */
-    zIndex: makeNumericProp<number | string>(1000),
-    customClass: makeStringProp(''),
-    customStyle: { type: [String, Object] as any, default: '' },
-  }),
-  {
-    title: '日期选择',
-    type: 'single',
-    showConfirm: true,
-    round: true,
-    firstDayOfWeek: 0,
-    zIndex: 1000,
-  }
-)
+const props = defineProps({
+  /** 是否显示 (v-model:show) */
+  show: makeBooleanProp(false),
+  /** 标题 */
+  title: makeStringProp('日期选择'),
+  /** 选择模式: single / multiple / range */
+  type: makeStringProp<CalendarType>('single'),
+  /** 选中日期 (v-model, 时间戳或时间戳数组) */
+  modelValue: { type: [Number, Array] as any, default: null },
+  /** 默认选中日期 (时间戳, single 为 number, multiple/range 为数组) */
+  defaultDate: { type: [Number, Array] as any, default: null },
+  /** 可选择的最小日期时间戳 */
+  minDate: { type: Number as any, default: null },
+  /** 可选择的最大日期时间戳 */
+  maxDate: { type: Number as any, default: null },
+  /** 是否显示底部确定按钮 */
+  showConfirm: makeBooleanProp(true),
+  /** 是否圆角 */
+  round: makeBooleanProp(true),
+  /** 取消按钮文字 */
+  cancelButtonText: makeStringProp('取消'),
+  /** 每周起始日 (0=周日, 1=周一) */
+  firstDayOfWeek: makeNumericProp<number>(0),
+  /** z-index */
+  zIndex: makeNumericProp<number | string>(1000),
+  customClass: makeStringProp(''),
+  customStyle: { type: [String, Object] as any, default: '' },
+})
 
 const emit = defineEmits<{
   (e: 'update:show', value: boolean): void
@@ -144,9 +133,10 @@ const selectedDates = ref<number[]>([])
 
 /** 初始选中 */
 const initSelected = () => {
-  const src = (props.modelValue != null && (props.modelValue as any).toString() !== '')
-    ? props.modelValue
-    : props.defaultDate
+  const src =
+    props.modelValue != null && (props.modelValue as any).toString() !== ''
+      ? props.modelValue
+      : props.defaultDate
   if (src == null) {
     selectedDates.value = []
     return
@@ -262,13 +252,14 @@ const cells = computed<Array<DayCell | null>>(() => {
   for (let d = 1; d <= daysInMonth; d++) {
     const ts = new Date(year, month, d).getTime()
     const disabled = ts < minTs || ts > maxTs
-    const inRange = !disabled && props.type === 'range' && start != null && end != null && ts > start && ts < end
+    const inRange =
+      !disabled && props.type === 'range' && start != null && end != null && ts > start && ts < end
     arr.push({
       ts,
       day: d,
       today: ts === t,
       disabled,
-      selected: props.type === 'range' ? (ts === start || ts === end) : selectedSet.has(ts),
+      selected: props.type === 'range' ? ts === start || ts === end : selectedSet.has(ts),
       inRange,
       isRangeStart: start != null && ts === start,
       isRangeEnd: end != null && ts === end,

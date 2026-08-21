@@ -21,25 +21,20 @@ import { computed } from 'vue'
 import { makeStringProp, makeBooleanProp, makeNumericProp } from '../shared/props'
 import MxIcon from '../mx-icon/mx-icon.vue'
 
-const props = withDefaults(
-  defineProps({
-    /** 图标名称 (图标名或字符) */
-    icon: makeStringProp(''),
-    /** 图标下文字 */
-    text: makeStringProp(''),
-    /** 图标颜色 */
-    color: makeStringProp(''),
-    /** 徽标内容 */
-    badge: makeNumericProp<number | string | undefined>(undefined),
-    /** 是否禁用 */
-    disabled: makeBooleanProp(false),
-    customClass: makeStringProp(''),
-    customStyle: { type: [String, Object] as any, default: '' },
-  }),
-  {
-    badge: undefined,
-  }
-)
+const props = defineProps({
+  /** 图标名称 (图标名或字符) */
+  icon: makeStringProp(''),
+  /** 图标下文字 */
+  text: makeStringProp(''),
+  /** 图标颜色 */
+  color: makeStringProp(''),
+  /** 徽标内容 */
+  badge: makeNumericProp<number | string | undefined>(undefined),
+  /** 是否禁用 */
+  disabled: makeBooleanProp(false),
+  customClass: makeStringProp(''),
+  customStyle: { type: [String, Object] as any, default: '' },
+})
 
 const emit = defineEmits<{ (e: 'click', event: Event): void }>()
 

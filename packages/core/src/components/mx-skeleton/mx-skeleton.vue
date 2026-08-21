@@ -1,8 +1,16 @@
 <template>
-  <view class="mx-skeleton" :class="[{ 'mx-skeleton--animate': animate }, customClass]" :style="customStyle">
+  <view
+    class="mx-skeleton"
+    :class="[{ 'mx-skeleton--animate': animate }, customClass]"
+    :style="customStyle"
+  >
     <!-- 头像 -->
     <view v-if="avatar" class="mx-skeleton__header">
-      <view class="mx-skeleton__avatar" :class="[`mx-skeleton__avatar--${avatarShape}`]" :style="{ width: avatarSizeUnit, height: avatarSizeUnit }"></view>
+      <view
+        class="mx-skeleton__avatar"
+        :class="[`mx-skeleton__avatar--${avatarShape}`]"
+        :style="{ width: avatarSizeUnit, height: avatarSizeUnit }"
+      ></view>
     </view>
 
     <!-- 段落 -->
@@ -27,41 +35,35 @@ import { computed } from 'vue'
 import { makeStringProp, makeBooleanProp, makeNumericProp } from '../shared/props'
 import { addUnit } from '../../utils/unit'
 
-const props = withDefaults(
-  defineProps({
-    /** 段落行数 */
-    row: makeNumericProp<number | string>(0),
-    /** 是否显示标题占位 */
-    title: makeBooleanProp(true),
-    /** 是否显示头像占位 */
-    avatar: makeBooleanProp(false),
-    /** 头像形状 */
-    avatarShape: makeStringProp<'round' | 'square'>('round'),
-    /** 头像尺寸 */
-    avatarSize: makeNumericProp<number | string>('32px'),
-    /** 标题宽度 */
-    titleWidth: makeStringProp('40%'),
-    /** 段落行宽度 */
-    rowWidth: { type: [String, Array] as any, default: '100%' },
-    /** 是否显示骨架动画 */
-    animate: makeBooleanProp(true),
-    /** 是否圆角 */
-    round: makeBooleanProp(false),
-    customClass: makeStringProp(''),
-    customStyle: { type: [String, Object] as any, default: '' },
-  }),
-  {
-    row: 0,
-    title: true,
-    rowWidth: '100%',
-    animate: true,
-  }
-)
+const props = defineProps({
+  /** 段落行数 */
+  row: makeNumericProp<number | string>(0),
+  /** 是否显示标题占位 */
+  title: makeBooleanProp(true),
+  /** 是否显示头像占位 */
+  avatar: makeBooleanProp(false),
+  /** 头像形状 */
+  avatarShape: makeStringProp<'round' | 'square'>('round'),
+  /** 头像尺寸 */
+  avatarSize: makeNumericProp<number | string>('32px'),
+  /** 标题宽度 */
+  titleWidth: makeStringProp('40%'),
+  /** 段落行宽度 */
+  rowWidth: { type: [String, Array] as any, default: '100%' },
+  /** 是否显示骨架动画 */
+  animate: makeBooleanProp(true),
+  /** 是否圆角 */
+  round: makeBooleanProp(false),
+  customClass: makeStringProp(''),
+  customStyle: { type: [String, Object] as any, default: '' },
+})
 
 const rows = computed(() => Math.max(0, Number(props.row) || 0))
 const avatarSizeUnit = computed(() => addUnit(props.avatarSize))
 
-const contentStyle = computed(() => (props.avatar ? { paddingLeft: `calc(${avatarSizeUnit.value} + 16px)` } : {}))
+const contentStyle = computed(() =>
+  props.avatar ? { paddingLeft: `calc(${avatarSizeUnit.value} + 16px)` } : {}
+)
 
 defineSlots<{
   default?: () => unknown
@@ -122,8 +124,14 @@ defineSlots<{
 }
 
 @keyframes mx-skeleton-blink {
-  0% { opacity: 0.4; }
-  50% { opacity: 1; }
-  100% { opacity: 0.4; }
+  0% {
+    opacity: 0.4;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0.4;
+  }
 }
 </style>

@@ -17,34 +17,26 @@ import { computed, onUnmounted } from 'vue'
 import { makeBooleanProp, makeNumericProp, makeStringProp } from '../shared/props'
 import { addUnit } from '../../utils/unit'
 
-const props = withDefaults(
-  defineProps({
-    /** 是否显示 (v-model, 双向) */
-    modelValue: makeBooleanProp(false),
-    /** 距右偏移 */
-    right: makeNumericProp<number>(30),
-    /** 距底偏移 */
-    bottom: makeNumericProp<number>(40),
-    /** z-index */
-    zIndex: makeNumericProp<number | string>(999),
-    /** 出现阈值: 页面滚动超过该高度显示 */
-    offsetTop: makeNumericProp<number>(0),
-    /** 图标 (Emoji 或字符) */
-    icon: makeStringProp(''),
-    /** 文字 */
-    text: makeStringProp(''),
-    /** 是否自动监听页面滚动 */
-    teleportOnScroll: makeBooleanProp(false),
-    customClass: makeStringProp(''),
-    customStyle: { type: [String, Object] as any, default: '' },
-  }),
-  {
-    right: 30,
-    bottom: 40,
-    zIndex: 999,
-    offsetTop: 0,
-  }
-)
+const props = defineProps({
+  /** 是否显示 (v-model, 双向) */
+  modelValue: makeBooleanProp(false),
+  /** 距右偏移 */
+  right: makeNumericProp<number>(30),
+  /** 距底偏移 */
+  bottom: makeNumericProp<number>(40),
+  /** z-index */
+  zIndex: makeNumericProp<number | string>(999),
+  /** 出现阈值: 页面滚动超过该高度显示 */
+  offsetTop: makeNumericProp<number>(0),
+  /** 图标 (Emoji 或字符) */
+  icon: makeStringProp(''),
+  /** 文字 */
+  text: makeStringProp(''),
+  /** 是否自动监听页面滚动 */
+  teleportOnScroll: makeBooleanProp(false),
+  customClass: makeStringProp(''),
+  customStyle: { type: [String, Object] as any, default: '' },
+})
 
 const emit = defineEmits<{
   (e: 'update:modelValue', value: boolean): void

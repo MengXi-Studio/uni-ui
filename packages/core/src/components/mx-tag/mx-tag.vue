@@ -22,32 +22,26 @@ import { makeStringProp, makeBooleanProp } from '../shared/props'
 type TagType = 'default' | 'primary' | 'success' | 'warning' | 'danger'
 type TagSize = 'large' | 'medium' | 'mini'
 
-const props = withDefaults(
-  defineProps({
-    /** 类型 */
-    type: makeStringProp<TagType>('default'),
-    /** 尺寸 */
-    size: makeStringProp<TagSize>('medium'),
-    /** 自定义颜色 */
-    color: makeStringProp(''),
-    /** 自定义文字颜色 */
-    textColor: makeStringProp(''),
-    /** 是否圆角 */
-    round: makeBooleanProp(false),
-    /** 是否标记样式 */
-    mark: makeBooleanProp(false),
-    /** 是否为朴素样式 */
-    plain: makeBooleanProp(false),
-    /** 是否可关闭 */
-    closeable: makeBooleanProp(false),
-    customClass: makeStringProp(''),
-    customStyle: { type: [String, Object] as any, default: '' },
-  }),
-  {
-    type: 'default',
-    size: 'medium',
-  }
-)
+const props = defineProps({
+  /** 类型 */
+  type: makeStringProp<TagType>('default'),
+  /** 尺寸 */
+  size: makeStringProp<TagSize>('medium'),
+  /** 自定义颜色 */
+  color: makeStringProp(''),
+  /** 自定义文字颜色 */
+  textColor: makeStringProp(''),
+  /** 是否圆角 */
+  round: makeBooleanProp(false),
+  /** 是否标记样式 */
+  mark: makeBooleanProp(false),
+  /** 是否为朴素样式 */
+  plain: makeBooleanProp(false),
+  /** 是否可关闭 */
+  closeable: makeBooleanProp(false),
+  customClass: makeStringProp(''),
+  customStyle: { type: [String, Object] as any, default: '' },
+})
 
 const emit = defineEmits<{ (e: 'close'): void }>()
 
@@ -63,7 +57,8 @@ const tagStyle = computed(() => {
     }
   }
   if (props.textColor && !props.color) style.color = props.textColor
-  if (typeof props.customStyle === 'string' && props.customStyle) Object.assign(style, parseStyle(props.customStyle))
+  if (typeof props.customStyle === 'string' && props.customStyle)
+    Object.assign(style, parseStyle(props.customStyle))
   else if (props.customStyle) Object.assign(style, props.customStyle as Record<string, string>)
   return style
 })

@@ -36,30 +36,22 @@ interface CouponInfo {
   available?: boolean
 }
 
-const props = withDefaults(
-  defineProps({
-    /** 单元格标题 */
-    title: makeStringProp('优惠券'),
-    /** 当前选中的优惠券 */
-    coupon: { type: Object as any, default: null },
-    /** 货币符号 */
-    currency: makeStringProp('¥'),
-    /** 是否可编辑(显示右侧箭头) */
-    editable: makeBooleanProp(true),
-    /** 是否已选中 */
-    chosen: makeBooleanProp(false),
-    /** 是否显示底部边框 */
-    border: makeBooleanProp(true),
-    customClass: makeStringProp(''),
-    customStyle: { type: [String, Object] as any, default: '' },
-  }),
-  {
-    title: '优惠券',
-    currency: '¥',
-    editable: true,
-    border: true,
-  }
-)
+const props = defineProps({
+  /** 单元格标题 */
+  title: makeStringProp('优惠券'),
+  /** 当前选中的优惠券 */
+  coupon: { type: Object as any, default: null },
+  /** 货币符号 */
+  currency: makeStringProp('¥'),
+  /** 是否可编辑(显示右侧箭头) */
+  editable: makeBooleanProp(true),
+  /** 是否已选中 */
+  chosen: makeBooleanProp(false),
+  /** 是否显示底部边框 */
+  border: makeBooleanProp(true),
+  customClass: makeStringProp(''),
+  customStyle: { type: [String, Object] as any, default: '' },
+})
 
 const emit = defineEmits<{
   (e: 'click', event: Event): void

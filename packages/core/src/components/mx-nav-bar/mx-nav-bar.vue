@@ -38,35 +38,28 @@ import { computed } from 'vue'
 import { makeStringProp, makeBooleanProp, makeNumericProp } from '../shared/props'
 import MxIcon from '../mx-icon/mx-icon.vue'
 
-const props = withDefaults(
-  defineProps({
-    /** 标题 */
-    title: makeStringProp(''),
-    /** 左侧文案 */
-    leftText: makeStringProp(''),
-    /** 右侧文案 */
-    rightText: makeStringProp(''),
-    /** 是否显示左侧箭头 */
-    leftArrow: makeBooleanProp(true),
-    /** 是否固定在顶部 */
-    fixed: makeBooleanProp(false),
-    /** 是否显示底部边框 */
-    border: makeBooleanProp(true),
-    /** 是否显示占位元素 */
-    placeholder: makeBooleanProp(true),
-    /** 层级 */
-    zIndex: makeNumericProp<number | string>(500),
-    /** 是否启用顶部安全区适配 */
-    safeAreaInsetTop: makeBooleanProp(true),
-    customClass: makeStringProp(''),
-    customStyle: { type: [String, Object] as any, default: '' },
-  }),
-  {
-    leftArrow: true,
-    placeholder: true,
-    zIndex: 500,
-  }
-)
+const props = defineProps({
+  /** 标题 */
+  title: makeStringProp(''),
+  /** 左侧文案 */
+  leftText: makeStringProp(''),
+  /** 右侧文案 */
+  rightText: makeStringProp(''),
+  /** 是否显示左侧箭头 */
+  leftArrow: makeBooleanProp(true),
+  /** 是否固定在顶部 */
+  fixed: makeBooleanProp(false),
+  /** 是否显示底部边框 */
+  border: makeBooleanProp(true),
+  /** 是否显示占位元素 */
+  placeholder: makeBooleanProp(true),
+  /** 层级 */
+  zIndex: makeNumericProp<number | string>(500),
+  /** 是否启用顶部安全区适配 */
+  safeAreaInsetTop: makeBooleanProp(true),
+  customClass: makeStringProp(''),
+  customStyle: { type: [String, Object] as any, default: '' },
+})
 
 const emit = defineEmits<{
   (e: 'click-left'): void
@@ -90,14 +83,15 @@ const safeTop = computed(() => {
 const navbarStyle = computed(() => {
   const style: Record<string, string> = {}
   style.zIndex = String(props.zIndex)
-  if (fixed) {
+  if (props.fixed) {
     style.position = 'fixed'
     style.top = '0'
     style.left = '0'
     style.right = '0'
   }
   if (safeTop.value) style.paddingTop = `${safeTop.value}px`
-  if (typeof props.customStyle === 'string' && props.customStyle) Object.assign(style, parseStyle(props.customStyle))
+  if (typeof props.customStyle === 'string' && props.customStyle)
+    Object.assign(style, parseStyle(props.customStyle))
   else if (props.customStyle) Object.assign(style, props.customStyle as Record<string, string>)
   return style
 })

@@ -43,27 +43,20 @@ type AddressItem = {
   [key: string]: any
 }
 
-const props = withDefaults(
-  defineProps({
-    /** 当前选中地址 id (v-model) */
-    modelValue: { type: [String, Number] as any, default: '' },
-    /** 地址列表 */
-    list: { type: Array as any, default: () => [] },
-    /** 默认标签文字 */
-    defaultTagText: makeStringProp('默认'),
-    /** 是否为单选模式 (点击选中) */
-    selectable: makeBooleanProp(true),
-    /** 是否显示新增按钮 */
-    showAdd: makeBooleanProp(true),
-    customClass: makeStringProp(''),
-    customStyle: { type: [String, Object] as any, default: '' },
-  }),
-  {
-    defaultTagText: '默认',
-    selectable: true,
-    showAdd: true,
-  }
-)
+const props = defineProps({
+  /** 当前选中地址 id (v-model) */
+  modelValue: { type: [String, Number] as any, default: '' },
+  /** 地址列表 */
+  list: { type: Array as any, default: () => [] },
+  /** 默认标签文字 */
+  defaultTagText: makeStringProp('默认'),
+  /** 是否为单选模式 (点击选中) */
+  selectable: makeBooleanProp(true),
+  /** 是否显示新增按钮 */
+  showAdd: makeBooleanProp(true),
+  customClass: makeStringProp(''),
+  customStyle: { type: [String, Object] as any, default: '' },
+})
 
 const emit = defineEmits<{
   (e: 'update:modelValue', value: string | number): void

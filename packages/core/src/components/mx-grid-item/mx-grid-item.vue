@@ -10,7 +10,13 @@
       :class="{ 'mx-grid-item__content--center': center, 'mx-grid-item__content--border': border }"
     >
       <view class="mx-grid-item__icon" :style="iconStyle">
-        <image v-if="imageIcon" class="mx-grid-item__icon-image" :src="icon" mode="aspectFit" :style="iconBoxStyle" />
+        <image
+          v-if="imageIcon"
+          class="mx-grid-item__icon-image"
+          :src="icon"
+          mode="aspectFit"
+          :style="iconBoxStyle"
+        />
         <text v-else class="mx-grid-item__icon-char">{{ icon }}</text>
       </view>
       <text v-if="text" class="mx-grid-item__text">{{ text }}</text>
@@ -39,18 +45,16 @@ const grid = inject<GridContext>('mxGrid', {
   iconSize: { value: '' },
 })
 
-const props = withDefaults(
-  defineProps({
-    /** 图标 (图片地址或字符) */
-    icon: makeStringProp(''),
-    /** 图标下方文字 */
-    text: makeStringProp(''),
-    /** 自定义图标颜色 */
-    iconColor: makeStringProp(''),
-    customClass: makeStringProp(''),
-    customStyle: { type: [String, Object] as any, default: '' },
-  })
-)
+const props = defineProps({
+  /** 图标 (图片地址或字符) */
+  icon: makeStringProp(''),
+  /** 图标下方文字 */
+  text: makeStringProp(''),
+  /** 自定义图标颜色 */
+  iconColor: makeStringProp(''),
+  customClass: makeStringProp(''),
+  customStyle: { type: [String, Object] as any, default: '' },
+})
 
 const emit = defineEmits<{ (e: 'click', event: Event): void }>()
 
@@ -59,7 +63,12 @@ const gutter = computed(() => grid.gutter.value || 0)
 const border = computed(() => grid.border.value)
 const square = computed(() => grid.square.value)
 
-const imageIcon = computed(() => /^(https?:)?\/\//.test(props.icon) || /^\.{1,2}\//.test(props.icon) || /^data:image/.test(props.icon))
+const imageIcon = computed(
+  () =>
+    /^(https?:)?\/\//.test(props.icon) ||
+    /^\.{1,2}\//.test(props.icon) ||
+    /^data:image/.test(props.icon)
+)
 
 const itemStyle = computed(() => {
   const style: Record<string, string> = {
@@ -69,7 +78,8 @@ const itemStyle = computed(() => {
   if (gutter.value > 0) style.marginRight = `${gutter.value}px`
   if (gutter.value > 0) style.marginBottom = `${gutter.value}px`
   if (square.value) style.height = style.width
-  if (typeof props.customStyle === 'string' && props.customStyle) Object.assign(style, parseStyle(props.customStyle))
+  if (typeof props.customStyle === 'string' && props.customStyle)
+    Object.assign(style, parseStyle(props.customStyle))
   else if (props.customStyle) Object.assign(style, props.customStyle as Record<string, string>)
   return style
 })

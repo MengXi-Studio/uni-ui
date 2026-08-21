@@ -16,29 +16,26 @@
 <script setup lang="ts">
 import { computed, inject, onUnmounted, reactive, watch } from 'vue'
 import { makeStringProp, makeBooleanProp, makeArrayProp } from '../shared/props'
-import { DROPDOWN_KEY, type DropdownContext, type DropdownOption } from '../mx-dropdown-menu/mx-dropdown-menu.vue'
+import {
+  DROPDOWN_KEY,
+  type DropdownContext,
+  type DropdownOption,
+} from '../mx-dropdown-menu/mx-dropdown-menu.vue'
 
-const props = withDefaults(
-  defineProps({
-    /** 当前选中值 (v-model) */
-    modelValue: { type: [Number, String], default: '' },
-    /** 标题 */
-    title: makeStringProp(''),
-    /** 选项列表 */
-    options: makeArrayProp<DropdownOption>([ ]),
-    /** 是否禁用 */
-    disabled: makeBooleanProp(false),
-    /** 高亮颜色 (优先级高于菜单) */
-    activeColor: makeStringProp(''),
-    customClass: makeStringProp(''),
-    customStyle: { type: [String, Object] as any, default: '' },
-  }),
-  {
-    options: [ ],
-    disabled: false,
-    activeColor: '',
-  }
-)
+const props = defineProps({
+  /** 当前选中值 (v-model) */
+  modelValue: { type: [Number, String], default: '' },
+  /** 标题 */
+  title: makeStringProp(''),
+  /** 选项列表 */
+  options: makeArrayProp<DropdownOption>([]),
+  /** 是否禁用 */
+  disabled: makeBooleanProp(false),
+  /** 高亮颜色 (优先级高于菜单) */
+  activeColor: makeStringProp(''),
+  customClass: makeStringProp(''),
+  customStyle: { type: [String, Object] as any, default: '' },
+})
 
 const emit = defineEmits<{
   (e: 'update:modelValue', value: number | string): void
@@ -77,7 +74,8 @@ const color = computed(() => props.activeColor || (context ? context.activeColor
 
 const itemStyle = computed(() => {
   const style: Record<string, string> = {}
-  if (typeof props.customStyle === 'string' && props.customStyle) Object.assign(style, parseStyle(props.customStyle))
+  if (typeof props.customStyle === 'string' && props.customStyle)
+    Object.assign(style, parseStyle(props.customStyle))
   else if (props.customStyle) Object.assign(style, props.customStyle as Record<string, string>)
   return style
 })

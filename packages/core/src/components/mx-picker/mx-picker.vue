@@ -56,38 +56,30 @@ interface PickerOption {
 
 type ColumnsFieldNames = { text?: string; values?: string; children?: string }
 
-const props = withDefaults(
-  defineProps({
-    /** 是否显示 (v-model:show) */
-    show: makeBooleanProp(false),
-    /** 列数据: 数组 / 对象数组(含 children 级联) / 二维数组(多列独立) */
-    columns: { type: Array as any, default: () => [] },
-    /** 标题 */
-    title: makeStringProp(''),
-    /** 确认按钮文字 */
-    confirmButtonText: makeStringProp('确认'),
-    /** 取消按钮文字 */
-    cancelButtonText: makeStringProp('取消'),
-    /** 展示文案字段名 */
-    valueKey: makeStringProp('text'),
-    /** 列字段名映射 { text, values, children } */
-    columnsFieldNames: makeObjectProp<ColumnsFieldNames>({}),
-    /** 是否记住滚动位置 */
-    rememberScrollPosition: makeBooleanProp(false),
-    /** 是否显示加载状态 */
-    loading: makeBooleanProp(false),
-    /** z-index */
-    zIndex: makeNumericProp<number | string>(1000),
-    customClass: makeStringProp(''),
-    customStyle: { type: [String, Object] as any, default: '' },
-  }),
-  {
-    columns: () => [],
-    confirmButtonText: '确认',
-    cancelButtonText: '取消',
-    valueKey: 'text',
-  }
-)
+const props = defineProps({
+  /** 是否显示 (v-model:show) */
+  show: makeBooleanProp(false),
+  /** 列数据: 数组 / 对象数组(含 children 级联) / 二维数组(多列独立) */
+  columns: { type: Array as any, default: () => [] },
+  /** 标题 */
+  title: makeStringProp(''),
+  /** 确认按钮文字 */
+  confirmButtonText: makeStringProp('确认'),
+  /** 取消按钮文字 */
+  cancelButtonText: makeStringProp('取消'),
+  /** 展示文案字段名 */
+  valueKey: makeStringProp('text'),
+  /** 列字段名映射 { text, values, children } */
+  columnsFieldNames: makeObjectProp<ColumnsFieldNames>({}),
+  /** 是否记住滚动位置 */
+  rememberScrollPosition: makeBooleanProp(false),
+  /** 是否显示加载状态 */
+  loading: makeBooleanProp(false),
+  /** z-index */
+  zIndex: makeNumericProp<number | string>(1000),
+  customClass: makeStringProp(''),
+  customStyle: { type: [String, Object] as any, default: '' },
+})
 
 const emit = defineEmits<{
   (e: 'update:show', value: boolean): void
@@ -174,9 +166,7 @@ watch(
 )
 
 function currentOptions(): PickerOption[] {
-  return visibleColumns.value.map(
-    (col, i) => col[selectedIndexes.value[i]] || col[0]
-  )
+  return visibleColumns.value.map((col, i) => col[selectedIndexes.value[i]] || col[0])
 }
 
 const onChange = (event: unknown) => {

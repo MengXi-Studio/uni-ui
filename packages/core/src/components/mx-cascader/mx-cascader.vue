@@ -40,12 +40,7 @@
       </scroll-view>
 
       <!-- selected 面包屑 (variant=selected) -->
-      <scroll-view
-        v-else
-        class="mx-cascader__crumbs"
-        scroll-x
-        :show-scrollbar="false"
-      >
+      <scroll-view v-else class="mx-cascader__crumbs" scroll-x :show-scrollbar="false">
         <view class="mx-cascader__crumbs-wrap">
           <view
             v-for="(c, ci) in crumbTexts"
@@ -80,7 +75,13 @@
         <mx-button size="small" plain custom-class="mx-cascader__step" @click="onPrev">
           上一步
         </mx-button>
-        <mx-button size="small" type="primary" custom-class="mx-cascader__next" :disabled="!currentSelection" @click="onNext">
+        <mx-button
+          size="small"
+          type="primary"
+          custom-class="mx-cascader__next"
+          :disabled="!currentSelection"
+          @click="onNext"
+        >
           下一步
         </mx-button>
       </view>
@@ -100,34 +101,26 @@ interface CascaderOption {
 
 type CascaderVariant = 'tabs' | 'selected'
 
-const props = withDefaults(
-  defineProps({
-    /** 是否显示 (v-model:show) */
-    show: makeBooleanProp(false),
-    /** 树形选项数据 */
-    options: { type: Array as any, required: true } as any,
-    /** 选中的值数组 (v-model) */
-    value: { type: Array as any, default: () => [] } as any,
-    /** 标题 */
-    title: makeStringProp('选择'),
-    /** 是否可点击选择每个 tab */
-    activeTabAsc: makeBooleanProp(false),
-    /** 展示类型: tabs / selected */
-    variant: makeStringProp<CascaderVariant>('tabs'),
-    /** 字段名映射 { text, value, children } */
-    fieldNames: makeObjectProp<{ text?: string; value?: string; children?: string }>({}),
-    /** z-index */
-    zIndex: makeNumericProp<number | string>(1000),
-    customClass: makeStringProp(''),
-    customStyle: { type: [String, Object] as any, default: '' },
-  }),
-  {
-    options: () => [],
-    value: () => [],
-    title: '选择',
-    variant: 'tabs',
-  }
-)
+const props = defineProps({
+  /** 是否显示 (v-model:show) */
+  show: makeBooleanProp(false),
+  /** 树形选项数据 */
+  options: { type: Array as any, required: true } as any,
+  /** 选中的值数组 (v-model) */
+  value: { type: Array as any, default: () => [] } as any,
+  /** 标题 */
+  title: makeStringProp('选择'),
+  /** 是否可点击选择每个 tab */
+  activeTabAsc: makeBooleanProp(false),
+  /** 展示类型: tabs / selected */
+  variant: makeStringProp<CascaderVariant>('tabs'),
+  /** 字段名映射 { text, value, children } */
+  fieldNames: makeObjectProp<{ text?: string; value?: string; children?: string }>({}),
+  /** z-index */
+  zIndex: makeNumericProp<number | string>(1000),
+  customClass: makeStringProp(''),
+  customStyle: { type: [String, Object] as any, default: '' },
+})
 
 const emit = defineEmits<{
   (e: 'update:show', value: boolean): void

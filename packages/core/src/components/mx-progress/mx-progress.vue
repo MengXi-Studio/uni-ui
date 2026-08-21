@@ -2,10 +2,18 @@
   <view class="mx-progress" :class="customClass" :style="progressStyle">
     <!-- 线形 -->
     <view v-if="type === 'line'" class="mx-progress__line" :style="lineWrapStyle">
-      <view class="mx-progress__track" :style="{ background: trackColor || '', height: strokeWidthPx }">
+      <view
+        class="mx-progress__track"
+        :style="{ background: trackColor || '', height: strokeWidthPx }"
+      >
         <view class="mx-progress__bar" :style="barStyle" />
       </view>
-      <view v-if="showPivot && hasPivot" class="mx-progress__pivot" :style="pivotStyle" :data-percent="percentage">
+      <view
+        v-if="showPivot && hasPivot"
+        class="mx-progress__pivot"
+        :style="pivotStyle"
+        :data-percent="percentage"
+      >
         <slot name="pivot">
           <text class="mx-progress__pivot-text" :style="pivotTextStyle">{{ pivotText }}</text>
         </slot>
@@ -30,38 +38,30 @@ import { addUnit } from '../../utils/unit'
 
 type ProgressType = 'line' | 'circle'
 
-const props = withDefaults(
-  defineProps({
-    /** 进度百分比 (0-100) */
-    percentage: makeNumericProp<number | string>(0),
-    /** 类型: line / circle */
-    type: makeStringProp<ProgressType>('line'),
-    /** 轨道宽度 */
-    strokeWidth: makeNumericProp<number | string>(4),
-    /** 进度条颜色 */
-    color: makeStringProp(''),
-    /** 轨道颜色 */
-    trackColor: makeStringProp(''),
-    /** 是否显示进度文字 */
-    showPivot: makeBooleanProp(true),
-    /** 进度文字定制 */
-    pivotText: makeStringProp(''),
-    /** 进度文字背景色 */
-    pivotColor: makeStringProp(''),
-    /** 进度文字颜色 */
-    textColor: makeStringProp(''),
-    /** 是否显示进度百分比文案 */
-    showText: makeBooleanProp(true),
-    customClass: makeStringProp(''),
-    customStyle: { type: [String, Object] as any, default: '' },
-  }),
-  {
-    percentage: 0,
-    type: 'line',
-    strokeWidth: 4,
-    showPivot: true,
-  }
-)
+const props = defineProps({
+  /** 进度百分比 (0-100) */
+  percentage: makeNumericProp<number | string>(0),
+  /** 类型: line / circle */
+  type: makeStringProp<ProgressType>('line'),
+  /** 轨道宽度 */
+  strokeWidth: makeNumericProp<number | string>(4),
+  /** 进度条颜色 */
+  color: makeStringProp(''),
+  /** 轨道颜色 */
+  trackColor: makeStringProp(''),
+  /** 是否显示进度文字 */
+  showPivot: makeBooleanProp(true),
+  /** 进度文字定制 */
+  pivotText: makeStringProp(''),
+  /** 进度文字背景色 */
+  pivotColor: makeStringProp(''),
+  /** 进度文字颜色 */
+  textColor: makeStringProp(''),
+  /** 是否显示进度百分比文案 */
+  showText: makeBooleanProp(true),
+  customClass: makeStringProp(''),
+  customStyle: { type: [String, Object] as any, default: '' },
+})
 
 // 修正比例: percentage 归一化到 0-100
 const percent = computed(() => {
@@ -130,9 +130,6 @@ const ringStyle = computed<Record<string, string>>(() => {
 })
 
 const progressStyle = props.customStyle
-void trackColor
-void showPivot
-void showText
 </script>
 
 <style lang="scss">

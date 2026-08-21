@@ -18,30 +18,30 @@ import { makeStringProp, makeBooleanProp, makeNumericProp } from '../shared/prop
 import { addUnit } from '../../utils/unit'
 
 type Align = 'start' | 'center' | 'end' | 'baseline' | 'flex-start' | 'flex-end'
-type Justify = 'start' | 'center' | 'end' | 'space-between' | 'space-around' | 'space-evenly' | 'flex-start' | 'flex-end'
+type Justify =
+  | 'start'
+  | 'center'
+  | 'end'
+  | 'space-between'
+  | 'space-around'
+  | 'space-evenly'
+  | 'flex-start'
+  | 'flex-end'
 
-const props = withDefaults(
-  defineProps({
-    /** 间距大小 */
-    gap: makeNumericProp<number | string>(8),
-    /** 排列方向: horizontal / vertical */
-    direction: makeStringProp<'horizontal' | 'vertical'>('horizontal'),
-    /** 是否换行 */
-    wrap: makeBooleanProp(false),
-    /** 对齐方式 */
-    align: makeStringProp<Align>('flex-start'),
-    /** 主轴对齐方式 */
-    justify: makeStringProp<Justify>('flex-start'),
-    customClass: makeStringProp(''),
-    customStyle: { type: [String, Object] as any, default: '' },
-  }),
-  {
-    gap: 8,
-    direction: 'horizontal',
-    align: 'flex-start',
-    justify: 'flex-start',
-  }
-)
+const props = defineProps({
+  /** 间距大小 */
+  gap: makeNumericProp<number | string>(8),
+  /** 排列方向: horizontal / vertical */
+  direction: makeStringProp<'horizontal' | 'vertical'>('horizontal'),
+  /** 是否换行 */
+  wrap: makeBooleanProp(false),
+  /** 对齐方式 */
+  align: makeStringProp<Align>('flex-start'),
+  /** 主轴对齐方式 */
+  justify: makeStringProp<Justify>('flex-start'),
+  customClass: makeStringProp(''),
+  customStyle: { type: [String, Object] as any, default: '' },
+})
 
 const alignMap: Record<string, string> = {
   start: 'flex-start',

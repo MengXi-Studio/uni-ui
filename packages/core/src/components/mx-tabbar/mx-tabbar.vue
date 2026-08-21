@@ -15,26 +15,24 @@
 import { computed, provide } from 'vue'
 import { makeBooleanProp, makeStringProp, makeNumericProp } from '../shared/props'
 
-const props = withDefaults(
-  defineProps({
-    /** 当前选中项的名称 (v-model) */
-    modelValue: makeNumericProp<string | number>(''),
-    /** 是否固定在底部 */
-    fixed: makeBooleanProp(false),
-    /** 是否显示占位元素 */
-    placeholder: makeBooleanProp(true),
-    /** 是否显示顶部边框 */
-    border: makeBooleanProp(true),
-    /** 是否启用底部安全区适配 */
-    safeAreaInsetBottom: makeBooleanProp(true),
-    /** 选中颜色 */
-    activeColor: makeStringProp(''),
-    /** 未选中颜色 */
-    inactiveColor: makeStringProp(''),
-    customClass: makeStringProp(''),
-    customStyle: { type: [String, Object] as any, default: '' },
-  })
-)
+const props = defineProps({
+  /** 当前选中项的名称 (v-model) */
+  modelValue: makeNumericProp<string | number>(''),
+  /** 是否固定在底部 */
+  fixed: makeBooleanProp(false),
+  /** 是否显示占位元素 */
+  placeholder: makeBooleanProp(true),
+  /** 是否显示顶部边框 */
+  border: makeBooleanProp(true),
+  /** 是否启用底部安全区适配 */
+  safeAreaInsetBottom: makeBooleanProp(true),
+  /** 选中颜色 */
+  activeColor: makeStringProp(''),
+  /** 未选中颜色 */
+  inactiveColor: makeStringProp(''),
+  customClass: makeStringProp(''),
+  customStyle: { type: [String, Object] as any, default: '' },
+})
 
 const emit = defineEmits<{
   (e: 'update:modelValue', name: string | number): void
@@ -91,7 +89,8 @@ const placeholderStyle = computed<Record<string, string>>(() => {
 
 const tabbarStyleMerged = computed(() => {
   const style = { ...tabbarStyle.value }
-  if (typeof props.customStyle === 'string' && props.customStyle) Object.assign(style, parseStyle(props.customStyle))
+  if (typeof props.customStyle === 'string' && props.customStyle)
+    Object.assign(style, parseStyle(props.customStyle))
   else if (props.customStyle) Object.assign(style, props.customStyle as Record<string, string>)
   return style
 })

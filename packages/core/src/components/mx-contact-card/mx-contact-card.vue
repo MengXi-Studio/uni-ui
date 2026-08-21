@@ -28,21 +28,18 @@ import { makeStringProp } from '../shared/props'
 
 type ContactCardType = 'default' | 'edit'
 
-const props = withDefaults(
-  defineProps({
-    /** 添加联系人时显示的文字 */
-    addText: makeStringProp(''),
-    /** 联系人姓名 */
-    name: makeStringProp(''),
-    /** 联系人电话 */
-    tel: makeStringProp(''),
-    /** 卡片类型: default / edit(显示编辑箭头) */
-    type: makeStringProp<ContactCardType>('default'),
-    customClass: makeStringProp(''),
-    customStyle: { type: [String, Object] as any, default: '' },
-  }),
-  { type: 'default' }
-)
+defineProps({
+  /** 添加联系人时显示的文字 */
+  addText: makeStringProp(''),
+  /** 联系人姓名 */
+  name: makeStringProp(''),
+  /** 联系人电话 */
+  tel: makeStringProp(''),
+  /** 卡片类型: default / edit(显示编辑箭头) */
+  type: makeStringProp<ContactCardType>('default'),
+  customClass: makeStringProp(''),
+  customStyle: { type: [String, Object] as any, default: '' },
+})
 
 const emit = defineEmits<{
   (e: 'click', event: Event): void

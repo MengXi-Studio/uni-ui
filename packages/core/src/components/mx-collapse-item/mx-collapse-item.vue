@@ -2,12 +2,22 @@
   <view class="mx-collapse-item" :class="customClass" :style="customStyle">
     <view
       class="mx-collapse-item__title"
-      :class="[{ 'mx-collapse-item__title--is-expanded': expanded, 'mx-collapse-item__title--disabled': disabled }]"
+      :class="[
+        {
+          'mx-collapse-item__title--is-expanded': expanded,
+          'mx-collapse-item__title--disabled': disabled,
+        },
+      ]"
       @click="onClickTitle"
     >
       <view class="mx-collapse-item__title-left">
         <view v-if="icon" class="mx-collapse-item__icon">
-          <image v-if="imageIcon" class="mx-collapse-item__icon-image" :src="icon" mode="aspectFit" />
+          <image
+            v-if="imageIcon"
+            class="mx-collapse-item__icon-image"
+            :src="icon"
+            mode="aspectFit"
+          />
           <text v-else class="mx-collapse-item__icon-char">{{ icon }}</text>
         </view>
         <slot name="title">
@@ -35,22 +45,20 @@ import { computed, getCurrentInstance, inject, onMounted } from 'vue'
 import { makeBooleanProp, makeNumericProp, makeStringProp } from '../shared/props'
 import type { CollapseContext } from '../mx-collapse/mx-collapse.vue'
 
-const props = withDefaults(
-  defineProps({
-    /** 唯一标识 (展开/收起时的 key) */
-    name: makeNumericProp<string | number>(''),
-    /** 标题 */
-    title: makeStringProp(''),
-    /** 标题右侧额外信息 */
-    value: makeStringProp(''),
-    /** 是否禁用 */
-    disabled: makeBooleanProp(false),
-    /** 图标 (图片地址或字符) */
-    icon: makeStringProp(''),
-    customClass: makeStringProp(''),
-    customStyle: { type: [String, Object] as any, default: '' },
-  })
-)
+const props = defineProps({
+  /** 唯一标识 (展开/收起时的 key) */
+  name: makeNumericProp<string | number>(''),
+  /** 标题 */
+  title: makeStringProp(''),
+  /** 标题右侧额外信息 */
+  value: makeStringProp(''),
+  /** 是否禁用 */
+  disabled: makeBooleanProp(false),
+  /** 图标 (图片地址或字符) */
+  icon: makeStringProp(''),
+  customClass: makeStringProp(''),
+  customStyle: { type: [String, Object] as any, default: '' },
+})
 
 const instance = getCurrentInstance()
 
@@ -62,7 +70,12 @@ const expanded = computed(() => (collapse ? collapse.isActive(itemName.value) : 
 
 const disabled = computed(() => props.disabled || !!(collapse && collapse.disabled.value))
 
-const imageIcon = computed(() => /^(https?:)?\/\//.test(props.icon) || /^\.{1,2}\//.test(props.icon) || /^data:image/.test(props.icon))
+const imageIcon = computed(
+  () =>
+    /^(https?:)?\/\//.test(props.icon) ||
+    /^\.{1,2}\//.test(props.icon) ||
+    /^data:image/.test(props.icon)
+)
 
 /** 展开/收起动画: 使用 max-height 过渡 */
 const wrapperStyle = computed<Record<string, string>>(() => {

@@ -24,7 +24,10 @@
             class="mx-contact-edit__type"
             @click="onPickType(opt.value)"
           >
-            <view class="mx-contact-edit__radio" :class="{ 'mx-contact-edit__radio--active': contact.type === opt.value }">
+            <view
+              class="mx-contact-edit__radio"
+              :class="{ 'mx-contact-edit__radio--active': contact.type === opt.value }"
+            >
               <text v-if="contact.type === opt.value" class="mx-contact-edit__radio-check">✓</text>
             </view>
             <text class="mx-contact-edit__type-text">{{ opt.label }}</text>
@@ -56,24 +59,18 @@ export interface ContactInfo {
   type?: ContactType
 }
 
-const props = withDefaults(
-  defineProps({
-    /** 联系人信息 (v-model) */
-    modelValue: { type: Object as any, default: () => ({}) },
-    /** 电话最大长度 */
-    telMaxlength: makeNumericProp<number | string>(11),
-    /** 姓名最大长度 */
-    nameMaxlength: makeNumericProp<number | string>(20),
-    /** 是否显示联系人类型单选项 */
-    showContactType: makeBooleanProp(false),
-    customClass: { type: String, default: '' },
-    customStyle: { type: [String, Object] as any, default: '' },
-  }),
-  {
-    telMaxlength: 11,
-    nameMaxlength: 20,
-  }
-)
+const props = defineProps({
+  /** 联系人信息 (v-model) */
+  modelValue: { type: Object as any, default: () => ({}) },
+  /** 电话最大长度 */
+  telMaxlength: makeNumericProp<number | string>(11),
+  /** 姓名最大长度 */
+  nameMaxlength: makeNumericProp<number | string>(20),
+  /** 是否显示联系人类型单选项 */
+  showContactType: makeBooleanProp(false),
+  customClass: { type: String, default: '' },
+  customStyle: { type: [String, Object] as any, default: '' },
+})
 
 const emit = defineEmits<{
   (e: 'update:modelValue', value: ContactInfo): void
@@ -154,7 +151,9 @@ const onPickType = (value: ContactType) => {
     font-size: 11px;
     border: 1px solid var(--mx-text-color-3);
     border-radius: 50%;
-    transition: border-color var(--mx-duration-fast), background-color var(--mx-duration-fast);
+    transition:
+      border-color var(--mx-duration-fast),
+      background-color var(--mx-duration-fast);
 
     &--active {
       background: var(--mx-primary-color);

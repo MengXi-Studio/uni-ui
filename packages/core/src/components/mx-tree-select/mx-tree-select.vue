@@ -9,7 +9,10 @@
           :class="{ 'mx-tree-select__nav-item--active': navIndex === mainActiveIndexValue }"
           @click="clickNav(navIndex)"
         >
-          <text class="mx-tree-select__nav-text" :class="{ 'mx-tree-select__nav-text--active': navIndex === mainActiveIndexValue }">
+          <text
+            class="mx-tree-select__nav-text"
+            :class="{ 'mx-tree-select__nav-text--active': navIndex === mainActiveIndexValue }"
+          >
             {{ item.text }}
           </text>
         </view>
@@ -23,11 +26,20 @@
             v-for="child in currentChildren"
             :key="getChildKey(child)"
             class="mx-tree-select__item"
-            :class="[{ 'mx-tree-select__item--active': isActive(child) }, { 'mx-tree-select__item--disabled': child.disabled }]"
+            :class="[
+              { 'mx-tree-select__item--active': isActive(child) },
+              { 'mx-tree-select__item--disabled': child.disabled },
+            ]"
             @click="clickItem(child)"
           >
             <slot name="item" :item="child" :active="isActive(child)" :disabled="child.disabled">
-              <text class="mx-tree-select__item-text" :class="[{ 'mx-tree-select__item-text--active': isActive(child) }, { 'mx-tree-select__item-text--disabled': child.disabled }]">
+              <text
+                class="mx-tree-select__item-text"
+                :class="[
+                  { 'mx-tree-select__item-text--active': isActive(child) },
+                  { 'mx-tree-select__item-text--disabled': child.disabled },
+                ]"
+              >
                 {{ child.text }}
               </text>
               <text v-if="isActive(child)" class="mx-tree-select__check">√</text>
@@ -52,28 +64,22 @@ type TreeItem = {
   [k: string]: unknown
 }
 
-const props = withDefaults(
-  defineProps({
-    /** 已选中的 id (v-model, 支持字符串或数组) */
-    modelValue: { type: [String, Number, Array] as any, default: '' },
-    /** 树形数据 */
-    items: { type: Array as any, default: () => [] as TreeItem[] },
-    /** 左侧主栏选中索引 */
-    mainActiveIndex: makeNumericProp<number | string>(0),
-    /** 高度 (带单位或数字) */
-    height: makeStringProp(''),
-    /** 选中颜色 */
-    activeColor: makeStringProp(''),
-    /** 可选中的最大数量 */
-    max: makeNumericProp<number | string>(Infinity),
-    customClass: makeStringProp(''),
-    customStyle: { type: [String, Object] as any, default: '' },
-  }),
-  {
-    mainActiveIndex: 0,
-    max: Infinity,
-  }
-)
+const props = defineProps({
+  /** 已选中的 id (v-model, 支持字符串或数组) */
+  modelValue: { type: [String, Number, Array] as any, default: '' },
+  /** 树形数据 */
+  items: { type: Array as any, default: () => [] as TreeItem[] },
+  /** 左侧主栏选中索引 */
+  mainActiveIndex: makeNumericProp<number | string>(0),
+  /** 高度 (带单位或数字) */
+  height: makeStringProp(''),
+  /** 选中颜色 */
+  activeColor: makeStringProp(''),
+  /** 可选中的最大数量 */
+  max: makeNumericProp<number | string>(Infinity),
+  customClass: makeStringProp(''),
+  customStyle: { type: [String, Object] as any, default: '' },
+})
 
 const emit = defineEmits<{
   (e: 'update:modelValue', value: string | number | (string | number)[]): void
@@ -108,8 +114,6 @@ const isActive = (item: TreeItem) => {
   return Boolean(isSelected(item))
 }
 
-const validName = computed(() => !Number.isNaN(mainActiveIndexValue.value))
-
 const getNavKey = (item: TreeItem, index: number) => `${item.name ?? item.text ?? ''}-${index}`
 
 const getChildKey = (item: TreeItem) => `${getNodeValue(item)}-${item.text ?? ''}`
@@ -137,7 +141,11 @@ function clickItem(item: TreeItem) {
   const selected = activeArray.value
 
   // 多选模式且超过 max 上限
-  if (maxValue.value !== Infinity && activeArray.value.length >= maxValue.value && !isSelected(item)) {
+  if (
+    maxValue.value !== Infinity &&
+    activeArray.value.length >= maxValue.value &&
+    !isSelected(item)
+  ) {
     return
   }
 
@@ -158,7 +166,10 @@ function clickItem(item: TreeItem) {
 
   // 更新 activeText: 多选拼接 / 单选取当前
   if (Array.isArray(props.modelValue)) {
-    emit('update:activeText', newValue.map((id) => getNodeText(item)))
+    emit(
+      'update:activeText',
+      newValue.map(() => getNodeText(item))
+    )
   } else {
     emit('update:activeText', getNodeText(item))
   }
@@ -174,7 +185,6 @@ const scrollStyle = computed<Record<string, string>>(() => {
 })
 
 const treeSelectStyle = props.customStyle
-void validName
 </script>
 
 <style lang="scss">

@@ -5,7 +5,7 @@
 </template>
 
 <script setup lang="ts">
-import { computed, getCurrentInstance, inject, onMounted, ref } from 'vue'
+import { computed, getCurrentInstance, inject, onMounted } from 'vue'
 import { makeBooleanProp, makeStringProp } from '../shared/props'
 
 type TabsContext = {
@@ -13,18 +13,16 @@ type TabsContext = {
   register: (pane: { name: string | number; title: string; disabled: boolean }) => void
 }
 
-const props = withDefaults(
-  defineProps({
-    /** 标签页名称 */
-    name: makeStringProp(''),
-    /** 标题 */
-    title: makeStringProp(''),
-    /** 是否禁用 */
-    disabled: makeBooleanProp(false),
-    customClass: makeStringProp(''),
-    customStyle: { type: [String, Object] as any, default: '' },
-  })
-)
+const props = defineProps({
+  /** 标签页名称 */
+  name: makeStringProp(''),
+  /** 标题 */
+  title: makeStringProp(''),
+  /** 是否禁用 */
+  disabled: makeBooleanProp(false),
+  customClass: makeStringProp(''),
+  customStyle: { type: [String, Object] as any, default: '' },
+})
 
 const instance = getCurrentInstance()
 

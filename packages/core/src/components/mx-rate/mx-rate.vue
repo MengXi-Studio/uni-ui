@@ -27,36 +27,28 @@ import { computed, getCurrentInstance } from 'vue'
 import { makeStringProp, makeNumericProp, makeBooleanProp } from '../shared/props'
 import { addUnit, toNumber } from '../../utils/unit'
 
-const props = withDefaults(
-  defineProps({
-    /** 当前分值 */
-    modelValue: { type: Number, default: 0 },
-    /** 图标总数 (星级总数) */
-    count: { type: Number, default: 5 },
-    /** 是否允许半选 */
-    allowHalf: makeBooleanProp(false),
-    /** 是否禁用 */
-    disabled: makeBooleanProp(false),
-    /** 是否为只读 */
-    readonly: makeBooleanProp(false),
-    /** 图标大小 */
-    size: makeNumericProp<number | string>('20px'),
-    /** 选中时的颜色 */
-    color: makeStringProp(''),
-    /** 未选中时的颜色 */
-    voidColor: makeStringProp(''),
-    /** 图标之间的间距 */
-    gutter: makeNumericProp<number | string>(''),
-    customClass: makeStringProp(''),
-    customStyle: { type: [String, Object] as any, default: '' },
-  }),
-  {
-    modelValue: 0,
-    count: 5,
-    size: '20px',
-    gutter: '',
-  }
-)
+const props = defineProps({
+  /** 当前分值 */
+  modelValue: { type: Number, default: 0 },
+  /** 图标总数 (星级总数) */
+  count: { type: Number, default: 5 },
+  /** 是否允许半选 */
+  allowHalf: makeBooleanProp(false),
+  /** 是否禁用 */
+  disabled: makeBooleanProp(false),
+  /** 是否为只读 */
+  readonly: makeBooleanProp(false),
+  /** 图标大小 */
+  size: makeNumericProp<number | string>('20px'),
+  /** 选中时的颜色 */
+  color: makeStringProp(''),
+  /** 未选中时的颜色 */
+  voidColor: makeStringProp(''),
+  /** 图标之间的间距 */
+  gutter: makeNumericProp<number | string>(''),
+  customClass: makeStringProp(''),
+  customStyle: { type: [String, Object] as any, default: '' },
+})
 
 const emit = defineEmits<{
   (e: 'update:modelValue', value: number): void
@@ -69,9 +61,6 @@ const instance = getCurrentInstance()
 const voidGlyph = '\u2606'
 /** 选中星形 (★) */
 const iconGlyph = '\u2605'
-
-const fillColor = computed(() => props.color || 'var(--mx-primary-color)')
-const emptyColor = computed(() => props.voidColor || 'var(--mx-text-color-3)')
 
 const starStyle = computed(() => ({
   fontSize: addUnit(props.size) as string,
@@ -137,7 +126,8 @@ function queryRect(): Promise<void> {
 
 function updateRating(event: any) {
   if (!trackRect || !trackRect.width) return
-  const touch = (event.touches && event.touches[0]) || (event.changedTouches && event.changedTouches[0])
+  const touch =
+    (event.touches && event.touches[0]) || (event.changedTouches && event.changedTouches[0])
   if (!touch) return
   const offsetX = touch.clientX - trackRect.left
   const step = trackRect.width / props.count

@@ -13,11 +13,6 @@ export function addUnit(value: string | number | undefined): string | undefined 
   return typeof value === 'number' ? `${value}px` : value
 }
 
-/** 数字(含千分位显示/去逗号) */
-export function formatNumber(value: string | number): string {
-  return value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')
-}
-
 /** 数值取整安全解析 */
 export function toNumber(value: string | number | undefined, fallback = 0): number {
   if (value === undefined || value === null || value === '') return fallback

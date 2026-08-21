@@ -3,9 +3,9 @@
     <!-- 签名区 -->
     <view class="mx-signature__area">
       <canvas
+        :id="canvasId"
         class="mx-signature__canvas"
         :canvas-id="canvasId"
-        :id="canvasId"
         :style="{ width: canvasW + 'px', height: canvasH + 'px', background: bgColor }"
         @touchstart="onTouchStart"
         @touchmove="onTouchMove"
@@ -17,10 +17,18 @@
 
     <!-- 操作按钮 -->
     <view v-if="showActions" class="mx-signature__actions">
-      <text v-if="closeButtonText" class="mx-signature__action mx-signature__action--clear" @click="onClear">
+      <text
+        v-if="closeButtonText"
+        class="mx-signature__action mx-signature__action--clear"
+        @click="onClear"
+      >
         {{ closeButtonText }}
       </text>
-      <text v-if="showConfirm" class="mx-signature__action mx-signature__action--submit" @click="onSubmit">
+      <text
+        v-if="showConfirm"
+        class="mx-signature__action mx-signature__action--submit"
+        @click="onSubmit"
+      >
         {{ confirmButtonText }}
       </text>
     </view>
@@ -33,42 +41,32 @@ import { makeStringProp, makeBooleanProp, makeNumericProp } from '../shared/prop
 
 type Point = { x: number; y: number }
 
-const props = withDefaults(
-  defineProps({
-    /** 笔画颜色 */
-    color: makeStringProp('#000'),
-    /** 笔迹线宽 */
-    penSize: makeNumericProp<number | string>(3),
-    /** 背景色 */
-    bgColor: makeStringProp('#fff'),
-    /** 生成图片 (v-model) */
-    modelValue: makeStringProp(''),
-    /** 空白时的提示文字 */
-    tipText: makeStringProp(''),
-    /** 清除按钮文字, 为空则不显示 */
-    closeButtonText: makeStringProp('清除'),
-    /** 确认按钮文字 */
-    confirmButtonText: makeStringProp('确认'),
-    /** 是否显示确认按钮 */
-    confirm: makeBooleanProp(false),
-    /** 是否允许在签名区域外下方继续书写 */
-    allowMidnightInk: makeBooleanProp(false),
-    /** 是否允许重复笔画产生冗余 (冗余兼容) */
-    allowDuplicatePen: makeBooleanProp(true),
-    /** 签名区高度 (px) */
-    height: makeNumericProp<number | string>(200),
-    customClass: makeStringProp(''),
-    customStyle: { type: [String, Object] as any, default: '' },
-  }),
-  {
-    color: '#000',
-    penSize: 3,
-    bgColor: '#fff',
-    closeButtonText: '清除',
-    confirmButtonText: '确认',
-    height: 200,
-  }
-)
+const props = defineProps({
+  /** 笔画颜色 */
+  color: makeStringProp('#000'),
+  /** 笔迹线宽 */
+  penSize: makeNumericProp<number | string>(3),
+  /** 背景色 */
+  bgColor: makeStringProp('#fff'),
+  /** 生成图片 (v-model) */
+  modelValue: makeStringProp(''),
+  /** 空白时的提示文字 */
+  tipText: makeStringProp(''),
+  /** 清除按钮文字, 为空则不显示 */
+  closeButtonText: makeStringProp('清除'),
+  /** 确认按钮文字 */
+  confirmButtonText: makeStringProp('确认'),
+  /** 是否显示确认按钮 */
+  confirm: makeBooleanProp(false),
+  /** 是否允许在签名区域外下方继续书写 */
+  allowMidnightInk: makeBooleanProp(false),
+  /** 是否允许重复笔画产生冗余 (冗余兼容) */
+  allowDuplicatePen: makeBooleanProp(true),
+  /** 签名区高度 (px) */
+  height: makeNumericProp<number | string>(200),
+  customClass: makeStringProp(''),
+  customStyle: { type: [String, Object] as any, default: '' },
+})
 
 const emit = defineEmits<{
   (e: 'update:modelValue', value: string): void
@@ -90,7 +88,9 @@ let painting = false
 let rect = { left: 0, top: 0 }
 
 const hasStroke = computed(() => strokes.value.length > 0)
-const showConfirm = computed(() => props.confirm || !props.closeButtonText || props.confirmButtonText)
+const showConfirm = computed(
+  () => props.confirm || !props.closeButtonText || props.confirmButtonText
+)
 const showActions = computed(() => props.closeButtonText || showConfirm.value)
 
 /* ---------- 画布尺寸测量 ---------- */

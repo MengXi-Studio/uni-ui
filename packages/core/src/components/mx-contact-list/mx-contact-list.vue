@@ -9,7 +9,10 @@
         :center="true"
         @click="onSelect(item)"
       >
-        <view class="mx-contact-list__radio" :class="{ 'mx-contact-list__radio--active': isSelected(item) }">
+        <view
+          class="mx-contact-list__radio"
+          :class="{ 'mx-contact-list__radio--active': isSelected(item) }"
+        >
           <text v-if="isSelected(item)" class="mx-contact-list__radio-check">✓</text>
         </view>
       </mx-cell>
@@ -36,22 +39,16 @@ export interface ContactListItem {
   tel: string
 }
 
-const props = withDefaults(
-  defineProps({
-    /** 选中的联系人 id (v-model) */
-    modelValue: { type: [String, Number] as any, default: '' },
-    /** 联系人列表 */
-    list: { type: Array as any, default: () => [] as ContactListItem[] },
-    /** 底部添加按钮文字补充 */
-    addText: makeStringProp('联系人'),
-    customClass: makeStringProp(''),
-    customStyle: { type: [String, Object] as any, default: '' },
-  }),
-  {
-    modelValue: '',
-    addText: '联系人',
-  }
-)
+const props = defineProps({
+  /** 选中的联系人 id (v-model) */
+  modelValue: { type: [String, Number] as any, default: '' },
+  /** 联系人列表 */
+  list: { type: Array as any, default: () => [] as ContactListItem[] },
+  /** 底部添加按钮文字补充 */
+  addText: makeStringProp('联系人'),
+  customClass: makeStringProp(''),
+  customStyle: { type: [String, Object] as any, default: '' },
+})
 
 const emit = defineEmits<{
   (e: 'update:modelValue', value: string | number): void
@@ -84,7 +81,9 @@ const onAdd = () => emit('add')
     font-size: 12px;
     border: 1px solid var(--mx-text-color-3);
     border-radius: 50%;
-    transition: border-color var(--mx-duration-fast), background-color var(--mx-duration-fast);
+    transition:
+      border-color var(--mx-duration-fast),
+      background-color var(--mx-duration-fast);
 
     &--active {
       background: var(--mx-primary-color);

@@ -21,11 +21,7 @@
         </view>
 
         <!-- 删除按钮 -->
-        <view
-          v-if="!disabled"
-          class="mx-uploader__delete"
-          @click.stop="onDelete(file, index)"
-        >
+        <view v-if="!disabled" class="mx-uploader__delete" @click.stop="onDelete(file, index)">
           <text class="mx-uploader__delete-icon">×</text>
         </view>
 
@@ -66,40 +62,30 @@ interface UploaderFile {
   [key: string]: any
 }
 
-const props = withDefaults(
-  defineProps({
-    /** 已上传文件列表 (v-model) */
-    modelValue: { type: Array as any, default: () => [] } as any,
-    /** 最大上传数量 */
-    maxCount: makeNumericProp<number | string>(1),
-    /** 文件类型过滤 (逗号分隔的 MIME 或扩展名) */
-    accept: makeStringProp('image/*'),
-    /** 上传文件大小限制 (byte) */
-    maxSize: makeNumericProp<number | string>(Infinity),
-    /** 是否多选 */
-    multiple: makeBooleanProp(false),
-    /** 是否禁用上传 (仍可预览) */
-    disabled: makeBooleanProp(false),
-    /** 是否只读 (完全不可交互) */
-    readonly: makeBooleanProp(false),
-    /** 预览尺寸 (rpx / px / number) */
-    previewSize: makeNumericProp<number | string>(80),
-    /** 读取结果类型 */
-    resultType: makeStringProp<UploaderResultType>('dataUrl'),
-    /** 是否预览图片 */
-    previewImage: makeBooleanProp(true),
-    customClass: makeStringProp(''),
-    customStyle: { type: [String, Object] as any, default: '' },
-  }),
-  {
-    maxCount: 1,
-    maxSize: Infinity,
-    accept: 'image/*',
-    previewSize: 80,
-    resultType: 'dataUrl',
-    previewImage: true,
-  }
-)
+const props = defineProps({
+  /** 已上传文件列表 (v-model) */
+  modelValue: { type: Array as any, default: () => [] } as any,
+  /** 最大上传数量 */
+  maxCount: makeNumericProp<number | string>(1),
+  /** 文件类型过滤 (逗号分隔的 MIME 或扩展名) */
+  accept: makeStringProp('image/*'),
+  /** 上传文件大小限制 (byte) */
+  maxSize: makeNumericProp<number | string>(Infinity),
+  /** 是否多选 */
+  multiple: makeBooleanProp(false),
+  /** 是否禁用上传 (仍可预览) */
+  disabled: makeBooleanProp(false),
+  /** 是否只读 (完全不可交互) */
+  readonly: makeBooleanProp(false),
+  /** 预览尺寸 (rpx / px / number) */
+  previewSize: makeNumericProp<number | string>(80),
+  /** 读取结果类型 */
+  resultType: makeStringProp<UploaderResultType>('dataUrl'),
+  /** 是否预览图片 */
+  previewImage: makeBooleanProp(true),
+  customClass: makeStringProp(''),
+  customStyle: { type: [String, Object] as any, default: '' },
+})
 
 const emit = defineEmits<{
   (e: 'update:modelValue', value: UploaderFile[]): void
@@ -110,12 +96,20 @@ const emit = defineEmits<{
 }>()
 
 const fileStyle = computed(() => ({
-  width: typeof props.previewSize === 'number' ? `${props.previewSize}px` : (props.previewSize as string),
-  height: typeof props.previewSize === 'number' ? `${props.previewSize}px` : (props.previewSize as string),
+  width:
+    typeof props.previewSize === 'number'
+      ? `${props.previewSize}px`
+      : (props.previewSize as string),
+  height:
+    typeof props.previewSize === 'number'
+      ? `${props.previewSize}px`
+      : (props.previewSize as string),
 }))
 
 const isImage = (file: UploaderFile) =>
-  file.type ? file.type.indexOf('image') === 0 : /\.(png|jpe?g|gif|webp|bmp|svg)(\?|$)/i.test(file.url)
+  file.type
+    ? file.type.indexOf('image') === 0
+    : /\.(png|jpe?g|gif|webp|bmp|svg)(\?|$)/i.test(file.url)
 
 const fileUrl = (file: UploaderFile) => file.url
 
@@ -164,7 +158,10 @@ function onChoose() {
       if (valid.length) {
         const next = [...(props.modelValue || []), ...valid].slice(0, props.maxCount)
         emit('update:modelValue', next)
-        emit('change', valid, { name: valid[0]?.name || '', index: (props.modelValue || []).length })
+        emit('change', valid, {
+          name: valid[0]?.name || '',
+          index: (props.modelValue || []).length,
+        })
       }
     },
   })

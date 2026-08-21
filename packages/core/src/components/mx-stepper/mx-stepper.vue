@@ -1,11 +1,7 @@
 <template>
   <view
     class="mx-stepper"
-    :class="[
-      `mx-stepper--${theme}`,
-      { 'mx-stepper--disabled': disabled },
-      customClass,
-    ]"
+    :class="[`mx-stepper--${theme}`, { 'mx-stepper--disabled': disabled }, customClass]"
     :style="customStyle"
   >
     <view
@@ -48,38 +44,28 @@ import { toNumber } from '../../utils/unit'
 
 type StepperTheme = 'default' | 'round' | 'red'
 
-const props = withDefaults(
-  defineProps({
-    /** 当前值 */
-    modelValue: { type: [Number, String] as any, default: '' },
-    /** 最小值 */
-    min: makeNumericProp(1),
-    /** 最大值 */
-    max: { type: Number, default: Infinity },
-    /** 步长 */
-    step: makeNumericProp(1),
-    /** 是否只能输入整数 */
-    integer: makeBooleanProp(false),
-    /** 是否禁用 */
-    disabled: makeBooleanProp(false),
-    /** 主题风格: default / round / red */
-    theme: makeStringProp<StepperTheme>('round'),
-    /** 是否支持长按连续加减 */
-    longPress: makeBooleanProp(true),
-    /** 长按触发间隔 (ms) */
-    longPressInterval: makeNumericProp<number | string>('200'),
-    customClass: makeStringProp(''),
-    customStyle: { type: [String, Object] as any, default: '' },
-  }),
-  {
-    min: 1,
-    max: Infinity,
-    step: 1,
-    theme: 'round',
-    longPress: true,
-    longPressInterval: '200',
-  }
-)
+const props = defineProps({
+  /** 当前值 */
+  modelValue: { type: [Number, String] as any, default: '' },
+  /** 最小值 */
+  min: makeNumericProp(1),
+  /** 最大值 */
+  max: { type: Number, default: Infinity },
+  /** 步长 */
+  step: makeNumericProp(1),
+  /** 是否只能输入整数 */
+  integer: makeBooleanProp(false),
+  /** 是否禁用 */
+  disabled: makeBooleanProp(false),
+  /** 主题风格: default / round / red */
+  theme: makeStringProp<StepperTheme>('round'),
+  /** 是否支持长按连续加减 */
+  longPress: makeBooleanProp(true),
+  /** 长按触发间隔 (ms) */
+  longPressInterval: makeNumericProp<number | string>('200'),
+  customClass: makeStringProp(''),
+  customStyle: { type: [String, Object] as any, default: '' },
+})
 
 const emit = defineEmits<{
   (e: 'update:modelValue', value: number): void
@@ -115,9 +101,9 @@ const inputValue = computed(() =>
     : String(clamped.value)
 )
 
-const minusDisabled = computed(() => disabled || clamped.value <= min.value)
+const minusDisabled = computed(() => props.disabled || clamped.value <= min.value)
 const plusDisabled = computed(() => {
-  if (disabled) return true
+  if (props.disabled) return true
   if (max.value === Infinity) return false
   return clamped.value >= max.value
 })
@@ -163,25 +149,31 @@ const onPlus = () => {
 const onMinusStart = () => {
   if (!props.longPress || minusDisabled.value) return
   clearPress()
-  timer = setInterval(() => {
-    if (minusDisabled.value) {
-      clearPress()
-      return
-    }
-    getStep(-1)
-  }, toNumber(props.longPressInterval, 200))
+  timer = setInterval(
+    () => {
+      if (minusDisabled.value) {
+        clearPress()
+        return
+      }
+      getStep(-1)
+    },
+    toNumber(props.longPressInterval, 200)
+  )
 }
 
 const onPlusStart = () => {
   if (!props.longPress || plusDisabled.value) return
   clearPress()
-  timer = setInterval(() => {
-    if (plusDisabled.value) {
-      clearPress()
-      return
-    }
-    getStep(1)
-  }, toNumber(props.longPressInterval, 200))
+  timer = setInterval(
+    () => {
+      if (plusDisabled.value) {
+        clearPress()
+        return
+      }
+      getStep(1)
+    },
+    toNumber(props.longPressInterval, 200)
+  )
 }
 
 const onPressEnd = () => clearPress()

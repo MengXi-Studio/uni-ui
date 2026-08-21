@@ -1,7 +1,11 @@
 <template>
   <view class="mx-pagination" :class="customClass" :style="paginationStyle">
     <view class="mx-pagination__page-btns">
-      <view class="mx-pagination__prev" :class="[{ 'mx-pagination__btn--disabled': isFirst }]" @click="setCurrent(currentPage - 1)">
+      <view
+        class="mx-pagination__prev"
+        :class="[{ 'mx-pagination__btn--disabled': isFirst }]"
+        @click="setCurrent(currentPage - 1)"
+      >
         <slot name="prev-text">
           <text class="mx-pagination__btn-text">{{ prevText }}</text>
         </slot>
@@ -27,7 +31,11 @@
         </template>
       </view>
 
-      <view class="mx-pagination__next" :class="[{ 'mx-pagination__btn--disabled': isLast }]" @click="setCurrent(currentPage + 1)">
+      <view
+        class="mx-pagination__next"
+        :class="[{ 'mx-pagination__btn--disabled': isLast }]"
+        @click="setCurrent(currentPage + 1)"
+      >
         <slot name="next-text">
           <text class="mx-pagination__btn-text">{{ nextText }}</text>
         </slot>
@@ -46,34 +54,26 @@
 import { computed } from 'vue'
 import { makeNumericProp, makeBooleanProp, makeStringProp } from '../shared/props'
 
-const props = withDefaults(
-  defineProps({
-    /** 当前页 (v-model) */
-    modelValue: makeNumericProp<number | string>(1),
-    /** 总条数 */
-    totalItems: makeNumericProp<number | string>(0),
-    /** 每页条数 */
-    pageSize: makeNumericProp<number | string>(10),
-    /** 页码数 */
-    pageCount: makeNumericProp<number | string>(0),
-    /** 是否显示总条数 */
-    showPageSize: makeBooleanProp(false),
-    /** 是否强制显示省略号 */
-    forceEllipses: makeBooleanProp(true),
-    /** 上一页文案 */
-    prevText: makeStringProp('上一页'),
-    /** 下一页文案 */
-    nextText: makeStringProp('下一页'),
-    customClass: makeStringProp(''),
-    customStyle: { type: [String, Object] as any, default: '' },
-  }),
-  {
-    modelValue: 1,
-    totalItems: 0,
-    pageSize: 10,
-    forceEllipses: true,
-  }
-)
+const props = defineProps({
+  /** 当前页 (v-model) */
+  modelValue: makeNumericProp<number | string>(1),
+  /** 总条数 */
+  totalItems: makeNumericProp<number | string>(0),
+  /** 每页条数 */
+  pageSize: makeNumericProp<number | string>(10),
+  /** 页码数 */
+  pageCount: makeNumericProp<number | string>(0),
+  /** 是否显示总条数 */
+  showPageSize: makeBooleanProp(false),
+  /** 是否强制显示省略号 */
+  forceEllipses: makeBooleanProp(true),
+  /** 上一页文案 */
+  prevText: makeStringProp('上一页'),
+  /** 下一页文案 */
+  nextText: makeStringProp('下一页'),
+  customClass: makeStringProp(''),
+  customStyle: { type: [String, Object] as any, default: '' },
+})
 
 const emit = defineEmits<{
   (e: 'update:modelValue', current: number): void

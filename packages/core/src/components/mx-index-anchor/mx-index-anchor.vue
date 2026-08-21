@@ -26,25 +26,22 @@ type BarContext = {
   scrollTo: (index: string) => void
 }
 
-const props = withDefaults(
-  defineProps({
-    /** 索引字符 */
-    index: makeNumericProp<number | string>(''),
-    /** 自定义索引字符 */
-    customIndex: makeStringProp(''),
-    /** 是否使用索引插槽 */
-    useIndexSlot: makeBooleanProp(false),
-    /** 是否吸附在顶部 */
-    sticky: makeBooleanProp(true),
-    customClass: makeStringProp(''),
-    customStyle: { type: [String, Object] as any, default: '' },
-  })
-)
+const props = defineProps({
+  /** 索引字符 */
+  index: makeNumericProp<number | string>(''),
+  /** 自定义索引字符 */
+  customIndex: makeStringProp(''),
+  /** 是否使用索引插槽 */
+  useIndexSlot: makeBooleanProp(false),
+  /** 是否吸附在顶部 */
+  sticky: makeBooleanProp(true),
+  customClass: makeStringProp(''),
+  customStyle: { type: [String, Object] as any, default: '' },
+})
 
 const bar = inject<BarContext>('mxIndexBar', null)
 
-const displayIndex = () =>
-  props.customIndex !== '' ? props.customIndex : String(props.index)
+const displayIndex = () => (props.customIndex !== '' ? props.customIndex : String(props.index))
 
 onMounted(() => {
   bar?.register({ index: displayIndex() })

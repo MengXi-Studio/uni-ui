@@ -38,7 +38,9 @@
             <text v-if="priceDecimal" class="mx-card__price-decimal">.{{ priceDecimal }}</text>
             <text v-if="originPrice" class="mx-card__origin-price">{{ originPriceText }}</text>
           </view>
-          <text v-if="num" class="mx-card__num" :class="[`mx-card__num--${numType}`]">{{ numText }}</text>
+          <text v-if="num" class="mx-card__num" :class="[`mx-card__num--${numType}`]">
+            {{ numText }}
+          </text>
         </slot>
       </view>
     </view>
@@ -51,42 +53,34 @@ import { makeStringProp, makeBooleanProp, makeNumericProp } from '../shared/prop
 
 type CardNumType = 'text' | 'grid'
 
-const props = withDefaults(
-  defineProps({
-    /** 商品图片地址 */
-    img: makeStringProp(''),
-    /** 商品名称 */
-    title: makeStringProp(''),
-    /** 商品描述 */
-    desc: makeStringProp(''),
-    /** 商品标签 */
-    tag: makeStringProp(''),
-    /** 商品数量 */
-    num: makeStringProp(''),
-    /** 价格 */
-    price: makeNumericProp<number | string>(0),
-    /** 原价 */
-    originPrice: makeNumericProp<number | string>(0),
-    /** 价格货币符号 */
-    currency: makeStringProp('¥'),
-    /** 数量显示方式: text 文本 / grid 网格角标 */
-    numType: makeStringProp<CardNumType>('text'),
-    /** 商品图点击跳转地址 (由使用方自行处理导航) */
-    thumbLink: makeStringProp(''),
-    /** 是否懒加载图片 */
-    lazyLoad: makeBooleanProp(false),
-    /** 内容是否居中 */
-    centered: makeBooleanProp(false),
-    customClass: makeStringProp(''),
-    customStyle: { type: [String, Object] as any, default: '' },
-  }),
-  {
-    price: 0,
-    originPrice: 0,
-    currency: '¥',
-    numType: 'text',
-  }
-)
+const props = defineProps({
+  /** 商品图片地址 */
+  img: makeStringProp(''),
+  /** 商品名称 */
+  title: makeStringProp(''),
+  /** 商品描述 */
+  desc: makeStringProp(''),
+  /** 商品标签 */
+  tag: makeStringProp(''),
+  /** 商品数量 */
+  num: makeStringProp(''),
+  /** 价格 */
+  price: makeNumericProp<number | string>(0),
+  /** 原价 */
+  originPrice: makeNumericProp<number | string>(0),
+  /** 价格货币符号 */
+  currency: makeStringProp('¥'),
+  /** 数量显示方式: text 文本 / grid 网格角标 */
+  numType: makeStringProp<CardNumType>('text'),
+  /** 商品图点击跳转地址 (由使用方自行处理导航) */
+  thumbLink: makeStringProp(''),
+  /** 是否懒加载图片 */
+  lazyLoad: makeBooleanProp(false),
+  /** 内容是否居中 */
+  centered: makeBooleanProp(false),
+  customClass: makeStringProp(''),
+  customStyle: { type: [String, Object] as any, default: '' },
+})
 
 const emit = defineEmits<{
   (e: 'click', event: Event): void
@@ -102,7 +96,9 @@ function toPrice(value: number | string): number {
 /** 价格小数部分 (保留 2 位) */
 const priceText = computed(() => toPrice(props.price).toFixed(2))
 const priceMain = computed(() => priceText.value.split('.')[0])
-const priceDecimal = computed(() => (priceText.value.split('.')[1] === '00' ? '' : priceText.value.split('.')[1]))
+const priceDecimal = computed(() =>
+  priceText.value.split('.')[1] === '00' ? '' : priceText.value.split('.')[1]
+)
 
 /** 原价文本 */
 const originPriceText = computed(() => {

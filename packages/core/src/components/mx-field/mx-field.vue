@@ -62,11 +62,7 @@
       <slot name="extra" />
     </view>
 
-    <view
-      v-if="showRightArea"
-      class="mx-field__right-icon"
-      @click.stop="onClickRightIcon"
-    >
+    <view v-if="showRightArea" class="mx-field__right-icon" @click.stop="onClickRightIcon">
       <slot name="right-icon">
         <text v-if="showClear" class="mx-field__clear">×</text>
         <mx-icon v-else-if="rightIconName" :name="rightIconName" />
@@ -85,60 +81,52 @@ type FieldType = 'text' | 'number' | 'password' | 'textarea'
 type FieldLabelAlign = 'left' | 'right' | 'top'
 type FieldInputAlign = 'left' | 'right' | 'center'
 
-const props = withDefaults(
-  defineProps({
-    /** 输入值 (v-model) */
-    modelValue: { type: [String, Number] as any, default: '' },
-    /** 左侧标签 */
-    label: makeStringProp(''),
-    /** 表单项名称, 供表单校验使用 */
-    name: makeStringProp(''),
-    /** 输入框类型 */
-    type: makeStringProp<FieldType>('text'),
-    /** 输入框内容对齐 (别名: valueAlign) */
-    inputAlign: makeStringProp<FieldInputAlign>('left'),
-    /** 输入框内容对齐 (旧别名) */
-    valueAlign: makeStringProp<FieldInputAlign>(''),
-    /** 标签宽度 */
-    labelWidth: makeNumericProp<number | string | undefined>(undefined),
-    /** 标签对齐 */
-    labelAlign: makeStringProp<FieldLabelAlign>('left'),
-    /** 占位符 */
-    placeholder: makeStringProp(''),
-    /** 是否禁用 */
-    disabled: makeBooleanProp(false),
-    /** 是否只读 */
-    readonly: makeBooleanProp(false),
-    /** 是否显示清除按钮 */
-    clearable: makeBooleanProp(false),
-    /** 最大输入长度 */
-    maxlength: makeNumericProp<number | undefined>(undefined),
-    /** textarea 自适应高度 */
-    autosize: { type: [Boolean, Object] as any, default: false },
-    /** 是否必填 (显示星号) */
-    required: makeBooleanProp(false),
-    /** 是否显示右侧箭头 */
-    isLink: makeBooleanProp(false),
-    /** 尺寸, large 会放大输入区 */
-    size: makeStringProp(''),
-    /** 是否显示字数统计 */
-    showWordLimit: makeBooleanProp(false),
-    /** 左侧图标名 */
-    leftIconName: makeStringProp(''),
-    /** 右侧图标名 */
-    rightIconName: makeStringProp(''),
-    /** 是否显示底部边框 */
-    border: makeBooleanProp(true),
-    customClass: makeStringProp(''),
-    customStyle: { type: [String, Object] as any, default: '' },
-  }),
-  {
-    type: 'text',
-    inputAlign: 'left',
-    labelAlign: 'left',
-    border: true,
-  }
-)
+const props = defineProps({
+  /** 输入值 (v-model) */
+  modelValue: { type: [String, Number] as any, default: '' },
+  /** 左侧标签 */
+  label: makeStringProp(''),
+  /** 表单项名称, 供表单校验使用 */
+  name: makeStringProp(''),
+  /** 输入框类型 */
+  type: makeStringProp<FieldType>('text'),
+  /** 输入框内容对齐 (别名: valueAlign) */
+  inputAlign: makeStringProp<FieldInputAlign>('left'),
+  /** 输入框内容对齐 (旧别名) */
+  valueAlign: makeStringProp<FieldInputAlign>(''),
+  /** 标签宽度 */
+  labelWidth: makeNumericProp<number | string | undefined>(undefined),
+  /** 标签对齐 */
+  labelAlign: makeStringProp<FieldLabelAlign>('left'),
+  /** 占位符 */
+  placeholder: makeStringProp(''),
+  /** 是否禁用 */
+  disabled: makeBooleanProp(false),
+  /** 是否只读 */
+  readonly: makeBooleanProp(false),
+  /** 是否显示清除按钮 */
+  clearable: makeBooleanProp(false),
+  /** 最大输入长度 */
+  maxlength: makeNumericProp<number | undefined>(undefined),
+  /** textarea 自适应高度 */
+  autosize: { type: [Boolean, Object] as any, default: false },
+  /** 是否必填 (显示星号) */
+  required: makeBooleanProp(false),
+  /** 是否显示右侧箭头 */
+  isLink: makeBooleanProp(false),
+  /** 尺寸, large 会放大输入区 */
+  size: makeStringProp(''),
+  /** 是否显示字数统计 */
+  showWordLimit: makeBooleanProp(false),
+  /** 左侧图标名 */
+  leftIconName: makeStringProp(''),
+  /** 右侧图标名 */
+  rightIconName: makeStringProp(''),
+  /** 是否显示底部边框 */
+  border: makeBooleanProp(true),
+  customClass: makeStringProp(''),
+  customStyle: { type: [String, Object] as any, default: '' },
+})
 
 const emit = defineEmits<{
   (e: 'update:modelValue', value: string | number): void
@@ -178,7 +166,8 @@ const computedInputAlign = computed(() => props.valueAlign || props.inputAlign)
 const labelStyle = computed(() => {
   const style: Record<string, string> = {}
   if (props.labelWidth !== undefined && props.labelWidth !== '') {
-    style.width = typeof props.labelWidth === 'number' ? `${props.labelWidth}px` : (props.labelWidth as string)
+    style.width =
+      typeof props.labelWidth === 'number' ? `${props.labelWidth}px` : (props.labelWidth as string)
   }
   return style
 })
@@ -189,7 +178,8 @@ const showRightArea = computed(
 )
 
 const showClear = computed(
-  () => props.clearable && !props.disabled && !props.readonly && String(props.modelValue || '') !== ''
+  () =>
+    props.clearable && !props.disabled && !props.readonly && String(props.modelValue || '') !== ''
 )
 
 const onInput = (event: Event) => {

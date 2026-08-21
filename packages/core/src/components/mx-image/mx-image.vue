@@ -26,33 +26,26 @@ import { makeStringProp, makeBooleanProp, makeNumericProp } from '../shared/prop
 import { addUnit } from '../../utils/unit'
 import MxLoading from '../mx-loading/mx-loading.vue'
 
-const props = withDefaults(
-  defineProps({
-    /** 图片地址 */
-    src: makeStringProp(''),
-    /** 图片裁剪/缩放模式 */
-    mode: makeStringProp('aspectFill'),
-    /** 宽度 */
-    width: makeNumericProp<number | string | undefined>(undefined),
-    /** 高度 */
-    height: makeNumericProp<number | string | undefined>(undefined),
-    /** 圆角 */
-    radius: makeNumericProp<number | string | undefined>(undefined),
-    /** 是否圆形 */
-    round: makeBooleanProp(false),
-    /** 是否显示加载占位 */
-    showLoading: makeBooleanProp(true),
-    /** 是否显示错误占位 */
-    showError: makeBooleanProp(true),
-    customClass: makeStringProp(''),
-    customStyle: { type: [String, Object] as any, default: '' },
-  }),
-  {
-    mode: 'aspectFill',
-    showLoading: true,
-    showError: true,
-  }
-)
+const props = defineProps({
+  /** 图片地址 */
+  src: makeStringProp(''),
+  /** 图片裁剪/缩放模式 */
+  mode: makeStringProp('aspectFill'),
+  /** 宽度 */
+  width: makeNumericProp<number | string | undefined>(undefined),
+  /** 高度 */
+  height: makeNumericProp<number | string | undefined>(undefined),
+  /** 圆角 */
+  radius: makeNumericProp<number | string | undefined>(undefined),
+  /** 是否圆形 */
+  round: makeBooleanProp(false),
+  /** 是否显示加载占位 */
+  showLoading: makeBooleanProp(true),
+  /** 是否显示错误占位 */
+  showError: makeBooleanProp(true),
+  customClass: makeStringProp(''),
+  customStyle: { type: [String, Object] as any, default: '' },
+})
 
 const emit = defineEmits<{ (e: 'click'): void; (e: 'load'): void; (e: 'error'): void }>()
 
@@ -65,7 +58,8 @@ const wrapperStyle = computed(() => {
   if (props.height !== undefined) style.height = addUnit(props.height) as string
   if (props.radius !== undefined) style.borderRadius = addUnit(props.radius) as string
   if (props.round && props.radius === undefined) style.borderRadius = '50%'
-  if (typeof props.customStyle === 'string' && props.customStyle) Object.assign(style, parseStyle(props.customStyle))
+  if (typeof props.customStyle === 'string' && props.customStyle)
+    Object.assign(style, parseStyle(props.customStyle))
   else if (props.customStyle) Object.assign(style, props.customStyle as Record<string, string>)
   return style
 })

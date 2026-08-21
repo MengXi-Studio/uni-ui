@@ -34,31 +34,26 @@ import MxTab from '../mx-tab/mx-tab.vue'
 
 type Pane = { name: string | number; index?: number; title: string; disabled: boolean }
 
-const props = withDefaults(
-  defineProps({
-    /** 当前激活标签名称 (v-model) */
-    modelValue: makeNumericProp<string | number>(''),
-    /** 是否吸顶 */
-    sticky: makeBooleanProp(false),
-    /** 是否开启切换动画 */
-    animated: makeBooleanProp(false),
-    /** 是否开启手势滑动切换 */
-    swipeable: makeBooleanProp(false),
-    /** 底部指示条宽度 */
-    lineWidth: makeNumericProp<string | number>(40),
-    /** 激活颜色 */
-    activeColor: makeStringProp(''),
-    /** 未激活文字颜色 */
-    color: makeStringProp(''),
-    /** 指示条颜色, 默认跟随 activeColor */
-    lineColor: makeStringProp(''),
-    customClass: makeStringProp(''),
-    customStyle: { type: [String, Object] as any, default: '' },
-  }),
-  {
-    lineWidth: 40,
-  }
-)
+const props = defineProps({
+  /** 当前激活标签名称 (v-model) */
+  modelValue: makeNumericProp<string | number>(''),
+  /** 是否吸顶 */
+  sticky: makeBooleanProp(false),
+  /** 是否开启切换动画 */
+  animated: makeBooleanProp(false),
+  /** 是否开启手势滑动切换 */
+  swipeable: makeBooleanProp(false),
+  /** 底部指示条宽度 */
+  lineWidth: makeNumericProp<string | number>(40),
+  /** 激活颜色 */
+  activeColor: makeStringProp(''),
+  /** 未激活文字颜色 */
+  color: makeStringProp(''),
+  /** 指示条颜色, 默认跟随 activeColor */
+  lineColor: makeStringProp(''),
+  customClass: makeStringProp(''),
+  customStyle: { type: [String, Object] as any, default: '' },
+})
 
 const emit = defineEmits<{
   (e: 'update:modelValue', name: string | number): void

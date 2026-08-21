@@ -15,20 +15,18 @@ export type CollapseContext = {
   duration: { value: number }
 }
 
-const props = withDefaults(
-  defineProps({
-    /** 当前展开的 Item 名称 (v-model, 数组或字符串/数字) */
-    modelValue: { type: [Array, String, Number] as any, default: null },
-    /** 是否开启手风琴模式 */
-    accordion: makeBooleanProp(false),
-    /** 是否禁用 */
-    disabled: makeBooleanProp(false),
-    /** 切换动画时长 */
-    duration: { type: Number, default: 300 },
-    customClass: makeStringProp(''),
-    customStyle: { type: [String, Object] as any, default: '' },
-  })
-)
+const props = defineProps({
+  /** 当前展开的 Item 名称 (v-model, 数组或字符串/数字) */
+  modelValue: { type: [Array, String, Number] as any, default: null },
+  /** 是否开启手风琴模式 */
+  accordion: makeBooleanProp(false),
+  /** 是否禁用 */
+  disabled: makeBooleanProp(false),
+  /** 切换动画时长 */
+  duration: { type: Number, default: 300 },
+  customClass: makeStringProp(''),
+  customStyle: { type: [String, Object] as any, default: '' },
+})
 
 const emit = defineEmits<{
   (e: 'update:modelValue', value: unknown): void
@@ -59,7 +57,12 @@ const toggle = (name: string | number) => {
   emit('change', next, name)
 }
 
-const itemContexts: CollapseContext = { isActive, toggle, disabled: computed(() => props.disabled), duration: computed(() => props.duration) }
+const itemContexts: CollapseContext = {
+  isActive,
+  toggle,
+  disabled: computed(() => props.disabled),
+  duration: computed(() => props.duration),
+}
 provide('mxCollapse', itemContexts)
 </script>
 

@@ -12,15 +12,12 @@
     <text v-if="closeable" class="mx-image-preview__close" @click="onClose">×</text>
 
     <!-- 顶部索引 1/3 -->
-    <view v-if="showIndex" class="mx-image-preview__index">{{ current + 1 }}/{{ images.length }}</view>
+    <view v-if="showIndex" class="mx-image-preview__index">
+      {{ current + 1 }}/{{ images.length }}
+    </view>
 
     <!-- 全屏 swiper 多图 -->
-    <swiper
-      class="mx-image-preview__swiper"
-      :current="current"
-      @change="onChange"
-      @touchmove.stop
-    >
+    <swiper class="mx-image-preview__swiper" :current="current" @change="onChange" @touchmove.stop>
       <swiper-item v-for="(img, i) in images" :key="i" class="mx-image-preview__item">
         <view class="mx-image-preview__image-wrap" @click="onClickImage">
           <image
@@ -41,41 +38,28 @@ import { computed, ref, watch } from 'vue'
 import { makeStringProp, makeBooleanProp, makeNumericProp, makeArrayProp } from '../shared/props'
 import { useTransition } from '../../composables/use-transition'
 
-const props = withDefaults(
-  defineProps({
-    /** 是否显示 */
-    show: makeBooleanProp(false),
-    /** 图片地址列表 */
-    images: makeArrayProp<string>([]),
-    /** 初始展示第几张 */
-    startPosition: makeNumericProp<number>(0),
-    /** 是否显示关闭按钮 */
-    closeable: makeBooleanProp(true),
-    /** 是否显示索引 */
-    showIndex: makeBooleanProp(true),
-    /** 是否显示指示器 (轮播点) */
-    showIndicators: makeBooleanProp(false),
-    /** 是否显示遮罩 */
-    overlay: makeBooleanProp(true),
-    /** z-index */
-    zIndex: makeNumericProp<number | string>(2000),
-    /** 过渡时长 */
-    duration: makeNumericProp<number | string>(300),
-    customClass: makeStringProp(''),
-    customStyle: { type: [String, Object] as any, default: '' },
-  }),
-  {
-    show: false,
-    images: [],
-    startPosition: 0,
-    closeable: true,
-    showIndex: true,
-    showIndicators: false,
-    overlay: true,
-    zIndex: 2000,
-    duration: 300,
-  }
-)
+const props = defineProps({
+  /** 是否显示 */
+  show: makeBooleanProp(false),
+  /** 图片地址列表 */
+  images: makeArrayProp<string>([]),
+  /** 初始展示第几张 */
+  startPosition: makeNumericProp<number>(0),
+  /** 是否显示关闭按钮 */
+  closeable: makeBooleanProp(true),
+  /** 是否显示索引 */
+  showIndex: makeBooleanProp(true),
+  /** 是否显示指示器 (轮播点) */
+  showIndicators: makeBooleanProp(false),
+  /** 是否显示遮罩 */
+  overlay: makeBooleanProp(true),
+  /** z-index */
+  zIndex: makeNumericProp<number | string>(2000),
+  /** 过渡时长 */
+  duration: makeNumericProp<number | string>(300),
+  customClass: makeStringProp(''),
+  customStyle: { type: [String, Object] as any, default: '' },
+})
 
 const emit = defineEmits<{
   (e: 'update:show', value: boolean): void
@@ -83,7 +67,10 @@ const emit = defineEmits<{
   (e: 'change', value: number): void
 }>()
 
-const transition = useTransition(computed(() => props.show), Number(props.duration) || 300)
+const transition = useTransition(
+  computed(() => props.show),
+  Number(props.duration) || 300
+)
 
 const current = ref(Number(props.startPosition) || 0)
 
@@ -101,7 +88,8 @@ const zoom = ref(1)
 const rootStyle = computed(() => {
   const style: Record<string, string> = { zIndex: String(props.zIndex) }
   if (props.overlay) style.background = 'rgba(0, 0, 0, 0.9)'
-  if (typeof props.customStyle === 'string' && props.customStyle) Object.assign(style, parseStyle(props.customStyle))
+  if (typeof props.customStyle === 'string' && props.customStyle)
+    Object.assign(style, parseStyle(props.customStyle))
   else if (props.customStyle) Object.assign(style, props.customStyle as Record<string, string>)
   return style
 })

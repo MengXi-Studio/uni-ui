@@ -2,36 +2,35 @@
  * 平台判断工具函数
  */
 
-/// <reference path="../types/uni-app.d.ts" />
-
 /**
  * 判断当前运行平台
  */
 export const platform = {
   /** H5 */
   isH5: process.env.UNI_PLATFORM === 'h5',
-  
+
   /** 小程序 */
-  isMp: process.env.UNI_PLATFORM === 'mp-weixin' || 
-        process.env.UNI_PLATFORM === 'mp-alipay' || 
-        process.env.UNI_PLATFORM === 'mp-baidu' || 
-        process.env.UNI_PLATFORM === 'mp-toutiao',
-  
+  isMp:
+    process.env.UNI_PLATFORM === 'mp-weixin' ||
+    process.env.UNI_PLATFORM === 'mp-alipay' ||
+    process.env.UNI_PLATFORM === 'mp-baidu' ||
+    process.env.UNI_PLATFORM === 'mp-toutiao',
+
   /** 微信小程序 */
   isWeixinMp: process.env.UNI_PLATFORM === 'mp-weixin',
-  
+
   /** 支付宝小程序 */
   isAlipayMp: process.env.UNI_PLATFORM === 'mp-alipay',
-  
+
   /** 百度小程序 */
   isBaiduMp: process.env.UNI_PLATFORM === 'mp-baidu',
-  
+
   /** 头条小程序 */
   isToutiaoMp: process.env.UNI_PLATFORM === 'mp-toutiao',
-  
+
   /** App */
   isApp: process.env.UNI_PLATFORM === 'app',
-  
+
   /** iOS App (惰性求值, 避免模块加载期调用 getSystemInfo) */
   get isIOS() {
     return uni.getSystemInfoSync().platform === 'ios'
@@ -41,21 +40,21 @@ export const platform = {
   get isAndroid() {
     return uni.getSystemInfoSync().platform === 'android'
   },
-  
+
   /** 微信公众号 */
   isWechat: () => {
     if (!platform.isH5) return false
     const ua = navigator.userAgent.toLowerCase()
     return ua.includes('micromessenger')
   },
-  
+
   /** 微博 */
   isWeibo: () => {
     if (!platform.isH5) return false
     const ua = navigator.userAgent.toLowerCase()
     return ua.includes('weibo')
   },
-  
+
   /** QQ */
   isQQ: () => {
     if (!platform.isH5) return false
@@ -81,7 +80,7 @@ export function onPlatform<T>(callbacks: {
   default?: () => T
 }): T | undefined {
   const platform = getPlatformName()
-  
+
   if (platform === 'h5' && callbacks.h5) {
     return callbacks.h5()
   } else if (platform.startsWith('mp-') && callbacks.mp) {
@@ -91,7 +90,7 @@ export function onPlatform<T>(callbacks: {
   } else if (callbacks.default) {
     return callbacks.default()
   }
-  
+
   return undefined
 }
 
@@ -107,8 +106,8 @@ export function hasAPI(apiName: string): boolean {
  */
 export function safeCallAPI<T extends keyof typeof uni>(
   apiName: T,
-  ...args: Parameters<typeof uni[T]>
-): Promise<ReturnType<typeof uni[T]>> {
+  ...args: Parameters<(typeof uni)[T]>
+): Promise<ReturnType<(typeof uni)[T]>> {
   return new Promise((resolve) => {
     const api = uni[apiName]
     if (typeof api === 'function') {

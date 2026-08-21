@@ -17,27 +17,20 @@ import { makeStringProp, makeNumericProp, makeBooleanProp } from '../shared/prop
 
 /** 时间片段 token (按长度优先匹配) */
 const TOKENS = ['DD', 'SS', 'HH', 'mm', 'ss', 'S'] as const
-type Token = typeof TOKENS[number]
+type Token = (typeof TOKENS)[number]
 
-const props = withDefaults(
-  defineProps({
-    /** 倒计时总时长 (毫秒) */
-    time: makeNumericProp<number>(0),
-    /** 时间格式化 */
-    format: makeStringProp('HH:mm:ss'),
-    /** 是否自动开始 */
-    autoStart: makeBooleanProp(true),
-    /** 是否以毫秒为单位展示 (显示 S / SS 片段) */
-    millisecond: makeBooleanProp(false),
-    customClass: makeStringProp(''),
-    customStyle: { type: [String, Object] as any, default: '' },
-  }),
-  {
-    time: 0,
-    format: 'HH:mm:ss',
-    autoStart: true,
-  }
-)
+const props = defineProps({
+  /** 倒计时总时长 (毫秒) */
+  time: makeNumericProp<number>(0),
+  /** 时间格式化 */
+  format: makeStringProp('HH:mm:ss'),
+  /** 是否自动开始 */
+  autoStart: makeBooleanProp(true),
+  /** 是否以毫秒为单位展示 (显示 S / SS 片段) */
+  millisecond: makeBooleanProp(false),
+  customClass: makeStringProp(''),
+  customStyle: { type: [String, Object] as any, default: '' },
+})
 
 const emit = defineEmits<{
   (e: 'finish'): void

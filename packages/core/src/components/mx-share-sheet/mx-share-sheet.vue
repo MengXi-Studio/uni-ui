@@ -38,7 +38,12 @@
       </view>
 
       <!-- 取消按钮 -->
-      <view v-if="cancelText" class="mx-share-sheet__cancel" hover-class="mx-share-sheet__cancel--active" @click="onCancel">
+      <view
+        v-if="cancelText"
+        class="mx-share-sheet__cancel"
+        hover-class="mx-share-sheet__cancel--active"
+        @click="onCancel"
+      >
         <text class="mx-share-sheet__cancel-text">{{ cancelText }}</text>
       </view>
     </view>
@@ -61,25 +66,20 @@ interface ShareOption {
   color?: string
 }
 
-const props = withDefaults(
-  defineProps({
-    /** 是否显示 */
-    show: makeBooleanProp(false),
-    /** 分享选项 */
-    options: makeArrayProp<ShareOption>(),
-    /** 标题 */
-    title: makeStringProp(''),
-    /** 取消按钮文案 */
-    cancelText: makeStringProp('取消'),
-    /** 描述文案 */
-    description: makeStringProp(''),
-    customClass: makeStringProp(''),
-    customStyle: { type: [String, Object] as any, default: '' },
-  }),
-  {
-    cancelText: '取消',
-  }
-)
+const props = defineProps({
+  /** 是否显示 */
+  show: makeBooleanProp(false),
+  /** 分享选项 */
+  options: makeArrayProp<ShareOption>(),
+  /** 标题 */
+  title: makeStringProp(''),
+  /** 取消按钮文案 */
+  cancelText: makeStringProp('取消'),
+  /** 描述文案 */
+  description: makeStringProp(''),
+  customClass: makeStringProp(''),
+  customStyle: { type: [String, Object] as any, default: '' },
+})
 
 const emit = defineEmits<{
   (e: 'update:show', value: boolean): void
@@ -110,7 +110,13 @@ const onCancel = () => {
   close()
 }
 
-defineExpose({ show: () => { showState.value = true; emit('update:show', true) }, close })
+defineExpose({
+  show: () => {
+    showState.value = true
+    emit('update:show', true)
+  },
+  close,
+})
 </script>
 
 <style lang="scss">

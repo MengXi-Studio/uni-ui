@@ -15,17 +15,14 @@ import { makeStringProp, makeNumericProp } from '../shared/props'
 
 type Justify = 'start' | 'end' | 'center' | 'space-around' | 'space-between' | 'space-evenly'
 
-const props = withDefaults(
-  defineProps({
-    /** 列元素之间的间距 (px) */
-    gutter: makeNumericProp<number | string>(0),
-    /** 主轴对齐方式 */
-    justify: makeStringProp<Justify>('start'),
-    customClass: { type: String, default: '' },
-    customStyle: { type: [String, Object] as any, default: '' },
-  }),
-  { justify: 'start' }
-)
+const props = defineProps({
+  /** 列元素之间的间距 (px) */
+  gutter: makeNumericProp<number | string>(0),
+  /** 主轴对齐方式 */
+  justify: makeStringProp<Justify>('start'),
+  customClass: { type: String, default: '' },
+  customStyle: { type: [String, Object] as any, default: '' },
+})
 
 const justifyMap: Record<string, string> = {
   start: 'flex-start',
@@ -48,7 +45,8 @@ const rowStyle = computed(() => {
     style.marginLeft = `${-gutter / 2}px`
     style.marginRight = `${-gutter / 2}px`
   }
-  if (typeof props.customStyle === 'string' && props.customStyle) Object.assign(style, parseStyle(props.customStyle))
+  if (typeof props.customStyle === 'string' && props.customStyle)
+    Object.assign(style, parseStyle(props.customStyle))
   else if (props.customStyle) Object.assign(style, props.customStyle as Record<string, string>)
   return style
 })
