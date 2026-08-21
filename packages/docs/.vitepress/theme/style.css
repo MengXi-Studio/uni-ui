@@ -27,7 +27,7 @@
 
   /* 布局宽度：更贴近 Vant 文档的阅读栏 */
   --vp-layout-max-width: 1440px;
-  --vp-content-max-width: 850px;
+  --vp-content-max-width: 920px;
   --vp-sidebar-width: 240px;
 
   /* 字体栈与 Vant 一致 */
@@ -42,18 +42,39 @@
   display: block;
 }
 .VPNavBar {
-  background: #011f40 !important;
+  background: #001529 !important;
   min-height: 60px !important;
+  border-bottom: none !important;
 }
 .VPNavBar .container {
-  background: #011f40 !important;
+  background: #001529 !important;
   border-bottom: none !important;
 }
 .VPNavBar .title,
 .VPNavBar .title .text {
   color: #fff !important;
   font-size: 18px;
-  letter-spacing: 1px;
+  letter-spacing: 0.5px;
+  font-weight: 600;
+}
+.VPNavBar .title::before {
+  content: '';
+  display: inline-block;
+  width: 22px;
+  height: 22px;
+  background: linear-gradient(135deg, #4fc3f7 0%, #1976d2 100%);
+  border-radius: 6px;
+  margin-right: 8px;
+  vertical-align: middle;
+  position: relative;
+  top: -1px;
+}
+.VPNavBar .title::after {
+  content: '（适用于 uni-app）';
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.55);
+  margin-left: 8px;
+  font-weight: 400;
 }
 .VPNavBar .logo,
 .VPNavBar .menu .link,
@@ -66,6 +87,94 @@
 .VPNavBar .hamburger .lines::after {
   background: #fff !important;
 }
+/* 隐藏默认搜索按钮（Vant 官网无顶部搜索） */
+.VPNavBar .VPNavBarSearch {
+  display: none !important;
+}
+/* 确保移动端菜单按钮可见 */
+.VPNavBar .VPNavBarHamburger {
+  display: flex !important;
+}
+/* 导航栏下拉菜单（深色背景适配） */
+.VPNavBar .VPNavBarMenu .VPFlyout .menu {
+  background: #001529 !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+}
+.VPNavBar .VPNavBarMenu .VPFlyout .menu .link {
+  color: rgba(255, 255, 255, 0.82) !important;
+}
+.VPNavBar .VPNavBarMenu .VPFlyout .menu .link:hover {
+  color: #fff !important;
+  background: rgba(255, 255, 255, 0.08) !important;
+}
+.VPNavBar .VPNavBarMenu .VPFlyout .menu .active {
+  color: #fff !important;
+}
+
+/* 导航栏右侧自定义图标区域 */
+.mx-nav-extra {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  margin-left: 12px;
+}
+.mx-nav-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  color: rgba(255, 255, 255, 0.7);
+  border-radius: 6px;
+  transition:
+    color 0.2s,
+    background 0.2s;
+  cursor: pointer;
+  background: transparent;
+  border: none;
+  padding: 0;
+}
+.mx-nav-icon:hover {
+  color: #fff;
+  background: rgba(255, 255, 255, 0.08);
+}
+.mx-nav-version {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  padding: 4px 8px;
+  margin-left: 4px;
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.7);
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 6px;
+  cursor: pointer;
+  transition:
+    color 0.2s,
+    background 0.2s;
+}
+.mx-nav-version:hover {
+  color: #fff;
+  background: rgba(255, 255, 255, 0.12);
+}
+.mx-nav-lang {
+  display: flex;
+  align-items: center;
+  padding: 4px 8px;
+  margin-left: 4px;
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.7);
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 6px;
+  cursor: pointer;
+  transition:
+    color 0.2s,
+    background 0.2s;
+}
+.mx-nav-lang:hover {
+  color: #fff;
+  background: rgba(255, 255, 255, 0.12);
+}
 
 /* ---------- 页面：浅灰底 + 内容区白色卡片 ---------- */
 :root {
@@ -73,54 +182,55 @@
 }
 .VPContent,
 .VPPage {
-  background: var(--vp-c-bg);
+  background: var(--vp-c-bg) !important;
 }
 .VPDoc {
+  background: #fff;
+  border-radius: 0;
+}
+.VPDoc .container {
   background: #fff;
 }
 
 /* ---------- 侧边栏（Vant 式分组） ---------- */
 .VPSidebar {
   padding-top: 0 !important;
-  background: #fff;
+  background: #fff !important;
   border-right: 1px solid var(--mx-border);
 }
-
-/* 品牌标题固定在侧边栏顶部 */
-.VPSidebar::before {
-  content: 'MengXi Uni-UI';
-  display: block;
-  padding: 22px 32px 18px;
-  font-size: 20px;
-  font-weight: 600;
-  color: var(--mx-text-1);
+.VPSidebar .nav {
+  background: #fff !important;
 }
 
 /* 分组标题 */
 .VPSidebarGroup {
-  padding: 6px 32px 8px;
+  padding: 0 !important;
+  margin: 0 !important;
 }
 .VPSidebarGroup .title,
-.VPSidebar h3 {
-  padding: 8px 0 6px !important;
-  font-size: 11px !important;
+.VPSidebar h3,
+.VPSidebar .group-title {
+  padding: 10px 24px 6px !important;
+  font-size: 12px !important;
   font-weight: 600 !important;
-  letter-spacing: 1px;
+  letter-spacing: 0.5px;
   color: var(--mx-text-3) !important;
-  text-transform: uppercase;
+  text-transform: none;
+  margin: 0 !important;
 }
-
 /* 侧边栏条目 */
 .VPSidebarItem {
-  padding: 0;
+  padding: 0 !important;
 }
 .VPSidebarItem .text {
-  font-size: 14px;
+  font-size: 13px;
   line-height: 2.2;
   color: var(--mx-text-1);
+  padding: 0 24px;
 }
 .VPSidebarItem .link {
-  padding: 3px 0;
+  padding: 2px 0 !important;
+  margin: 0 !important;
 }
 .VPSidebarItem.is-active .link {
   border-left: 3px solid var(--mx-brand);
@@ -226,6 +336,14 @@
   white-space: nowrap;
 }
 
+/* ---------- 右侧边栏（目录 / 组件列表） ---------- */
+.VPDocAside {
+  background: #fff !important;
+}
+.VPDocAside .VPDocAsideOutline {
+  background: #fff;
+}
+
 /* ---------- 右侧目录锚点（Vant 风格） ---------- */
 .VPDocAsideOutline .outline-title {
   font-size: 13px;
@@ -243,47 +361,117 @@
   color: var(--mx-brand);
 }
 
-/* ---------- 首页 Hero（Vant 式点缀） ---------- */
-.VPHero .name {
-  color: var(--mx-text-1) !important;
-  background: none;
-  -webkit-text-fill-color: var(--mx-text-1);
-  font-size: 56px;
-  letter-spacing: 2px;
-}
-.VPHero .text {
-  color: var(--mx-text-2);
-  font-size: 26px;
-}
-.VPHero .tagline {
-  color: var(--mx-text-3);
-  font-size: 16px;
-}
-.VPHero .VPButton.brand {
-  background: var(--mx-brand);
-  border-color: var(--mx-brand);
-}
-.VPHero .VPButton.alt {
-  color: var(--mx-brand);
-  border-color: var(--mx-brand);
+/* 首页隐藏默认 outline，显示组件列表 */
+.VPContent.mx-home .VPDocAsideOutline {
+  display: none;
 }
 
-/* 首页特性卡片 */
-.VPFeatures .VPFeature {
-  border: none;
-  box-shadow: none;
+/* ---------- 首页（文档布局下的自定义首页） ---------- */
+
+/* 首页整体为白色卡片 */
+.VPContent.mx-home .VPDoc {
   background: #fff;
 }
-.VPFeatures .VPFeature .title {
-  color: var(--mx-text-1);
-  font-weight: 600;
+.VPContent.mx-home .vp-doc {
+  background: #fff;
 }
-.VPFeatures .VPFeature .details {
+
+/* 首页 Hero 区域 */
+.mx-home-hero {
+  text-align: center;
+  padding: 64px 0 40px;
+  margin-bottom: 0;
+}
+
+.mx-home-logo {
+  margin-bottom: 24px;
+}
+
+.mx-home-logo svg {
+  display: inline-block;
+  width: 120px;
+  height: 120px;
+}
+
+.mx-home-title {
+  font-size: 42px !important;
+  font-weight: 600;
+  color: var(--mx-text-1);
+  margin: 0 0 12px;
+  line-height: 1.2;
+  border: none !important;
+  letter-spacing: 0.5px;
+}
+
+.mx-home-subtitle {
+  font-size: 16px;
   color: var(--mx-text-3);
+  margin: 0;
+  font-weight: 400;
+}
+
+/* 首页内容区卡片化 */
+.mx-home-page {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.mx-home-page h2:first-of-type {
+  margin-top: 0;
+  padding-top: 32px;
+  border-top: none;
+}
+
+.mx-home-page h2 {
+  font-size: 20px !important;
+  margin-top: 36px !important;
+}
+
+/* 首页特性列表样式（带 emoji 图标） */
+.mx-home-page ul {
+  padding-left: 0;
+  list-style: none;
+}
+
+.mx-home-page ul li {
+  margin-bottom: 10px;
+  font-size: 14px;
+  line-height: 1.8;
+  color: var(--mx-text-2);
+  padding-left: 4px;
+}
+
+.mx-home-page ul li::marker {
+  display: none;
 }
 
 /* ---------- 页脚 ---------- */
 .VPFooter {
   border-top: 1px solid var(--mx-border);
   color: var(--mx-text-3);
+}
+
+/* ---------- 响应式适配 ---------- */
+@media (max-width: 960px) {
+  .VPDoc {
+    padding: 24px 24px 64px !important;
+  }
+  .mx-home-title {
+    font-size: 32px !important;
+  }
+  .mx-home-hero {
+    padding: 40px 0 24px;
+  }
+}
+
+@media (max-width: 768px) {
+  .mx-nav-extra {
+    display: none !important;
+  }
+  .mx-home-title {
+    font-size: 28px !important;
+  }
+  .mx-home-subtitle {
+    font-size: 14px;
+  }
 }

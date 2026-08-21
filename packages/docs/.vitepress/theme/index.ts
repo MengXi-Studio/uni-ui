@@ -8,6 +8,7 @@ import DemoScreenSwitch from './demos/demo-switch.vue'
 import DemoScreenRate from './demos/demo-rate.vue'
 import DemoScreenStepper from './demos/demo-stepper.vue'
 import DemoScreenTabs from './demos/demo-tabs.vue'
+import Layout from './layout.vue'
 
 // 在线 Demo 用到的组件（均为 SSR 安全、不依赖 uni.* 的基础组件）
 import MxButton from '@mengxi/uni-ui/src/components/mx-button/mx-button.vue'
@@ -37,6 +38,7 @@ import MxGridItem from '@mengxi/uni-ui/src/components/mx-grid-item/mx-grid-item.
 
 export default {
   extends: DefaultTheme,
+  Layout,
   enhanceApp({ app }) {
     // uni 标签 shim（仅官网演示用）
     app.component('view', View)
