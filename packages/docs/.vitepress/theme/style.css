@@ -394,11 +394,11 @@
 }
 
 .mx-home-title {
-  font-size: 42px !important;
+  font-size: 36px !important;
   font-weight: 600;
   color: var(--mx-text-1);
   margin: 0 0 12px;
-  line-height: 1.2;
+  line-height: 60px;
   border: none !important;
   letter-spacing: 0.5px;
 }

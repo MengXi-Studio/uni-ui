@@ -34,57 +34,64 @@ MengXi Uni-UI 是一个**轻量、可定制的移动端组件库**，基于 Vue 
 
 ## 特性
 
-- 🚀 **性能极佳**，组件平均体积小于 1KB（min+gzip）
-- 🚀 **40+ 个高质量组件**，覆盖移动端主流场景
-- 🚀 **零外部依赖**，不依赖三方 npm 包
-- 📒 **使用 TypeScript 编写**，提供完整的类型定义
-- 📖 **提供丰富的中文文档和组件示例**
-- 🎨 **支持 Vue 3 和 uni-app**
-- 🎨 **支持主题定制**，内置 200+ 个主题变量
-- 🎨 **支持按需引入**，配合 easycom 自动注册
-- ♿ **支持无障碍访问**（持续改进中）
-- 🌙 **支持深色模式**
-- 🖥 **支持服务器端渲染**
+- 🚀 性能极佳，组件平均体积小于 1KB（min+gzip）
+- 🚀 80+ 个高质量组件，覆盖移动端主流场景
+- 🚀 零外部依赖，不依赖三方 npm 包
+- 💪 使用 TypeScript 编写，提供完整的类型定义
+- 💪 严格对齐 Vant 组件规范，API 与交互保持一致
+- 📖 提供丰富的中文文档和组件示例
+- 🍭 支持 Vue 3 和 uni-app，一套代码适配 H5、小程序、App
+- 🍭 支持主题定制，内置 200+ 个主题变量
+- 🍭 支持按需引入，配合 easycom 自动注册
+- 🍭 支持无障碍访问（持续改进中）
+- 🍭 支持深色模式
 
-## 快速开始
+## 版本提示
 
-### 安装
+你当前浏览的是 **MengXi Uni-UI 0.1.x 版本** 的文档，适用于 Vue 3 + uni-app 开发。
 
-```bash
-npm i @mengxi/uni-ui
-```
+## 脚手架
 
-### 配置 easycom
+推荐使用 [HBuilderX](https://www.dcloud.io/hbuilderx.html) 或 [uni-app CLI](https://uniapp.dcloud.net.cn/quickstart-cli.html) 来创建 uni-app 项目。
 
-在 `pages.json` 中配置：
+本仓库提供两种方式的示例项目：
 
-```json
-{
-  "easycom": {
-    "autoscan": true,
-    "custom": {
-      "^mx-(.*)": "@mengxi/uni-ui/src/components/mx-$1/mx-$1.vue"
-    }
-  }
-}
-```
+- **playground**：uni-app CLI 方式创建的示例项目（`packages/playground`）
+- **uni-app**：HBuilderX 方式创建的示例项目（`packages/uni-app`）
 
-### 使用组件
+## 快速上手
 
-```html
-<template>
-  <mx-button type="primary">主要按钮</mx-button>
-</template>
-```
+请阅读[快速上手](/guide/quickstart)章节，通过该章节你可以了解到 MengXi Uni-UI 的安装方法和基本使用姿势。
 
 ## 浏览器支持
 
-MengXi Uni-UI 支持现代浏览器以及 Chrome >= 51、iOS >= 10.0。
+MengXi Uni-UI 支持现代浏览器以及 Chrome >= 51、iOS >= 10.0（与 Vue 3 一致）。
 
 ## 链接
+
+### 官方生态
+
+由 MengXi Studio 维护的项目如下：
+
+| 项目                                                             | 描述                          |
+| ---------------------------------------------------------------- | ----------------------------- |
+| [@mengxi/uni-ui](https://github.com/MengXi-Studio/mengxi-uni-ui) | 组件库源码（packages/core）   |
+| [docs](https://github.com/MengXi-Studio/mengxi-uni-ui)           | 官网文档站点（packages/docs） |
+| [playground](https://github.com/MengXi-Studio/mengxi-uni-ui)     | CLI 方式示例项目              |
+| [uni-app](https://github.com/MengXi-Studio/mengxi-uni-ui)        | HBuilderX 方式示例项目        |
+
+### 其他链接
 
 - [意见反馈](https://github.com/MengXi-Studio/mengxi-uni-ui/issues)
 - [更新日志](https://github.com/MengXi-Studio/mengxi-uni-ui/releases)
 - [GitHub](https://github.com/MengXi-Studio/mengxi-uni-ui)
+
+## 贡献
+
+使用过程中发现任何问题都可以提 [Issue](https://github.com/MengXi-Studio/mengxi-uni-ui/issues) 给我们，当然，我们也非常欢迎你给我们发 [PR](https://github.com/MengXi-Studio/mengxi-uni-ui/pulls)。
+
+## 开源协议
+
+本项目基于 [MIT](https://zh.wikipedia.org/wiki/MIT%E8%A8%B1%E5%8F%AF%E8%AD%89) 协议，请自由地享受和参与开源。
 
 </div>
