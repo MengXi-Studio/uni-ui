@@ -293,6 +293,59 @@ html.dark .VPContent.mx-home .vp-doc {
   display: none;
 }
 
+/* ---------- 右侧手机模拟器（mx-simulator.vue）+ 文档页布局让位 ---------- */
+/* 仅组件文档页显示模拟器，其余页面隐藏（保留 DOM 作为 Teleport 目标） */
+.mx-sim {
+  display: none;
+}
+body.mx-has-sim .mx-sim {
+  display: block;
+}
+
+/* 组件文档页：隐藏 VitePress 默认右侧大纲栏，让位给手机模拟器 */
+body.mx-has-sim .VPDocAside {
+  display: none !important;
+}
+
+/* 内容区向右让出模拟器宽度（对齐 Vant van-doc-container 右 padding） */
+body.mx-has-sim .VPDoc {
+  padding-right: 440px !important;
+}
+@media (min-width: 1440px) {
+  body.mx-has-sim .VPDoc {
+    padding-right: 392px !important;
+  }
+}
+
+/* 手机模拟器内部每个 demo 块（运行时 VNode，需全局样式） */
+.mx-sim__demo {
+  padding: 16px;
+  min-height: 64px;
+  box-sizing: border-box;
+}
+.mx-sim__demo:not(:last-child) {
+  border-bottom: 8px solid #f2f3f5;
+}
+
+/* 暗色模式适配 */
+html.dark .mx-sim__screen {
+  background: #202124;
+}
+html.dark .mx-sim__demo:not(:last-child) {
+  border-bottom-color: #333436;
+}
+
+/* 移动端 / 窄屏不显示模拟器 */
+@media (max-width: 1100px) {
+  body.mx-has-sim .mx-sim {
+    display: none !important;
+  }
+  body.mx-has-sim .VPDoc,
+  body.mx-has-sim .VPDoc {
+    padding-right: 48px !important;
+  }
+}
+
 /* ---------- 首页（文档布局下的自定义首页） ---------- */
 
 /* 首页整体为白色卡片 */
