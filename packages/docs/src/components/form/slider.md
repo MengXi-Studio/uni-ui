@@ -2,13 +2,6 @@
 
 滑块组件，支持拖动选择数值，可自定义范围、步长与样式，对齐 Vant Slider 的 API 与交互。
 
-## 引入
-
-```json
-// pages.json easycom
-"^mx-(.*)": "@mengxi/uni-ui/src/components/mx-$1/mx-$1.vue"
-```
-
 ## 基础用法
 
 <demo-live>
@@ -42,13 +35,7 @@
 </demo-live>
 
 ```vue
-<mx-slider
-  v-model="value"
-  active-color="#ee0a24"
-  inactive-color="#ffe1e1"
-  bar-height="4px"
-  :button-size="20"
-/>
+<mx-slider v-model="value" active-color="#ee0a24" inactive-color="#ffe1e1" bar-height="4px" :button-size="20" />
 ```
 
 ## 禁用状态

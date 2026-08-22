@@ -2,13 +2,6 @@
 
 A circular progress component that supports custom progress color, track color, size and stroke width. It aligns with the API and interactions of the Vant Circle.
 
-## Install
-
-```json
-// pages.json easycom
-"^mx-(.*)": "@mengxi/uni-ui/src/components/mx-$1/mx-$1.vue"
-```
-
 ## Basic Usage
 
 `value` represents the progress percentage (0 - 100).

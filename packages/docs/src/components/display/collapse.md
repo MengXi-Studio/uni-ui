@@ -2,13 +2,6 @@
 
 折叠面板容器与面板项组合使用，支持手风琴模式，对齐 Vant Collapse 的 API 与交互。
 
-## 引入
-
-```json
-// pages.json easycom
-"^mx-(.*)": "@mengxi/uni-ui/src/components/mx-$1/mx-$1.vue"
-```
-
 ## 基础用法
 
 `v-model` 绑定当前展开项的 name 数组，`mx-collapse-item` 通过 `name` 标识每个面板。

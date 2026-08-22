@@ -2,13 +2,6 @@
 
 用于轻量级成功、失败等提示反馈。
 
-## 引入
-
-```json
-// pages.json easycom
-"^mx-(.*)": "@mengxi/uni-ui/src/components/mx-$1/mx-$1.vue"
-```
-
 ## 基础用法
 
 ```vue

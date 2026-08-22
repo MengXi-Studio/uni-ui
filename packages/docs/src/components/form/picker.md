@@ -2,13 +2,6 @@
 
 底部弹出的滚动选择器，支持多列。
 
-## 引入
-
-```json
-// pages.json easycom
-"^mx-(.*)": "@mengxi/uni-ui/src/components/mx-$1/mx-$1.vue"
-```
-
 ## 基础用法（单列）
 
 ```vue
@@ -19,14 +12,13 @@
 
 ```vue
 <mx-picker
-  v-model:show="show"
-  :columns="[
-    ['周一', '周二'],
-    ['上午', '下午'],
-  ]"
-  title="时间选择"
-  @confirm="onConfirm"
-/>
+	v-model:show="show"
+	:columns="[
+		['周一', '周二'],
+		['上午', '下午']
+	]"
+	title="时间选择"
+	@confirm="onConfirm" />
 ```
 
 ## API

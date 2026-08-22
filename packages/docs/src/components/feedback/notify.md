@@ -2,13 +2,6 @@
 
 页面顶部通栏消息提示。
 
-## 引入
-
-```json
-// pages.json easycom
-"^mx-(.*)": "@mengxi/uni-ui/src/components/mx-$1/mx-$1.vue"
-```
-
 ## 基础用法
 
 ```vue

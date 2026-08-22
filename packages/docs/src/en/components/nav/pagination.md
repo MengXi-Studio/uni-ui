@@ -2,13 +2,6 @@
 
 Data pagination display. Ellipses are shown automatically when there are more than 7 pages. It aligns with the API and interactions of the Vant Pagination.
 
-## Install
-
-```json
-// pages.json easycom
-"^mx-(.*)": "@mengxi/uni-ui/src/components/mx-$1/mx-$1.vue"
-```
-
 ## Basic Usage
 
 Bind the current page number with `v-model`:
@@ -21,7 +14,7 @@ const currentPage = ref(1)
 </script>
 
 <template>
-  <mx-pagination v-model="currentPage" :total-items="50" />
+	<mx-pagination v-model="currentPage" :total-items="50" />
 </template>
 ```
 

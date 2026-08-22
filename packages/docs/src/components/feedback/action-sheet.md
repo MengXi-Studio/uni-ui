@@ -2,13 +2,6 @@
 
 从底部弹出的动作菜单。
 
-## 引入
-
-```json
-// pages.json easycom
-"^mx-(.*)": "@mengxi/uni-ui/src/components/mx-$1/mx-$1.vue"
-```
-
 ## 基础用法
 
 ```vue
@@ -17,9 +10,9 @@
 
 ```ts
 const actions = [
-  { name: '选项一', color: '#ee0a24' },
-  { name: '选项二', subname: '描述信息' },
-  { name: '禁用选项', disabled: true },
+	{ name: '选项一', color: '#ee0a24' },
+	{ name: '选项二', subname: '描述信息' },
+	{ name: '禁用选项', disabled: true }
 ]
 ```
 

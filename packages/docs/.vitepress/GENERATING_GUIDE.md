@@ -1,7 +1,6 @@
 # 组件文档生成指南（内部工具文件，勿发布）
 
-本文档用于指导为 MengXi Uni-UI 官网（packages/docs）生成组件文档页。
-所有 API 表格必须严格从 `packages/core/src/components/<组件>/` 源码的 defineProps / defineEmits / defineSlots / defineExpose 中提取，禁止虚构任何 API。
+本文档用于指导为 MengXi Uni-UI 官网（packages/docs）生成组件文档页。所有 API 表格必须严格从 `packages/core/src/components/<组件>/` 源码的 defineProps / defineEmits / defineSlots / defineExpose 中提取，禁止虚构任何 API。
 
 ## 文档模板
 
@@ -11,13 +10,6 @@
 # Xxx 中文名
 
 一句话描述（组件用途，对齐 Vant Xxx 的 API 与交互）。
-
-## 引入
-
-```json
-// pages.json easycom
-"^mx-(.*)": "@mengxi/uni-ui/src/components/mx-$1/mx-$1.vue"
-```
 
 ## 基础用法
 
@@ -66,7 +58,8 @@
 1. **API 来源真实**：Props 表的参数名、类型、默认值必须逐一对照源码 defineProps；说明文字参考源码中 prop 的 JSDoc 注释（注释就是说明）。
 2. **类型格式**：类型列用反引号包裹，联合类型用 `|` 分隔，如 `primary | success`；`[String, Number]` 写作 `string | number`。
 3. **默认值格式**：用反引号包裹；字符串默认值写 `''` 或实际值；布尔写 `false` / `true`；无默认值写 `-`。
-4. **demo-live 限制**：demo-live 内只能写静态模板（可用 `:model-value="true"` 等字面量绑定展示状态，但**不能用 v-model / script**）。需要数据交互的演示（v-model、事件回调、函数调用式 API 如 showToast()）只写 ```vue 代码块，不用 demo-live。
+4. **demo-live 限制**：demo-live 内只能写静态模板（可用 `:model-value="true"` 等字面量绑定展示状态，但**不能用 v-model /
+   script**）。需要数据交互的演示（v-model、事件回调、函数调用式 API 如 showToast()）只写 ```vue 代码块，不用 demo-live。
 5. **函数调用式组件**（如 Toast/Notify/Dialog/ImagePreview 若为组件标签式则正常写）：若组件需要 uni.* 运行时或函数式调用，仅用代码块演示。
 6. **子组件文档合并**：如 mx-collapse + mx-collapse-item 合并一篇文档，分别列出两个组件的 Props（用 `### Collapse Props` / `### CollapseItem Props` 小节）。
 7. **代码演示章节命名**参考 Vant 官网：基础用法、xxx 模式、自定义 xxx、禁用状态等。

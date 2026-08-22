@@ -2,13 +2,6 @@
 
 基于 flex 的栅格布局，24 等分。
 
-## 引入
-
-```json
-// pages.json easycom
-"^mx-(.*)": "@mengxi/uni-ui/src/components/mx-$1/mx-$1.vue"
-```
-
 ## 基础用法
 
 ```vue

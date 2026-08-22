@@ -2,20 +2,14 @@
 
 A list of shipping addresses that supports selection, editing and adding. It aligns with the API and interactions of the Vant AddressList.
 
-## Install
-
-```json
-// pages.json easycom
-"^mx-(.*)": "@mengxi/uni-ui/src/components/mx-$1/mx-$1.vue"
-```
-
 ## Basic Usage
 
-Bind the id of the currently selected address with `v-model`, pass the address array via `list`. Tapping a list item selects it, tapping "Edit" triggers the `edit` event, and tapping "Add Address" triggers the `add` event.
+Bind the id of the currently selected address with `v-model`, pass the address array via `list`. Tapping a list item selects it, tapping "Edit" triggers the `edit` event, and tapping "Add Address" triggers the `add`
+event.
 
 ```vue
 <template>
-  <mx-address-list v-model="chosenId" :list="list" @add="onAdd" @edit="onEdit" @select="onSelect" />
+	<mx-address-list v-model="chosenId" :list="list" @add="onAdd" @edit="onEdit" @select="onSelect" />
 </template>
 
 <script setup>
@@ -24,19 +18,19 @@ import { ref } from 'vue'
 const chosenId = ref('1')
 
 const list = ref([
-  {
-    id: '1',
-    name: 'Zhang San',
-    tel: '13000000000',
-    address: 'No. 138 Wensan Road, Xihu District, Hangzhou, Zhejiang',
-    isDefault: true,
-  },
-  {
-    id: '2',
-    name: 'Li Si',
-    tel: '13100000000',
-    address: 'No. 50 Moganshan Road, Gongshu District, Hangzhou, Zhejiang',
-  },
+	{
+		id: '1',
+		name: 'Zhang San',
+		tel: '13000000000',
+		address: 'No. 138 Wensan Road, Xihu District, Hangzhou, Zhejiang',
+		isDefault: true
+	},
+	{
+		id: '2',
+		name: 'Li Si',
+		tel: '13100000000',
+		address: 'No. 50 Moganshan Road, Gongshu District, Hangzhou, Zhejiang'
+	}
 ])
 
 const onAdd = () => console.log('Add address')

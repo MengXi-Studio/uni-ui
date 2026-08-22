@@ -2,13 +2,6 @@
 
 Used as a placeholder while the page is loading, to alleviate the white screen during loading.
 
-## Install
-
-```json
-// pages.json easycom
-"^mx-(.*)": "@mengxi/uni-ui/src/components/mx-$1/mx-$1.vue"
-```
-
 ## Basic Usage
 
 ```vue

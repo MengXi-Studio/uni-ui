@@ -2,13 +2,6 @@
 
 全屏遮罩层组件，常用于弹出内容的背景遮罩，对齐 Vant Overlay 的 API 与交互。
 
-## 引入
-
-```json
-// pages.json easycom
-"^mx-(.*)": "@mengxi/uni-ui/src/components/mx-$1/mx-$1.vue"
-```
-
 ## 基础用法
 
 ```vue

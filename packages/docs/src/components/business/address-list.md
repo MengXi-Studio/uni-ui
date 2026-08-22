@@ -2,20 +2,13 @@
 
 收货地址列表，支持选中、编辑与新增，对齐 Vant AddressList 的 API 与交互。
 
-## 引入
-
-```json
-// pages.json easycom
-"^mx-(.*)": "@mengxi/uni-ui/src/components/mx-$1/mx-$1.vue"
-```
-
 ## 基础用法
 
 通过 `v-model` 绑定当前选中地址的 id，`list` 传入地址数组，点击列表项选中、点击"编辑"触发 `edit` 事件、点击"新增地址"触发 `add` 事件。
 
 ```vue
 <template>
-  <mx-address-list v-model="chosenId" :list="list" @add="onAdd" @edit="onEdit" @select="onSelect" />
+	<mx-address-list v-model="chosenId" :list="list" @add="onAdd" @edit="onEdit" @select="onSelect" />
 </template>
 
 <script setup>
@@ -24,19 +17,19 @@ import { ref } from 'vue'
 const chosenId = ref('1')
 
 const list = ref([
-  {
-    id: '1',
-    name: '张三',
-    tel: '13000000000',
-    address: '浙江省杭州市西湖区文三路 138 号',
-    isDefault: true,
-  },
-  {
-    id: '2',
-    name: '李四',
-    tel: '13100000000',
-    address: '浙江省杭州市拱墅区莫干山路 50 号',
-  },
+	{
+		id: '1',
+		name: '张三',
+		tel: '13000000000',
+		address: '浙江省杭州市西湖区文三路 138 号',
+		isDefault: true
+	},
+	{
+		id: '2',
+		name: '李四',
+		tel: '13100000000',
+		address: '浙江省杭州市拱墅区莫干山路 50 号'
+	}
 ])
 
 const onAdd = () => console.log('新增地址')

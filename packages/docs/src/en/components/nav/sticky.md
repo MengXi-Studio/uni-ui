@@ -2,13 +2,6 @@
 
 Makes content stick to the top or bottom while scrolling. It is based on the CSS `position: sticky` implementation and aligns with the API and interactions of the Vant Sticky.
 
-## Install
-
-```json
-// pages.json easycom
-"^mx-(.*)": "@mengxi/uni-ui/src/components/mx-$1/mx-$1.vue"
-```
-
 ## Basic Usage
 
 Sticks to the top by default; the effect works within a scrollable container or page:

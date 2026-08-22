@@ -2,13 +2,6 @@
 
 底部提交订单栏，展示合计金额与提交按钮，常用于订单确认页，对齐 Vant SubmitBar 的 API 与交互。
 
-## 引入
-
-```json
-// pages.json easycom
-"^mx-(.*)": "@mengxi/uni-ui/src/components/mx-$1/mx-$1.vue"
-```
-
 ## 基础用法
 
 `price` 为合计金额（单位为分），默认保留两位小数展示。
@@ -46,14 +39,7 @@
 </demo-live>
 
 ```vue
-<mx-submit-bar
-  :price="1234500"
-  label="总计"
-  currency="$"
-  :decimal-length="0"
-  button-text="去支付"
-  button-color="#7232dd"
-/>
+<mx-submit-bar :price="1234500" label="总计" currency="$" :decimal-length="0" button-text="去支付" button-color="#7232dd" />
 ```
 
 ## 高级用法
@@ -62,23 +48,21 @@
 
 ```vue
 <template>
-  <mx-submit-bar :price="3050" @submit="onSubmit">
-    <template #top>
-      <view style="padding: 8px 16px; font-size: 12px; color: #969799">
-        收货地址：浙江省杭州市西湖区文三路 138 号
-      </view>
-    </template>
-    <template #left>
-      <mx-checkbox>全选</mx-checkbox>
-    </template>
-    <template #button>
-      <view class="my-submit-btn" @click="onSubmit">立即下单</view>
-    </template>
-  </mx-submit-bar>
+	<mx-submit-bar :price="3050" @submit="onSubmit">
+		<template #top>
+			<view style="padding: 8px 16px; font-size: 12px; color: #969799"> 收货地址：浙江省杭州市西湖区文三路 138 号 </view>
+		</template>
+		<template #left>
+			<mx-checkbox>全选</mx-checkbox>
+		</template>
+		<template #button>
+			<view class="my-submit-btn" @click="onSubmit">立即下单</view>
+		</template>
+	</mx-submit-bar>
 </template>
 
 <script setup>
-const onSubmit = (event) => console.log('提交订单')
+const onSubmit = event => console.log('提交订单')
 </script>
 ```
 
@@ -89,7 +73,7 @@ const onSubmit = (event) => console.log('提交订单')
 ```
 
 ```js
-const onSubmit = (event) => console.log('提交订单')
+const onSubmit = event => console.log('提交订单')
 ```
 
 ## Props

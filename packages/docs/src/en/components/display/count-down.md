@@ -2,13 +2,6 @@
 
 Used to display the countdown value in real time, with support for custom formats and millisecond rendering. It aligns with the API and interactions of the Vant CountDown.
 
-## Install
-
-```json
-// pages.json easycom
-"^mx-(.*)": "@mengxi/uni-ui/src/components/mx-$1/mx-$1.vue"
-```
-
 ## Basic Usage
 
 <demo-live>

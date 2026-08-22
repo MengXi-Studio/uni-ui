@@ -2,13 +2,6 @@
 
 A bottom floating panel that can switch between multiple height anchors by dragging the handle. It aligns with the API and interactions of the Vant FloatingPanel.
 
-## Install
-
-```json
-// pages.json easycom
-"^mx-(.*)": "@mengxi/uni-ui/src/components/mx-$1/mx-$1.vue"
-```
-
 ## Basic Usage
 
 Set the array of snap height anchors (from small to large) with `anchors`, bind the currently snapped height with `v-model`. After dragging and releasing the handle, the panel snaps to the nearest anchor.
@@ -23,11 +16,11 @@ Set the array of snap height anchors (from small to large) with `anchors`, bind 
 
 ```vue
 <template>
-  <mx-floating-panel v-model="height" :anchors="[60, 200, 400]">
-    <view style="padding: 16px">
-      <text>Panel content</text>
-    </view>
-  </mx-floating-panel>
+	<mx-floating-panel v-model="height" :anchors="[60, 200, 400]">
+		<view style="padding: 16px">
+			<text>Panel content</text>
+		</view>
+	</mx-floating-panel>
 </template>
 
 <script setup>
@@ -43,19 +36,11 @@ Use `offset-top` to limit the maximum expanded height of the panel (distance fro
 
 ```vue
 <template>
-  <mx-floating-panel
-    v-model="height"
-    :anchors="[100, 300, 560]"
-    :offset-top="80"
-    :duration="300"
-    @height-change="onHeightChange"
-    @dragstart="onDragStart"
-    @dragend="onDragEnd"
-  >
-    <view style="padding: 16px">
-      <text>Panel content</text>
-    </view>
-  </mx-floating-panel>
+	<mx-floating-panel v-model="height" :anchors="[100, 300, 560]" :offset-top="80" :duration="300" @height-change="onHeightChange" @dragstart="onDragStart" @dragend="onDragEnd">
+		<view style="padding: 16px">
+			<text>Panel content</text>
+		</view>
+	</mx-floating-panel>
 </template>
 
 <script setup>
@@ -63,9 +48,9 @@ import { ref } from 'vue'
 
 const height = ref(100)
 
-const onHeightChange = (height) => console.log('Height changed', height)
-const onDragStart = (height) => console.log('Drag started', height)
-const onDragEnd = (height) => console.log('Drag ended', height)
+const onHeightChange = height => console.log('Height changed', height)
+const onDragStart = height => console.log('Drag started', height)
+const onDragEnd = height => console.log('Drag ended', height)
 </script>
 ```
 
@@ -75,11 +60,11 @@ Jump to a specified anchor height with the `setAnchor` method, and get the curre
 
 ```vue
 <template>
-  <mx-floating-panel ref="panelRef" v-model="height" :anchors="[100, 300, 560]">
-    <view style="padding: 16px">
-      <mx-button type="primary" size="small" @click="expand">Expand Panel</mx-button>
-    </view>
-  </mx-floating-panel>
+	<mx-floating-panel ref="panelRef" v-model="height" :anchors="[100, 300, 560]">
+		<view style="padding: 16px">
+			<mx-button type="primary" size="small" @click="expand">Expand Panel</mx-button>
+		</view>
+	</mx-floating-panel>
 </template>
 
 <script setup>
@@ -89,8 +74,8 @@ const panelRef = ref()
 const height = ref(100)
 
 const expand = () => {
-  panelRef.value.setAnchor(560)
-  console.log('Current height', panelRef.value.getHeight())
+	panelRef.value.setAnchor(560)
+	console.log('Current height', panelRef.value.getHeight())
 }
 </script>
 ```

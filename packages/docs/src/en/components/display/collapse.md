@@ -2,13 +2,6 @@
 
 A collapse panel container used together with panel items, with accordion mode support. It aligns with the API and interactions of the Vant Collapse.
 
-## Install
-
-```json
-// pages.json easycom
-"^mx-(.*)": "@mengxi/uni-ui/src/components/mx-$1/mx-$1.vue"
-```
-
 ## Basic Usage
 
 `v-model` binds the array of `name`s of the currently expanded items. `mx-collapse-item` identifies each panel through `name`.

@@ -2,13 +2,6 @@
 
 Used to refresh list content by pulling down. It aligns with the API and interactions of the Vant PullRefresh.
 
-## Install
-
-```json
-// pages.json easycom
-"^mx-(.*)": "@mengxi/uni-ui/src/components/mx-$1/mx-$1.vue"
-```
-
 ## Basic Usage
 
 Control the loading state with `v-model:loading`. After the refresh is complete, set loading to false; a success hint will be shown first and then the header retracts.
@@ -23,9 +16,9 @@ Control the loading state with `v-model:loading`. After the refresh is complete,
 const loading = ref(false)
 
 const onRefresh = () => {
-  setTimeout(() => {
-    loading.value = false
-  }, 1000)
+	setTimeout(() => {
+		loading.value = false
+	}, 1000)
 }
 ```
 
@@ -42,13 +35,7 @@ The `success-text` hint is shown before the header retracts after the refresh co
 ## Custom Text
 
 ```vue
-<mx-pull-refresh
-  v-model:loading="loading"
-  pulling-text="下拉即可刷新"
-  loosing-text="释放即可刷新"
-  loading-text="加载中..."
-  @refresh="onRefresh"
->
+<mx-pull-refresh v-model:loading="loading" pulling-text="下拉即可刷新" loosing-text="释放即可刷新" loading-text="加载中..." @refresh="onRefresh">
   <view>内容</view>
 </mx-pull-refresh>
 ```

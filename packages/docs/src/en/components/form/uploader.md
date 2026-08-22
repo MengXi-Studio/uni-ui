@@ -2,13 +2,6 @@
 
 Used for image/file upload and preview.
 
-## Import
-
-```json
-// pages.json easycom
-"^mx-(.*)": "@mengxi/uni-ui/src/components/mx-$1/mx-$1.vue"
-```
-
 ## Basic Usage
 
 ```vue

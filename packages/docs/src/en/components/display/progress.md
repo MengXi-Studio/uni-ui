@@ -2,13 +2,6 @@
 
 Used to display the current progress of an operation, supporting both line and circle types. It aligns with the API and interactions of the Vant Progress.
 
-## Install
-
-```json
-// pages.json easycom
-"^mx-(.*)": "@mengxi/uni-ui/src/components/mx-$1/mx-$1.vue"
-```
-
 ## Basic Usage
 
 <demo-live>
@@ -34,13 +27,7 @@ Used to display the current progress of an operation, supporting both line and c
 </demo-live>
 
 ```vue
-<mx-progress
-  :percentage="70"
-  pivot-text="70%"
-  color="#ee0a24"
-  track-color="#f5f5f5"
-  :stroke-width="8"
-/>
+<mx-progress :percentage="70" pivot-text="70%" color="#ee0a24" track-color="#f5f5f5" :stroke-width="8" />
 ```
 
 ## Hide Progress Text

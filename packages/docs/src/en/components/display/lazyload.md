@@ -2,13 +2,6 @@
 
 Loads the image only when it enters the viewport. It is implemented based on `uni.createIntersectionObserver` and is compatible across H5, miniprogram and App.
 
-## Install
-
-```json
-// pages.json easycom
-"^mx-(.*)": "@mengxi/uni-ui/src/components/mx-$1/mx-$1.vue"
-```
-
 ## Basic Usage
 
 <demo-live>
@@ -20,11 +13,7 @@ Loads the image only when it enters the viewport. It is implemented based on `un
 </demo-live>
 
 ```vue
-<mx-lazyload
-  image="https://fastly.jsdelivr.net/npm/@vant/assets/apple-1.jpeg"
-  width="100"
-  height="100"
-/>
+<mx-lazyload image="https://fastly.jsdelivr.net/npm/@vant/assets/apple-1.jpeg" width="100" height="100" />
 ```
 
 ## Custom Placeholder

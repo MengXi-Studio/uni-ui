@@ -2,13 +2,6 @@
 
 A contact info card that displays the contact name and phone, or serves as an "Add Contact" entry. It aligns with the API and interactions of the Vant ContactCard.
 
-## Install
-
-```json
-// pages.json easycom
-"^mx-(.*)": "@mengxi/uni-ui/src/components/mx-$1/mx-$1.vue"
-```
-
 ## Basic Usage
 
 Shows the "Add Contact" entry when no `name` / `tel` is passed; shows the contact info once they are passed.
@@ -40,8 +33,8 @@ Used with events:
 ```
 
 ```js
-const onClick = (event) => console.log('Tap card')
-const onEdit = (event) => console.log('Tap edit')
+const onClick = event => console.log('Tap card')
+const onEdit = event => console.log('Tap edit')
 ```
 
 ## Custom Content

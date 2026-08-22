@@ -2,13 +2,6 @@
 
 Form component, used for data validation, submission and reset, needs to be used with form items (such as `mx-field`), aligned with Vant Form's API and interactions.
 
-## Import
-
-```json
-// pages.json easycom
-"^mx-(.*)": "@mengxi/uni-ui/src/components/mx-$1/mx-$1.vue"
-```
-
 ## Basic Usage
 
 `model` binds the form data object, and `rules` configures the validation rules (the keys correspond to the form items' `name`). Call `submitForm` via ref to trigger validation and submit.
@@ -28,18 +21,18 @@ const formRef = ref()
 const form = reactive({ username: '', phone: '' })
 
 const rules = {
-  username: [
-    { required: true, message: 'Please enter your username' },
-    { min: 2, max: 20, message: 'The username must be 2 - 20 characters long' },
-  ],
-  phone: [
-    { required: true, message: 'Please enter your phone number' },
-    { pattern: /^1\d{10}$/, message: 'The phone number format is invalid' },
-  ],
+	username: [
+		{ required: true, message: 'Please enter your username' },
+		{ min: 2, max: 20, message: 'The username must be 2 - 20 characters long' }
+	],
+	phone: [
+		{ required: true, message: 'Please enter your phone number' },
+		{ pattern: /^1\d{10}$/, message: 'The phone number format is invalid' }
+	]
 }
 
-const onSubmit = (values) => console.log('Submit', values)
-const onFailed = (errors) => console.log('Validation failed', errors)
+const onSubmit = values => console.log('Submit', values)
+const onFailed = errors => console.log('Validation failed', errors)
 ```
 
 ## Validation Rules
@@ -48,15 +41,15 @@ Rules support required, pattern, length and custom validator functions. A single
 
 ```js
 const rules = {
-  username: [
-    { required: true, message: 'Please enter your username' },
-    { pattern: /^\w+$/, message: 'Only letters, numbers and underscores are supported' },
-    { min: 2, max: 20, message: 'The length must be 2 - 20 characters' },
-    {
-      validator: (value, model, field) => value !== 'admin' || 'The username is unavailable',
-      message: 'The username validation failed',
-    },
-  ],
+	username: [
+		{ required: true, message: 'Please enter your username' },
+		{ pattern: /^\w+$/, message: 'Only letters, numbers and underscores are supported' },
+		{ min: 2, max: 20, message: 'The length must be 2 - 20 characters' },
+		{
+			validator: (value, model, field) => value !== 'admin' || 'The username is unavailable',
+			message: 'The username validation failed'
+		}
+	]
 }
 ```
 
@@ -102,12 +95,5 @@ const rules = {
 </mx-form>
 
 <mx-button @click="formRef?.resetForm()">Reset</mx-button>
-<mx-button
-  type="primary"
-  @click="
-    formRef
-      ?.validate()
-      .then((errors) => !Object.keys(errors).length && showToast('Validation passed'))
-  "
->Validate Only</mx-button>
+<mx-button type="primary" @click="formRef?.validate().then(errors => !Object.keys(errors).length && showToast('Validation passed'))">Validate Only</mx-button>
 ```

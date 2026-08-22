@@ -2,13 +2,6 @@
 
 Province/city/district selector, popped up from the bottom with three-column linked selection of province, city and district, aligned with Vant Area's API and interactions.
 
-## Import
-
-```json
-// pages.json easycom
-"^mx-(.*)": "@mengxi/uni-ui/src/components/mx-$1/mx-$1.vue"
-```
-
 ## Basic Usage
 
 ```vue
@@ -17,20 +10,21 @@ Province/city/district selector, popped up from the bottom with three-column lin
 
 ```js
 const areaList = {
-  province_list: { 110000: 'Beijing', 310000: 'Shanghai' },
-  city_list: { 110100: 'Beijing', 310100: 'Shanghai' },
-  county_list: {
-    110101: 'Dongcheng',
-    110102: 'Xicheng',
-    110105: 'Chaoyang',
-    310101: 'Huangpu',
-    310104: 'Xuhui',
-    310105: 'Changning',
-  },
+	province_list: { 110000: 'Beijing', 310000: 'Shanghai' },
+	city_list: { 110100: 'Beijing', 310100: 'Shanghai' },
+	county_list: {
+		110101: 'Dongcheng',
+		110102: 'Xicheng',
+		110105: 'Chaoyang',
+		310101: 'Huangpu',
+		310104: 'Xuhui',
+		310105: 'Changning'
+	}
 }
 ```
 
-`area-list` contains three keys: `province_list`, `city_list` and `county_list`. The keys are region codes and the values are region names. The component automatically builds the three-level province/city/district association based on the code prefix.
+`area-list` contains three keys: `province_list`, `city_list` and `county_list`. The keys are region codes and the values are region names. The component automatically builds the three-level province/city/district
+association based on the code prefix.
 
 When `v-model` is bound to an array, an array of the selected codes at each level is returned after confirming; when bound to a single value, the code of the last level is returned.
 

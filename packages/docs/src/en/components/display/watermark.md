@@ -2,13 +2,6 @@
 
 Adds a text watermark to the page, tiled in a grid pattern. It aligns with the API and interactions of the Vant Watermark.
 
-## Install
-
-```json
-// pages.json easycom
-"^mx-(.*)": "@mengxi/uni-ui/src/components/mx-$1/mx-$1.vue"
-```
-
 ## Basic Usage
 
 The watermark component is absolutely positioned to fill the parent container. The parent container needs to set `position: relative` and a size:

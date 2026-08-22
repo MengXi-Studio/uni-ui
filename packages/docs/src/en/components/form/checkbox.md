@@ -2,13 +2,6 @@
 
 Checkbox component, supports standalone usage and checkbox group, aligned with Vant Checkbox's API and interactions.
 
-## Import
-
-```json
-// pages.json easycom
-"^mx-(.*)": "@mengxi/uni-ui/src/components/mx-$1/mx-$1.vue"
-```
-
 ## Basic Usage
 
 <demo-live>

@@ -2,13 +2,6 @@
 
 A fullscreen image preview component that supports multi-image carousel switching, click-to-zoom, a close button and index display. It aligns with the API and interactions of the Vant ImagePreview.
 
-## Install
-
-```json
-// pages.json easycom
-"^mx-(.*)": "@mengxi/uni-ui/src/components/mx-$1/mx-$1.vue"
-```
-
 ## Basic Usage
 
 Control the visibility with `v-model:show` and pass the list of image URLs with `images`.
@@ -20,11 +13,7 @@ Control the visibility with `v-model:show` and pass the list of image URLs with 
 ```ts
 const show = ref(false)
 
-const images = [
-  'https://fastly.jsdelivr.net/npm/@vant/assets/apple-1.jpeg',
-  'https://fastly.jsdelivr.net/npm/@vant/assets/apple-2.jpeg',
-  'https://fastly.jsdelivr.net/npm/@vant/assets/apple-3.jpeg',
-]
+const images = ['https://fastly.jsdelivr.net/npm/@vant/assets/apple-1.jpeg', 'https://fastly.jsdelivr.net/npm/@vant/assets/apple-2.jpeg', 'https://fastly.jsdelivr.net/npm/@vant/assets/apple-3.jpeg']
 ```
 
 ## Set Initial Position

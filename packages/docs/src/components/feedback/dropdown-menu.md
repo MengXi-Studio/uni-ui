@@ -2,13 +2,6 @@
 
 向下弹出的菜单列表，常用于列表页的筛选操作，对齐 Vant DropdownMenu 的 API 与交互。
 
-## 引入
-
-```json
-// pages.json easycom
-"^mx-(.*)": "@mengxi/uni-ui/src/components/mx-$1/mx-$1.vue"
-```
-
 ## 基础用法
 
 `mx-dropdown-item` 嵌套在 `mx-dropdown-menu` 中使用，`v-model` 绑定当前选中项对应的 value，`options` 设置选项数组。
@@ -48,14 +41,14 @@ const value1 = ref(0)
 const value2 = ref('a')
 
 const option1 = [
-  { text: '全部商品', value: 0 },
-  { text: '新款商品', value: 1 },
-  { text: '活动商品', value: 2 },
+	{ text: '全部商品', value: 0 },
+	{ text: '新款商品', value: 1 },
+	{ text: '活动商品', value: 2 }
 ]
 const option2 = [
-  { text: '默认排序', value: 'a' },
-  { text: '好评排序', value: 'b' },
-  { text: '销量排序', value: 'c' },
+	{ text: '默认排序', value: 'a' },
+	{ text: '好评排序', value: 'b' },
+	{ text: '销量排序', value: 'c' }
 ]
 ```
 

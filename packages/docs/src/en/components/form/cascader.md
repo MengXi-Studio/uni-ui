@@ -2,41 +2,24 @@
 
 Cascader component, popped up from the bottom, used for step-by-step selection of multi-level data such as province/city/district, aligned with Vant Cascader's API and interactions.
 
-## Import
-
-```json
-// pages.json easycom
-"^mx-(.*)": "@mengxi/uni-ui/src/components/mx-$1/mx-$1.vue"
-```
-
 ## Basic Usage
 
 ```vue
-<mx-cascader
-  v-model:show="show"
-  :value="value"
-  :options="options"
-  @update:model-value="value = $event"
-  @finish="onFinish"
-/>
+<mx-cascader v-model:show="show" :value="value" :options="options" @update:model-value="value = $event" @finish="onFinish" />
 ```
 
 ```js
 const options = [
-  {
-    text: 'Zhejiang',
-    value: '330000',
-    children: [
-      { text: 'Hangzhou', value: '330100', children: [{ text: 'Xihu', value: '330106' }] },
-    ],
-  },
-  {
-    text: 'Guangdong',
-    value: '440000',
-    children: [
-      { text: 'Guangzhou', value: '440100', children: [{ text: 'Tianhe', value: '440106' }] },
-    ],
-  },
+	{
+		text: 'Zhejiang',
+		value: '330000',
+		children: [{ text: 'Hangzhou', value: '330100', children: [{ text: 'Xihu', value: '330106' }] }]
+	},
+	{
+		text: 'Guangdong',
+		value: '440000',
+		children: [{ text: 'Guangzhou', value: '440100', children: [{ text: 'Tianhe', value: '440106' }] }]
+	}
 ]
 ```
 
@@ -55,12 +38,7 @@ When `variant` is set to `selected`, the selected path is displayed as breadcrum
 Specify the field names of the text, value and children in the options via `field-names`.
 
 ```vue
-<mx-cascader
-  v-model:show="show"
-  :value="value"
-  :options="options"
-  :field-names="{ text: 'name', value: 'id', children: 'sub' }"
-/>
+<mx-cascader v-model:show="show" :value="value" :options="options" :field-names="{ text: 'name', value: 'id', children: 'sub' }" />
 ```
 
 ## Props

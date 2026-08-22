@@ -2,25 +2,12 @@
 
 Number keyboard component, used for numeric input scenarios such as passwords and verification codes, aligned with Vant NumberKeyboard's API and interactions.
 
-## Import
-
-```json
-// pages.json easycom
-"^mx-(.*)": "@mengxi/uni-ui/src/components/mx-$1/mx-$1.vue"
-```
-
 ## Basic Usage
 
 The keyboard is fixed at the bottom of the page. It is usually mounted with `v-if`, and the input content is assembled manually through the `input` / `delete` events.
 
 ```vue
-<mx-field
-  v-model="value"
-  label="Password"
-  placeholder="Please enter the password"
-  readonly
-  @click="show = true"
-/>
+<mx-field v-model="value" label="Password" placeholder="Please enter the password" readonly @click="show = true" />
 <mx-number-keyboard v-if="show" v-model:show="show" @input="onInput" @delete="onDelete" />
 ```
 
@@ -30,7 +17,7 @@ import { ref } from 'vue'
 const show = ref(false)
 const value = ref('')
 
-const onInput = (key) => (value.value += key)
+const onInput = key => (value.value += key)
 const onDelete = () => (value.value = value.value.slice(0, -1))
 ```
 
@@ -39,14 +26,7 @@ const onDelete = () => (value.value = value.value.slice(0, -1))
 When `theme` is set to `custom`, a top title bar is displayed with a close button on the left.
 
 ```vue
-<mx-number-keyboard
-  v-if="show"
-  v-model:show="show"
-  theme="custom"
-  title="Keyboard title"
-  close-button-text="Done"
-  @input="onInput"
-/>
+<mx-number-keyboard v-if="show" v-model:show="show" theme="custom" title="Keyboard title" close-button-text="Done" @input="onInput" />
 ```
 
 ## Configuring the Extra Key
@@ -68,13 +48,7 @@ When `random-key-order` is set to `true`, the numeric key order is shuffled on e
 ## Custom Key Text
 
 ```vue
-<mx-number-keyboard
-  v-if="show"
-  v-model:show="show"
-  delete-button-text="Delete"
-  close-button-text="Done"
-  @input="onInput"
-/>
+<mx-number-keyboard v-if="show" v-model:show="show" delete-button-text="Delete" close-button-text="Done" @input="onInput" />
 ```
 
 ## Props

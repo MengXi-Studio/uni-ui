@@ -2,56 +2,44 @@
 
 收货地址编辑表单，包含姓名、电话、省市区选择、详细地址、邮政编码与默认地址开关，对齐 Vant AddressEdit 的 API 与交互。
 
-## 引入
-
-```json
-// pages.json easycom
-"^mx-(.*)": "@mengxi/uni-ui/src/components/mx-$1/mx-$1.vue"
-```
-
 ## 基础用法
 
 通过 `v-model` 绑定地址信息对象，`area-list` 传入省市区数据（`province_list` / `city_list` / `county_list`），点击保存触发 `save` 事件。
 
 ```vue
 <template>
-  <mx-address-edit
-    v-model="address"
-    :area-list="areaList"
-    @save="onSave"
-    @change-area="onChangeArea"
-  />
+	<mx-address-edit v-model="address" :area-list="areaList" @save="onSave" @change-area="onChangeArea" />
 </template>
 
 <script setup>
 import { ref } from 'vue'
 
 const address = ref({
-  name: '',
-  tel: '',
-  province: '',
-  city: '',
-  county: '',
-  areaCode: '',
-  addressDetail: '',
-  postalCode: '',
-  isDefault: false,
+	name: '',
+	tel: '',
+	province: '',
+	city: '',
+	county: '',
+	areaCode: '',
+	addressDetail: '',
+	postalCode: '',
+	isDefault: false
 })
 
 const areaList = {
-  province_list: { 110000: '北京市', 330000: '浙江省' },
-  city_list: { 110100: '北京市', 330100: '杭州市', 330200: '宁波市' },
-  county_list: {
-    110101: '东城区',
-    110102: '西城区',
-    330102: '上城区',
-    330105: '拱墅区',
-    330203: '海曙区',
-  },
+	province_list: { 110000: '北京市', 330000: '浙江省' },
+	city_list: { 110100: '北京市', 330100: '杭州市', 330200: '宁波市' },
+	county_list: {
+		110101: '东城区',
+		110102: '西城区',
+		330102: '上城区',
+		330105: '拱墅区',
+		330203: '海曙区'
+	}
 }
 
-const onSave = (value) => console.log('保存', value)
-const onChangeArea = (values) => console.log('地区变化', values)
+const onSave = value => console.log('保存', value)
+const onChangeArea = values => console.log('地区变化', values)
 </script>
 ```
 
@@ -60,13 +48,7 @@ const onChangeArea = (values) => console.log('地区变化', values)
 通过 `show-detail`、`show-postal`、`show-set-default` 控制对应字段是否显示。
 
 ```vue
-<mx-address-edit
-  v-model="address"
-  :area-list="areaList"
-  :show-detail="false"
-  :show-postal="false"
-  :show-set-default="false"
-/>
+<mx-address-edit v-model="address" :area-list="areaList" :show-detail="false" :show-postal="false" :show-set-default="false" />
 ```
 
 ## 自定义文案
@@ -74,15 +56,7 @@ const onChangeArea = (values) => console.log('地区变化', values)
 支持自定义各输入项占位符、地区栏标题与保存按钮文字。
 
 ```vue
-<mx-address-edit
-  v-model="address"
-  :area-list="areaList"
-  name-placeholder="收货人姓名"
-  tel-placeholder="手机号码"
-  detail-placeholder="街道、楼牌号等"
-  area-title="选择地区"
-  save-button-text="保存地址"
-/>
+<mx-address-edit v-model="address" :area-list="areaList" name-placeholder="收货人姓名" tel-placeholder="手机号码" detail-placeholder="街道、楼牌号等" area-title="选择地区" save-button-text="保存地址" />
 ```
 
 ## 校验
@@ -91,7 +65,7 @@ const onChangeArea = (values) => console.log('地区变化', values)
 
 ```vue
 <template>
-  <mx-address-edit ref="editRef" v-model="address" :area-list="areaList" />
+	<mx-address-edit ref="editRef" v-model="address" :area-list="areaList" />
 </template>
 
 <script setup>
@@ -100,8 +74,8 @@ import { ref } from 'vue'
 const editRef = ref()
 
 const onValidate = () => {
-  const valid = editRef.value.validate()
-  console.log('校验结果', valid)
+	const valid = editRef.value.validate()
+	console.log('校验结果', valid)
 }
 </script>
 ```

@@ -2,13 +2,6 @@
 
 数字键盘组件，用于密码、验证码等数字输入场景，对齐 Vant NumberKeyboard 的 API 与交互。
 
-## 引入
-
-```json
-// pages.json easycom
-"^mx-(.*)": "@mengxi/uni-ui/src/components/mx-$1/mx-$1.vue"
-```
-
 ## 基础用法
 
 键盘固定显示在页面底部，通常配合 `v-if` 控制挂载，通过 `input` / `delete` 事件自行拼接输入内容。
@@ -24,7 +17,7 @@ import { ref } from 'vue'
 const show = ref(false)
 const value = ref('')
 
-const onInput = (key) => (value.value += key)
+const onInput = key => (value.value += key)
 const onDelete = () => (value.value = value.value.slice(0, -1))
 ```
 
@@ -33,14 +26,7 @@ const onDelete = () => (value.value = value.value.slice(0, -1))
 `theme` 设为 `custom` 时显示顶部标题栏，左侧带关闭按钮。
 
 ```vue
-<mx-number-keyboard
-  v-if="show"
-  v-model:show="show"
-  theme="custom"
-  title="键盘标题"
-  close-button-text="完成"
-  @input="onInput"
-/>
+<mx-number-keyboard v-if="show" v-model:show="show" theme="custom" title="键盘标题" close-button-text="完成" @input="onInput" />
 ```
 
 ## 配置附加键
@@ -62,13 +48,7 @@ const onDelete = () => (value.value = value.value.slice(0, -1))
 ## 自定义按键文案
 
 ```vue
-<mx-number-keyboard
-  v-if="show"
-  v-model:show="show"
-  delete-button-text="删除"
-  close-button-text="完成"
-  @input="onInput"
-/>
+<mx-number-keyboard v-if="show" v-model:show="show" delete-button-text="删除" close-button-text="完成" @input="onInput" />
 ```
 
 ## Props

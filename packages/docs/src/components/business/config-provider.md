@@ -2,24 +2,17 @@
 
 全局配置组件，用于包裹页面内容实现深色模式切换与 CSS 主题变量定制，对齐 Vant ConfigProvider 的 API 与交互。
 
-## 引入
-
-```json
-// pages.json easycom
-"^mx-(.*)": "@mengxi/uni-ui/src/components/mx-$1/mx-$1.vue"
-```
-
 ## 基础用法
 
 将 `mx-config-provider` 包裹在页面内容外层，为其内部的组件提供主题配置。
 
 ```vue
 <template>
-  <mx-config-provider>
-    <view class="page">
-      <mx-button type="primary">主要按钮</mx-button>
-    </view>
-  </mx-config-provider>
+	<mx-config-provider>
+		<view class="page">
+			<mx-button type="primary">主要按钮</mx-button>
+		</view>
+	</mx-config-provider>
 </template>
 ```
 
@@ -84,13 +77,9 @@
 
 ```vue
 <template>
-  <mx-config-provider
-    :theme="theme"
-    :theme-vars-light="{ '--mx-primary-color': '#1989fa' }"
-    :theme-vars-dark="{ '--mx-primary-color': '#7232dd' }"
-  >
-    <mx-button type="primary">主题按钮</mx-button>
-  </mx-config-provider>
+	<mx-config-provider :theme="theme" :theme-vars-light="{ '--mx-primary-color': '#1989fa' }" :theme-vars-dark="{ '--mx-primary-color': '#7232dd' }">
+		<mx-button type="primary">主题按钮</mx-button>
+	</mx-config-provider>
 </template>
 
 <script setup>

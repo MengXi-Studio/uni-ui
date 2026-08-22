@@ -2,13 +2,6 @@
 
 全屏图片预览组件，支持多图轮播切换、点击缩放、关闭按钮与索引显示，对齐 Vant ImagePreview 的 API 与交互。
 
-## 引入
-
-```json
-// pages.json easycom
-"^mx-(.*)": "@mengxi/uni-ui/src/components/mx-$1/mx-$1.vue"
-```
-
 ## 基础用法
 
 通过 `v-model:show` 控制显隐，`images` 传入图片地址列表。
@@ -20,11 +13,7 @@
 ```ts
 const show = ref(false)
 
-const images = [
-  'https://fastly.jsdelivr.net/npm/@vant/assets/apple-1.jpeg',
-  'https://fastly.jsdelivr.net/npm/@vant/assets/apple-2.jpeg',
-  'https://fastly.jsdelivr.net/npm/@vant/assets/apple-3.jpeg',
-]
+const images = ['https://fastly.jsdelivr.net/npm/@vant/assets/apple-1.jpeg', 'https://fastly.jsdelivr.net/npm/@vant/assets/apple-2.jpeg', 'https://fastly.jsdelivr.net/npm/@vant/assets/apple-3.jpeg']
 ```
 
 ## 指定初始位置

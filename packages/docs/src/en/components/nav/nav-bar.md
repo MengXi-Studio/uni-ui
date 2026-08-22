@@ -2,13 +2,6 @@
 
 Top navigation bar that supports back, left/right slots and sticky positioning.
 
-## Install
-
-```json
-// pages.json easycom
-"^mx-(.*)": "@mengxi/uni-ui/src/components/mx-$1/mx-$1.vue"
-```
-
 ## Basic Usage
 
 ```vue

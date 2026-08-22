@@ -2,13 +2,6 @@
 
 Used for rating, supports half star, readonly, disabled, etc.
 
-## Import
-
-```json
-// pages.json easycom
-"^mx-(.*)": "@mengxi/uni-ui/src/components/mx-$1/mx-$1.vue"
-```
-
 ## Basic Usage
 
 <demo-live>

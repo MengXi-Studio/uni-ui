@@ -2,13 +2,6 @@
 
 在页面上添加文字水印，以网格形式平铺展示，对齐 Vant Watermark 的 API 与交互。
 
-## 引入
-
-```json
-// pages.json easycom
-"^mx-(.*)": "@mengxi/uni-ui/src/components/mx-$1/mx-$1.vue"
-```
-
 ## 基础用法
 
 水印组件绝对定位铺满父容器，父容器需要设置 `position: relative` 及尺寸：

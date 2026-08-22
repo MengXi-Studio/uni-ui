@@ -2,13 +2,6 @@
 
 Shows a message count or a status dot in the top-right corner of an element.
 
-## Install
-
-```json
-// pages.json easycom
-"^mx-(.*)": "@mengxi/uni-ui/src/components/mx-$1/mx-$1.vue"
-```
-
 ## Basic Usage
 
 ```vue

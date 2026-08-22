@@ -2,13 +2,6 @@
 
 图片进入视口时才触发加载，基于 uni.createIntersectionObserver 实现，H5 / 小程序 / App 多端兼容。
 
-## 引入
-
-```json
-// pages.json easycom
-"^mx-(.*)": "@mengxi/uni-ui/src/components/mx-$1/mx-$1.vue"
-```
-
 ## 基础用法
 
 <demo-live>
@@ -20,11 +13,7 @@
 </demo-live>
 
 ```vue
-<mx-lazyload
-  image="https://fastly.jsdelivr.net/npm/@vant/assets/apple-1.jpeg"
-  width="100"
-  height="100"
-/>
+<mx-lazyload image="https://fastly.jsdelivr.net/npm/@vant/assets/apple-1.jpeg" width="100" height="100" />
 ```
 
 ## 自定义占位

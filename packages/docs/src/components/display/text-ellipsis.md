@@ -2,13 +2,6 @@
 
 对长文本进行省略，支持展开/收起，对齐 Vant TextEllipsis 的 API 与交互。
 
-## 引入
-
-```json
-// pages.json easycom
-"^mx-(.*)": "@mengxi/uni-ui/src/components/mx-$1/mx-$1.vue"
-```
-
 ## 基础用法
 
 <demo-live>
@@ -19,10 +12,7 @@
 </demo-live>
 
 ```vue
-<mx-text-ellipsis
-  :rows="2"
-  text="在一个真正的设计体系中，组件库需要覆盖绝大多数业务场景，同时保持足够的灵活性。梦溪工作室致力于打造多端统一的 uni-app 组件库，帮助开发者快速构建美观、易用的应用界面。"
-/>
+<mx-text-ellipsis :rows="2" text="在一个真正的设计体系中，组件库需要覆盖绝大多数业务场景，同时保持足够的灵活性。梦溪工作室致力于打造多端统一的 uni-app 组件库，帮助开发者快速构建美观、易用的应用界面。" />
 ```
 
 `rows` 为省略行数，默认 2 行；点击「展开/收起」可切换显示全部内容。
@@ -39,12 +29,7 @@
 </demo-live>
 
 ```vue
-<mx-text-ellipsis
-  :rows="1"
-  expand-text="查看全部"
-  collapse-text="收起内容"
-  text="梦溪工作室致力于打造多端统一的 uni-app 组件库，帮助开发者快速构建美观、易用的应用界面，覆盖布局、表单、反馈、导航等常见场景。"
-/>
+<mx-text-ellipsis :rows="1" expand-text="查看全部" collapse-text="收起内容" text="梦溪工作室致力于打造多端统一的 uni-app 组件库，帮助开发者快速构建美观、易用的应用界面，覆盖布局、表单、反馈、导航等常见场景。" />
 ```
 
 ## 自定义内容
@@ -69,7 +54,7 @@ const expanded = ref(false)
 </script>
 
 <template>
-  <mx-text-ellipsis v-model:expanded="expanded" :rows="2" :text="text" @change="onChange" />
+	<mx-text-ellipsis v-model:expanded="expanded" :rows="2" :text="text" @change="onChange" />
 </template>
 ```
 

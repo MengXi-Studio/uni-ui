@@ -2,13 +2,6 @@
 
 A divider used to separate content. It aligns with the API and interactions of the Vant Divider.
 
-## Install
-
-```json
-// pages.json easycom
-"^mx-(.*)": "@mengxi/uni-ui/src/components/mx-$1/mx-$1.vue"
-```
-
 ## Basic Usage
 
 <demo-live>

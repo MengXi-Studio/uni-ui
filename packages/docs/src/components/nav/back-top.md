@@ -2,13 +2,6 @@
 
 返回页面顶部的悬浮按钮，点击后回到页面顶部，对齐 Vant BackTop 的 API 与交互。
 
-## 引入
-
-```json
-// pages.json easycom
-"^mx-(.*)": "@mengxi/uni-ui/src/components/mx-$1/mx-$1.vue"
-```
-
 ## 基础用法
 
 通过 `v-model` 控制显示隐藏，点击按钮自动回到页面顶部（内部调用 `uni.pageScrollTo`）：
@@ -21,7 +14,7 @@ const visible = ref(false)
 </script>
 
 <template>
-  <mx-back-top v-model="visible" />
+	<mx-back-top v-model="visible" />
 </template>
 ```
 
@@ -59,13 +52,7 @@ const visible = ref(false)
 </script>
 
 <template>
-  <mx-back-top
-    v-model="visible"
-    teleport-on-scroll
-    :offset-top="200"
-    @click="onClick"
-    @scroll="onScroll"
-  />
+	<mx-back-top v-model="visible" teleport-on-scroll :offset-top="200" @click="onClick" @scroll="onScroll" />
 </template>
 ```
 

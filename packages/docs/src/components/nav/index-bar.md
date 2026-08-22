@@ -2,13 +2,6 @@
 
 用于列表快速定位的索引栏，右侧索引导航支持触摸滑动选择，配合 IndexAnchor 锚点使用，对齐 Vant IndexBar 的 API 与交互。
 
-## 引入
-
-```json
-// pages.json easycom
-"^mx-(.*)": "@mengxi/uni-ui/src/components/mx-$1/mx-$1.vue"
-```
-
 ## 基础用法
 
 将 `mx-index-anchor` 锚点作为 `mx-index-bar` 的子组件使用，索引栏需要设置高度：

@@ -2,13 +2,6 @@
 
 垂直展示的导航栏，用于在不同内容区域之间进行切换，对齐 Vant Sidebar 的 API 与交互。
 
-## 引入
-
-```json
-// pages.json easycom
-"^mx-(.*)": "@mengxi/uni-ui/src/components/mx-$1/mx-$1.vue"
-```
-
 ## 基础用法
 
 通过 `v-model` 绑定当前选中索引，默认插槽中的每个直接子节点即为一个选项：
@@ -21,12 +14,12 @@ const active = ref(0)
 </script>
 
 <template>
-  <mx-sidebar v-model="active">
-    <view>选项一</view>
-    <view>选项二</view>
-    <view>选项三</view>
-    <view>选项四</view>
-  </mx-sidebar>
+	<mx-sidebar v-model="active">
+		<view>选项一</view>
+		<view>选项二</view>
+		<view>选项三</view>
+		<view>选项四</view>
+	</mx-sidebar>
 </template>
 ```
 

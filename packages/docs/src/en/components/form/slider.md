@@ -2,13 +2,6 @@
 
 Slider component, supports dragging to select a value, with customizable range, step and style, aligned with Vant Slider's API and interactions.
 
-## Import
-
-```json
-// pages.json easycom
-"^mx-(.*)": "@mengxi/uni-ui/src/components/mx-$1/mx-$1.vue"
-```
-
 ## Basic Usage
 
 <demo-live>
@@ -42,13 +35,7 @@ Slider component, supports dragging to select a value, with customizable range, 
 </demo-live>
 
 ```vue
-<mx-slider
-  v-model="value"
-  active-color="#ee0a24"
-  inactive-color="#ffe1e1"
-  bar-height="4px"
-  :button-size="20"
-/>
+<mx-slider v-model="value" active-color="#ee0a24" inactive-color="#ffe1e1" bar-height="4px" :button-size="20" />
 ```
 
 ## Disabled State

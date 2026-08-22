@@ -2,13 +2,6 @@
 
 An action panel that slides up from the bottom.
 
-## Install
-
-```json
-// pages.json easycom
-"^mx-(.*)": "@mengxi/uni-ui/src/components/mx-$1/mx-$1.vue"
-```
-
 ## Basic Usage
 
 ```vue
@@ -17,9 +10,9 @@ An action panel that slides up from the bottom.
 
 ```ts
 const actions = [
-  { name: '选项一', color: '#ee0a24' },
-  { name: '选项二', subname: '描述信息' },
-  { name: '禁用选项', disabled: true },
+	{ name: '选项一', color: '#ee0a24' },
+	{ name: '选项二', subname: '描述信息' },
+	{ name: '禁用选项', disabled: true }
 ]
 ```
 

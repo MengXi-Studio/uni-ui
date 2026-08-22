@@ -2,35 +2,23 @@
 
 A scrollable selector popped up from the bottom, supports multiple columns.
 
-## Import
-
-```json
-// pages.json easycom
-"^mx-(.*)": "@mengxi/uni-ui/src/components/mx-$1/mx-$1.vue"
-```
-
 ## Basic Usage (Single Column)
 
 ```vue
-<mx-picker
-  v-model:show="show"
-  :columns="['Hangzhou', 'Ningbo', 'Wenzhou', 'Shaoxing']"
-  @confirm="onConfirm"
-/>
+<mx-picker v-model:show="show" :columns="['Hangzhou', 'Ningbo', 'Wenzhou', 'Shaoxing']" @confirm="onConfirm" />
 ```
 
 ## Multiple Columns
 
 ```vue
 <mx-picker
-  v-model:show="show"
-  :columns="[
-    ['Monday', 'Tuesday'],
-    ['Morning', 'Afternoon'],
-  ]"
-  title="Time Select"
-  @confirm="onConfirm"
-/>
+	v-model:show="show"
+	:columns="[
+		['Monday', 'Tuesday'],
+		['Morning', 'Afternoon']
+	]"
+	title="Time Select"
+	@confirm="onConfirm" />
 ```
 
 ## API

@@ -2,13 +2,6 @@
 
 A vertically displayed navigation bar used to switch between different content areas. It aligns with the API and interactions of the Vant Sidebar.
 
-## Install
-
-```json
-// pages.json easycom
-"^mx-(.*)": "@mengxi/uni-ui/src/components/mx-$1/mx-$1.vue"
-```
-
 ## Basic Usage
 
 Bind the currently selected index with `v-model`; each direct child node in the default slot is an option:
@@ -21,12 +14,12 @@ const active = ref(0)
 </script>
 
 <template>
-  <mx-sidebar v-model="active">
-    <view>Option 1</view>
-    <view>Option 2</view>
-    <view>Option 3</view>
-    <view>Option 4</view>
-  </mx-sidebar>
+	<mx-sidebar v-model="active">
+		<view>Option 1</view>
+		<view>Option 2</view>
+		<view>Option 3</view>
+		<view>Option 4</view>
+	</mx-sidebar>
 </template>
 ```
 

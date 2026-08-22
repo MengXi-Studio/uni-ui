@@ -2,13 +2,6 @@
 
 圆形进度条组件，支持进度颜色、轨道颜色、尺寸与环宽自定义，对齐 Vant Circle 的 API 与交互。
 
-## 引入
-
-```json
-// pages.json easycom
-"^mx-(.*)": "@mengxi/uni-ui/src/components/mx-$1/mx-$1.vue"
-```
-
 ## 基础用法
 
 `value` 表示进度百分比（0 - 100）。

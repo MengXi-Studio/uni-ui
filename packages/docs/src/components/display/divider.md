@@ -2,13 +2,6 @@
 
 用于分隔内容的分割线，对齐 Vant Divider 的 API 与交互。
 
-## 引入
-
-```json
-// pages.json easycom
-"^mx-(.*)": "@mengxi/uni-ui/src/components/mx-$1/mx-$1.vue"
-```
-
 ## 基础用法
 
 <demo-live>

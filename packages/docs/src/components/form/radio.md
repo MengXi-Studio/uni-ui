@@ -2,13 +2,6 @@
 
 单选框组件，需在 mx-radio-group 中使用，对齐 Vant Radio 的 API 与交互。
 
-## 引入
-
-```json
-// pages.json easycom
-"^mx-(.*)": "@mengxi/uni-ui/src/components/mx-$1/mx-$1.vue"
-```
-
 ## 基础用法
 
 <demo-live>

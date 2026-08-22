@@ -2,20 +2,13 @@
 
 签名组件，基于 canvas 实现手写签名，包含 `mx-signature` 与 `mx-sign-board` 两个组件，对齐 Vant Signature 的 API 与交互。
 
-## 引入
-
-```json
-// pages.json easycom
-"^mx-(.*)": "@mengxi/uni-ui/src/components/mx-$1/mx-$1.vue"
-```
-
 ## 基础用法
 
 `mx-signature` 通过 `v-model` 绑定签名生成图片的临时路径，点击"确认"按钮后导出图片并触发 `submit` 事件，点击"清除"按钮清空画布。
 
 ```vue
 <template>
-  <mx-signature v-model="signature" @submit="onSubmit" @clear="onClear" />
+	<mx-signature v-model="signature" @submit="onSubmit" @clear="onClear" />
 </template>
 
 <script setup>
@@ -23,9 +16,9 @@ import { ref } from 'vue'
 
 const signature = ref('')
 
-const onSubmit = (value) => {
-  // value 为签名图片的临时文件路径
-  console.log('签名图片', value)
+const onSubmit = value => {
+	// value 为签名图片的临时文件路径
+	console.log('签名图片', value)
 }
 
 const onClear = () => console.log('清空签名')
@@ -37,25 +30,15 @@ const onClear = () => console.log('清空签名')
 通过 `color`、`pen-size`、`bg-color`、`height` 自定义笔迹与画布样式，`tip-text` 设置空白时的提示文字。
 
 ```vue
-<mx-signature
-  v-model="signature"
-  color="#1989fa"
-  :pen-size="5"
-  bg-color="#f7f8fa"
-  :height="240"
-  tip-text="请在此处签名"
-  close-button-text="重写"
-  confirm-button-text="完成"
-  @submit="onSubmit"
-/>
+<mx-signature v-model="signature" color="#1989fa" :pen-size="5" bg-color="#f7f8fa" :height="240" tip-text="请在此处签名" close-button-text="重写" confirm-button-text="完成" @submit="onSubmit" />
 ```
 
 ## 通过 ref 调用方法
 
 ```vue
 <template>
-  <mx-signature ref="signRef" v-model="signature" />
-  <mx-button type="primary" @click="onDataURL">获取 base64</mx-button>
+	<mx-signature ref="signRef" v-model="signature" />
+	<mx-button type="primary" @click="onDataURL">获取 base64</mx-button>
 </template>
 
 <script setup>
@@ -65,9 +48,9 @@ const signRef = ref()
 const signature = ref('')
 
 const onDataURL = async () => {
-  // dataURL 方法返回 base64 格式的图片字符串
-  const data = await signRef.value.dataURL()
-  console.log('base64 签名', data)
+	// dataURL 方法返回 base64 格式的图片字符串
+	const data = await signRef.value.dataURL()
+	console.log('base64 签名', data)
 }
 </script>
 ```
@@ -78,7 +61,7 @@ const onDataURL = async () => {
 
 ```vue
 <template>
-  <mx-sign-board v-model="signature" @submit="onSubmit" @clear="onClear" />
+	<mx-sign-board v-model="signature" @submit="onSubmit" @clear="onClear" />
 </template>
 
 <script setup>
@@ -86,7 +69,7 @@ import { ref } from 'vue'
 
 const signature = ref('')
 
-const onSubmit = (value) => console.log('签名图片', value)
+const onSubmit = value => console.log('签名图片', value)
 const onClear = () => console.log('清空签名')
 </script>
 ```

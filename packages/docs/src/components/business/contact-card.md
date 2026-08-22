@@ -2,13 +2,6 @@
 
 联系人信息卡片，展示联系人姓名与电话，或作为"添加联系人"入口，对齐 Vant ContactCard 的 API 与交互。
 
-## 引入
-
-```json
-// pages.json easycom
-"^mx-(.*)": "@mengxi/uni-ui/src/components/mx-$1/mx-$1.vue"
-```
-
 ## 基础用法
 
 未传入 `name` / `tel` 时显示"添加联系人"入口；传入后展示联系人信息。
@@ -40,8 +33,8 @@
 ```
 
 ```js
-const onClick = (event) => console.log('点击卡片')
-const onEdit = (event) => console.log('点击编辑')
+const onClick = event => console.log('点击卡片')
+const onEdit = event => console.log('点击编辑')
 ```
 
 ## 自定义内容

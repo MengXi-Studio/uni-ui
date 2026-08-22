@@ -2,24 +2,17 @@
 
 A global configuration component used to wrap page content for dark mode switching and CSS theme variable customization. It aligns with the API and interactions of the Vant ConfigProvider.
 
-## Install
-
-```json
-// pages.json easycom
-"^mx-(.*)": "@mengxi/uni-ui/src/components/mx-$1/mx-$1.vue"
-```
-
 ## Basic Usage
 
 Wrap `mx-config-provider` around the outer layer of the page content to provide theme configuration for components inside it.
 
 ```vue
 <template>
-  <mx-config-provider>
-    <view class="page">
-      <mx-button type="primary">Primary Button</mx-button>
-    </view>
-  </mx-config-provider>
+	<mx-config-provider>
+		<view class="page">
+			<mx-button type="primary">Primary Button</mx-button>
+		</view>
+	</mx-config-provider>
 </template>
 ```
 
@@ -84,13 +77,9 @@ Common theme variables:
 
 ```vue
 <template>
-  <mx-config-provider
-    :theme="theme"
-    :theme-vars-light="{ '--mx-primary-color': '#1989fa' }"
-    :theme-vars-dark="{ '--mx-primary-color': '#7232dd' }"
-  >
-    <mx-button type="primary">Theme Button</mx-button>
-  </mx-config-provider>
+	<mx-config-provider :theme="theme" :theme-vars-light="{ '--mx-primary-color': '#1989fa' }" :theme-vars-dark="{ '--mx-primary-color': '#7232dd' }">
+		<mx-button type="primary">Theme Button</mx-button>
+	</mx-config-provider>
 </template>
 
 <script setup>

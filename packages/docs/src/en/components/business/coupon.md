@@ -2,13 +2,6 @@
 
 A collection of coupon components, including the coupon card `mx-coupon`, the coupon cell `mx-coupon-cell` and the coupon list `mx-coupon-list`. It aligns with the API and interactions of the Vant Coupon series.
 
-## Install
-
-```json
-// pages.json easycom
-"^mx-(.*)": "@mengxi/uni-ui/src/components/mx-$1/mx-$1.vue"
-```
-
 ## CouponCell Basic Usage
 
 `mx-coupon-cell` is used on pages such as the order confirmation page to display the currently selected coupon. Passing a `coupon` object shows its description; otherwise it shows "No available coupons".
@@ -23,29 +16,20 @@ A collection of coupon components, including the coupon card `mx-coupon`, the co
 
 ```vue
 <mx-coupon-cell />
-<mx-coupon-cell
-  title="Coupon"
-  :coupon="{ id: 1, value: 10, condition: 50, name: 'Discount coupon' }"
-/>
+<mx-coupon-cell title="Coupon" :coupon="{ id: 1, value: 10, condition: 50, name: 'Discount coupon' }" />
 ```
 
 ## CouponList
 
-`mx-coupon-list` is usually used with `mx-popup`. Bind the array of selected coupon ids with `v-model`. The list is divided into "Available" and "Unavailable" groups by the `available` field, and supports exchange code input and a close button.
+`mx-coupon-list` is usually used with `mx-popup`. Bind the array of selected coupon ids with `v-model`. The list is divided into "Available" and "Unavailable" groups by the `available` field, and supports exchange code
+input and a close button.
 
 ```vue
 <template>
-  <mx-popup v-model:show="showCouponList" position="bottom">
-    <mx-coupon-list
-      v-model="chosenIds"
-      :coupons="coupons"
-      close-button-text="No coupon used"
-      @exchange="onExchange"
-      @change="onChange"
-      @close="showCouponList = false"
-    />
-  </mx-popup>
-  <mx-coupon-cell :coupon="chosenCoupon" @click="showCouponList = true" />
+	<mx-popup v-model:show="showCouponList" position="bottom">
+		<mx-coupon-list v-model="chosenIds" :coupons="coupons" close-button-text="No coupon used" @exchange="onExchange" @change="onChange" @close="showCouponList = false" />
+	</mx-popup>
+	<mx-coupon-cell :coupon="chosenCoupon" @click="showCouponList = true" />
 </template>
 
 <script setup>
@@ -55,29 +39,29 @@ const showCouponList = ref(false)
 const chosenIds = ref([])
 
 const coupons = ref([
-  {
-    id: 1,
-    value: 10,
-    condition: 50,
-    name: 'Discount coupon',
-    startAt: 1767225600,
-    endAt: 1798761600,
-  },
-  {
-    id: 2,
-    value: 5,
-    condition: 0,
-    name: 'No minimum coupon',
-    startAt: 1767225600,
-    endAt: 1798761600,
-  },
-  { id: 3, value: 20, condition: 100, name: 'Unavailable coupon', available: false },
+	{
+		id: 1,
+		value: 10,
+		condition: 50,
+		name: 'Discount coupon',
+		startAt: 1767225600,
+		endAt: 1798761600
+	},
+	{
+		id: 2,
+		value: 5,
+		condition: 0,
+		name: 'No minimum coupon',
+		startAt: 1767225600,
+		endAt: 1798761600
+	},
+	{ id: 3, value: 20, condition: 100, name: 'Unavailable coupon', available: false }
 ])
 
-const chosenCoupon = computed(() => coupons.value.find((c) => chosenIds.value.includes(c.id)))
+const chosenCoupon = computed(() => coupons.value.find(c => chosenIds.value.includes(c.id)))
 
-const onExchange = (code) => console.log('Exchange code', code)
-const onChange = (ids) => console.log('Selection changed', ids)
+const onExchange = code => console.log('Exchange code', code)
+const onChange = ids => console.log('Selection changed', ids)
 </script>
 ```
 
@@ -101,22 +85,15 @@ Used alone, `mx-coupon` shows a single coupon card, with `chosen` marking it sel
 
 ```vue
 <mx-coupon
-  :coupon="{
-    value: 10,
-    condition: 50,
-    name: 'Discount coupon',
-    startAt: 1767225600,
-    endAt: 1798761600,
-  }"
-/>
-<mx-coupon
-  :coupon="{ value: 5, name: 'No minimum coupon', description: 'Valid for all', endAt: 1798761600 }"
-  chosen
-/>
-<mx-coupon
-  :coupon="{ value: 20, condition: 100, name: 'Unavailable coupon', endAt: 1798761600 }"
-  disabled
-/>
+	:coupon="{
+		value: 10,
+		condition: 50,
+		name: 'Discount coupon',
+		startAt: 1767225600,
+		endAt: 1798761600
+	}" />
+<mx-coupon :coupon="{ value: 5, name: 'No minimum coupon', description: 'Valid for all', endAt: 1798761600 }" chosen />
+<mx-coupon :coupon="{ value: 20, condition: 100, name: 'Unavailable coupon', endAt: 1798761600 }" disabled />
 ```
 
 ## Coupon Data Structure

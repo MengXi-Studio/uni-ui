@@ -2,13 +2,6 @@
 
 Index bar for quickly locating items in a list. The index navigation on the right supports touch and slide to select, and works with the IndexAnchor. It aligns with the API and interactions of the Vant IndexBar.
 
-## Install
-
-```json
-// pages.json easycom
-"^mx-(.*)": "@mengxi/uni-ui/src/components/mx-$1/mx-$1.vue"
-```
-
 ## Basic Usage
 
 Use `mx-index-anchor` as a child of `mx-index-bar`; the index bar needs to be given a height:

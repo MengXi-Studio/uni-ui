@@ -2,13 +2,6 @@
 
 图片组件，在原生 `image` 基础上提供加载中、加载失败占位与圆角/圆形能力，对齐 Vant Image 的 API 与交互。
 
-## 引入
-
-```json
-// pages.json easycom
-"^mx-(.*)": "@mengxi/uni-ui/src/components/mx-$1/mx-$1.vue"
-```
-
 ## 基础用法
 
 通过 `src` 设置图片地址，`width` / `height` 控制尺寸。
@@ -32,24 +25,9 @@
 </demo-live>
 
 ```vue
-<mx-image
-  width="100"
-  height="100"
-  mode="aspectFill"
-  src="https://fastly.jsdelivr.net/npm/@vant/assets/cat.jpeg"
-/>
-<mx-image
-  width="100"
-  height="100"
-  mode="aspectFit"
-  src="https://fastly.jsdelivr.net/npm/@vant/assets/cat.jpeg"
-/>
-<mx-image
-  width="100"
-  height="100"
-  mode="scaleToFill"
-  src="https://fastly.jsdelivr.net/npm/@vant/assets/cat.jpeg"
-/>
+<mx-image width="100" height="100" mode="aspectFill" src="https://fastly.jsdelivr.net/npm/@vant/assets/cat.jpeg" />
+<mx-image width="100" height="100" mode="aspectFit" src="https://fastly.jsdelivr.net/npm/@vant/assets/cat.jpeg" />
+<mx-image width="100" height="100" mode="scaleToFill" src="https://fastly.jsdelivr.net/npm/@vant/assets/cat.jpeg" />
 ```
 
 ## 圆角 / 圆形图片
@@ -62,18 +40,8 @@
 </demo-live>
 
 ```vue
-<mx-image
-  width="100"
-  height="100"
-  radius="8"
-  src="https://fastly.jsdelivr.net/npm/@vant/assets/cat.jpeg"
-/>
-<mx-image
-  width="100"
-  height="100"
-  round
-  src="https://fastly.jsdelivr.net/npm/@vant/assets/cat.jpeg"
-/>
+<mx-image width="100" height="100" radius="8" src="https://fastly.jsdelivr.net/npm/@vant/assets/cat.jpeg" />
+<mx-image width="100" height="100" round src="https://fastly.jsdelivr.net/npm/@vant/assets/cat.jpeg" />
 ```
 
 ## 加载失败提示

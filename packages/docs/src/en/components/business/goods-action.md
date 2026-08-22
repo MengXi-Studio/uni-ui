@@ -1,13 +1,7 @@
 # GoodsAction
 
-A bottom action bar on product pages, composed of the `mx-goods-action` container, `mx-goods-action-icon` icon buttons and `mx-goods-action-button` action buttons. It aligns with the API and interactions of the Vant GoodsAction series.
-
-## Install
-
-```json
-// pages.json easycom
-"^mx-(.*)": "@mengxi/uni-ui/src/components/mx-$1/mx-$1.vue"
-```
+A bottom action bar on product pages, composed of the `mx-goods-action` container, `mx-goods-action-icon` icon buttons and `mx-goods-action-button` action buttons. It aligns with the API and interactions of the Vant
+GoodsAction series.
 
 ## Basic Usage
 
@@ -92,9 +86,9 @@ Action buttons support five types and a custom theme color.
 ```
 
 ```js
-const onClickCart = (event) => console.log('Tap cart')
-const onClickAdd = (event) => console.log('Add to cart')
-const onClickBuy = (event) => console.log('Buy now')
+const onClickCart = event => console.log('Tap cart')
+const onClickAdd = event => console.log('Add to cart')
+const onClickBuy = event => console.log('Buy now')
 ```
 
 ## GoodsAction Props

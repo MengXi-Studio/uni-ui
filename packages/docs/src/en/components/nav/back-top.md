@@ -2,13 +2,6 @@
 
 A floating button to return to the top of the page. Tap it to scroll back to the top. It aligns with the API and interactions of the Vant BackTop.
 
-## Install
-
-```json
-// pages.json easycom
-"^mx-(.*)": "@mengxi/uni-ui/src/components/mx-$1/mx-$1.vue"
-```
-
 ## Basic Usage
 
 Control visibility with `v-model`; tapping the button automatically returns to the top of the page (internally calls `uni.pageScrollTo`):
@@ -21,7 +14,7 @@ const visible = ref(false)
 </script>
 
 <template>
-  <mx-back-top v-model="visible" />
+	<mx-back-top v-model="visible" />
 </template>
 ```
 
@@ -59,13 +52,7 @@ const visible = ref(false)
 </script>
 
 <template>
-  <mx-back-top
-    v-model="visible"
-    teleport-on-scroll
-    :offset-top="200"
-    @click="onClick"
-    @scroll="onScroll"
-  />
+	<mx-back-top v-model="visible" teleport-on-scroll :offset-top="200" @click="onClick" @scroll="onScroll" />
 </template>
 ```
 

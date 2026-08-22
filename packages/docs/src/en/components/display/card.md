@@ -2,13 +2,6 @@
 
 A product card used to display product image, price, title and other information. It aligns with the API and interactions of the Vant Card.
 
-## Install
-
-```json
-// pages.json easycom
-"^mx-(.*)": "@mengxi/uni-ui/src/components/mx-$1/mx-$1.vue"
-```
-
 ## Basic Usage
 
 <demo-live>
@@ -24,14 +17,7 @@ A product card used to display product image, price, title and other information
 </demo-live>
 
 ```vue
-<mx-card
-  title="商品标题"
-  desc="商品描述"
-  num="2"
-  price="10.00"
-  origin-price="20.00"
-  img="https://fastly.jsdelivr.net/npm/@vant/assets/apple-1.jpeg"
-/>
+<mx-card title="商品标题" desc="商品描述" num="2" price="10.00" origin-price="20.00" img="https://fastly.jsdelivr.net/npm/@vant/assets/apple-1.jpeg" />
 ```
 
 The integer and decimal parts of the price are displayed separately automatically; when `origin-price` is higher than `price`, the original price is shown with a strikethrough.
@@ -50,13 +36,7 @@ The integer and decimal parts of the price are displayed separately automaticall
 </demo-live>
 
 ```vue
-<mx-card
-  tag="热销"
-  title="商品标题"
-  desc="商品描述"
-  price="10.00"
-  img="https://fastly.jsdelivr.net/npm/@vant/assets/apple-2.jpeg"
-/>
+<mx-card tag="热销" title="商品标题" desc="商品描述" price="10.00" img="https://fastly.jsdelivr.net/npm/@vant/assets/apple-2.jpeg" />
 ```
 
 ## Custom Content

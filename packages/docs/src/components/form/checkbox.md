@@ -2,13 +2,6 @@
 
 复选框组件，支持单独使用与复选框组，对齐 Vant Checkbox 的 API 与交互。
 
-## 引入
-
-```json
-// pages.json easycom
-"^mx-(.*)": "@mengxi/uni-ui/src/components/mx-$1/mx-$1.vue"
-```
-
 ## 基础用法
 
 <demo-live>

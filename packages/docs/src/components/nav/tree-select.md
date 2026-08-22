@@ -2,13 +2,6 @@
 
 左侧为分类导航、右侧为分类选项的选择组件，支持单选与多选，对齐 Vant TreeSelect 的 API 与交互。
 
-## 引入
-
-```json
-// pages.json easycom
-"^mx-(.*)": "@mengxi/uni-ui/src/components/mx-$1/mx-$1.vue"
-```
-
 ## 基础用法（单选）
 
 `v-model` 绑定选中项 id，`v-model:main-active-index` 绑定左侧导航选中索引：
@@ -21,32 +14,27 @@ const activeId = ref(1)
 const mainActiveIndex = ref(0)
 
 const items = [
-  {
-    text: '浙江',
-    children: [
-      { text: '杭州', id: 1 },
-      { text: '温州', id: 2 },
-      { text: '宁波', id: 3 },
-    ],
-  },
-  {
-    text: '江苏',
-    children: [
-      { text: '南京', id: 4 },
-      { text: '苏州', id: 5 },
-      { text: '无锡', id: 6 },
-    ],
-  },
+	{
+		text: '浙江',
+		children: [
+			{ text: '杭州', id: 1 },
+			{ text: '温州', id: 2 },
+			{ text: '宁波', id: 3 }
+		]
+	},
+	{
+		text: '江苏',
+		children: [
+			{ text: '南京', id: 4 },
+			{ text: '苏州', id: 5 },
+			{ text: '无锡', id: 6 }
+		]
+	}
 ]
 </script>
 
 <template>
-  <mx-tree-select
-    v-model="activeId"
-    v-model:main-active-index="mainActiveIndex"
-    :items="items"
-    height="300px"
-  />
+	<mx-tree-select v-model="activeId" v-model:main-active-index="mainActiveIndex" :items="items" height="300px" />
 </template>
 ```
 
@@ -76,32 +64,26 @@ const activeIds = ref([1, 2])
 const mainActiveIndex = ref(0)
 
 const items = [
-  {
-    text: '浙江',
-    children: [
-      { text: '杭州', id: 1 },
-      { text: '温州', id: 2 },
-      { text: '宁波', id: 3 },
-    ],
-  },
-  {
-    text: '江苏',
-    children: [
-      { text: '南京', id: 4 },
-      { text: '苏州', id: 5 },
-    ],
-  },
+	{
+		text: '浙江',
+		children: [
+			{ text: '杭州', id: 1 },
+			{ text: '温州', id: 2 },
+			{ text: '宁波', id: 3 }
+		]
+	},
+	{
+		text: '江苏',
+		children: [
+			{ text: '南京', id: 4 },
+			{ text: '苏州', id: 5 }
+		]
+	}
 ]
 </script>
 
 <template>
-  <mx-tree-select
-    v-model="activeIds"
-    v-model:main-active-index="mainActiveIndex"
-    :items="items"
-    :max="2"
-    height="300px"
-  />
+	<mx-tree-select v-model="activeIds" v-model:main-active-index="mainActiveIndex" :items="items" :max="2" height="300px" />
 </template>
 ```
 
@@ -123,17 +105,16 @@ const items = [
 
 ```vue
 <mx-tree-select
-  :model-value="1"
-  :items="[
-    {
-      text: '浙江',
-      children: [
-        { text: '杭州', id: 1 },
-        { text: '宁波', id: 3, disabled: true },
-      ],
-    },
-  ]"
-/>
+	:model-value="1"
+	:items="[
+		{
+			text: '浙江',
+			children: [
+				{ text: '杭州', id: 1 },
+				{ text: '宁波', id: 3, disabled: true }
+			]
+		}
+	]" />
 ```
 
 ## Props

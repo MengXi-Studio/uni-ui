@@ -2,13 +2,6 @@
 
 表单组件，用于数据校验、提交与重置，需搭配表单项（如 mx-field）使用，对齐 Vant Form 的 API 与交互。
 
-## 引入
-
-```json
-// pages.json easycom
-"^mx-(.*)": "@mengxi/uni-ui/src/components/mx-$1/mx-$1.vue"
-```
-
 ## 基础用法
 
 `model` 绑定表单数据对象，`rules` 配置校验规则（键与表单项 `name` 对应），通过 ref 调用 `submitForm` 触发校验并提交。
@@ -28,18 +21,18 @@ const formRef = ref()
 const form = reactive({ username: '', phone: '' })
 
 const rules = {
-  username: [
-    { required: true, message: '请输入用户名' },
-    { min: 2, max: 20, message: '用户名长度为 2 - 20 个字符' },
-  ],
-  phone: [
-    { required: true, message: '请输入手机号' },
-    { pattern: /^1\d{10}$/, message: '手机号格式不正确' },
-  ],
+	username: [
+		{ required: true, message: '请输入用户名' },
+		{ min: 2, max: 20, message: '用户名长度为 2 - 20 个字符' }
+	],
+	phone: [
+		{ required: true, message: '请输入手机号' },
+		{ pattern: /^1\d{10}$/, message: '手机号格式不正确' }
+	]
 }
 
-const onSubmit = (values) => console.log('提交', values)
-const onFailed = (errors) => console.log('校验失败', errors)
+const onSubmit = values => console.log('提交', values)
+const onFailed = errors => console.log('校验失败', errors)
 ```
 
 ## 校验规则
@@ -48,15 +41,15 @@ const onFailed = (errors) => console.log('校验失败', errors)
 
 ```js
 const rules = {
-  username: [
-    { required: true, message: '请输入用户名' },
-    { pattern: /^\w+$/, message: '仅支持字母、数字、下划线' },
-    { min: 2, max: 20, message: '长度为 2 - 20 个字符' },
-    {
-      validator: (value, model, field) => value !== 'admin' || '用户名不可用',
-      message: '用户名校验失败',
-    },
-  ],
+	username: [
+		{ required: true, message: '请输入用户名' },
+		{ pattern: /^\w+$/, message: '仅支持字母、数字、下划线' },
+		{ min: 2, max: 20, message: '长度为 2 - 20 个字符' },
+		{
+			validator: (value, model, field) => value !== 'admin' || '用户名不可用',
+			message: '用户名校验失败'
+		}
+	]
 }
 ```
 
@@ -102,10 +95,5 @@ const rules = {
 </mx-form>
 
 <mx-button @click="formRef?.resetForm()">重置</mx-button>
-<mx-button
-  type="primary"
-  @click="
-    formRef?.validate().then((errors) => !Object.keys(errors).length && showToast('校验通过'))
-  "
->仅校验</mx-button>
+<mx-button type="primary" @click="formRef?.validate().then(errors => !Object.keys(errors).length && showToast('校验通过'))">仅校验</mx-button>
 ```

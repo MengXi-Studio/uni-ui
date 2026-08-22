@@ -2,20 +2,13 @@
 
 A contact selection list for selecting a single contact, with an add entry. It aligns with the API and interactions of the Vant ContactList.
 
-## Install
-
-```json
-// pages.json easycom
-"^mx-(.*)": "@mengxi/uni-ui/src/components/mx-$1/mx-$1.vue"
-```
-
 ## Basic Usage
 
 Bind the id of the selected contact with `v-model`, pass the contact array via `list`. Tapping a list item selects it, and tapping the bottom button triggers the `add` event.
 
 ```vue
 <template>
-  <mx-contact-list v-model="chosenId" :list="list" @add="onAdd" @select="onSelect" />
+	<mx-contact-list v-model="chosenId" :list="list" @add="onAdd" @select="onSelect" />
 </template>
 
 <script setup>
@@ -24,12 +17,12 @@ import { ref } from 'vue'
 const chosenId = ref('1')
 
 const list = ref([
-  { id: '1', name: 'Zhang San', tel: '13000000000' },
-  { id: '2', name: 'Li Si', tel: '13100000000' },
+	{ id: '1', name: 'Zhang San', tel: '13000000000' },
+	{ id: '2', name: 'Li Si', tel: '13100000000' }
 ])
 
 const onAdd = () => console.log('Add contact')
-const onSelect = (item) => console.log('Select contact', item)
+const onSelect = item => console.log('Select contact', item)
 </script>
 ```
 

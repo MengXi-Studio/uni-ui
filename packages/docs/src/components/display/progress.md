@@ -2,13 +2,6 @@
 
 用于展示操作的当前进度，支持线形与环形两种类型，对齐 Vant Progress 的 API 与交互。
 
-## 引入
-
-```json
-// pages.json easycom
-"^mx-(.*)": "@mengxi/uni-ui/src/components/mx-$1/mx-$1.vue"
-```
-
 ## 基础用法
 
 <demo-live>
@@ -34,13 +27,7 @@
 </demo-live>
 
 ```vue
-<mx-progress
-  :percentage="70"
-  pivot-text="70%"
-  color="#ee0a24"
-  track-color="#f5f5f5"
-  :stroke-width="8"
-/>
+<mx-progress :percentage="70" pivot-text="70%" color="#ee0a24" track-color="#f5f5f5" :stroke-width="8" />
 ```
 
 ## 隐藏进度文字

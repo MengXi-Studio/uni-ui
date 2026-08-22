@@ -2,13 +2,6 @@
 
 A fullscreen overlay component, commonly used as the background overlay for popup content. It aligns with the API and interactions of the Vant Overlay.
 
-## Install
-
-```json
-// pages.json easycom
-"^mx-(.*)": "@mengxi/uni-ui/src/components/mx-$1/mx-$1.vue"
-```
-
 ## Basic Usage
 
 ```vue

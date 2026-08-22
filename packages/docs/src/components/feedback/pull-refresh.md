@@ -2,13 +2,6 @@
 
 用于下拉刷新列表内容，对齐 Vant PullRefresh 的 API 与交互。
 
-## 引入
-
-```json
-// pages.json easycom
-"^mx-(.*)": "@mengxi/uni-ui/src/components/mx-$1/mx-$1.vue"
-```
-
 ## 基础用法
 
 通过 `v-model:loading` 控制加载状态，刷新完成后将 loading 设为 false，会先展示成功提示再收起。
@@ -23,9 +16,9 @@
 const loading = ref(false)
 
 const onRefresh = () => {
-  setTimeout(() => {
-    loading.value = false
-  }, 1000)
+	setTimeout(() => {
+		loading.value = false
+	}, 1000)
 }
 ```
 
@@ -42,13 +35,7 @@ const onRefresh = () => {
 ## 自定义提示文案
 
 ```vue
-<mx-pull-refresh
-  v-model:loading="loading"
-  pulling-text="下拉即可刷新"
-  loosing-text="释放即可刷新"
-  loading-text="加载中..."
-  @refresh="onRefresh"
->
+<mx-pull-refresh v-model:loading="loading" pulling-text="下拉即可刷新" loosing-text="释放即可刷新" loading-text="加载中..." @refresh="onRefresh">
   <view>内容</view>
 </mx-pull-refresh>
 ```

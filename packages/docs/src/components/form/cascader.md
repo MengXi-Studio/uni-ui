@@ -2,41 +2,24 @@
 
 级联选择器，底部弹出，用于省市区等多级数据的逐级选择，对齐 Vant Cascader 的 API 与交互。
 
-## 引入
-
-```json
-// pages.json easycom
-"^mx-(.*)": "@mengxi/uni-ui/src/components/mx-$1/mx-$1.vue"
-```
-
 ## 基础用法
 
 ```vue
-<mx-cascader
-  v-model:show="show"
-  :value="value"
-  :options="options"
-  @update:model-value="value = $event"
-  @finish="onFinish"
-/>
+<mx-cascader v-model:show="show" :value="value" :options="options" @update:model-value="value = $event" @finish="onFinish" />
 ```
 
 ```js
 const options = [
-  {
-    text: '浙江省',
-    value: '330000',
-    children: [
-      { text: '杭州市', value: '330100', children: [{ text: '西湖区', value: '330106' }] },
-    ],
-  },
-  {
-    text: '广东省',
-    value: '440000',
-    children: [
-      { text: '广州市', value: '440100', children: [{ text: '天河区', value: '440106' }] },
-    ],
-  },
+	{
+		text: '浙江省',
+		value: '330000',
+		children: [{ text: '杭州市', value: '330100', children: [{ text: '西湖区', value: '330106' }] }]
+	},
+	{
+		text: '广东省',
+		value: '440000',
+		children: [{ text: '广州市', value: '440100', children: [{ text: '天河区', value: '440106' }] }]
+	}
 ]
 ```
 
@@ -55,12 +38,7 @@ const options = [
 通过 `field-names` 指定选项中文本、值、子级的字段名。
 
 ```vue
-<mx-cascader
-  v-model:show="show"
-  :value="value"
-  :options="options"
-  :field-names="{ text: 'name', value: 'id', children: 'sub' }"
-/>
+<mx-cascader v-model:show="show" :value="value" :options="options" :field-names="{ text: 'name', value: 'id', children: 'sub' }" />
 ```
 
 ## Props

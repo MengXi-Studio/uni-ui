@@ -2,32 +2,25 @@
 
 A contact info editing form that includes name, phone and a contact type radio. It aligns with the API and interactions of the Vant ContactEdit.
 
-## Install
-
-```json
-// pages.json easycom
-"^mx-(.*)": "@mengxi/uni-ui/src/components/mx-$1/mx-$1.vue"
-```
-
 ## Basic Usage
 
 Bind the contact info object with `v-model`. Tapping the save button validates first and then triggers the `save` event.
 
 ```vue
 <template>
-  <mx-contact-edit v-model="contact" @save="onSave" />
+	<mx-contact-edit v-model="contact" @save="onSave" />
 </template>
 
 <script setup>
 import { ref } from 'vue'
 
 const contact = ref({
-  name: '',
-  tel: '',
-  type: 'company',
+	name: '',
+	tel: '',
+	type: 'company'
 })
 
-const onSave = (value) => console.log('Save contact', value)
+const onSave = value => console.log('Save contact', value)
 </script>
 ```
 
@@ -37,14 +30,14 @@ Show the "Company / Enterprise" type radio with `show-contact-type`; the selecte
 
 ```vue
 <template>
-  <mx-contact-edit v-model="contact" show-contact-type @save="onSave" />
+	<mx-contact-edit v-model="contact" show-contact-type @save="onSave" />
 </template>
 
 <script setup>
 import { ref } from 'vue'
 
 const contact = ref({ name: '', tel: '', type: 'company' })
-const onSave = (value) => console.log('Save contact', value)
+const onSave = value => console.log('Save contact', value)
 </script>
 ```
 
@@ -72,7 +65,7 @@ Call the `save` method through a ref to validate and save from outside. On valid
 
 ```vue
 <template>
-  <mx-contact-edit ref="editRef" v-model="contact" />
+	<mx-contact-edit ref="editRef" v-model="contact" />
 </template>
 
 <script setup>
@@ -81,8 +74,8 @@ import { ref } from 'vue'
 const editRef = ref()
 
 const onSubmit = () => {
-  const success = editRef.value.save()
-  console.log('Save result', success)
+	const success = editRef.value.save()
+	console.log('Save result', success)
 }
 </script>
 ```

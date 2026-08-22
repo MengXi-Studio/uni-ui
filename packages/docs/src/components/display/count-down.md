@@ -2,13 +2,6 @@
 
 用于实时展示倒计时数值，支持自定义格式与毫秒级渲染，对齐 Vant CountDown 的 API 与交互。
 
-## 引入
-
-```json
-// pages.json easycom
-"^mx-(.*)": "@mengxi/uni-ui/src/components/mx-$1/mx-$1.vue"
-```
-
 ## 基础用法
 
 <demo-live>

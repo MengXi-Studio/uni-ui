@@ -2,13 +2,6 @@
 
 A selection component with category navigation on the left and category options on the right. It supports single and multiple selection and aligns with the API and interactions of the Vant TreeSelect.
 
-## Install
-
-```json
-// pages.json easycom
-"^mx-(.*)": "@mengxi/uni-ui/src/components/mx-$1/mx-$1.vue"
-```
-
 ## Basic Usage (Single Selection)
 
 `v-model` binds the id of the selected item, and `v-model:main-active-index` binds the selected index of the left navigation:
@@ -21,32 +14,27 @@ const activeId = ref(1)
 const mainActiveIndex = ref(0)
 
 const items = [
-  {
-    text: 'Zhejiang',
-    children: [
-      { text: 'Hangzhou', id: 1 },
-      { text: 'Wenzhou', id: 2 },
-      { text: 'Ningbo', id: 3 },
-    ],
-  },
-  {
-    text: 'Jiangsu',
-    children: [
-      { text: 'Nanjing', id: 4 },
-      { text: 'Suzhou', id: 5 },
-      { text: 'Wuxi', id: 6 },
-    ],
-  },
+	{
+		text: 'Zhejiang',
+		children: [
+			{ text: 'Hangzhou', id: 1 },
+			{ text: 'Wenzhou', id: 2 },
+			{ text: 'Ningbo', id: 3 }
+		]
+	},
+	{
+		text: 'Jiangsu',
+		children: [
+			{ text: 'Nanjing', id: 4 },
+			{ text: 'Suzhou', id: 5 },
+			{ text: 'Wuxi', id: 6 }
+		]
+	}
 ]
 </script>
 
 <template>
-  <mx-tree-select
-    v-model="activeId"
-    v-model:main-active-index="mainActiveIndex"
-    :items="items"
-    height="300px"
-  />
+	<mx-tree-select v-model="activeId" v-model:main-active-index="mainActiveIndex" :items="items" height="300px" />
 </template>
 ```
 
@@ -76,32 +64,26 @@ const activeIds = ref([1, 2])
 const mainActiveIndex = ref(0)
 
 const items = [
-  {
-    text: 'Zhejiang',
-    children: [
-      { text: 'Hangzhou', id: 1 },
-      { text: 'Wenzhou', id: 2 },
-      { text: 'Ningbo', id: 3 },
-    ],
-  },
-  {
-    text: 'Jiangsu',
-    children: [
-      { text: 'Nanjing', id: 4 },
-      { text: 'Suzhou', id: 5 },
-    ],
-  },
+	{
+		text: 'Zhejiang',
+		children: [
+			{ text: 'Hangzhou', id: 1 },
+			{ text: 'Wenzhou', id: 2 },
+			{ text: 'Ningbo', id: 3 }
+		]
+	},
+	{
+		text: 'Jiangsu',
+		children: [
+			{ text: 'Nanjing', id: 4 },
+			{ text: 'Suzhou', id: 5 }
+		]
+	}
 ]
 </script>
 
 <template>
-  <mx-tree-select
-    v-model="activeIds"
-    v-model:main-active-index="mainActiveIndex"
-    :items="items"
-    :max="2"
-    height="300px"
-  />
+	<mx-tree-select v-model="activeIds" v-model:main-active-index="mainActiveIndex" :items="items" :max="2" height="300px" />
 </template>
 ```
 
@@ -123,17 +105,16 @@ An option cannot be selected when `disabled` is set:
 
 ```vue
 <mx-tree-select
-  :model-value="1"
-  :items="[
-    {
-      text: 'Zhejiang',
-      children: [
-        { text: 'Hangzhou', id: 1 },
-        { text: 'Ningbo', id: 3, disabled: true },
-      ],
-    },
-  ]"
-/>
+	:model-value="1"
+	:items="[
+		{
+			text: 'Zhejiang',
+			children: [
+				{ text: 'Hangzhou', id: 1 },
+				{ text: 'Ningbo', id: 3, disabled: true }
+			]
+		}
+	]" />
 ```
 
 ## Props

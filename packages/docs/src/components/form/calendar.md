@@ -2,13 +2,6 @@
 
 日历组件，底部弹出，支持单选 / 多选 / 区间三种模式，对齐 Vant Calendar 的 API 与交互。
 
-## 引入
-
-```json
-// pages.json easycom
-"^mx-(.*)": "@mengxi/uni-ui/src/components/mx-$1/mx-$1.vue"
-```
-
 ## 基础用法
 
 ```vue

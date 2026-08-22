@@ -2,13 +2,6 @@
 
 A draggable floating bubble based on `movable-area` / `movable-view`, supporting edge magnetic snapping. It aligns with the API and interactions of the Vant FloatingBubble.
 
-## Install
-
-```json
-// pages.json easycom
-"^mx-(.*)": "@mengxi/uni-ui/src/components/mx-$1/mx-$1.vue"
-```
-
 ## Basic Usage
 
 Shows an icon bubble by default, draggable in both directions; on release it automatically snaps to the nearest horizontal edge.
@@ -59,7 +52,7 @@ Use `magnetic` to disable snapping to an edge on release, `right` / `bottom` to 
 
 ```vue
 <template>
-  <mx-floating-bubble v-model="show" icon="✚" @click="onClick" @offset-change="onOffsetChange" />
+	<mx-floating-bubble v-model="show" icon="✚" @click="onClick" @offset-change="onOffsetChange" />
 </template>
 
 <script setup>

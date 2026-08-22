@@ -2,13 +2,6 @@
 
 Calendar component, popped up from the bottom, supports three modes: single, multiple and range, aligned with Vant Calendar's API and interactions.
 
-## Import
-
-```json
-// pages.json easycom
-"^mx-(.*)": "@mengxi/uni-ui/src/components/mx-$1/mx-$1.vue"
-```
-
 ## Basic Usage
 
 ```vue

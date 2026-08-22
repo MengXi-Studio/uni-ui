@@ -2,32 +2,25 @@
 
 联系人信息编辑表单，包含姓名、电话与联系人类型单选，对齐 Vant ContactEdit 的 API 与交互。
 
-## 引入
-
-```json
-// pages.json easycom
-"^mx-(.*)": "@mengxi/uni-ui/src/components/mx-$1/mx-$1.vue"
-```
-
 ## 基础用法
 
 通过 `v-model` 绑定联系人信息对象，点击保存按钮时先校验再触发 `save` 事件。
 
 ```vue
 <template>
-  <mx-contact-edit v-model="contact" @save="onSave" />
+	<mx-contact-edit v-model="contact" @save="onSave" />
 </template>
 
 <script setup>
 import { ref } from 'vue'
 
 const contact = ref({
-  name: '',
-  tel: '',
-  type: 'company',
+	name: '',
+	tel: '',
+	type: 'company'
 })
 
-const onSave = (value) => console.log('保存联系人', value)
+const onSave = value => console.log('保存联系人', value)
 </script>
 ```
 
@@ -37,14 +30,14 @@ const onSave = (value) => console.log('保存联系人', value)
 
 ```vue
 <template>
-  <mx-contact-edit v-model="contact" show-contact-type @save="onSave" />
+	<mx-contact-edit v-model="contact" show-contact-type @save="onSave" />
 </template>
 
 <script setup>
 import { ref } from 'vue'
 
 const contact = ref({ name: '', tel: '', type: 'company' })
-const onSave = (value) => console.log('保存联系人', value)
+const onSave = value => console.log('保存联系人', value)
 </script>
 ```
 
@@ -72,7 +65,7 @@ const onSave = (value) => console.log('保存联系人', value)
 
 ```vue
 <template>
-  <mx-contact-edit ref="editRef" v-model="contact" />
+	<mx-contact-edit ref="editRef" v-model="contact" />
 </template>
 
 <script setup>
@@ -81,8 +74,8 @@ import { ref } from 'vue'
 const editRef = ref()
 
 const onSubmit = () => {
-  const success = editRef.value.save()
-  console.log('保存结果', success)
+	const success = editRef.value.save()
+	console.log('保存结果', success)
 }
 </script>
 ```

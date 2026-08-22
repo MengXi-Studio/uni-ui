@@ -2,20 +2,13 @@
 
 联系人选择列表，单选联系人并支持新增入口，对齐 Vant ContactList 的 API 与交互。
 
-## 引入
-
-```json
-// pages.json easycom
-"^mx-(.*)": "@mengxi/uni-ui/src/components/mx-$1/mx-$1.vue"
-```
-
 ## 基础用法
 
 通过 `v-model` 绑定选中联系人的 id，`list` 传入联系人数组，点击列表项触发选中，点击底部按钮触发 `add` 事件。
 
 ```vue
 <template>
-  <mx-contact-list v-model="chosenId" :list="list" @add="onAdd" @select="onSelect" />
+	<mx-contact-list v-model="chosenId" :list="list" @add="onAdd" @select="onSelect" />
 </template>
 
 <script setup>
@@ -24,12 +17,12 @@ import { ref } from 'vue'
 const chosenId = ref('1')
 
 const list = ref([
-  { id: '1', name: '张三', tel: '13000000000' },
-  { id: '2', name: '李四', tel: '13100000000' },
+	{ id: '1', name: '张三', tel: '13000000000' },
+	{ id: '2', name: '李四', tel: '13100000000' }
 ])
 
 const onAdd = () => console.log('新增联系人')
-const onSelect = (item) => console.log('选中联系人', item)
+const onSelect = item => console.log('选中联系人', item)
 </script>
 ```
 

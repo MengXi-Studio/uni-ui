@@ -2,13 +2,6 @@
 
 数据分页展示，超过 7 页时自动显示省略号，对齐 Vant Pagination 的 API 与交互。
 
-## 引入
-
-```json
-// pages.json easycom
-"^mx-(.*)": "@mengxi/uni-ui/src/components/mx-$1/mx-$1.vue"
-```
-
 ## 基础用法
 
 通过 `v-model` 绑定当前页码：
@@ -21,7 +14,7 @@ const currentPage = ref(1)
 </script>
 
 <template>
-  <mx-pagination v-model="currentPage" :total-items="50" />
+	<mx-pagination v-model="currentPage" :total-items="50" />
 </template>
 ```
 

@@ -2,13 +2,6 @@
 
 可拖动悬浮气泡，基于 `movable-area` / `movable-view` 实现，支持边缘磁吸，对齐 Vant FloatingBubble 的 API 与交互。
 
-## 引入
-
-```json
-// pages.json easycom
-"^mx-(.*)": "@mengxi/uni-ui/src/components/mx-$1/mx-$1.vue"
-```
-
 ## 基础用法
 
 默认显示图标气泡，可双向拖动，松手后自动吸附到最近的水平边缘。
@@ -59,7 +52,7 @@
 
 ```vue
 <template>
-  <mx-floating-bubble v-model="show" icon="✚" @click="onClick" @offset-change="onOffsetChange" />
+	<mx-floating-bubble v-model="show" icon="✚" @click="onClick" @offset-change="onOffsetChange" />
 </template>
 
 <script setup>

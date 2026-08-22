@@ -2,13 +2,6 @@
 
 Image component, built on the native `image` with loading placeholder, error placeholder and rounded/circle styles, aligned with Vant Image's API and interactions.
 
-## Import
-
-```json
-// pages.json easycom
-"^mx-(.*)": "@mengxi/uni-ui/src/components/mx-$1/mx-$1.vue"
-```
-
 ## Basic Usage
 
 Set the image URL with `src`, and control the size with `width` / `height`.
@@ -32,24 +25,9 @@ Set the crop / scale mode with `mode`, same as the `mode` attribute of the uni-a
 </demo-live>
 
 ```vue
-<mx-image
-  width="100"
-  height="100"
-  mode="aspectFill"
-  src="https://fastly.jsdelivr.net/npm/@vant/assets/cat.jpeg"
-/>
-<mx-image
-  width="100"
-  height="100"
-  mode="aspectFit"
-  src="https://fastly.jsdelivr.net/npm/@vant/assets/cat.jpeg"
-/>
-<mx-image
-  width="100"
-  height="100"
-  mode="scaleToFill"
-  src="https://fastly.jsdelivr.net/npm/@vant/assets/cat.jpeg"
-/>
+<mx-image width="100" height="100" mode="aspectFill" src="https://fastly.jsdelivr.net/npm/@vant/assets/cat.jpeg" />
+<mx-image width="100" height="100" mode="aspectFit" src="https://fastly.jsdelivr.net/npm/@vant/assets/cat.jpeg" />
+<mx-image width="100" height="100" mode="scaleToFill" src="https://fastly.jsdelivr.net/npm/@vant/assets/cat.jpeg" />
 ```
 
 ## Rounded / Circle Image
@@ -62,18 +40,8 @@ Set the border radius with `radius`, or use `round` to directly display a circle
 </demo-live>
 
 ```vue
-<mx-image
-  width="100"
-  height="100"
-  radius="8"
-  src="https://fastly.jsdelivr.net/npm/@vant/assets/cat.jpeg"
-/>
-<mx-image
-  width="100"
-  height="100"
-  round
-  src="https://fastly.jsdelivr.net/npm/@vant/assets/cat.jpeg"
-/>
+<mx-image width="100" height="100" radius="8" src="https://fastly.jsdelivr.net/npm/@vant/assets/cat.jpeg" />
+<mx-image width="100" height="100" round src="https://fastly.jsdelivr.net/npm/@vant/assets/cat.jpeg" />
 ```
 
 ## Error Tip

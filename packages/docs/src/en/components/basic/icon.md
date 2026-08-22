@@ -2,13 +2,6 @@
 
 Icon component, supports two modes: image path and font icon name.
 
-## Import
-
-```json
-// pages.json easycom
-"^mx-(.*)": "@mengxi/uni-ui/src/components/mx-$1/mx-$1.vue"
-```
-
 ## Basic Usage
 
 Image icon:

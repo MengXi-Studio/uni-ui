@@ -2,13 +2,6 @@
 
 商品卡片，用于展示商品图片、价格、标题等信息，对齐 Vant Card 的 API 与交互。
 
-## 引入
-
-```json
-// pages.json easycom
-"^mx-(.*)": "@mengxi/uni-ui/src/components/mx-$1/mx-$1.vue"
-```
-
 ## 基础用法
 
 <demo-live>
@@ -24,14 +17,7 @@
 </demo-live>
 
 ```vue
-<mx-card
-  title="商品标题"
-  desc="商品描述"
-  num="2"
-  price="10.00"
-  origin-price="20.00"
-  img="https://fastly.jsdelivr.net/npm/@vant/assets/apple-1.jpeg"
-/>
+<mx-card title="商品标题" desc="商品描述" num="2" price="10.00" origin-price="20.00" img="https://fastly.jsdelivr.net/npm/@vant/assets/apple-1.jpeg" />
 ```
 
 价格整数与小数部分自动拆分展示；`origin-price` 高于 `price` 时展示划线原价。
@@ -50,13 +36,7 @@
 </demo-live>
 
 ```vue
-<mx-card
-  tag="热销"
-  title="商品标题"
-  desc="商品描述"
-  price="10.00"
-  img="https://fastly.jsdelivr.net/npm/@vant/assets/apple-2.jpeg"
-/>
+<mx-card tag="热销" title="商品标题" desc="商品描述" price="10.00" img="https://fastly.jsdelivr.net/npm/@vant/assets/apple-2.jpeg" />
 ```
 
 ## 自定义内容

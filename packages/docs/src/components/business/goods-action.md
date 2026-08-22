@@ -2,13 +2,6 @@
 
 商品页底部操作栏，由 `mx-goods-action` 容器、`mx-goods-action-icon` 图标按钮与 `mx-goods-action-button` 操作按钮组成，对齐 Vant GoodsAction 系列的 API 与交互。
 
-## 引入
-
-```json
-// pages.json easycom
-"^mx-(.*)": "@mengxi/uni-ui/src/components/mx-$1/mx-$1.vue"
-```
-
 ## 基础用法
 
 图标按钮放在左侧，操作按钮放在右侧。
@@ -92,9 +85,9 @@
 ```
 
 ```js
-const onClickCart = (event) => console.log('点击购物车')
-const onClickAdd = (event) => console.log('加入购物车')
-const onClickBuy = (event) => console.log('立即购买')
+const onClickCart = event => console.log('点击购物车')
+const onClickAdd = event => console.log('加入购物车')
+const onClickBuy = event => console.log('立即购买')
 ```
 
 ## GoodsAction Props

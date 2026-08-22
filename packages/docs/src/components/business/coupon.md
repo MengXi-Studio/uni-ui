@@ -2,13 +2,6 @@
 
 优惠券相关组件集合，包含优惠券卡片 `mx-coupon`、优惠券单元格 `mx-coupon-cell` 与优惠券列表 `mx-coupon-list`，对齐 Vant Coupon 系列的 API 与交互。
 
-## 引入
-
-```json
-// pages.json easycom
-"^mx-(.*)": "@mengxi/uni-ui/src/components/mx-$1/mx-$1.vue"
-```
-
 ## CouponCell 基础用法
 
 `mx-coupon-cell` 用于订单确认页等场景展示当前选中的优惠券，传入 `coupon` 对象显示券说明，否则显示"暂无可用优惠券"。
@@ -32,17 +25,10 @@
 
 ```vue
 <template>
-  <mx-popup v-model:show="showCouponList" position="bottom">
-    <mx-coupon-list
-      v-model="chosenIds"
-      :coupons="coupons"
-      close-button-text="不使用优惠券"
-      @exchange="onExchange"
-      @change="onChange"
-      @close="showCouponList = false"
-    />
-  </mx-popup>
-  <mx-coupon-cell :coupon="chosenCoupon" @click="showCouponList = true" />
+	<mx-popup v-model:show="showCouponList" position="bottom">
+		<mx-coupon-list v-model="chosenIds" :coupons="coupons" close-button-text="不使用优惠券" @exchange="onExchange" @change="onChange" @close="showCouponList = false" />
+	</mx-popup>
+	<mx-coupon-cell :coupon="chosenCoupon" @click="showCouponList = true" />
 </template>
 
 <script setup>
@@ -52,15 +38,15 @@ const showCouponList = ref(false)
 const chosenIds = ref([])
 
 const coupons = ref([
-  { id: 1, value: 10, condition: 50, name: '满减券', startAt: 1767225600, endAt: 1798761600 },
-  { id: 2, value: 5, condition: 0, name: '无门槛券', startAt: 1767225600, endAt: 1798761600 },
-  { id: 3, value: 20, condition: 100, name: '不可用券', available: false },
+	{ id: 1, value: 10, condition: 50, name: '满减券', startAt: 1767225600, endAt: 1798761600 },
+	{ id: 2, value: 5, condition: 0, name: '无门槛券', startAt: 1767225600, endAt: 1798761600 },
+	{ id: 3, value: 20, condition: 100, name: '不可用券', available: false }
 ])
 
-const chosenCoupon = computed(() => coupons.value.find((c) => chosenIds.value.includes(c.id)))
+const chosenCoupon = computed(() => coupons.value.find(c => chosenIds.value.includes(c.id)))
 
-const onExchange = (code) => console.log('兑换码', code)
-const onChange = (ids) => console.log('选中变化', ids)
+const onExchange = code => console.log('兑换码', code)
+const onChange = ids => console.log('选中变化', ids)
 </script>
 ```
 
@@ -83,13 +69,8 @@ const onChange = (ids) => console.log('选中变化', ids)
 </demo-live>
 
 ```vue
-<mx-coupon
-  :coupon="{ value: 10, condition: 50, name: '满减券', startAt: 1767225600, endAt: 1798761600 }"
-/>
-<mx-coupon
-  :coupon="{ value: 5, name: '无门槛券', description: '全场通用', endAt: 1798761600 }"
-  chosen
-/>
+<mx-coupon :coupon="{ value: 10, condition: 50, name: '满减券', startAt: 1767225600, endAt: 1798761600 }" />
+<mx-coupon :coupon="{ value: 5, name: '无门槛券', description: '全场通用', endAt: 1798761600 }" chosen />
 <mx-coupon :coupon="{ value: 20, condition: 100, name: '不可用券', endAt: 1798761600 }" disabled />
 ```
 

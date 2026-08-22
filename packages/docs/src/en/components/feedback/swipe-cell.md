@@ -2,13 +2,6 @@
 
 A cell component that can be swiped left or right to reveal action buttons. It aligns with the API and interactions of the Vant SwipeCell.
 
-## Install
-
-```json
-// pages.json easycom
-"^mx-(.*)": "@mengxi/uni-ui/src/components/mx-$1/mx-$1.vue"
-```
-
 ## Basic Usage
 
 Set the width of the left/right extension areas with `left-width` / `right-width`, and fill the action content with the `left` / `right` slots.

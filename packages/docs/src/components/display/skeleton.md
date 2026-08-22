@@ -2,13 +2,6 @@
 
 用于在页面加载时占位，缓解加载中出现的白屏。
 
-## 引入
-
-```json
-// pages.json easycom
-"^mx-(.*)": "@mengxi/uni-ui/src/components/mx-$1/mx-$1.vue"
-```
-
 ## 基础用法
 
 ```vue

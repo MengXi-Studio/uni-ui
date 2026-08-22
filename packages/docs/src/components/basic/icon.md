@@ -2,13 +2,6 @@
 
 图标组件，支持图片路径与字体图标名两种模式。
 
-## 引入
-
-```json
-// pages.json easycom
-"^mx-(.*)": "@mengxi/uni-ui/src/components/mx-$1/mx-$1.vue"
-```
-
 ## 基础用法
 
 图片图标：

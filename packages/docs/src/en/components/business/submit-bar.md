@@ -2,13 +2,6 @@
 
 A bottom submit order bar showing the total amount and a submit button, commonly used on the order confirmation page. It aligns with the API and interactions of the Vant SubmitBar.
 
-## Install
-
-```json
-// pages.json easycom
-"^mx-(.*)": "@mengxi/uni-ui/src/components/mx-$1/mx-$1.vue"
-```
-
 ## Basic Usage
 
 `price` is the total amount (in cents), displayed with two decimal places by default.
@@ -46,14 +39,7 @@ Customize the button color with `button-color`, and customize the amount display
 </demo-live>
 
 ```vue
-<mx-submit-bar
-  :price="1234500"
-  label="Total"
-  currency="$"
-  :decimal-length="0"
-  button-text="Go to Pay"
-  button-color="#7232dd"
-/>
+<mx-submit-bar :price="1234500" label="Total" currency="$" :decimal-length="0" button-text="Go to Pay" button-color="#7232dd" />
 ```
 
 ## Advanced Usage
@@ -62,23 +48,21 @@ Customize the top tip, left content and button with slots.
 
 ```vue
 <template>
-  <mx-submit-bar :price="3050" @submit="onSubmit">
-    <template #top>
-      <view style="padding: 8px 16px; font-size: 12px; color: #969799">
-        Shipping address: No. 138 Wensan Road, Xihu District, Hangzhou, Zhejiang
-      </view>
-    </template>
-    <template #left>
-      <mx-checkbox>Select all</mx-checkbox>
-    </template>
-    <template #button>
-      <view class="my-submit-btn" @click="onSubmit">Order now</view>
-    </template>
-  </mx-submit-bar>
+	<mx-submit-bar :price="3050" @submit="onSubmit">
+		<template #top>
+			<view style="padding: 8px 16px; font-size: 12px; color: #969799"> Shipping address: No. 138 Wensan Road, Xihu District, Hangzhou, Zhejiang </view>
+		</template>
+		<template #left>
+			<mx-checkbox>Select all</mx-checkbox>
+		</template>
+		<template #button>
+			<view class="my-submit-btn" @click="onSubmit">Order now</view>
+		</template>
+	</mx-submit-bar>
 </template>
 
 <script setup>
-const onSubmit = (event) => console.log('Submit order')
+const onSubmit = event => console.log('Submit order')
 </script>
 ```
 
@@ -89,7 +73,7 @@ const onSubmit = (event) => console.log('Submit order')
 ```
 
 ```js
-const onSubmit = (event) => console.log('Submit order')
+const onSubmit = event => console.log('Submit order')
 ```
 
 ## Props

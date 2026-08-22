@@ -2,13 +2,6 @@
 
 使内容在滚动时吸附在顶部或底部，基于 CSS `position: sticky` 实现，对齐 Vant Sticky 的 API 与交互。
 
-## 引入
-
-```json
-// pages.json easycom
-"^mx-(.*)": "@mengxi/uni-ui/src/components/mx-$1/mx-$1.vue"
-```
-
 ## 基础用法
 
 默认吸顶，吸附效果需在可滚动的容器或页面中体现：

@@ -2,13 +2,6 @@
 
 可以左右滑动来展示操作按钮的单元格组件，对齐 Vant SwipeCell 的 API 与交互。
 
-## 引入
-
-```json
-// pages.json easycom
-"^mx-(.*)": "@mengxi/uni-ui/src/components/mx-$1/mx-$1.vue"
-```
-
 ## 基础用法
 
 通过 `left-width` / `right-width` 设置左右扩展区宽度，配合 `left` / `right` 插槽填充操作内容。
