@@ -107,7 +107,7 @@ export default defineConfig({
   lang: 'zh-CN',
   title: 'MengXi Uni-UI',
   description: '基于 Vue 3 + TypeScript 的高质量 uni-app 组件库',
-  appearance: false,
+  appearance: true,
   lastUpdated: true,
   cleanUrls: false,
   // 静音 Dart Sass legacy-js-api 弃用警告（官网使用组件库 scss）

@@ -37,143 +37,70 @@
   --vp-font-family-mono: 'SF Mono', 'JetBrains Mono', Menlo, Consolas, monospace;
 }
 
-/* ---------- 顶部导航：Vant 式深色品牌栏 ---------- */
+/* ---------- 顶部导航：自定义 Vant 式页头（mx-header.vue），隐藏 VitePress 默认导航 ---------- */
 .VPNav {
-  display: block;
-}
-.VPNavBar {
-  background: #001529 !important;
-  min-height: 60px !important;
-  border-bottom: none !important;
-}
-.VPNavBar .container {
-  background: #001529 !important;
-  border-bottom: none !important;
-}
-.VPNavBar .title,
-.VPNavBar .title .text {
-  color: #fff !important;
-  font-size: 18px;
-  letter-spacing: 0.5px;
-  font-weight: 600;
-}
-.VPNavBar .title::before {
-  content: '';
-  display: inline-block;
-  width: 22px;
-  height: 22px;
-  background: linear-gradient(135deg, #4fc3f7 0%, #1976d2 100%);
-  border-radius: 6px;
-  margin-right: 8px;
-  vertical-align: middle;
-  position: relative;
-  top: -1px;
-}
-.VPNavBar .title::after {
-  content: '（适用于 uni-app）';
-  font-size: 13px;
-  color: rgba(255, 255, 255, 0.55);
-  margin-left: 8px;
-  font-weight: 400;
-}
-.VPNavBar .logo,
-.VPNavBar .menu .link,
-.VPNavBar .menu-link,
-.VPNavBar :deep(.VPNavBarMenu a) {
-  color: rgba(255, 255, 255, 0.82) !important;
-}
-.VPNavBar .hamburger .lines,
-.VPNavBar .hamburger .lines::before,
-.VPNavBar .hamburger .lines::after {
-  background: #fff !important;
-}
-/* 隐藏默认搜索按钮（Vant 官网无顶部搜索） */
-.VPNavBar .VPNavBarSearch {
   display: none !important;
 }
-/* 确保移动端菜单按钮可见 */
-.VPNavBar .VPNavBarHamburger {
-  display: flex !important;
-}
-/* 导航栏下拉菜单（深色背景适配） */
-.VPNavBar .VPNavBarMenu .VPFlyout .menu {
-  background: #001529 !important;
-  border: 1px solid rgba(255, 255, 255, 0.1) !important;
-}
-.VPNavBar .VPNavBarMenu .VPFlyout .menu .link {
-  color: rgba(255, 255, 255, 0.82) !important;
-}
-.VPNavBar .VPNavBarMenu .VPFlyout .menu .link:hover {
-  color: #fff !important;
-  background: rgba(255, 255, 255, 0.08) !important;
-}
-.VPNavBar .VPNavBarMenu .VPFlyout .menu .active {
-  color: #fff !important;
+
+/* 内容区顶部补偿：默认导航隐藏后移除其占位 */
+.VPContent {
+  padding-top: 0 !important;
 }
 
-/* 导航栏右侧自定义图标区域 */
-.mx-nav-extra {
-  display: flex;
-  align-items: center;
-  gap: 4px;
-  margin-left: 12px;
+/* ---------- 移动端侧边栏抽屉（由 mx-header 的 hamburger 触发） ---------- */
+.mx-sidebar-mask {
+  display: none;
 }
-.mx-nav-icon {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 36px;
-  height: 36px;
-  color: rgba(255, 255, 255, 0.7);
-  border-radius: 6px;
-  transition:
-    color 0.2s,
-    background 0.2s;
-  cursor: pointer;
-  background: transparent;
-  border: none;
-  padding: 0;
+
+@media (max-width: 960px) {
+  body.mx-sidebar-open .mx-sidebar-mask {
+    display: block;
+    position: fixed;
+    inset: 0;
+    z-index: 39;
+    background: rgba(0, 0, 0, 0.6);
+  }
+  body.mx-sidebar-open .VPSidebar {
+    display: block !important;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 40;
+    width: 290px;
+    max-width: 80vw;
+    padding: 16px 0 32px !important;
+    background: var(--vp-c-bg, #fff);
+    overflow-y: auto;
+    overscroll-behavior: contain;
+  }
 }
-.mx-nav-icon:hover {
-  color: #fff;
-  background: rgba(255, 255, 255, 0.08);
+
+/* ---------- 暗色模式基础适配（对齐 Vant dark 主题变量） ---------- */
+html.dark {
+  --mx-brand: #1bb5fe;
+  --mx-brand-light: rgba(27, 181, 254, 0.08);
+  --mx-text-1: #fff;
+  --mx-text-2: rgba(255, 255, 255, 0.9);
+  --mx-text-3: rgba(255, 255, 255, 0.75);
+  --mx-border: #3a3a3c;
+  --mx-bg-page: #202124;
 }
-.mx-nav-version {
-  display: flex;
-  align-items: center;
-  gap: 2px;
-  padding: 4px 8px;
-  margin-left: 4px;
-  font-size: 13px;
-  color: rgba(255, 255, 255, 0.7);
-  background: rgba(255, 255, 255, 0.08);
-  border-radius: 6px;
-  cursor: pointer;
-  transition:
-    color 0.2s,
-    background 0.2s;
+html.dark .VPContent,
+html.dark .VPPage {
+  background: #202124 !important;
 }
-.mx-nav-version:hover {
-  color: #fff;
-  background: rgba(255, 255, 255, 0.12);
+html.dark .VPDoc,
+html.dark .VPDoc .container {
+  background: #202124;
 }
-.mx-nav-lang {
-  display: flex;
-  align-items: center;
-  padding: 4px 8px;
-  margin-left: 4px;
-  font-size: 13px;
-  color: rgba(255, 255, 255, 0.7);
-  background: rgba(255, 255, 255, 0.08);
-  border-radius: 6px;
-  cursor: pointer;
-  transition:
-    color 0.2s,
-    background 0.2s;
+html.dark .VPSidebar,
+html.dark .VPSidebar .nav {
+  background: #202124 !important;
 }
-.mx-nav-lang:hover {
-  color: #fff;
-  background: rgba(255, 255, 255, 0.12);
+html.dark .VPContent.mx-home .VPDoc,
+html.dark .VPContent.mx-home .vp-doc {
+  background: #202124;
 }
 
 /* ---------- 页面：浅灰底 + 内容区白色卡片 ---------- */
