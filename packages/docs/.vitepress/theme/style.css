@@ -294,15 +294,8 @@ html.dark .VPContent.mx-home .vp-doc {
 }
 
 /* ---------- 右侧手机模拟器（mx-simulator.vue）+ 文档页布局让位 ---------- */
-/* 仅组件文档页显示模拟器，其余页面隐藏（保留 DOM 作为 Teleport 目标） */
-.mx-sim {
-  display: none;
-}
-body.mx-has-sim .mx-sim {
-  display: block;
-}
-
-/* 组件文档页：隐藏 VitePress 默认右侧大纲栏，让位给手机模拟器 */
+/* 模拟器自身显隐由 mx-simulator 内部 v-show 控制；
+   body.mx-has-sim 仅用于让组件文档页的内容区向右让位、并隐藏默认大纲栏 */
 body.mx-has-sim .VPDocAside {
   display: none !important;
 }

@@ -1,5 +1,10 @@
 <template>
-  <aside class="mx-sim" aria-hidden="simulator">
+  <aside
+    class="mx-sim"
+    :class="{ 'mx-sim__screen-visible': visible }"
+    aria-hidden="simulator"
+    v-show="visible"
+  >
     <div class="mx-sim__frame">
       <!-- 手机状态栏 -->
       <div class="mx-sim__statusbar">
@@ -38,10 +43,24 @@
 </template>
 
 <script setup lang="ts">
-import { h } from 'vue'
+import { h, onMounted, watch } from 'vue'
 import type { Slot, VNode } from 'vue'
 import { computed } from 'vue'
+import { useRoute } from 'vitepress'
 import { simulatorSlots } from './simulator-store'
+
+const route = useRoute()
+
+// 仅组件文档页显示模拟器；响应式自控（不依赖 body class 时序）
+const visible = computed(() => route.path.startsWith('/components/'))
+
+// 内容区让位：把是否启用模拟器同步到 body.mx-has-sim（由 style.css 布局消费）
+function applySimulatorClass(path: string) {
+  if (typeof document === 'undefined') return
+  document.body.classList.toggle('mx-has-sim', path.startsWith('/components/'))
+}
+onMounted(() => applySimulatorClass(route.path))
+watch(() => route.path, applySimulatorClass)
 
 const slots = computed(() => simulatorSlots.value)
 
