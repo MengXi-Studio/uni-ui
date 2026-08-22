@@ -1,14 +1,16 @@
 import DefaultTheme from 'vitepress/theme'
+import type { Theme } from 'vitepress'
+import { h } from 'vue'
 import './style.css'
 // 引入组件库全局样式：声明 --mx-* 主题变量/reset，保证在线 Demo 的主题色与圆角生效
 import '@mengxi/uni-ui/src/styles/index.scss'
 import DemoLive from './demo-live.vue'
+import HomeBadges from './components/HomeBadges.vue'
 import { View, Text, Image, ScrollView, Swiper, SwiperItem } from './uni-shims'
 import DemoScreenSwitch from './demos/demo-switch.vue'
 import DemoScreenRate from './demos/demo-rate.vue'
 import DemoScreenStepper from './demos/demo-stepper.vue'
 import DemoScreenTabs from './demos/demo-tabs.vue'
-import Layout from './layout.vue'
 import { defineAsyncComponent } from 'vue'
 import type { Component } from 'vue'
 
@@ -271,7 +273,11 @@ const components: Record<string, Component> = {
 
 export default {
   extends: DefaultTheme,
-  Layout,
+  Layout: () => {
+    return h(DefaultTheme.Layout, null, {
+      'home-hero-after': () => h(HomeBadges),
+    })
+  },
   enhanceApp({ app }) {
     // uni 标签 shim（仅官网演示用）
     app.component('view', View)
@@ -293,4 +299,4 @@ export default {
       app.component(name, component)
     }
   },
-}
+} satisfies Theme

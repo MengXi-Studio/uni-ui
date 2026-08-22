@@ -9,17 +9,16 @@
   },
   "scripts": {
     "build:core": "pnpm --filter @mengxi/uni-ui run build",
-    "docs:dev": "pnpm --filter @mengxi/uni-ui-docs run dev",
-    "docs:build": "pnpm --filter @mengxi/uni-ui-docs run build",
-    "playground:dev": "pnpm --filter @mengxi/uni-ui-playground run dev:h5",
-    "playground:build": "pnpm --filter @mengxi/uni-ui-playground run build:h5",
-    "build": "pnpm -r run build",
+    "dev:docs": "pnpm --filter @mengxi/uni-ui-docs run dev",
+    "build:docs": "pnpm --filter @mengxi/uni-ui-docs run build",
+    "dev:playground": "pnpm --filter @mengxi/uni-ui-playground run dev:h5",
+    "build:playground": "pnpm --filter @mengxi/uni-ui-playground run build:h5",
+    "release": "bumpp",
     "lint": "pnpm -r run lint",
+    "lint:staged": "lint-staged",
     "format": "prettier --write \"**/*.{ts,vue,scss,md}\"",
     "prepare": "husky",
-    "lint:staged": "lint-staged",
     "commitlint": "commitlint --from=HEAD~1 --to=HEAD --verbose",
-    "release": "bumpp",
     "clean": "rimraf --glob node_modules pnpm-lock.yaml packages/**/node_modules packages/**/pnpm-lock.yaml"
   },
   "lint-staged": {

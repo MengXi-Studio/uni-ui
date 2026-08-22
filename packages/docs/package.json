@@ -3,16 +3,17 @@
   "version": "0.1.0",
   "private": true,
   "description": "MengXi Uni-UI 组件库官网文档",
+  "type": "module",
   "scripts": {
-    "dev": "vitepress dev .",
-    "build": "vitepress build .",
-    "preview": "vitepress preview ."
+    "dev": "vitepress dev",
+    "build": "vitepress build",
+    "preview": "vitepress preview"
   },
   "dependencies": {
     "@mengxi/uni-ui": "workspace:*"
   },
   "devDependencies": {
-    "vitepress": "^1.0.1",
-    "vue": "^3.3.4"
+    "vitepress": "^1.6.3",
+    "vue": "^3.5.0"
   }
 }
