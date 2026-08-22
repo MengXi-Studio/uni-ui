@@ -1,16 +1,15 @@
 ---
 layout: home
 
-title: '@mengxi/uni-ui'
-titleTemplate: MengXi Uni-UI Component Library
-
 hero:
   name: 'MengXi Uni-UI'
-  text: 'uni-app Component Library'
-  tagline: Lightweight and customizable cross-platform component library for uni-app, inspired by Vant—one codebase for H5, Mini Program and App
+  text: 'A mobile UI component library for uni-app'
+  tagline: Lightweight and themeable component library inspired by Vant — one codebase for H5, Mini Program and App
   image:
     src: /logo.svg
     alt: MengXi Uni-UI
+    width: 160
+    height: 160
   actions:
     - theme: brand
       text: Quick Start
@@ -18,27 +17,30 @@ hero:
     - theme: alt
       text: Components
       link: /en/components/basic/button
-    - theme: alt
-      text: GitHub
-      link: https://github.com/MengXi-Studio/mengxi-uni-ui
 
 features:
-  - icon: 🧭
-    title: 80+ Components
-    details: Covers mainstream mobile scenarios, aligning with the Vant API and interaction conventions
-  - icon: 📱
-    title: Cross-platform
-    details: Built with Vue 3 + TypeScript, one codebase for H5, WeChat Mini Program and App
-  - icon: 📦
-    title: Zero Dependencies
-    details: No third-party npm dependencies, supports on-demand import with easycom auto-registration
-  - icon: 🎨
+  - icon: '📖'
+    title: Docs & Examples
+    details: Detailed documentation and component examples to help you get started quickly.
+  - icon: 'TS'
+    title: TypeScript
+    details: Written in TypeScript with complete type definitions.
+  - icon: '🌿'
+    title: Tree Shaking
+    details: Import on demand, bundle only what you use to reduce package size.
+  - icon: '🧪'
+    title: Unit Tests
+    details: The core components are covered by unit tests for stability.
+  - icon: '🌈'
     title: Themeable
-    details: 200+ built-in theme variables, dark mode support, freely customizable component styles
-  - icon: ⚡
+    details: Rich CSS variables allow quick and free theme customization.
+  - icon: '🌙'
+    title: Dark Mode
+    details: Built-in dark theme variables with no complex setup.
+  - icon: '📱'
+    title: Cross-platform
+    details: One codebase for H5, WeChat Mini Program, App and more.
+  - icon: '⚡'
     title: High Performance
-    details: Average component size under 1KB (min+gzip)
-  - icon: 💪
-    title: TypeScript First
-    details: Complete type definitions, type-safe defineProps, with rich documentation and examples
+    details: Average component size under 1KB (min+gzip).
 ---
