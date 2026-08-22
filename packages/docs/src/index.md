@@ -2,15 +2,15 @@
 layout: home
 
 title: '@mengxi/uni-ui'
-titleTemplate: MengXi Uni-UI 组件库
+titleTemplate: Uni UI 组件库
 
 hero:
-  name: 'MengXi Uni-UI'
+  name: '@mengxi/uni-ui'
   text: 'uni-app 组件库'
-  tagline: 轻量、可定制的移动端 uni-app 组件库，源于 Vant 设计，一套代码适配 H5 / 小程序 / App
+  tagline: 轻量、可定制的移动端 uni-app 组件库，一套代码适配 H5 / 小程序 / App
   image:
     src: /logo.svg
-    alt: MengXi Uni-UI
+    alt: Uni UI
   actions:
     - theme: brand
       text: 快速开始
@@ -20,7 +20,7 @@ hero:
       link: /components/basic/button
     - theme: alt
       text: GitHub
-      link: https://github.com/MengXi-Studio/mengxi-uni-ui
+      link: https://github.com/MengXi-Studio/uni-ui
 
 features:
   - icon: 🧭
