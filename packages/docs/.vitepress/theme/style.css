@@ -125,95 +125,14 @@
 	}
 }
 
-/* ================= iPhone 模拟器（MobileEmulator，aside 内） ================= */
+/* ================= iPhone 模拟器容器（机身样式在 MobileEmulator.vue scoped 内） ================= */
 .mobile-simulator {
-	--sard-mobile-width: 393px;
-	--sard-mobile-height: 852px;
-	--sard-mobile-outer-radius: 59px;
-	--sard-mobile-radius: 49px;
-	--sard-mobile-border-width: 20px;
-	--sard-mobile-notch-width: 120px;
-	--sard-mobile-notch-height: 32px;
 	flex: none;
-	margin: 16px;
+	margin: 0 16px;
 	margin-top: -36px;
 }
-.sard-mobile-device {
-	position: relative;
-	padding: var(--sard-mobile-border-width);
-	border-radius: var(--sard-mobile-outer-radius);
-	overflow: hidden;
-	background: #1a1a1a;
-	box-shadow:
-		inset 0 1px 0 rgba(255, 255, 255, 0.15),
-		inset 0 -1px 0 rgba(0, 0, 0, 0.3),
-		0 0 0 1px #2a2a2a,
-		0 0 0 2px #3d3d3d,
-		0 0 0 4px #1a1a1a,
-		0 25px 60px rgba(0, 0, 0, 0.4),
-		0 8px 20px rgba(0, 0, 0, 0.3);
-}
-.sard-mobile-screen {
-	display: flex;
-	flex-direction: column;
-	width: var(--sard-mobile-width);
-	height: var(--sard-mobile-height);
-	border-radius: var(--sard-mobile-radius);
-	overflow: hidden;
-	background: #f7f8fa;
-	box-shadow: inset 0 0 0 2px #0a0a0a;
-}
-/* 状态栏 */
-.sard-mobile-statusbar {
-	position: relative;
-	display: flex;
-	align-items: center;
-	justify-content: space-between;
-	flex-shrink: 0;
-	height: 54px;
-	padding: 0 34px 0 40px;
-	color: #000;
-	background: #fff;
-}
-.sard-mobile-time {
-	font-size: 16px;
-	font-weight: 600;
-}
-.sard-mobile-notch {
-	position: absolute;
-	top: 12px;
-	left: 50%;
-	transform: translateX(-50%);
-	width: var(--sard-mobile-notch-width);
-	height: var(--sard-mobile-notch-height);
-	background: #000;
-	border-radius: 0 0 14px 14px;
-}
-.sard-mobile-battery {
-	display: flex;
-	align-items: center;
-	gap: 4px;
-}
-/* 演示内容滚动区（同页渲染） */
-.sard-mobile-content {
-	flex: 1;
-	overflow-y: auto;
-	overscroll-behavior: contain;
-	background: #f7f8fa;
-}
-/* Home 指示条 */
-.sard-mobile-home {
-	position: absolute;
-	bottom: 8px;
-	left: 50%;
-	transform: translateX(-50%);
-	width: 134px;
-	height: 5px;
-	background: #000;
-	border-radius: 3px;
-	z-index: 5;
-}
-/* 同页渲染的 demo 白卡片 */
+
+/* 同页渲染的 demo 白卡片（运行时 VNode，需全局样式） */
 .mobile-simulator .mx-sim__demo {
 	margin: 8px;
 	padding: 16px;
@@ -223,17 +142,18 @@
 	border-radius: 10px;
 	box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
 }
-/* 暗色适配 */
-html.dark .sard-mobile-screen,
-html.dark .sard-mobile-content {
-	background: #161819;
+.mobile-simulator .sim-content {
+	background: #f7f8fa;
 }
 html.dark .mobile-simulator .mx-sim__demo {
 	background: #202124;
 }
-html.dark .sard-mobile-statusbar {
-	color: #fff;
+html.dark .mobile-simulator .sim-content {
 	background: #161819;
+}
+/* 暗色下状态栏文字/图标变白（特异性高于组件 scoped 的 color:#000） */
+html.dark .mobile-simulator .statusbar {
+	color: #fff;
 }
 
 /* ================= 三栏断点（对齐 Sard） ================= */
