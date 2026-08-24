@@ -1,6 +1,6 @@
 # Theme Customization
 
-MengXi Uni-UI adopts a two-layer theming system of **SCSS variables + CSS variables**. All colors are exposed as `--mx-*` CSS variables, making it easy to override at runtime and switch between light/dark themes.
+@mengxi/uni-ui adopts a two-layer theming system of **SCSS variables + CSS variables**. All colors are exposed as `--mx-*` CSS variables, making it easy to override at runtime and switch between light/dark themes.
 
 ## Override with CSS Variables
 
@@ -8,10 +8,10 @@ Override them on `page` (Mini Program) or `:root` (H5) to apply globally:
 
 ```css
 page {
-  --mx-primary-color: #1989fa;
-  --mx-danger-color: #ee0a24;
-  --mx-text-color: #323233;
-  --mx-radius-lg: 12px;
+	--mx-primary-color: #1989fa;
+	--mx-danger-color: #ee0a24;
+	--mx-text-color: #323233;
+	--mx-radius-lg: 12px;
 }
 ```
 
@@ -49,6 +49,6 @@ You can use the component library's SCSS variables in a uni-app project via `@us
 @use '@mengxi/uni-ui/src/styles/variables.scss' as *;
 
 .my-class {
-  color: $primary-color;
+	color: $primary-color;
 }
 ```

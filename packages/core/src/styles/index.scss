@@ -1,5 +1,5 @@
 // =============================================================
-// MengXi Uni-UI 全局样式入口
+// @mengxi/uni-ui 全局样式入口
 // 由使用方在 App.vue / main 中引入一次即可 (含 reset + CSS 变量)
 // 注意: 不要通过 vite additionalData 注入本文件, 避免重复输出
 // =============================================================
@@ -11,83 +11,83 @@
 // H5 端使用 :root, 小程序/App 端使用 page
 :root,
 page {
-  // 主题色
-  --mx-primary-color: #{$primary-color};
-  --mx-success-color: #{$success-color};
-  --mx-warning-color: #{$warning-color};
-  --mx-danger-color: #{$danger-color};
-  --mx-blue-color: #{$blue-color};
+	// 主题色
+	--mx-primary-color: #{$primary-color};
+	--mx-success-color: #{$success-color};
+	--mx-warning-color: #{$warning-color};
+	--mx-danger-color: #{$danger-color};
+	--mx-blue-color: #{$blue-color};
 
-  // 文字颜色
-  --mx-text-color: #{$text-color};
-  --mx-text-color-2: #{$text-color-2};
-  --mx-text-color-3: #{$text-color-3};
-  --mx-text-link-color: #{$text-link-color};
+	// 文字颜色
+	--mx-text-color: #{$text-color};
+	--mx-text-color-2: #{$text-color-2};
+	--mx-text-color-3: #{$text-color-3};
+	--mx-text-link-color: #{$text-link-color};
 
-  // 激活与禁用
-  --mx-active-color: #{$active-color};
-  --mx-active-opacity: #{$active-opacity};
-  --mx-disabled-opacity: #{$disabled-opacity};
+	// 激活与禁用
+	--mx-active-color: #{$active-color};
+	--mx-active-opacity: #{$active-opacity};
+	--mx-disabled-opacity: #{$disabled-opacity};
 
-  // 背景色
-  --mx-background: #{$background};
-  --mx-background-2: #{$background-2};
+	// 背景色
+	--mx-background: #{$background};
+	--mx-background-2: #{$background-2};
 
-  // 边框
-  --mx-border-color: #{$border-color};
-  --mx-border-width-base: #{$border-width-base};
+	// 边框
+	--mx-border-color: #{$border-color};
+	--mx-border-width-base: #{$border-width-base};
 
-  // 圆角
-  --mx-radius-sm: #{$radius-sm};
-  --mx-radius-md: #{$radius-md};
-  --mx-radius-lg: #{$radius-lg};
-  --mx-radius-max: #{$radius-max};
+	// 圆角
+	--mx-radius-sm: #{$radius-sm};
+	--mx-radius-md: #{$radius-md};
+	--mx-radius-lg: #{$radius-lg};
+	--mx-radius-max: #{$radius-max};
 
-  // 间距
-  --mx-padding-base: #{$padding-base};
-  --mx-padding-xs: #{$padding-xs};
-  --mx-padding-sm: #{$padding-sm};
-  --mx-padding-md: #{$padding-md};
-  --mx-padding-lg: #{$padding-lg};
-  --mx-padding-xl: #{$padding-xl};
+	// 间距
+	--mx-padding-base: #{$padding-base};
+	--mx-padding-xs: #{$padding-xs};
+	--mx-padding-sm: #{$padding-sm};
+	--mx-padding-md: #{$padding-md};
+	--mx-padding-lg: #{$padding-lg};
+	--mx-padding-xl: #{$padding-xl};
 
-  // 字体
-  --mx-font-size-xs: #{$font-size-xs};
-  --mx-font-size-sm: #{$font-size-sm};
-  --mx-font-size-md: #{$font-size-md};
-  --mx-font-size-lg: #{$font-size-lg};
-  --mx-font-weight-bold: #{$font-weight-bold};
-  --mx-line-height-xs: #{$line-height-xs};
-  --mx-line-height-sm: #{$line-height-sm};
-  --mx-line-height-md: #{$line-height-md};
-  --mx-line-height-lg: #{$line-height-lg};
+	// 字体
+	--mx-font-size-xs: #{$font-size-xs};
+	--mx-font-size-sm: #{$font-size-sm};
+	--mx-font-size-md: #{$font-size-md};
+	--mx-font-size-lg: #{$font-size-lg};
+	--mx-font-weight-bold: #{$font-weight-bold};
+	--mx-line-height-xs: #{$line-height-xs};
+	--mx-line-height-sm: #{$line-height-sm};
+	--mx-line-height-md: #{$line-height-md};
+	--mx-line-height-lg: #{$line-height-lg};
 
-  // 动画
-  --mx-duration-base: #{$duration-base};
-  --mx-duration-fast: #{$duration-fast};
-  --mx-ease-in-out: #{$ease-in-out};
+	// 动画
+	--mx-duration-base: #{$duration-base};
+	--mx-duration-fast: #{$duration-fast};
+	--mx-ease-in-out: #{$ease-in-out};
 }
 
 // ---------- 重置 ----------
 page {
-  font-family:
-    -apple-system,
-    BlinkMacSystemFont,
-    'Helvetica Neue',
-    Helvetica,
-    Segoe UI,
-    Arial,
-    Roboto,
-    'PingFang SC',
-    'Hiragino Sans GB',
-    'Microsoft Yahei',
-    sans-serif;
-  font-size: 14px;
-  line-height: 1.5;
-  color: var(--mx-text-color);
-  background-color: var(--mx-background-2);
-  box-sizing: border-box;
-  -webkit-font-smoothing: antialiased;
+	font-family:
+		-apple-system,
+		BlinkMacSystemFont,
+		'Helvetica Neue',
+		Helvetica,
+		Segoe UI,
+		Arial,
+		Roboto,
+		'PingFang SC',
+		'Hiragino Sans GB',
+		'Microsoft Yahei',
+		sans-serif;
+	font-size: 14px;
+	line-height: 1.5;
+	color: var(--mx-text-color);
+	background-color: var(--mx-background-2);
+	box-sizing: border-box;
+	-webkit-font-smoothing: antialiased;
 }
 
 view,
@@ -115,39 +115,35 @@ switch,
 radio,
 checkbox,
 navigator {
-  box-sizing: border-box;
+	box-sizing: border-box;
 }
 
 // ---------- 通用工具类 ----------
 .mx-flex {
-  display: flex;
+	display: flex;
 }
 
 .mx-flex-center {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+	display: flex;
+	align-items: center;
+	justify-content: center;
 }
 
 .mx-flex-between {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
 }
 
 .mx-flex-row-center {
-  display: flex;
-  align-items: center;
+	display: flex;
+	align-items: center;
 }
 
 .mx-ellipsis {
-  @include ellipsis;
+	@include ellipsis;
 }
 
 .mx-hidden {
-  display: none !important;
+	display: none !important;
 }
-
-// ---------- 通用过渡动画 ----------
-// 过渡关键帧与进出场 helper 类已移至 './transition.scss'，
-// 由各弹层组件在自身 <style> 中 @use 实现自包含，页面无需额外引入。

@@ -1,5 +1,5 @@
 /**
- * MengXi Uni-UI 核心入口
+ * @mengxi/uni-ui 核心入口
  */
 // 组件
 export * from './components/index'

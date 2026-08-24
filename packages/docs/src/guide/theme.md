@@ -1,6 +1,6 @@
 # 主题定制
 
-MengXi Uni-UI 采用 **SCSS 变量 + CSS 变量**双层主题系统，全部颜色以 `--mx-*` CSS 变量暴露，方便运行时覆盖与明暗主题切换。
+@mengxi/uni-ui 采用 **SCSS 变量 + CSS 变量**双层主题系统，全部颜色以 `--mx-*` CSS 变量暴露，方便运行时覆盖与明暗主题切换。
 
 ## 通过 CSS 变量覆盖
 
@@ -8,10 +8,10 @@ MengXi Uni-UI 采用 **SCSS 变量 + CSS 变量**双层主题系统，全部颜�
 
 ```css
 page {
-  --mx-primary-color: #1989fa;
-  --mx-danger-color: #ee0a24;
-  --mx-text-color: #323233;
-  --mx-radius-lg: 12px;
+	--mx-primary-color: #1989fa;
+	--mx-danger-color: #ee0a24;
+	--mx-text-color: #323233;
+	--mx-radius-lg: 12px;
 }
 ```
 
@@ -49,6 +49,6 @@ page {
 @use '@mengxi/uni-ui/src/styles/variables.scss' as *;
 
 .my-class {
-  color: $primary-color;
+	color: $primary-color;
 }
 ```

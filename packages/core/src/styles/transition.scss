@@ -1,5 +1,5 @@
 // =============================================================
-// MengXi Uni-UI 通用过渡动画（自包含 partial）
+// @mengxi/uni-ui 通用过渡动画（自包含 partial）
 // 供各个弹层类组件在自身 <style> 中 @use，使组件不依赖全局样式即可完成进出场动画。
 // 消费方无需在 App.vue 引入本文件（由组件内部按需 @use 自动携带）。
 // 若消费方也想在页面侧自行使用这些类，可自行 @use 本文件。
@@ -7,140 +7,153 @@
 
 // ---------- 透明淡入淡出 ----------
 @keyframes mx-fade-in {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
+	from {
+		opacity: 0;
+	}
+	to {
+		opacity: 1;
+	}
 }
+
 @keyframes mx-fade-out {
-  from {
-    opacity: 1;
-  }
-  to {
-    opacity: 0;
-  }
+	from {
+		opacity: 1;
+	}
+	to {
+		opacity: 0;
+	}
 }
 
 // ---------- 底部/顶部/左右 滑入滑出 ----------
 @keyframes mx-slide-up-in {
-  from {
-    transform: translate3d(0, 100%, 0);
-  }
-  to {
-    transform: translate3d(0, 0, 0);
-  }
+	from {
+		transform: translate3d(0, 100%, 0);
+	}
+	to {
+		transform: translate3d(0, 0, 0);
+	}
 }
+
 @keyframes mx-slide-up-out {
-  from {
-    transform: translate3d(0, 0, 0);
-  }
-  to {
-    transform: translate3d(0, 100%, 0);
-  }
+	from {
+		transform: translate3d(0, 0, 0);
+	}
+	to {
+		transform: translate3d(0, 100%, 0);
+	}
 }
+
 @keyframes mx-slide-down-in {
-  from {
-    transform: translate3d(0, -100%, 0);
-  }
-  to {
-    transform: translate3d(0, 0, 0);
-  }
+	from {
+		transform: translate3d(0, -100%, 0);
+	}
+	to {
+		transform: translate3d(0, 0, 0);
+	}
 }
+
 @keyframes mx-slide-down-out {
-  from {
-    transform: translate3d(0, 0, 0);
-  }
-  to {
-    transform: translate3d(0, -100%, 0);
-  }
+	from {
+		transform: translate3d(0, 0, 0);
+	}
+	to {
+		transform: translate3d(0, -100%, 0);
+	}
 }
+
 @keyframes mx-slide-left-in {
-  from {
-    transform: translate3d(-100%, 0, 0);
-  }
-  to {
-    transform: translate3d(0, 0, 0);
-  }
+	from {
+		transform: translate3d(-100%, 0, 0);
+	}
+	to {
+		transform: translate3d(0, 0, 0);
+	}
 }
+
 @keyframes mx-slide-left-out {
-  from {
-    transform: translate3d(0, 0, 0);
-  }
-  to {
-    transform: translate3d(-100%, 0, 0);
-  }
+	from {
+		transform: translate3d(0, 0, 0);
+	}
+	to {
+		transform: translate3d(-100%, 0, 0);
+	}
 }
+
 @keyframes mx-slide-right-in {
-  from {
-    transform: translate3d(100%, 0, 0);
-  }
-  to {
-    transform: translate3d(0, 0, 0);
-  }
+	from {
+		transform: translate3d(100%, 0, 0);
+	}
+	to {
+		transform: translate3d(0, 0, 0);
+	}
 }
+
 @keyframes mx-slide-right-out {
-  from {
-    transform: translate3d(0, 0, 0);
-  }
-  to {
-    transform: translate3d(100%, 0, 0);
-  }
+	from {
+		transform: translate3d(0, 0, 0);
+	}
+	to {
+		transform: translate3d(100%, 0, 0);
+	}
 }
 
 // ---------- 缩放 ----------
 @keyframes mx-zoom-in {
-  from {
-    opacity: 0;
-    transform: scale(0.5);
-  }
-  to {
-    opacity: 1;
-    transform: scale(1);
-  }
+	from {
+		opacity: 0;
+		transform: scale(0.5);
+	}
+	to {
+		opacity: 1;
+		transform: scale(1);
+	}
 }
+
 @keyframes mx-zoom-out {
-  from {
-    opacity: 1;
-    transform: scale(1);
-  }
-  to {
-    opacity: 0;
-    transform: scale(0.5);
-  }
+	from {
+		opacity: 1;
+		transform: scale(1);
+	}
+	to {
+		opacity: 0;
+		transform: scale(0.5);
+	}
 }
 
 // ---------- 下拉菜单面板 ----------
 @keyframes mx-dropdown-fade {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
+	from {
+		opacity: 0;
+	}
+	to {
+		opacity: 1;
+	}
 }
+
 @keyframes mx-dropdown-slide {
-  from {
-    opacity: 0;
-    transform: translateY(-4px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+	from {
+		opacity: 0;
+		transform: translateY(-4px);
+	}
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	}
 }
 
 // ---------- 进出场 helper 类（配合 useTransition 的 mx--enter / mx--leave） ----------
 .mx--fade.mx--enter {
-  animation: mx-fade-in var(--mx-duration-base) both;
+	animation: mx-fade-in var(--mx-duration-base) both;
 }
+
 .mx--fade.mx--leave {
-  animation: mx-fade-out var(--mx-duration-base) both;
+	animation: mx-fade-out var(--mx-duration-base) both;
 }
+
 .mx--zoom.mx--enter {
-  animation: mx-zoom-in var(--mx-duration-base) both;
+	animation: mx-zoom-in var(--mx-duration-base) both;
 }
+
 .mx--zoom.mx--leave {
-  animation: mx-zoom-out var(--mx-duration-base) both;
+	animation: mx-zoom-out var(--mx-duration-base) both;
 }

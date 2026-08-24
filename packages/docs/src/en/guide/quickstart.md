@@ -1,6 +1,6 @@
 # Quick Start
 
-MengXi Uni-UI is a cross-platform component library for uni-app, supporting H5, WeChat Mini Program, Alipay Mini Program and App.
+@mengxi/uni-ui is a cross-platform component library for uni-app, supporting H5, WeChat Mini Program, Alipay Mini Program and App.
 
 ## Installation
 
@@ -15,12 +15,12 @@ Add the following to your `pages.json`:
 
 ```json
 {
-  "easycom": {
-    "autoscan": true,
-    "custom": {
-      "^mx-(.*)": "@mengxi/uni-ui/src/components/mx-$1/mx-$1.vue"
-    }
-  }
+	"easycom": {
+		"autoscan": true,
+		"custom": {
+			"^mx-(.*)": "@mengxi/uni-ui/src/components/mx-$1/mx-$1.vue"
+		}
+	}
 }
 ```
 
@@ -40,12 +40,12 @@ Import the global styles once in `App.vue` (reset + CSS variables + transition a
 
 ```vue
 <template>
-  <view>
-    <mx-button type="primary">Primary Button</mx-button>
-    <mx-cell title="Cell" value="Content" is-link />
-    <mx-switch v-model="switched" />
-    <mx-field v-model="value" label="Field" placeholder="Please enter" clearable />
-  </view>
+	<view>
+		<mx-button type="primary">Primary Button</mx-button>
+		<mx-cell title="Cell" value="Content" is-link />
+		<mx-switch v-model="switched" />
+		<mx-field v-model="value" label="Field" placeholder="Please enter" clearable />
+	</view>
 </template>
 
 <script setup lang="ts">

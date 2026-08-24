@@ -1,5 +1,5 @@
 /**
- * MengXi Uni-UI 组件库入口
+ * @mengxi/uni-ui 组件库入口
  * 组件目录: packages/components/<组件名>/<组件名>.vue (easycom 规则: mx-<name>)
  */
 
@@ -111,5 +111,5 @@ export * from './shared/props'
 
 // 聚合导出组件类型
 export type ComponentType = {
-  [K in keyof typeof import('./index') as K extends `Mx${string}` ? K : never]: (typeof import('./index'))[K]
+	[K in keyof typeof import('./index') as K extends `Mx${string}` ? K : never]: (typeof import('./index'))[K]
 }

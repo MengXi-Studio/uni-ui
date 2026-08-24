@@ -2,12 +2,12 @@
 layout: home
 
 hero:
-  name: 'MengXi Uni-UI'
+  name: '@mengxi/uni-ui'
   text: '是面向 uni-app 的移动端 UI 组件库'
   tagline: 轻量、可定制的移动端组件库，源于 Vant 设计，一套代码适配 H5 / 小程序 / App
   image:
     src: /logo.svg
-    alt: MengXi Uni-UI
+    alt: @mengxi/uni-ui
     width: 160
     height: 160
   actions:

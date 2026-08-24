@@ -1,4 +1,4 @@
-# MengXi Uni-UI - uni-app/HBuilderX 示例项目
+# @mengxi/uni-ui - uni-app/HBuilderX 示例项目
 
 本目录是 **uni-app 组件库示例项目**，使用 **HBuilderX** 创建（非 CLI 方式）。
 
@@ -18,9 +18,7 @@ uni-app/
 ## 使用方式
 
 1. 用 HBuilderX 打开本目录；
-2. 将 `packages/core/src/components` 下的组件复制到本目录
-   `uni_modules/mengxi-uni-ui/components/`（对应 `pages.json` 中的 easycom 规则：
-   `@/uni_modules/mengxi-uni-ui/components/mx-$1/mx-$1.vue`）；
+2. 将 `packages/core/src/components` 下的组件复制到本目录 `uni_modules/mengxi-uni-ui/components/`（对应 `pages.json` 中的 easycom 规则： `@/uni_modules/mengxi-uni-ui/components/mx-$1/mx-$1.vue`）；
 3. HBuilderX 会按 easycom 规则自动按需注册组件，页面直接使用 `<mx-button>` 等即可；
 4. 主题定制：在 `uni.scss` 覆盖 `--mx-*` CSS 变量。
 

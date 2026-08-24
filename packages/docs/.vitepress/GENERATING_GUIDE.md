@@ -1,6 +1,6 @@
 # 组件文档生成指南（内部工具文件，勿发布）
 
-本文档用于指导为 MengXi Uni-UI 官网（packages/docs）生成组件文档页。所有 API 表格必须严格从 `packages/core/src/components/<组件>/` 源码的 defineProps / defineEmits / defineSlots / defineExpose 中提取，禁止虚构任何 API。
+本文档用于指导为 @mengxi/uni-ui 官网（packages/docs）生成组件文档页。所有 API 表格必须严格从 `packages/core/src/components/<组件>/` 源码的 defineProps / defineEmits / defineSlots / defineExpose 中提取，禁止虚构任何 API。
 
 ## 文档模板
 

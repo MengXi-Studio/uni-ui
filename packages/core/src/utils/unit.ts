@@ -9,13 +9,15 @@
  * 多端兼容: 如需响应式可使用 rpx 字符串直接传入
  */
 export function addUnit(value: string | number | undefined): string | undefined {
-  if (value === undefined || value === null) return undefined
-  return typeof value === 'number' ? `${value}px` : value
+	if (value === undefined || value === null) return undefined
+
+	return typeof value === 'number' ? `${value}px` : value
 }
 
 /** 数值取整安全解析 */
 export function toNumber(value: string | number | undefined, fallback = 0): number {
-  if (value === undefined || value === null || value === '') return fallback
-  const num = Number(value)
-  return Number.isNaN(num) ? fallback : num
+	if (value === undefined || value === null || value === '') return fallback
+
+	const num = Number(value)
+	return Number.isNaN(num) ? fallback : num
 }

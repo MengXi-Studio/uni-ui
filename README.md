@@ -1,4 +1,4 @@
-# MengXi Uni-UI 组件库
+# @mengxi/uni-ui 组件库
 
 基于 **Vue 3 + TypeScript** 的高质量 uni-app 组件库，按 **Vant 4** 规范划分组件，多端兼容（H5 / 微信小程序 / App）。
 
@@ -24,12 +24,12 @@ pnpm add @mengxi/uni-ui
 
 ```json
 {
-  "easycom": {
-    "autoscan": true,
-    "custom": {
-      "^mx-(.*)": "@mengxi/uni-ui/src/components/mx-$1/mx-$1.vue"
-    }
-  }
+	"easycom": {
+		"autoscan": true,
+		"custom": {
+			"^mx-(.*)": "@mengxi/uni-ui/src/components/mx-$1/mx-$1.vue"
+		}
+	}
 }
 ```
 
@@ -37,9 +37,9 @@ pnpm add @mengxi/uni-ui
 
 ```vue
 <template>
-  <mx-button type="primary">主要按钮</mx-button>
-  <mx-cell title="单元格" value="内容" is-link />
-  <mx-switch v-model="switched" />
+	<mx-button type="primary">主要按钮</mx-button>
+	<mx-cell title="单元格" value="内容" is-link />
+	<mx-switch v-model="switched" />
 </template>
 ```
 
@@ -86,7 +86,7 @@ pnpm --filter @mengxi/uni-ui-playground run dev:h5 # 启动 CLI 示例（package
 
 ## 📖 文档
 
-官网文档见 `packages/docs`，或在线访问：[MengXi Uni-UI 文档](https://github.com/MengXi-Studio/mengxi-uni-ui/wiki)。
+官网文档见 `packages/docs`，或在线访问：[@mengxi/uni-ui 文档](https://github.com/MengXi-Studio/mengxi-uni-ui/wiki)。
 
 ## 📄 License
 

@@ -2,12 +2,12 @@
 layout: home
 
 hero:
-  name: 'MengXi Uni-UI'
+  name: '@mengxi/uni-ui'
   text: 'A mobile UI component library for uni-app'
   tagline: Lightweight and themeable component library inspired by Vant — one codebase for H5, Mini Program and App
   image:
     src: /logo.svg
-    alt: MengXi Uni-UI
+    alt: @mengxi/uni-ui
     width: 160
     height: 160
   actions:

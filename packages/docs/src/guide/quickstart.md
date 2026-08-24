@@ -1,6 +1,6 @@
 # 快速上手
 
-MengXi Uni-UI 是面向 uni-app 的多端组件库，支持 H5、微信小程序、支付宝小程序、App。
+@mengxi/uni-ui 是面向 uni-app 的多端组件库，支持 H5、微信小程序、支付宝小程序、App。
 
 ## 安装
 
@@ -15,12 +15,12 @@ pnpm add @mengxi/uni-ui
 
 ```json
 {
-  "easycom": {
-    "autoscan": true,
-    "custom": {
-      "^mx-(.*)": "@mengxi/uni-ui/src/components/mx-$1/mx-$1.vue"
-    }
-  }
+	"easycom": {
+		"autoscan": true,
+		"custom": {
+			"^mx-(.*)": "@mengxi/uni-ui/src/components/mx-$1/mx-$1.vue"
+		}
+	}
 }
 ```
 
@@ -40,12 +40,12 @@ pnpm add @mengxi/uni-ui
 
 ```vue
 <template>
-  <view>
-    <mx-button type="primary">主要按钮</mx-button>
-    <mx-cell title="单元格" value="内容" is-link />
-    <mx-switch v-model="switched" />
-    <mx-field v-model="value" label="输入框" placeholder="请输入" clearable />
-  </view>
+	<view>
+		<mx-button type="primary">主要按钮</mx-button>
+		<mx-cell title="单元格" value="内容" is-link />
+		<mx-switch v-model="switched" />
+		<mx-field v-model="value" label="输入框" placeholder="请输入" clearable />
+	</view>
 </template>
 
 <script setup lang="ts">
