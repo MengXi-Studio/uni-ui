@@ -1,20 +1,15 @@
 <template>
-  <label
-    class="mx-radio"
-    :class="[{ 'mx-radio--checked': checked, 'mx-radio--disabled': computedDisabled }, customClass]"
-    :style="customStyle"
-    @click="toggle"
-  >
-    <view class="mx-radio__icon" :style="iconStyle">
-      <view v-if="checked" class="mx-radio__icon-dot" />
-    </view>
+	<label class="mx-radio" :class="[{ 'mx-radio--checked': checked, 'mx-radio--disabled': computedDisabled }, customClass]" :style="customStyle" @click="toggle">
+		<view class="mx-radio__icon" :style="iconStyle">
+			<view v-if="checked" class="mx-radio__icon-dot" />
+		</view>
 
-    <slot name="icon" />
+		<slot name="icon" />
 
-    <view class="mx-radio__label">
-      <slot>{{ label }}</slot>
-    </view>
-  </label>
+		<view class="mx-radio__label">
+			<slot>{{ label }}</slot>
+		</view>
+	</label>
 </template>
 
 <script setup lang="ts">
@@ -23,104 +18,106 @@ import { makeStringProp, makeNumericProp, makeBooleanProp } from '../shared/prop
 import { addUnit } from '../../utils/unit'
 
 type RadioGroupInstance = {
-  disabled: () => boolean
-  checkedColor: () => string
-  iconSize: () => number | string
-  toggle: (name: string | number) => void
-  isChecked: (name: string | number) => boolean
+	disabled: () => boolean
+	checkedColor: () => string
+	iconSize: () => number | string
+	toggle: (name: string | number) => void
+	isChecked: (name: string | number) => boolean
 }
 
 const props = defineProps({
-  /** 当前选中的值 */
-  modelValue: { type: [String, Number, Boolean] as any, default: '' },
-  /** 标识符 */
-  name: { type: [String, Number, Boolean] as any, default: '' },
-  /** 选中时图标颜色 */
-  checkedColor: makeStringProp(''),
-  /** 图标大小 */
-  iconSize: makeNumericProp<number | string>('20px'),
-  /** 是否禁用 */
-  disabled: makeBooleanProp(false),
-  /** 文案 */
-  label: makeStringProp(''),
-  customClass: makeStringProp(''),
-  customStyle: { type: [String, Object] as any, default: '' },
+	/** 当前选中的值 */
+	modelValue: { type: [String, Number, Boolean] as any, default: '' },
+	/** 标识符 */
+	name: { type: [String, Number, Boolean] as any, default: '' },
+	/** 选中时图标颜色 */
+	checkedColor: makeStringProp(''),
+	/** 图标大小 */
+	iconSize: makeNumericProp<number | string>('20px'),
+	/** 是否禁用 */
+	disabled: makeBooleanProp(false),
+	/** 文案 */
+	label: makeStringProp(''),
+	/** 自定义类名 */
+	customClass: makeStringProp(''),
+	/** 自定义样式 */
+	customStyle: { type: [String, Object] as any, default: '' }
 })
 
 const emit = defineEmits<{
-  (e: 'update:modelValue', value: unknown): void
-  (e: 'change', value: unknown): void
+	/** 选中值变化时触发 (用于 v-model) */
+	(e: 'update:modelValue', value: unknown): void
+	/** 选中值变化时触发 */
+	(e: 'change', value: unknown): void
 }>()
 
 const group = inject<RadioGroupInstance | null>('mx-radio-group', null)
 
 const computedDisabled = computed(() => props.disabled || (group ? group.disabled() : false))
 const checkedColor = computed(() => {
-  const base = group ? group.checkedColor() : props.checkedColor
-  return base || 'var(--mx-primary-color)'
+	const base = group ? group.checkedColor() : props.checkedColor
+	return base || 'var(--mx-primary-color)'
 })
 const iconSize = computed(() => (group ? group.iconSize() : props.iconSize))
 
-const checked = computed(() =>
-  group ? group.isChecked(String(props.name)) : props.modelValue === props.name
-)
+const checked = computed(() => (group ? group.isChecked(String(props.name)) : props.modelValue === props.name))
 
 const iconStyle = computed(() => ({
-  width: addUnit(iconSize.value) as string,
-  height: addUnit(iconSize.value) as string,
-  ...(checked.value ? { borderColor: checkedColor.value } : {}),
+	width: addUnit(iconSize.value) as string,
+	height: addUnit(iconSize.value) as string,
+	...(checked.value ? { borderColor: checkedColor.value } : {})
 }))
 
 const toggle = () => {
-  if (computedDisabled.value) return
-  if (group) {
-    group.toggle(String(props.name))
-  } else {
-    emit('update:modelValue', props.name)
-    emit('change', props.name)
-  }
+	if (computedDisabled.value) return
+	if (group) {
+		group.toggle(String(props.name))
+	} else {
+		emit('update:modelValue', props.name)
+		emit('change', props.name)
+	}
 }
 </script>
 
 <style lang="scss">
 .mx-radio {
-  display: inline-flex;
-  align-items: center;
-  overflow: hidden;
-  cursor: pointer;
-  user-select: none;
+	display: inline-flex;
+	align-items: center;
+	overflow: hidden;
+	cursor: pointer;
+	user-select: none;
 
-  &--disabled {
-    cursor: not-allowed;
-    opacity: var(--mx-disabled-opacity);
-  }
+	&--disabled {
+		cursor: not-allowed;
+		opacity: var(--mx-disabled-opacity);
+	}
 
-  &__icon {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-shrink: 0;
-    box-sizing: border-box;
-    border-radius: 50%;
-    border: 1px solid var(--mx-text-color-3);
-    transition: border-color var(--mx-duration-fast) var(--mx-ease-in-out);
-  }
+	&__icon {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		flex-shrink: 0;
+		box-sizing: border-box;
+		border-radius: 50%;
+		border: 1px solid var(--mx-text-color-3);
+		transition: border-color var(--mx-duration-fast) var(--mx-ease-in-out);
+	}
 
-  &__icon-dot {
-    width: 60%;
-    height: 60%;
-    border-radius: 50%;
-    background: var(--mx-primary-color);
-  }
+	&__icon-dot {
+		width: 60%;
+		height: 60%;
+		border-radius: 50%;
+		background: var(--mx-primary-color);
+	}
 
-  &__label {
-    margin-left: 8px;
-    color: var(--mx-text-color);
-    line-height: 20px;
-  }
+	&__label {
+		margin-left: 8px;
+		color: var(--mx-text-color);
+		line-height: 20px;
+	}
 
-  &--disabled &__label {
-    color: var(--mx-text-color-3);
-  }
+	&--disabled &__label {
+		color: var(--mx-text-color-3);
+	}
 }
 </style>

@@ -1,16 +1,7 @@
 <template>
-  <view
-    class="mx-switch"
-    :class="[
-      `mx-switch--${checked ? 'on' : 'off'}`,
-      { 'mx-switch--disabled': disabled, 'mx-switch--loading': loading },
-      customClass,
-    ]"
-    :style="switchStyle"
-    @click="onClick"
-  >
-    <view class="mx-switch__node" :style="nodeStyle" />
-  </view>
+	<view class="mx-switch" :class="[`mx-switch--${checked ? 'on' : 'off'}`, { 'mx-switch--disabled': disabled, 'mx-switch--loading': loading }, customClass]" :style="switchStyle" @click="onClick">
+		<view class="mx-switch__node" :style="nodeStyle" />
+	</view>
 </template>
 
 <script setup lang="ts">
@@ -19,97 +10,100 @@ import { makeBooleanProp, makeStringProp, makeNumericProp } from '../shared/prop
 import { addUnit } from '../../utils/unit'
 
 const props = defineProps({
-  /** 开关值 */
-  modelValue: makeBooleanProp(false),
-  /** 是否禁用 */
-  disabled: makeBooleanProp(false),
-  /** 是否加载中 */
-  loading: makeBooleanProp(false),
-  /** 开关尺寸 */
-  size: makeNumericProp<number | string>('30px'),
-  /** 开关打开时的背景色 */
-  activeColor: makeStringProp(''),
-  /** 开关关闭时的背景色 */
-  inactiveColor: makeStringProp(''),
-  /** 打开时对应的值 */
-  activeValue: { type: [Boolean, String, Number] as any, default: true },
-  /** 关闭时对应的值 */
-  inactiveValue: { type: [Boolean, String, Number] as any, default: false },
-  customClass: makeStringProp(''),
-  customStyle: { type: [String, Object] as any, default: '' },
+	/** 开关值 */
+	modelValue: makeBooleanProp(false),
+	/** 是否禁用 */
+	disabled: makeBooleanProp(false),
+	/** 是否加载中 */
+	loading: makeBooleanProp(false),
+	/** 开关尺寸 */
+	size: makeNumericProp<number | string>('30px'),
+	/** 开关打开时的背景色 */
+	activeColor: makeStringProp(''),
+	/** 开关关闭时的背景色 */
+	inactiveColor: makeStringProp(''),
+	/** 打开时对应的值 */
+	activeValue: { type: [Boolean, String, Number] as any, default: true },
+	/** 关闭时对应的值 */
+	inactiveValue: { type: [Boolean, String, Number] as any, default: false },
+	/** 自定义类名 */
+	customClass: makeStringProp(''),
+	/** 自定义样式 */
+	customStyle: { type: [String, Object] as any, default: '' }
 })
 
 const emit = defineEmits<{
-  (e: 'update:modelValue', value: unknown): void
-  (e: 'change', value: unknown): void
-  (e: 'click'): void
+	/** 开关值变化时触发 (用于 v-model) */
+	(e: 'update:modelValue', value: unknown): void
+	/** 开关值变化时触发 */
+	(e: 'change', value: unknown): void
+	/** 点击开关时触发 */
+	(e: 'click'): void
 }>()
 
 const checked = computed(() => props.modelValue === props.activeValue)
 
 const switchStyle = computed(() => {
-  const style: Record<string, string> = {
-    width: `calc(${addUnit(props.size)} + 6px)`,
-    height: `calc(${addUnit(props.size)} + 6px)`,
-    background: checked.value
-      ? props.activeColor || 'var(--mx-primary-color)'
-      : props.inactiveColor || 'var(--mx-text-color-3)',
-  }
-  return style
+	const style: Record<string, string> = {
+		width: `calc(${addUnit(props.size)} + 6px)`,
+		height: `calc(${addUnit(props.size)} + 6px)`,
+		background: checked.value ? props.activeColor || 'var(--mx-primary-color)' : props.inactiveColor || 'var(--mx-text-color-3)'
+	}
+	return style
 })
 
 const nodeStyle = computed(() => ({
-  width: addUnit(props.size) as string,
-  height: addUnit(props.size) as string,
+	width: addUnit(props.size) as string,
+	height: addUnit(props.size) as string
 }))
 
 const onClick = () => {
-  emit('click')
-  if (props.disabled || props.loading) return
-  const next = !checked.value ? props.activeValue : props.inactiveValue
-  emit('update:modelValue', next)
-  emit('change', next)
+	emit('click')
+	if (props.disabled || props.loading) return
+	const next = !checked.value ? props.activeValue : props.inactiveValue
+	emit('update:modelValue', next)
+	emit('change', next)
 }
 </script>
 
 <style lang="scss">
 .mx-switch {
-  position: relative;
-  display: inline-block;
-  box-sizing: border-box;
-  min-width: 40px;
-  padding: 2px;
-  border-radius: 999px;
-  background: var(--mx-text-color-3);
-  transition: background-color var(--mx-duration-fast) var(--mx-ease-in-out);
+	position: relative;
+	display: inline-block;
+	box-sizing: border-box;
+	min-width: 40px;
+	padding: 2px;
+	border-radius: 999px;
+	background: var(--mx-text-color-3);
+	transition: background-color var(--mx-duration-fast) var(--mx-ease-in-out);
 
-  &--disabled {
-    opacity: var(--mx-disabled-opacity);
-    cursor: not-allowed;
-  }
+	&--disabled {
+		opacity: var(--mx-disabled-opacity);
+		cursor: not-allowed;
+	}
 
-  &--loading {
-    opacity: 0.6;
-  }
+	&--loading {
+		opacity: 0.6;
+	}
 
-  &--off .mx-switch__node {
-    transform: translateX(0);
-  }
+	&--off .mx-switch__node {
+		transform: translateX(0);
+	}
 
-  &--on .mx-switch__node {
-    transform: translateX(100%);
-  }
+	&--on .mx-switch__node {
+		transform: translateX(100%);
+	}
 
-  &__node {
-    position: relative;
-    box-sizing: border-box;
-    border-radius: 100%;
-    background: #fff;
-    box-shadow:
-      0 3px 1px 0 rgba(0, 0, 0, 0.05),
-      0 2px 2px 0 rgba(0, 0, 0, 0.1),
-      0 3px 3px 0 rgba(0, 0, 0, 0.05);
-    transition: transform var(--mx-duration-fast) var(--mx-ease-in-out);
-  }
+	&__node {
+		position: relative;
+		box-sizing: border-box;
+		border-radius: 100%;
+		background: #fff;
+		box-shadow:
+			0 3px 1px 0 rgba(0, 0, 0, 0.05),
+			0 2px 2px 0 rgba(0, 0, 0, 0.1),
+			0 3px 3px 0 rgba(0, 0, 0, 0.05);
+		transition: transform var(--mx-duration-fast) var(--mx-ease-in-out);
+	}
 }
 </style>
